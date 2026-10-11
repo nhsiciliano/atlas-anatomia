@@ -26,8 +26,8 @@ export const REFERENCES: ReferenceSource[] = [
     shortName: "Gray's 42e",
     autor: 'Standring S. (ed.), Elsevier',
     tipo: 'Tratado de referencia',
-    isbn: '978-0-7020-7707-4',
-    url: 'https://www.elsevier.com/books/grays-anatomy/standring/978-0-7020-7705-0',
+    isbn: '978-0-7020-7705-0',
+    url: 'https://shop.elsevier.com/books/grays-anatomy/standring/978-0-7020-7705-0',
     descripcion_es: 'Referencia anatómica macroscópica, relaciones topográficas y variaciones.',
   },
   {
