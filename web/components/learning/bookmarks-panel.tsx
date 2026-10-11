@@ -5,6 +5,7 @@ import { useAtlasStore } from '@/lib/store';
 import { useLocale, useT } from '@/lib/i18n';
 import { pick } from '@/lib/l10n';
 import { Bookmark, Clock, Trash2 } from 'lucide-react';
+import ProgressPanel from '@/components/learning/progress-panel';
 
 export default function BookmarksPanel() {
   const locale = useLocale();
@@ -16,6 +17,8 @@ export default function BookmarksPanel() {
 
   return (
     <div className="space-y-4 p-3">
+      <ProgressPanel />
+
       {/* Bookmarks */}
       <div>
         <h3 className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-muted-foreground mb-2">

@@ -44,7 +44,11 @@ export interface Progress {
   detailLevel: DetailLevel;
 }
 
-export type ImportResult = { ok: true } | { ok: false; error: string };
+/** Machine-readable reason for a failed import (`error` keeps a Spanish description). */
+export type ImportErrorCode =
+  | 'invalid_json' | 'no_version' | 'future_version' | 'no_data' | 'bad_list' | 'bad_object' | 'bad_value';
+
+export type ImportResult = { ok: true } | { ok: false; error: string; code: ImportErrorCode };
 
 export interface AtlasState {
   // View
@@ -243,25 +247,25 @@ function migrateLegacyKeys() {
 }
 
 /** Validates an exported progress file and normalizes it into a full Progress object. */
-function parseProgress(json: string): { ok: true; progress: Progress } | { ok: false; error: string } {
+function parseProgress(json: string): { ok: true; progress: Progress } | { ok: false; error: string; code: ImportErrorCode } {
   let parsed: unknown;
   try {
     parsed = JSON.parse(json);
   } catch {
-    return { ok: false, error: 'El archivo no es JSON válido.' };
+    return { ok: false, error: 'El archivo no es JSON válido.', code: 'invalid_json' };
   }
-  if (!isObject(parsed) || typeof parsed.version !== 'number') return { ok: false, error: 'Falta el número de versión.' };
-  if (parsed.version > PROGRESS_VERSION) return { ok: false, error: `Versión ${parsed.version} no soportada.` };
+  if (!isObject(parsed) || typeof parsed.version !== 'number') return { ok: false, error: 'Falta el número de versión.', code: 'no_version' };
+  if (parsed.version > PROGRESS_VERSION) return { ok: false, error: `Versión ${parsed.version} no soportada.`, code: 'future_version' };
   const d = parsed.data;
-  if (!isObject(d)) return { ok: false, error: 'Falta el objeto "data".' };
+  if (!isObject(d)) return { ok: false, error: 'Falta el objeto "data".', code: 'no_data' };
   for (const key of ['bookmarks', 'recentlyViewed', 'completedTours'] as const) {
-    if (d[key] !== undefined && !isStringList(d[key])) return { ok: false, error: `"${key}" debe ser una lista de textos.` };
+    if (d[key] !== undefined && !isStringList(d[key])) return { ok: false, error: `"${key}" debe ser una lista de textos.`, code: 'bad_list' };
   }
-  if (d.quizScores !== undefined && !isObject(d.quizScores)) return { ok: false, error: '"quizScores" debe ser un objeto.' };
-  if (d.srs !== undefined && !isObject(d.srs)) return { ok: false, error: '"srs" debe ser un objeto.' };
-  if (d.locale !== undefined && d.locale !== 'es' && d.locale !== 'en') return { ok: false, error: '"locale" debe ser "es" o "en".' };
+  if (d.quizScores !== undefined && !isObject(d.quizScores)) return { ok: false, error: '"quizScores" debe ser un objeto.', code: 'bad_object' };
+  if (d.srs !== undefined && !isObject(d.srs)) return { ok: false, error: '"srs" debe ser un objeto.', code: 'bad_object' };
+  if (d.locale !== undefined && d.locale !== 'es' && d.locale !== 'en') return { ok: false, error: '"locale" debe ser "es" o "en".', code: 'bad_value' };
   if (d.detailLevel !== undefined && d.detailLevel !== 'fundamental' && d.detailLevel !== 'avanzado') {
-    return { ok: false, error: '"detailLevel" no es válido.' };
+    return { ok: false, error: '"detailLevel" no es válido.', code: 'bad_value' };
   }
   return {
     ok: true,

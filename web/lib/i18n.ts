@@ -258,6 +258,56 @@ const messages: Record<Locale, Record<string, string>> = {
     'cards.kind.identificar': 'Identifica en el modelo',
   
     'cards.kind.manual': 'Repaso',
+  
+    'progress.title': 'Tu progreso',
+  
+    'progress.due': 'Tarjetas vencidas hoy',
+  
+    'progress.learned': 'Tarjetas aprendidas',
+  
+    'progress.tours': 'Recorridos completados',
+  
+    'progress.tours_value': '{done}/{total}',
+  
+    'progress.best_scores': 'Mejor puntaje por sistema',
+  
+    'progress.no_scores': 'Aún no has completado ningún cuestionario.',
+  
+    'progress.export': 'Exportar',
+  
+    'progress.import': 'Importar',
+  
+    'progress.reset': 'Reiniciar',
+  
+    'progress.confirm_import': 'Reemplazar',
+  
+    'progress.confirm_import_hint': '¿Reemplazar todo tu progreso por el del archivo «{file}»?',
+  
+    'progress.confirm_reset': 'Sí, borrar todo',
+  
+    'progress.confirm_reset_hint': '¿Borrar marcadores, puntajes, recorridos y tarjetas? No se puede deshacer.',
+  
+    'progress.cancel': 'Cancelar',
+  
+    'progress.imported': 'Progreso importado.',
+  
+    'progress.reset_done': 'Progreso reiniciado.',
+  
+    'progress.import_error': 'No se pudo importar: {error}',
+  
+    'progress.err.invalid_json': 'el archivo no es JSON válido',
+  
+    'progress.err.no_version': 'falta el número de versión',
+  
+    'progress.err.future_version': 'el archivo es de una versión más nueva de la aplicación',
+  
+    'progress.err.no_data': 'faltan los datos de progreso',
+  
+    'progress.err.bad_list': 'una de las listas no tiene el formato esperado',
+  
+    'progress.err.bad_object': 'los puntajes o las tarjetas no tienen el formato esperado',
+  
+    'progress.err.bad_value': 'el idioma o el nivel de detalle no son válidos',
   },
   en: {
     'nav.atlas': 'Atlas',
@@ -512,6 +562,56 @@ const messages: Record<Locale, Record<string, string>> = {
     'cards.kind.identificar': 'Identify on the model',
   
     'cards.kind.manual': 'Review',
+  
+    'progress.title': 'Your progress',
+  
+    'progress.due': 'Cards due today',
+  
+    'progress.learned': 'Cards learned',
+  
+    'progress.tours': 'Tours completed',
+  
+    'progress.tours_value': '{done}/{total}',
+  
+    'progress.best_scores': 'Best score by system',
+  
+    'progress.no_scores': 'You have not completed any quiz yet.',
+  
+    'progress.export': 'Export',
+  
+    'progress.import': 'Import',
+  
+    'progress.reset': 'Reset',
+  
+    'progress.confirm_import': 'Replace',
+  
+    'progress.confirm_import_hint': 'Replace all your progress with the one in "{file}"?',
+  
+    'progress.confirm_reset': 'Yes, erase everything',
+  
+    'progress.confirm_reset_hint': 'Erase bookmarks, scores, tours and cards? This cannot be undone.',
+  
+    'progress.cancel': 'Cancel',
+  
+    'progress.imported': 'Progress imported.',
+  
+    'progress.reset_done': 'Progress reset.',
+  
+    'progress.import_error': 'Could not import: {error}',
+  
+    'progress.err.invalid_json': 'the file is not valid JSON',
+  
+    'progress.err.no_version': 'the version number is missing',
+  
+    'progress.err.future_version': 'the file comes from a newer version of the app',
+  
+    'progress.err.no_data': 'the progress data is missing',
+  
+    'progress.err.bad_list': 'one of the lists does not have the expected format',
+  
+    'progress.err.bad_object': 'the scores or cards do not have the expected format',
+  
+    'progress.err.bad_value': 'the language or detail level is not valid',
   },
 };
 
