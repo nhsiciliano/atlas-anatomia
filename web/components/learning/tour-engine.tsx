@@ -3,12 +3,14 @@ import { useState, useCallback } from 'react';
 import { GUIDED_TOURS, type GuidedTour } from '@/data/tours';
 import { SYSTEM_MAP, type SystemId } from '@/data/systems';
 import { useAtlasStore } from '@/lib/store';
-import { useLocale, t } from '@/lib/i18n';
+import { useLocale, useT } from '@/lib/i18n';
+import { pick } from '@/lib/l10n';
 import { Route, ChevronLeft, ChevronRight, CheckCircle2, Play, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function TourEngine() {
   const locale = useLocale();
+  const tr = useT();
   const setSelected = useAtlasStore(s => s.setSelectedStructure);
   const isolateSystem = useAtlasStore(s => s.isolateSystem);
   const setAllSystems = useAtlasStore(s => s.setAllSystems);
@@ -59,7 +61,7 @@ export default function TourEngine() {
       <div className="space-y-3 p-3">
         <h3 className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
           <Route size={13} className="text-primary" />
-          {t('nav.tours', locale)}
+          {tr('nav.tours')}
         </h3>
         {(GUIDED_TOURS ?? []).map((tour: any) => {
           const done = (completedTours ?? []).includes(tour?.id ?? '');
@@ -67,9 +69,9 @@ export default function TourEngine() {
             <div key={tour?.id} className="bg-card rounded-lg border border-border p-3 space-y-2">
               <div className="flex items-start justify-between gap-2">
                 <div>
-                  <h4 className="text-sm font-semibold">{locale === 'es' ? tour?.titulo_es : tour?.titulo_en}</h4>
-                  <p className="text-xs text-muted-foreground">{locale === 'es' ? tour?.descripcion_es : tour?.descripcion_en}</p>
-                  <p className="text-[10px] text-muted-foreground mt-1">{tour?.steps?.length ?? 0} {t('tour.step', locale).toLowerCase()}s</p>
+                  <h4 className="text-sm font-semibold">{pick(tour, 'titulo', locale)}</h4>
+                  <p className="text-xs text-muted-foreground">{pick(tour, 'descripcion', locale)}</p>
+                  <p className="text-[10px] text-muted-foreground mt-1">{tr('tour.steps_count', { count: tour?.steps?.length ?? 0 })}</p>
                 </div>
                 {done && <CheckCircle2 size={16} className="text-primary flex-shrink-0" />}
               </div>
@@ -78,7 +80,7 @@ export default function TourEngine() {
                 className="flex items-center gap-1 px-3 py-1.5 rounded-md bg-primary text-primary-foreground text-xs font-medium hover:bg-primary/90 transition-colors"
               >
                 <Play size={12} />
-                {t('tour.start', locale)}
+                {tr('tour.start')}
               </button>
             </div>
           );
@@ -96,8 +98,8 @@ export default function TourEngine() {
   return (
     <div className="glass-panel rounded-xl p-3 space-y-3">
       <div className="flex items-center justify-between">
-        <h3 className="text-sm font-semibold">{locale === 'es' ? activeTour?.titulo_es : activeTour?.titulo_en}</h3>
-        <button onClick={closeTour} className="p-1 rounded hover:bg-destructive/10 transition-colors">
+        <h3 className="text-sm font-semibold">{pick(activeTour, 'titulo', locale)}</h3>
+        <button onClick={closeTour} className="p-1 rounded hover:bg-destructive/10 transition-colors" aria-label={tr('tour.close')}>
           <X size={14} />
         </button>
       </div>
@@ -123,12 +125,12 @@ export default function TourEngine() {
             className="text-center py-4"
           >
             <CheckCircle2 size={32} className="text-primary mx-auto mb-2" />
-            <p className="text-sm font-semibold">{t('tour.completed', locale)}</p>
+            <p className="text-sm font-semibold">{tr('tour.completed')}</p>
             <button
               onClick={closeTour}
               className="mt-3 px-4 py-1.5 rounded-md bg-primary text-primary-foreground text-xs font-medium hover:bg-primary/90 transition-colors"
             >
-              {t('tour.finish', locale)}
+              {tr('tour.finish')}
             </button>
           </motion.div>
         ) : currentStep ? (
@@ -141,12 +143,12 @@ export default function TourEngine() {
             <div className="flex items-center gap-1.5 mb-1">
               <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: sys?.color }} />
               <span className="text-[10px] text-muted-foreground">
-                {t('tour.step', locale)} {stepIdx + 1} {t('tour.of', locale)} {totalSteps}
+                {tr('tour.step_of', { step: stepIdx + 1, total: totalSteps })}
               </span>
             </div>
-            <h4 className="text-sm font-semibold">{locale === 'es' ? currentStep?.titulo_es : currentStep?.titulo_en}</h4>
+            <h4 className="text-sm font-semibold">{pick(currentStep, 'titulo', locale)}</h4>
             <p className="text-xs text-muted-foreground leading-relaxed mt-1">
-              {locale === 'es' ? currentStep?.explicacion_es : currentStep?.explicacion_en}
+              {pick(currentStep, 'explicacion', locale)}
             </p>
           </motion.div>
         ) : null}
@@ -160,13 +162,13 @@ export default function TourEngine() {
             className="flex items-center gap-1 px-2 py-1 rounded-md text-xs text-muted-foreground hover:bg-accent disabled:opacity-30 disabled:cursor-not-allowed transition-colors"
           >
             <ChevronLeft size={12} />
-            {t('tour.prev', locale)}
+            {tr('tour.prev')}
           </button>
           <button
             onClick={() => isLast ? finishTour() : goStep(stepIdx + 1)}
             className="flex items-center gap-1 px-3 py-1 rounded-md bg-primary text-primary-foreground text-xs font-medium hover:bg-primary/90 transition-colors"
           >
-            {isLast ? t('tour.finish', locale) : t('tour.next', locale)}
+            {isLast ? tr('tour.finish') : tr('tour.next')}
             {!isLast && <ChevronRight size={12} />}
           </button>
         </div>

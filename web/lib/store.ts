@@ -1,4 +1,5 @@
 'use client';
+import { useEffect, useSyncExternalStore } from 'react';
 import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
 import type { SystemId, ViewId } from '@/data/systems';
@@ -351,3 +352,25 @@ export const useAtlasStore = create<AtlasState>()(persist<AtlasState, [], [], Pr
     if (!error) migrateLegacyKeys();
   },
 }));
+
+// Missing when localStorage is unavailable: zustand then skips persistence entirely.
+const progressStore = useAtlasStore.persist as typeof useAtlasStore.persist | undefined;
+
+/**
+ * Loads the saved progress after mount (the store uses skipHydration, so the server render and the
+ * first client render match) and reports when it is ready. Components that update the store must
+ * wait for `true`: an update before hydration would overwrite the saved progress with the defaults.
+ */
+export function useProgressHydrated(): boolean {
+  const hydrated = useSyncExternalStore(
+    (onChange) => progressStore?.onFinishHydration(onChange) ?? (() => {}),
+    () => progressStore?.hasHydrated() ?? true,
+    () => false,
+  );
+
+  useEffect(() => {
+    if (progressStore && !progressStore.hasHydrated()) progressStore.rehydrate();
+  }, []);
+
+  return hydrated;
+}

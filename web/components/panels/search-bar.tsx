@@ -3,12 +3,14 @@ import { useState, useCallback, useRef, useEffect } from 'react';
 import { searchStructures, type SearchResult } from '@/lib/search';
 import { SYSTEM_MAP, type SystemId } from '@/data/systems';
 import { useAtlasStore } from '@/lib/store';
-import { useLocale, t } from '@/lib/i18n';
+import { useLocale, useT } from '@/lib/i18n';
+import { pick } from '@/lib/l10n';
 import { Search, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function SearchBar() {
   const locale = useLocale();
+  const tr = useT();
   const setSelected = useAtlasStore(s => s.setSelectedStructure);
   const [query, setQuery] = useState('');
   const [results, setResults] = useState<SearchResult[]>([]);
@@ -54,12 +56,12 @@ export default function SearchBar() {
           type="text"
           value={query}
           onChange={(e) => handleSearch(e.target.value)}
-          placeholder={t('search.placeholder', locale)}
+          placeholder={tr('search.placeholder')}
           className="min-w-0 flex-1 bg-transparent text-base outline-none placeholder:text-muted-foreground md:text-sm"
-          aria-label={t('search.placeholder', locale)}
+          aria-label={tr('search.placeholder')}
         />
         {query && (
-          <button onClick={() => { setQuery(''); setResults([]); setOpen(false); }} aria-label="Limpiar">
+          <button onClick={() => { setQuery(''); setResults([]); setOpen(false); }} aria-label={tr('search.clear')}>
             <X size={14} className="text-muted-foreground" />
           </button>
         )}
@@ -87,10 +89,10 @@ export default function SearchBar() {
                   />
                   <div className="min-w-0">
                     <p className="text-sm font-medium truncate">
-                      {locale === 'es' ? r?.structure?.nombre_es : r?.structure?.nombre_en}
+                      {pick(r.structure, 'nombre', locale)}
                     </p>
                     <p className="text-[10px] text-muted-foreground truncate">
-                      {locale === 'es' ? sys?.nombre_es : sys?.nombre_en}
+                      {sys && pick(sys, 'nombre', locale)}
                     </p>
                   </div>
                 </button>
@@ -105,7 +107,7 @@ export default function SearchBar() {
             exit={{ opacity: 0 }}
             className="absolute top-full left-0 right-0 mt-1 bg-card border border-border rounded-lg shadow-lg p-3 z-50"
           >
-            <p className="text-sm text-muted-foreground text-center">{t('search.no_results', locale)}</p>
+            <p className="text-sm text-muted-foreground text-center">{tr('search.no_results')}</p>
           </motion.div>
         )}
       </AnimatePresence>

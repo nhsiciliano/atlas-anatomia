@@ -2,11 +2,15 @@
 import { VIEWS, type ViewId } from '@/data/systems';
 import { useAtlasStore } from '@/lib/store';
 import { Home, Layers, RotateCw, Tag } from 'lucide-react';
+import { useLocale, useT } from '@/lib/i18n';
+import { pick } from '@/lib/l10n';
 
 const LAYER_STEPS = [1, 0.6, 0.3];
-const SHORT_VIEW: Record<ViewId, string> = { anterior: 'Frente', posterior: 'Dorso', lateral: 'Lado' };
+const SHORT_VIEW_KEY: Record<ViewId, string> = { anterior: 'dock.front', posterior: 'dock.back', lateral: 'dock.side' };
 
 export default function ViewerDock() {
+  const locale = useLocale();
+  const tr = useT();
   const currentView = useAtlasStore(s => s.currentView);
   const setView = useAtlasStore(s => s.setView);
   const resetView = useAtlasStore(s => s.resetView);
@@ -31,21 +35,21 @@ export default function ViewerDock() {
     <div className="glass-panel pointer-events-auto flex max-w-[calc(100vw-1.5rem)] items-center gap-0.5 overflow-x-auto rounded-full p-1 scrollbar-none md:p-1.5">
       {VIEWS.map(v => (
         <button key={v.id} onClick={() => setView(v.id as ViewId)} className={btn(currentView === v.id && !autoRotate)} aria-pressed={currentView === v.id}>
-          <span className="md:hidden">{SHORT_VIEW[v.id as ViewId]}</span>
-          <span className="hidden md:inline">{v.nombre_es}</span>
+          <span className="md:hidden">{tr(SHORT_VIEW_KEY[v.id as ViewId])}</span>
+          <span className="hidden md:inline">{pick(v, 'nombre', locale)}</span>
         </button>
       ))}
       <span className="mx-0.5 h-5 w-px flex-shrink-0 bg-foreground/10 md:mx-1" aria-hidden />
-      <button onClick={toggleAutoRotate} className={btn(autoRotate)} aria-pressed={autoRotate} title="Girar 360°">
-        <RotateCw size={13} /> <span className="hidden 2xl:inline">Girar 360°</span>
+      <button onClick={toggleAutoRotate} className={btn(autoRotate)} aria-pressed={autoRotate} title={tr('dock.rotate')}>
+        <RotateCw size={13} /> <span className="hidden 2xl:inline">{tr('dock.rotate')}</span>
       </button>
-      <button onClick={nextLayer} className={btn(layerIdx > 0)} title="Transparencia de las capas">
-        <Layers size={13} /> <span className="hidden 2xl:inline">Capas</span> <span className="hidden md:inline">{Math.round(LAYER_STEPS[layerIdx] * 100)}%</span>
+      <button onClick={nextLayer} className={btn(layerIdx > 0)} title={tr('dock.layers_title')}>
+        <Layers size={13} /> <span className="hidden 2xl:inline">{tr('dock.layers')}</span> <span className="hidden md:inline">{Math.round(LAYER_STEPS[layerIdx] * 100)}%</span>
       </button>
-      <button onClick={toggleLabels} className={btn(showLabels)} aria-pressed={showLabels} title="Etiquetas">
-        <Tag size={13} /> <span className="hidden 2xl:inline">Etiquetas</span>
+      <button onClick={toggleLabels} className={btn(showLabels)} aria-pressed={showLabels} title={tr('dock.labels')}>
+        <Tag size={13} /> <span className="hidden 2xl:inline">{tr('dock.labels')}</span>
       </button>
-      <button onClick={resetView} className={btn(false)} aria-label="Restablecer vista" title="Restablecer vista">
+      <button onClick={resetView} className={btn(false)} aria-label={tr('view.reset')} title={tr('view.reset')}>
         <Home size={13} />
       </button>
     </div>

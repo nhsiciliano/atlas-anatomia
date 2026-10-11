@@ -8,16 +8,18 @@ import TourEngine from '@/components/learning/tour-engine';
 import QuizEngine from '@/components/learning/quiz-engine';
 import BookmarksPanel from '@/components/learning/bookmarks-panel';
 import StructureTree from '@/components/learning/structure-tree';
+import { useT } from '@/lib/i18n';
 
-const TABS: { id: PanelTab; icon: typeof BookOpen; label: string; title: string }[] = [
-  { id: 'detail', icon: BookOpen, label: 'Explorar', title: 'Estructura' },
-  { id: 'tours', icon: Route, label: 'Recorridos', title: 'Recorridos guiados' },
-  { id: 'quiz', icon: HelpCircle, label: 'Practicar', title: 'Practicar' },
-  { id: 'bookmarks', icon: Bookmark, label: 'Guardadas', title: 'Mis estructuras' },
-  { id: 'tree', icon: TreeDeciduous, label: 'Índice', title: 'Índice de estructuras' },
+const TABS: { id: PanelTab; icon: typeof BookOpen; labelKey: string; titleKey: string }[] = [
+  { id: 'detail', icon: BookOpen, labelKey: 'nav.explore', titleKey: 'sheet.structure' },
+  { id: 'tours', icon: Route, labelKey: 'nav.tours_short', titleKey: 'nav.tours' },
+  { id: 'quiz', icon: HelpCircle, labelKey: 'nav.practice', titleKey: 'nav.practice' },
+  { id: 'bookmarks', icon: Bookmark, labelKey: 'nav.saved', titleKey: 'nav.my_structures' },
+  { id: 'tree', icon: TreeDeciduous, labelKey: 'nav.index', titleKey: 'sheet.structure_index' },
 ];
 
 export default function MobileDetailSheet() {
+  const tr = useT();
   const selectedId = useAtlasStore(s => s.selectedStructureId);
   const tab = useAtlasStore(s => s.panelTab);
   const setTab = useAtlasStore(s => s.setPanelTab);
@@ -46,7 +48,7 @@ export default function MobileDetailSheet() {
       {/* Bottom tab bar */}
       <nav
         className="fixed inset-x-0 bottom-0 z-40 border-t border-foreground/[0.06] bg-card/95 pb-[env(safe-area-inset-bottom)] backdrop-blur-xl"
-        aria-label="Secciones"
+        aria-label={tr('nav.sections')}
       >
         <div className="flex px-1">
           {TABS.map(tb => {
@@ -68,7 +70,7 @@ export default function MobileDetailSheet() {
                 <span className={`flex h-7 w-12 items-center justify-center rounded-full transition-colors ${active ? 'bg-primary/15' : ''}`}>
                   <Icon size={17} />
                 </span>
-                <span className="w-full truncate text-center">{tb.label}</span>
+                <span className="w-full truncate text-center">{tr(tb.labelKey)}</span>
               </button>
             );
           })}
@@ -99,7 +101,7 @@ export default function MobileDetailSheet() {
               onDragEnd={onDragEnd}
               className="glass-panel fixed inset-x-0 bottom-[calc(62px+env(safe-area-inset-bottom))] z-30 flex max-h-[72dvh] flex-col rounded-t-[24px] bg-card/95"
               role="dialog"
-              aria-label={current.title}
+              aria-label={tr(current.titleKey)}
             >
               {/* Drag handle + header */}
               <div
@@ -108,11 +110,11 @@ export default function MobileDetailSheet() {
               >
                 <div className="mx-auto mb-2 h-1 w-10 rounded-full bg-muted-foreground/30" />
                 <div className="flex items-center justify-between">
-                  <span className="eyebrow">{current.title}</span>
+                  <span className="eyebrow">{tr(current.titleKey)}</span>
                   <button
                     onClick={() => setExpanded(false)}
                     className="-mr-2 flex h-8 w-8 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-foreground/5 hover:text-foreground"
-                    aria-label="Cerrar panel"
+                    aria-label={tr('sheet.close')}
                   >
                     <X size={16} />
                   </button>
@@ -124,13 +126,13 @@ export default function MobileDetailSheet() {
                   selectedId ? <DetailPanel /> : (
                     <div className="flex flex-col gap-3 px-6 pb-8 pt-2">
                       <h2 className="font-display text-[26px] font-light leading-tight">
-                        Toca una estructura <em className="italic text-primary">para conocerla</em>
+                        {tr('panel.empty_title')} <em className="italic text-primary">{tr('panel.empty_title_em')}</em>
                       </h2>
                       <p className="text-sm leading-relaxed text-muted-foreground">
-                        Arrastra para girar el modelo, pellizca para acercar y elige sistemas desde el menú.
+                        {tr('panel.empty_mobile')}
                       </p>
                       <span className="flex items-center gap-2 text-xs text-muted-foreground">
-                        <MousePointerClick size={14} className="text-primary" /> También puedes usar el buscador superior.
+                        <MousePointerClick size={14} className="text-primary" /> {tr('panel.search_hint')}
                       </span>
                     </div>
                   )

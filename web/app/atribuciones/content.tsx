@@ -4,8 +4,17 @@ import { STRUCTURES } from '@/data/anatomy-data';
 import { SYSTEMS } from '@/data/systems';
 import { ArrowLeft, BookOpen, Box, ExternalLink } from 'lucide-react';
 import Link from 'next/link';
+import { useDocumentLang, useLocale, useT } from '@/lib/i18n';
+import { pick } from '@/lib/l10n';
+import { useProgressHydrated } from '@/lib/store';
 
 export default function AtribucionesContent() {
+  // Nothing here writes to the store, so the page renders right away (in Spanish on the server)
+  // and switches to the saved language once the progress is loaded.
+  useProgressHydrated();
+  useDocumentLang();
+  const locale = useLocale();
+  const tr = useT();
   return (
     <div className="min-h-dvh bg-background">
       <div className="max-w-[800px] mx-auto px-4 py-8">
@@ -14,37 +23,26 @@ export default function AtribucionesContent() {
           className="inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-primary transition-colors mb-6"
         >
           <ArrowLeft size={14} />
-          Volver al atlas
+          {tr('attrib.back')}
         </Link>
 
-        <h1 className="font-display text-3xl font-light tracking-tight mb-2">Atribuciones y fuentes</h1>
-        <p className="text-sm text-muted-foreground mb-8">
-          Esta aplicación es una representación educativa simplificada. El modelo 3D y las fichas son material
-          educativo simplificado; no sustituyen a un atlas clínico. A continuación se listan el origen del modelo 3D y las fuentes de
-          referencia utilizadas para elaborar el contenido textual.
-        </p>
+        <h1 className="font-display text-3xl font-light tracking-tight mb-2">{tr('attrib.title')}</h1>
+        <p className="text-sm text-muted-foreground mb-8">{tr('attrib.intro')}</p>
 
-        <h2 className="font-display text-lg font-light mb-3">Modelo 3D</h2>
+        <h2 className="font-display text-lg font-light mb-3">{tr('attrib.model_title')}</h2>
         <div className="bg-card rounded-lg border border-border p-4 mb-8 space-y-2">
           <div className="flex items-start gap-2">
             <Box size={16} className="text-primary flex-shrink-0 mt-0.5" />
             <div className="space-y-1">
               <h3 className="text-sm font-semibold">BodyParts3D</h3>
               <p className="text-xs text-muted-foreground">
-                BodyParts3D, © The Database Center for Life Science (DBCLS), licenciado bajo{' '}
-                <a href="https://creativecommons.org/licenses/by-sa/2.1/jp/deed.es" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
-                  Creative Commons Reconocimiento-CompartirIgual 2.1 Japón (CC BY-SA 2.1 JP)
+                {tr('attrib.license_lead')}{' '}
+                <a href={`https://creativecommons.org/licenses/by-sa/2.1/jp/deed.${locale}`} target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">
+                  {tr('attrib.license_name')}
                 </a>.
               </p>
-              <p className="text-xs text-muted-foreground">
-                Modificaciones: las mallas originales se agruparon por estructura, se simplificaron (reducción de polígonos),
-                se reorientaron y se convirtieron a formato glTF para su visualización en el navegador. Los modelos 3D
-                derivados se distribuyen bajo la misma licencia CC BY-SA 2.1 JP.
-              </p>
-              <p className="text-xs text-muted-foreground">
-                BodyParts3D es un modelo de cuerpo masculino; las estructuras femeninas se describen en sus fichas
-                sin representación 3D.
-              </p>
+              <p className="text-xs text-muted-foreground">{tr('attrib.modifications')}</p>
+              <p className="text-xs text-muted-foreground">{tr('attrib.male_model')}</p>
               <a
                 href="https://lifesciencedb.jp/bp3d/"
                 target="_blank"
@@ -58,7 +56,7 @@ export default function AtribucionesContent() {
           </div>
         </div>
 
-        <h2 className="font-display text-lg font-light mb-3">Fuentes del contenido</h2>
+        <h2 className="font-display text-lg font-light mb-3">{tr('attrib.sources_title')}</h2>
         <div className="space-y-4">
           {(REFERENCES ?? []).map((ref: any) => (
             <div key={ref?.id} className="bg-card rounded-lg border border-border p-4 space-y-1">
@@ -70,7 +68,7 @@ export default function AtribucionesContent() {
                   {ref?.isbn && (
                     <p className="text-xs text-muted-foreground font-mono">ISBN {ref.isbn}</p>
                   )}
-                  <p className="text-xs text-muted-foreground mt-1">{ref?.descripcion_es}</p>
+                  <p className="text-xs text-muted-foreground mt-1">{pick(ref, 'descripcion', locale)}</p>
                   {ref?.url && !/^https?:\/\//.test(ref.url) && (
                     <p className="text-xs text-muted-foreground font-mono mt-1">{ref.url}</p>
                   )}
@@ -93,9 +91,7 @@ export default function AtribucionesContent() {
 
         <div className="mt-8 p-4 bg-accent/30 rounded-lg border border-border/30">
           <p className="text-xs text-muted-foreground leading-relaxed">
-            <strong>Nota:</strong> Este atlas contiene {STRUCTURES.length} estructuras simplificadas distribuidas en{' '}
-            {SYSTEMS.length} sistemas corporales. No pretende reemplazar un atlas anatómico completo ni sustituir el criterio profesional
-            de salud. El modelo 3D es una representación didáctica simplificada, no una imagen clínica.
+            <strong>{tr('attrib.note_label')}</strong> {tr('attrib.note', { count: STRUCTURES.length, systems: SYSTEMS.length })}
           </p>
         </div>
       </div>

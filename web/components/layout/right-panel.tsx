@@ -1,6 +1,6 @@
 'use client';
 import { useAtlasStore, type PanelTab } from '@/lib/store';
-import { useLocale, t } from '@/lib/i18n';
+import { useT } from '@/lib/i18n';
 import DetailPanel from '@/components/panels/detail-panel';
 import ComparePanel from '@/components/learning/compare-panel';
 import TourEngine from '@/components/learning/tour-engine';
@@ -10,18 +10,18 @@ import StructureTree from '@/components/learning/structure-tree';
 import { BookOpen, Route, HelpCircle, Bookmark, TreeDeciduous, MousePointerClick } from 'lucide-react';
 
 export default function RightPanel() {
-  const locale = useLocale();
+  const tr = useT();
   const selectedId = useAtlasStore(s => s.selectedStructureId);
   const compareIds = useAtlasStore(s => s.compareIds);
   const tab = useAtlasStore(s => s.panelTab);
   const setTab = useAtlasStore(s => s.setPanelTab);
 
   const tabs: { id: PanelTab; icon: any; label: string }[] = [
-    { id: 'detail', icon: BookOpen, label: t('nav.atlas', locale) },
-    { id: 'tours', icon: Route, label: t('nav.tours', locale) },
-    { id: 'quiz', icon: HelpCircle, label: t('nav.quiz', locale) },
-    { id: 'bookmarks', icon: Bookmark, label: t('nav.bookmarks', locale) },
-    { id: 'tree', icon: TreeDeciduous, label: t('nav.arbol', locale) },
+    { id: 'detail', icon: BookOpen, label: tr('nav.atlas') },
+    { id: 'tours', icon: Route, label: tr('nav.tours') },
+    { id: 'quiz', icon: HelpCircle, label: tr('nav.quiz') },
+    { id: 'bookmarks', icon: Bookmark, label: tr('nav.bookmarks') },
+    { id: 'tree', icon: TreeDeciduous, label: tr('nav.arbol') },
   ];
 
   return (
@@ -60,15 +60,15 @@ export default function RightPanel() {
             <DetailPanel />
           ) : (
             <div className="flex flex-col items-start gap-3 px-6 py-10">
-              <span className="eyebrow">Explorar</span>
+              <span className="eyebrow">{tr('nav.explore')}</span>
               <h2 className="font-display text-[28px] font-light leading-tight">
-                Toca una estructura <em className="italic text-primary">para conocerla</em>
+                {tr('panel.empty_title')} <em className="italic text-primary">{tr('panel.empty_title_em')}</em>
               </h2>
               <p className="text-sm leading-relaxed text-muted-foreground">
-                Gira el modelo arrastrando, acerca con la rueda o el pellizco y activa sistemas desde la columna izquierda.
+                {tr('panel.empty_desktop')}
               </p>
               <span className="mt-2 flex items-center gap-2 text-xs text-muted-foreground">
-                <MousePointerClick size={14} className="text-primary" /> También puedes buscar con la barra superior.
+                <MousePointerClick size={14} className="text-primary" /> {tr('panel.search_hint')}
               </span>
             </div>
           )

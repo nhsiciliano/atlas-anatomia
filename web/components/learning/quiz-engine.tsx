@@ -3,12 +3,14 @@ import { useState, useMemo, useCallback } from 'react';
 import { QUIZ_QUESTIONS, type QuizDifficulty } from '@/data/quizzes';
 import { SYSTEMS, type SystemId } from '@/data/systems';
 import { useAtlasStore } from '@/lib/store';
-import { useLocale, t } from '@/lib/i18n';
+import { useLocale, useT } from '@/lib/i18n';
+import { pick, pickList } from '@/lib/l10n';
 import { HelpCircle, CheckCircle2, XCircle, Play, RotateCcw, Award } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function QuizEngine() {
   const locale = useLocale();
+  const tr = useT();
   const setSelected = useAtlasStore(s => s.setSelectedStructure);
   const saveQuizScore = useAtlasStore(s => s.saveQuizScore);
 
@@ -68,7 +70,7 @@ export default function QuizEngine() {
     return (
       <div className="p-4 text-center space-y-3">
         <Award size={36} className="text-primary mx-auto" />
-        <h3 className="text-lg font-bold">{t('quiz.score', locale)}</h3>
+        <h3 className="text-lg font-bold">{tr('quiz.score')}</h3>
         <p className="text-3xl font-display font-bold text-primary">{score}/{total}</p>
         <p className="text-sm text-muted-foreground">{pct}%</p>
         <button
@@ -76,7 +78,7 @@ export default function QuizEngine() {
           className="inline-flex items-center gap-1 px-4 py-2 rounded-md bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-colors"
         >
           <RotateCcw size={14} />
-          {t('quiz.start', locale)}
+          {tr('quiz.start')}
         </button>
       </div>
     );
@@ -88,27 +90,27 @@ export default function QuizEngine() {
       <div className="space-y-3 p-3">
         <h3 className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
           <HelpCircle size={13} className="text-primary" />
-          {t('nav.quiz', locale)}
+          {tr('nav.quiz')}
         </h3>
 
         {/* System filter */}
         <div>
-          <label className="text-[10px] text-muted-foreground">{t('quiz.system_filter', locale)}</label>
+          <label className="text-[10px] text-muted-foreground">{tr('quiz.system_filter')}</label>
           <select
             value={filterSystem}
             onChange={(e) => setFilterSystem(e.target.value as SystemId | 'all')}
             className="w-full mt-0.5 text-xs px-2 py-1.5 rounded-md bg-card border border-border"
           >
-            <option value="all">{t('quiz.all_systems', locale)}</option>
+            <option value="all">{tr('quiz.all_systems')}</option>
             {(SYSTEMS ?? []).map((s: any) => (
-              <option key={s?.id} value={s?.id}>{locale === 'es' ? s?.nombre_es : s?.nombre_en}</option>
+              <option key={s?.id} value={s?.id}>{pick(s, 'nombre', locale)}</option>
             ))}
           </select>
         </div>
 
         {/* Difficulty filter */}
         <div>
-          <label className="text-[10px] text-muted-foreground">{t('quiz.difficulty', locale)}</label>
+          <label className="text-[10px] text-muted-foreground">{tr('quiz.difficulty')}</label>
           <div className="flex gap-1 mt-0.5">
             {(['all', 'basico', 'intermedio', 'avanzado'] as const).map((d) => (
               <button
@@ -120,7 +122,7 @@ export default function QuizEngine() {
                     : 'bg-muted text-muted-foreground hover:bg-accent'
                 }`}
               >
-                {d === 'all' ? (locale === 'es' ? 'Todas' : 'All') : t(`quiz.${d}`, locale)}
+                {d === 'all' ? tr('quiz.all_difficulties') : tr(`quiz.${d}`)}
               </button>
             ))}
           </div>
@@ -134,7 +136,7 @@ export default function QuizEngine() {
           className="flex items-center gap-1 px-4 py-2 rounded-md bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 disabled:opacity-40 transition-colors"
         >
           <Play size={14} />
-          {t('quiz.start', locale)}
+          {tr('quiz.start')}
         </button>
       </div>
     );
@@ -144,7 +146,7 @@ export default function QuizEngine() {
   const question = filteredQuestions?.[currentIdx];
   if (!question) return null;
 
-  const opciones = locale === 'es' ? question?.opciones_es : question?.opciones_en;
+  const opciones = pickList(question, 'opciones', locale);
   const isLast = currentIdx >= (filteredQuestions?.length ?? 0) - 1;
 
   return (
@@ -153,7 +155,7 @@ export default function QuizEngine() {
       <div className="flex items-center justify-between text-[10px] text-muted-foreground">
         <span>{currentIdx + 1} / {filteredQuestions?.length ?? 0}</span>
         <span className="px-1.5 py-0.5 rounded bg-accent text-accent-foreground">
-          {t(`quiz.${question?.dificultad}`, locale)}
+          {tr(`quiz.${question?.dificultad}`)}
         </span>
       </div>
 
@@ -173,7 +175,7 @@ export default function QuizEngine() {
           exit={{ opacity: 0, x: -20 }}
           className="space-y-3"
         >
-          <p className="text-sm font-medium">{locale === 'es' ? question?.pregunta_es : question?.pregunta_en}</p>
+          <p className="text-sm font-medium">{pick(question, 'pregunta', locale)}</p>
 
           <div className="space-y-1.5">
             {(opciones ?? []).map((opt: string, i: number) => {
@@ -206,18 +208,18 @@ export default function QuizEngine() {
             >
               <div className="flex items-center gap-1.5">
                 {answered === question?.respuestaCorrecta
-                  ? <><CheckCircle2 size={14} className="text-green-600" /><span className="text-xs font-semibold text-green-700 dark:text-green-400">{t('quiz.correct', locale)}</span></>
-                  : <><XCircle size={14} className="text-red-600" /><span className="text-xs font-semibold text-red-700 dark:text-red-400">{t('quiz.incorrect', locale)}</span></>
+                  ? <><CheckCircle2 size={14} className="text-green-600" /><span className="text-xs font-semibold text-green-700 dark:text-green-400">{tr('quiz.correct')}</span></>
+                  : <><XCircle size={14} className="text-red-600" /><span className="text-xs font-semibold text-red-700 dark:text-red-400">{tr('quiz.incorrect')}</span></>
                 }
               </div>
               <p className="text-xs text-muted-foreground bg-accent/50 rounded-lg p-2">
-                {locale === 'es' ? question?.explicacion_es : question?.explicacion_en}
+                {pick(question, 'explicacion', locale)}
               </p>
               <button
                 onClick={nextQuestion}
                 className="px-3 py-1.5 rounded-md bg-primary text-primary-foreground text-xs font-medium hover:bg-primary/90 transition-colors"
               >
-                {isLast ? t('quiz.finish', locale) : t('quiz.next', locale)}
+                {isLast ? tr('quiz.finish') : tr('quiz.next')}
               </button>
             </motion.div>
           )}

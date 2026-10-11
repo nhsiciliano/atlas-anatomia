@@ -6,7 +6,8 @@ import * as THREE from 'three';
 import { SYSTEMS, SYSTEM_MAP, type SystemId, type ViewId } from '@/data/systems';
 import { STRUCTURE_MAP } from '@/data/anatomy-data';
 import { useAtlasStore } from '@/lib/store';
-import { useLocale } from '@/lib/i18n';
+import { useLocale, useT } from '@/lib/i18n';
+import { pick } from '@/lib/l10n';
 import { hasModel3D, modelUrl, NODE_ALIASES } from '@/lib/models3d';
 
 const TARGET = new THREE.Vector3(0, 0.82, 0);
@@ -240,7 +241,7 @@ function SelectedLabel() {
             <span className="block h-4 w-4 rounded-full border-[1.5px] border-primary shadow-[0_0_0_6px_hsl(var(--primary)/0.15)]" />
             <span className="h-px w-10 bg-gradient-to-r from-primary to-primary/20" />
             <span className="rounded-full bg-card/85 px-3 py-1 text-xs font-medium text-foreground backdrop-blur">
-              {locale === 'es' ? st.nombre_es : st.nombre_en}
+              {pick(st, 'nombre', locale)}
             </span>
           </div>
         </Html>
@@ -250,6 +251,7 @@ function SelectedLabel() {
 }
 
 function Loader() {
+  const tr = useT();
   const { active, progress } = useProgress();
   if (!active) return null;
   return (
@@ -258,7 +260,7 @@ function Loader() {
         <div className="h-px w-40 overflow-hidden bg-border">
           <div className="h-full bg-primary transition-[width]" style={{ width: `${progress}%` }} />
         </div>
-        Preparando el modelo… {Math.round(progress)}%
+        {tr('stage.loading_progress', { progress: Math.round(progress) })}
       </div>
     </Html>
   );
@@ -296,6 +298,7 @@ function Lights() {
 }
 
 export default function Atlas3D() {
+  const tr = useT();
   const visibleSystems = useAtlasStore((s) => s.visibleSystems);
   const setSelected = useAtlasStore((s) => s.setSelectedStructure);
 
@@ -314,7 +317,7 @@ export default function Atlas3D() {
       gl={{ antialias: true, alpha: true, toneMapping: THREE.ACESFilmicToneMapping, toneMappingExposure: 1.05 }}
       camera={{ fov: 28, near: 0.05, far: 40, position: VIEW_POS.anterior }}
       style={{ touchAction: 'none' }}
-      aria-label="Modelo 3D interactivo del cuerpo humano"
+      aria-label={tr('stage.canvas_label')}
     >
       <Lights />
       {systems.map((s) => (

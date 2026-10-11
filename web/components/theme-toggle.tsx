@@ -1,11 +1,13 @@
 'use client';
 import { useTheme } from 'next-themes';
 import { Moon, Sun } from 'lucide-react';
+import { useT } from '@/lib/i18n';
 
 export default function ThemeToggle() {
+  const tr = useT();
   const { resolvedTheme, setTheme } = useTheme();
   const isDark = resolvedTheme !== 'light';
-  const label = isDark ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro';
+  const label = tr(isDark ? 'theme.to_light' : 'theme.to_dark');
   return (
     <button
       onClick={() => setTheme(isDark ? 'light' : 'dark')}

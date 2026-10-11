@@ -1,22 +1,17 @@
 'use client';
-import { createContext, useContext } from 'react';
+import { useCallback, useEffect } from 'react';
+import { useAtlasStore } from '@/lib/store';
 
 export type Locale = 'es' | 'en';
 
 const messages: Record<Locale, Record<string, string>> = {
   es: {
-    'app.title': 'Atlas de Anatomía Humana',
-    'app.subtitle': 'Representación educativa simplificada — no es material clínico',
     'nav.atlas': 'Atlas',
-    'nav.aprender': 'Aprender',
     'nav.tours': 'Recorridos guiados',
     'nav.quiz': 'Cuestionarios',
     'nav.bookmarks': 'Marcadores',
     'nav.atribuciones': 'Atribuciones',
     'nav.arbol': 'Árbol de estructuras',
-    'view.anterior': 'Anterior',
-    'view.posterior': 'Posterior',
-    'view.lateral': 'Lateral',
     'view.reset': 'Restablecer vista',
     'panel.fundamental': 'Fundamental',
     'panel.avanzado': 'Avanzado',
@@ -24,28 +19,21 @@ const messages: Record<Locale, Record<string, string>> = {
     'panel.funciones': 'Funciones',
     'panel.partes': 'Partes / subdivisiones',
     'panel.conexiones': 'Conexiones con otros sistemas',
-    'panel.dato': 'Dato memorable',
+    'panel.dato': 'Dato para recordar',
     'panel.referencias': 'Referencias',
-    'panel.termino_ta': 'Terminologia Anatomica',
     'search.placeholder': 'Buscar estructura (español o inglés)…',
     'search.no_results': 'Sin resultados',
     'sidebar.title': 'Sistemas',
     'sidebar.opacity': 'Opacidad',
     'sidebar.toggle_all': 'Todos',
     'sidebar.isolate': 'Aislar',
-    'labels.show': 'Mostrar etiquetas',
-    'labels.hide': 'Ocultar etiquetas',
-    'labels.directions': 'Direcciones anatómicas',
     'legend.title': 'Leyenda de colores',
     'tour.start': 'Iniciar recorrido',
     'tour.next': 'Siguiente',
     'tour.prev': 'Anterior',
     'tour.finish': 'Finalizar',
-    'tour.step': 'Paso',
-    'tour.of': 'de',
     'tour.completed': '¡Recorrido completado!',
     'quiz.start': 'Iniciar cuestionario',
-    'quiz.check': 'Comprobar',
     'quiz.next': 'Siguiente pregunta',
     'quiz.finish': 'Ver resultados',
     'quiz.score': 'Puntuación',
@@ -57,7 +45,6 @@ const messages: Record<Locale, Record<string, string>> = {
     'quiz.basico': 'Básico',
     'quiz.intermedio': 'Intermedio',
     'quiz.avanzado': 'Avanzado',
-    'bookmark.add': 'Añadir marcador',
     'bookmark.remove': 'Quitar marcador',
     'bookmark.empty': 'No hay marcadores aún. Selecciona una estructura y márcala.',
     'recent.title': 'Vistos recientemente',
@@ -67,29 +54,149 @@ const messages: Record<Locale, Record<string, string>> = {
     'compare.clear': 'Limpiar comparación',
     'coverage.title': 'Cobertura',
     'coverage.note': 'Esta aplicación contiene {count} estructuras simplificadas distribuidas en {systems} sistemas corporales. El modelo 3D es una representación educativa simplificada de un cuerpo masculino, no una imagen anatómica médicamente precisa. Las estructuras sin malla 3D se describen en su ficha. Nada de esto sustituye el criterio profesional de salud.',
-    'onboarding.welcome': '¡Bienvenido al Atlas de Anatomía Humana!',
-    'onboarding.desc': 'Explora {systems} sistemas del cuerpo humano en un modelo 3D interactivo.',
-    'onboarding.tip1': 'Activa y desactiva sistemas desde la barra lateral',
-    'onboarding.tip2': 'Haz clic en una estructura para ver su información detallada',
-    'onboarding.tip3': 'Usa los recorridos guiados para aprender paso a paso',
-    'onboarding.start': 'Comenzar a explorar',
     'tree.title': 'Árbol de estructuras',
     'stage.micro': '{name}: estructura microscópica, se describe en la ficha',
     'stage.no_model': '{name}: sin modelo 3D disponible. Se muestra el sistema {system}',
+  
+    'app.loading': 'Cargando atlas…',
+  
+    'nav.explore': 'Explorar',
+  
+    'nav.tours_short': 'Recorridos',
+  
+    'nav.practice': 'Practicar',
+  
+    'nav.my_structures': 'Mis estructuras',
+  
+    'nav.saved': 'Guardadas',
+  
+    'nav.index': 'Índice',
+  
+    'nav.sections': 'Secciones',
+  
+    'header.systems_menu': 'Menú de sistemas',
+  
+    'header.home': 'Atlas del cuerpo — inicio',
+  
+    'app.brand': 'Atlas',
+  
+    'app.brand_em': 'del cuerpo',
+  
+    'theme.to_light': 'Cambiar a modo claro',
+  
+    'theme.to_dark': 'Cambiar a modo oscuro',
+  
+    'panel.empty_title': 'Toca una estructura',
+  
+    'panel.empty_title_em': 'para conocerla',
+  
+    'panel.empty_desktop': 'Gira el modelo arrastrando, acerca con la rueda o el pellizco y activa sistemas desde la columna izquierda.',
+  
+    'panel.empty_mobile': 'Arrastra para girar el modelo, pellizca para acercar y elige sistemas desde el menú.',
+  
+    'panel.search_hint': 'También puedes buscar con la barra superior.',
+  
+    'common.close': 'Cerrar',
+  
+    'settings.language': 'Idioma',
+  
+    'sheet.structure': 'Estructura',
+  
+    'sheet.structure_index': 'Índice de estructuras',
+  
+    'sheet.close': 'Cerrar panel',
+  
+    'panel.hierarchy': 'Ubicación jerárquica',
+  
+    'panel.detail_level': 'Nivel de detalle',
+  
+    'panel.save': 'Guardar',
+  
+    'panel.saved': 'Guardada',
+  
+    'panel.compare': 'Comparar',
+  
+    'search.clear': 'Limpiar búsqueda',
+  
+    'coverage.short': '{count} estructuras · modelo 3D basado en BodyParts3D (CC BY-SA).',
+  
+    'dock.front': 'Frente',
+  
+    'dock.back': 'Dorso',
+  
+    'dock.side': 'Lado',
+  
+    'dock.rotate': 'Girar 360°',
+  
+    'dock.layers': 'Capas',
+  
+    'dock.layers_title': 'Transparencia de las capas',
+  
+    'dock.labels': 'Etiquetas',
+  
+    'sidebar.heading': 'Sistemas · {count} visibles',
+  
+    'sidebar.hide_all': 'Ocultar todos',
+  
+    'sidebar.hide_system': 'Ocultar {name}',
+  
+    'sidebar.show_system': 'Mostrar {name}',
+  
+    'sidebar.isolate_system': 'Aislar {name}',
+  
+    'sidebar.opacity_system': 'Opacidad de {name}',
+  
+    'stage.loading': 'Preparando el modelo 3D…',
+  
+    'stage.disclaimer': 'Representación educativa simplificada. Modelo 3D: BodyParts3D (DBCLS), CC BY-SA 2.1 JP.',
+  
+    'stage.loading_progress': 'Preparando el modelo… {progress}%',
+  
+    'compare.description': 'Descripción',
+  
+    'compare.location': 'Ubicación',
+  
+    'compare.remove': 'Quitar {name} de la comparación',
+  
+    'quiz.all_difficulties': 'Todas',
+  
+    'tour.steps_count': '{count} pasos',
+  
+    'tour.close': 'Cerrar recorrido',
+  
+    'tour.step_of': 'Paso {step} de {total}',
+  
+    'attrib.back': 'Volver al atlas',
+  
+    'attrib.title': 'Atribuciones y fuentes',
+  
+    'attrib.intro': 'Esta aplicación es una representación educativa simplificada. El modelo 3D y las fichas son material educativo simplificado; no sustituyen a un atlas clínico. A continuación se listan el origen del modelo 3D y las fuentes de referencia utilizadas para elaborar el contenido textual.',
+  
+    'attrib.model_title': 'Modelo 3D',
+  
+    'attrib.license_lead': 'BodyParts3D, © The Database Center for Life Science (DBCLS), licenciado bajo',
+  
+    'attrib.license_name': 'Creative Commons Reconocimiento-CompartirIgual 2.1 Japón (CC BY-SA 2.1 JP)',
+  
+    'attrib.modifications': 'Modificaciones: las mallas originales se agruparon por estructura, se simplificaron (reducción de polígonos), se reorientaron y se convirtieron a formato glTF para su visualización en el navegador. Los modelos 3D derivados se distribuyen bajo la misma licencia CC BY-SA 2.1 JP.',
+  
+    'attrib.male_model': 'BodyParts3D es un modelo de cuerpo masculino; las estructuras femeninas se describen en sus fichas sin representación 3D.',
+  
+    'attrib.sources_title': 'Fuentes del contenido',
+  
+    'attrib.note_label': 'Nota:',
+  
+    'attrib.note': 'Este atlas contiene {count} estructuras simplificadas distribuidas en {systems} sistemas corporales. No pretende reemplazar un atlas anatómico completo ni sustituir el criterio profesional de salud. El modelo 3D es una representación didáctica simplificada, no una imagen clínica.',
+  
+    'stage.canvas_label': 'Modelo 3D interactivo del cuerpo humano',
   },
   en: {
-    'app.title': 'Human Anatomy Atlas',
-    'app.subtitle': 'Simplified educational representation — not clinical material',
     'nav.atlas': 'Atlas',
-    'nav.aprender': 'Learn',
     'nav.tours': 'Guided Tours',
     'nav.quiz': 'Quizzes',
     'nav.bookmarks': 'Bookmarks',
     'nav.atribuciones': 'Attributions',
     'nav.arbol': 'Structure Tree',
-    'view.anterior': 'Anterior',
-    'view.posterior': 'Posterior',
-    'view.lateral': 'Lateral',
     'view.reset': 'Reset view',
     'panel.fundamental': 'Fundamental',
     'panel.avanzado': 'Advanced',
@@ -97,28 +204,21 @@ const messages: Record<Locale, Record<string, string>> = {
     'panel.funciones': 'Functions',
     'panel.partes': 'Parts / subdivisions',
     'panel.conexiones': 'Connections to other systems',
-    'panel.dato': 'Memorable fact',
+    'panel.dato': 'Fact to remember',
     'panel.referencias': 'References',
-    'panel.termino_ta': 'Terminologia Anatomica',
     'search.placeholder': 'Search structure (Spanish or English)…',
     'search.no_results': 'No results',
     'sidebar.title': 'Systems',
     'sidebar.opacity': 'Opacity',
     'sidebar.toggle_all': 'All',
     'sidebar.isolate': 'Isolate',
-    'labels.show': 'Show labels',
-    'labels.hide': 'Hide labels',
-    'labels.directions': 'Anatomical directions',
     'legend.title': 'Color legend',
     'tour.start': 'Start tour',
     'tour.next': 'Next',
     'tour.prev': 'Previous',
     'tour.finish': 'Finish',
-    'tour.step': 'Step',
-    'tour.of': 'of',
     'tour.completed': 'Tour completed!',
     'quiz.start': 'Start quiz',
-    'quiz.check': 'Check',
     'quiz.next': 'Next question',
     'quiz.finish': 'See results',
     'quiz.score': 'Score',
@@ -130,7 +230,6 @@ const messages: Record<Locale, Record<string, string>> = {
     'quiz.basico': 'Basic',
     'quiz.intermedio': 'Intermediate',
     'quiz.avanzado': 'Advanced',
-    'bookmark.add': 'Add bookmark',
     'bookmark.remove': 'Remove bookmark',
     'bookmark.empty': 'No bookmarks yet. Select a structure and bookmark it.',
     'recent.title': 'Recently viewed',
@@ -140,29 +239,170 @@ const messages: Record<Locale, Record<string, string>> = {
     'compare.clear': 'Clear comparison',
     'coverage.title': 'Coverage',
     'coverage.note': 'This application contains {count} simplified structures across {systems} body systems. The 3D model is a simplified educational representation of a male body, not medically accurate anatomy. Structures without a 3D mesh are described in their detail card. None of this replaces professional health judgment.',
-    'onboarding.welcome': 'Welcome to the Human Anatomy Atlas!',
-    'onboarding.desc': 'Explore {systems} human body systems in an interactive 3D model.',
-    'onboarding.tip1': 'Toggle systems on/off from the sidebar',
-    'onboarding.tip2': 'Click a structure to see detailed information',
-    'onboarding.tip3': 'Use guided tours to learn step by step',
-    'onboarding.start': 'Start exploring',
     'tree.title': 'Structure Tree',
     'stage.micro': '{name}: microscopic structure, described in the card',
     'stage.no_model': '{name}: no 3D model available. Showing the {system} system',
+  
+    'app.loading': 'Loading atlas…',
+  
+    'nav.explore': 'Explore',
+  
+    'nav.tours_short': 'Tours',
+  
+    'nav.practice': 'Practice',
+  
+    'nav.my_structures': 'My structures',
+  
+    'nav.saved': 'Saved',
+  
+    'nav.index': 'Index',
+  
+    'nav.sections': 'Sections',
+  
+    'header.systems_menu': 'Systems menu',
+  
+    'header.home': 'Body atlas — home',
+  
+    'app.brand': 'Body',
+  
+    'app.brand_em': 'atlas',
+  
+    'theme.to_light': 'Switch to light mode',
+  
+    'theme.to_dark': 'Switch to dark mode',
+  
+    'panel.empty_title': 'Tap a structure',
+  
+    'panel.empty_title_em': 'to learn about it',
+  
+    'panel.empty_desktop': 'Drag to rotate the model, zoom with the wheel or a pinch, and turn systems on from the left column.',
+  
+    'panel.empty_mobile': 'Drag to rotate the model, pinch to zoom and pick systems from the menu.',
+  
+    'panel.search_hint': 'You can also search with the top bar.',
+  
+    'common.close': 'Close',
+  
+    'settings.language': 'Language',
+  
+    'sheet.structure': 'Structure',
+  
+    'sheet.structure_index': 'Structure index',
+  
+    'sheet.close': 'Close panel',
+  
+    'panel.hierarchy': 'Hierarchy',
+  
+    'panel.detail_level': 'Detail level',
+  
+    'panel.save': 'Save',
+  
+    'panel.saved': 'Saved',
+  
+    'panel.compare': 'Compare',
+  
+    'search.clear': 'Clear search',
+  
+    'coverage.short': '{count} structures · 3D model based on BodyParts3D (CC BY-SA).',
+  
+    'dock.front': 'Front',
+  
+    'dock.back': 'Back',
+  
+    'dock.side': 'Side',
+  
+    'dock.rotate': 'Rotate 360°',
+  
+    'dock.layers': 'Layers',
+  
+    'dock.layers_title': 'Layer transparency',
+  
+    'dock.labels': 'Labels',
+  
+    'sidebar.heading': 'Systems · {count} visible',
+  
+    'sidebar.hide_all': 'Hide all',
+  
+    'sidebar.hide_system': 'Hide {name}',
+  
+    'sidebar.show_system': 'Show {name}',
+  
+    'sidebar.isolate_system': 'Isolate {name}',
+  
+    'sidebar.opacity_system': '{name} opacity',
+  
+    'stage.loading': 'Preparing the 3D model…',
+  
+    'stage.disclaimer': 'Simplified educational representation. 3D model: BodyParts3D (DBCLS), CC BY-SA 2.1 JP.',
+  
+    'stage.loading_progress': 'Preparing the model… {progress}%',
+  
+    'compare.description': 'Description',
+  
+    'compare.location': 'Location',
+  
+    'compare.remove': 'Remove {name} from comparison',
+  
+    'quiz.all_difficulties': 'All',
+  
+    'tour.steps_count': '{count} steps',
+  
+    'tour.close': 'Close tour',
+  
+    'tour.step_of': 'Step {step} of {total}',
+  
+    'attrib.back': 'Back to the atlas',
+  
+    'attrib.title': 'Attributions and sources',
+  
+    'attrib.intro': 'This application is a simplified educational representation. The 3D model and the structure cards are simplified educational material; they do not replace a clinical atlas. Below are the origin of the 3D model and the reference sources used to write the text content.',
+  
+    'attrib.model_title': '3D model',
+  
+    'attrib.license_lead': 'BodyParts3D, © The Database Center for Life Science (DBCLS), licensed under',
+  
+    'attrib.license_name': 'Creative Commons Attribution-ShareAlike 2.1 Japan (CC BY-SA 2.1 JP)',
+  
+    'attrib.modifications': 'Modifications: the original meshes were grouped by structure, simplified (polygon reduction), reoriented and converted to glTF for display in the browser. The derived 3D models are distributed under the same CC BY-SA 2.1 JP license.',
+  
+    'attrib.male_model': 'BodyParts3D is a model of a male body; female structures are described in their cards without a 3D representation.',
+  
+    'attrib.sources_title': 'Content sources',
+  
+    'attrib.note_label': 'Note:',
+  
+    'attrib.note': 'This atlas contains {count} simplified structures across {systems} body systems. It is not intended to replace a complete anatomical atlas or professional healthcare judgment. The 3D model is a simplified teaching representation, not a clinical image.',
+  
+    'stage.canvas_label': 'Interactive 3D model of the human body',
   },
 };
 
-export const LocaleContext = createContext<Locale>('es');
+type Vars = Record<string, string | number>;
 
+/** Current UI language, read from the (persisted) store so every component follows changes. */
 export function useLocale(): Locale {
-  return useContext(LocaleContext);
+  return useAtlasStore((s) => s.locale);
 }
 
-export function t(key: string, locale: Locale = 'es', vars?: Record<string, string | number>): string {
+/** Keeps `<html lang>` in sync with the chosen language (the server always renders "es"). */
+export function useDocumentLang() {
+  const locale = useLocale();
+  useEffect(() => {
+    document.documentElement.lang = locale;
+  }, [locale]);
+}
+
+/** `t` bound to the current language. */
+export function useT(): (key: string, vars?: Vars) => string {
+  const locale = useLocale();
+  return useCallback((key: string, vars?: Vars) => t(key, locale, vars), [locale]);
+}
+
+export function t(key: string, locale: Locale = 'es', vars?: Vars): string {
   let text = messages[locale]?.[key] ?? messages['es']?.[key] ?? key;
   if (vars) {
     for (const [k, v] of Object.entries(vars)) {
-      text = text.replace(`{${k}}`, String(v));
+      text = text.split(`{${k}}`).join(String(v));
     }
   }
   return text;

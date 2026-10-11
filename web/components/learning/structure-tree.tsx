@@ -3,11 +3,13 @@ import { useMemo, useState } from 'react';
 import { STRUCTURES, type AnatomicalStructure } from '@/data/anatomy-data';
 import { SYSTEMS, type SystemId } from '@/data/systems';
 import { useAtlasStore } from '@/lib/store';
-import { useLocale, t } from '@/lib/i18n';
+import { useLocale, useT } from '@/lib/i18n';
+import { pick } from '@/lib/l10n';
 import { ChevronRight, ChevronDown, TreeDeciduous } from 'lucide-react';
 
 export default function StructureTree() {
   const locale = useLocale();
+  const tr = useT();
   const setSelected = useAtlasStore(s => s.setSelectedStructure);
   const selectedId = useAtlasStore(s => s.selectedStructureId);
   const [expandedSystems, setExpandedSystems] = useState<Set<SystemId>>(new Set());
@@ -35,7 +37,7 @@ export default function StructureTree() {
     <div className="p-3 space-y-1">
       <h3 className="flex items-center gap-1.5 text-xs font-semibold uppercase tracking-wide text-muted-foreground mb-2">
         <TreeDeciduous size={13} className="text-primary" />
-        {t('tree.title', locale)}
+        {tr('tree.title')}
       </h3>
 
       {(SYSTEMS ?? []).map((sys: any) => {
@@ -53,7 +55,7 @@ export default function StructureTree() {
               {isExpanded ? <ChevronDown size={12} /> : <ChevronRight size={12} />}
               <div className="w-2.5 h-2.5 rounded-full" style={{ backgroundColor: sys?.color }} />
               {Icon && <Icon size={12} className="text-muted-foreground" />}
-              <span className="text-xs font-medium">{locale === 'es' ? sys?.nombre_es : sys?.nombre_en}</span>
+              <span className="text-xs font-medium">{pick(sys, 'nombre', locale)}</span>
               <span className="text-[10px] text-muted-foreground ml-auto">{items?.length ?? 0}</span>
             </button>
 
@@ -69,7 +71,7 @@ export default function StructureTree() {
                         : 'text-muted-foreground hover:bg-accent hover:text-foreground'
                     }`}
                   >
-                    {locale === 'es' ? item?.nombre_es : item?.nombre_en}
+                    {pick(item, 'nombre', locale)}
                   </button>
                 ))}
               </div>

@@ -1,12 +1,14 @@
 'use client';
 import { SYSTEMS } from '@/data/systems';
-import { useLocale, t } from '@/lib/i18n';
+import { useLocale, useT } from '@/lib/i18n';
+import { pick } from '@/lib/l10n';
 import { Palette } from 'lucide-react';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function ColorLegend() {
   const locale = useLocale();
+  const tr = useT();
   const [open, setOpen] = useState(false);
 
   return (
@@ -14,8 +16,8 @@ export default function ColorLegend() {
       <button
         onClick={() => setOpen(!open)}
         className="p-1.5 rounded-md hover:bg-accent transition-colors text-muted-foreground"
-        aria-label={t('legend.title', locale)}
-        title={t('legend.title', locale)}
+        aria-label={tr('legend.title')}
+        title={tr('legend.title')}
       >
         <Palette size={16} />
       </button>
@@ -29,7 +31,7 @@ export default function ColorLegend() {
             className="absolute top-full right-0 mt-1 glass-panel rounded-lg p-3 z-50 min-w-[180px]"
           >
             <h4 className="text-xs font-semibold uppercase tracking-wide text-muted-foreground mb-2">
-              {t('legend.title', locale)}
+              {tr('legend.title')}
             </h4>
             <div className="space-y-1">
               {(SYSTEMS ?? []).map((sys: any) => (
@@ -39,7 +41,7 @@ export default function ColorLegend() {
                     style={{ backgroundColor: sys?.color }}
                   />
                   <span className="text-xs">
-                    {locale === 'es' ? sys?.nombre_es : sys?.nombre_en}
+                    {pick(sys, 'nombre', locale)}
                   </span>
                 </div>
               ))}

@@ -5,19 +5,24 @@ import { useAtlasStore } from '@/lib/store';
 import { STRUCTURE_MAP } from '@/data/anatomy-data';
 import { SYSTEM_MAP } from '@/data/systems';
 import { hasModel3D } from '@/lib/models3d';
-import { useLocale, t } from '@/lib/i18n';
+import { useLocale, useT } from '@/lib/i18n';
+import { pick } from '@/lib/l10n';
 import ViewerDock from '@/components/atlas/viewer-dock';
 import { Info } from 'lucide-react';
 
+function Loading3D() {
+  const tr = useT();
+  return <div className="flex h-full items-center justify-center text-xs text-muted-foreground">{tr('stage.loading')}</div>;
+}
+
 const Atlas3D = dynamic(() => import('@/components/atlas/atlas-3d'), {
   ssr: false,
-  loading: () => (
-    <div className="flex h-full items-center justify-center text-xs text-muted-foreground">Preparando el modelo 3D…</div>
-  ),
+  loading: () => <Loading3D />,
 });
 
 export default function AtlasStage() {
   const locale = useLocale();
+  const tr = useT();
   const selectedId = useAtlasStore(s => s.selectedStructureId);
 
   // Make sure the system of a structure picked from search, tree or tours is visible.
@@ -35,10 +40,10 @@ export default function AtlasStage() {
   const st = selectedId ? STRUCTURE_MAP[selectedId] : null;
   const notice = st && !hasModel3D(st.id)
     ? st.escala === 'micro'
-      ? t('stage.micro', locale, { name: locale === 'es' ? st.nombre_es : st.nombre_en })
-      : t('stage.no_model', locale, {
-          name: locale === 'es' ? st.nombre_es : st.nombre_en,
-          system: (locale === 'es' ? SYSTEM_MAP[st.systemId]?.nombre_es : SYSTEM_MAP[st.systemId]?.nombre_en)?.toLowerCase() ?? st.systemId,
+      ? tr('stage.micro', { name: pick(st, 'nombre', locale) })
+      : tr('stage.no_model', {
+          name: pick(st, 'nombre', locale),
+          system: SYSTEM_MAP[st.systemId] ? pick(SYSTEM_MAP[st.systemId], 'nombre', locale).toLowerCase() : st.systemId,
         })
     : null;
 
@@ -63,7 +68,7 @@ export default function AtlasStage() {
       </div>
 
       <p className="pointer-events-none absolute left-6 top-4 z-10 hidden max-w-[240px] text-[11px] leading-snug text-muted-foreground/70 xl:block">
-        Representación educativa simplificada. Modelo 3D: BodyParts3D (DBCLS), CC BY-SA 2.1 JP.
+        {tr('stage.disclaimer')}
       </p>
     </div>
   );

@@ -1,13 +1,14 @@
 'use client';
 import { useAtlasStore } from '@/lib/store';
-import { useLocale, t } from '@/lib/i18n';
+import { useT } from '@/lib/i18n';
 import SystemSidebar from '@/components/atlas/system-sidebar';
 import CoverageNote from '@/components/panels/coverage-note';
+import LanguageToggle from '@/components/language-toggle';
 import { X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function SidebarDrawer() {
-  const locale = useLocale();
+  const tr = useT();
   const sidebarOpen = useAtlasStore(s => s.sidebarOpen);
   const setSidebarOpen = useAtlasStore(s => s.setSidebarOpen);
 
@@ -40,16 +41,20 @@ export default function SidebarDrawer() {
               className="fixed left-0 top-0 bottom-0 z-50 w-[300px] max-w-[85vw] overflow-y-auto rounded-r-[24px] bg-card pb-[env(safe-area-inset-bottom)] shadow-2xl md:hidden"
             >
               <div className="flex items-center justify-between px-5 py-4">
-                <h2 className="font-display text-lg font-light">{t('sidebar.title', locale)}</h2>
+                <h2 className="font-display text-lg font-light">{tr('sidebar.title')}</h2>
                 <button
                   onClick={() => setSidebarOpen(false)}
                   className="-mr-2 flex h-9 w-9 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-foreground/5 hover:text-foreground"
-                  aria-label="Cerrar"
+                  aria-label={tr('common.close')}
                 >
                   <X size={16} />
                 </button>
               </div>
               <SystemSidebar />
+              <div className="flex items-center justify-between px-5 py-3">
+                <span className="text-[11px] text-muted-foreground">{tr('settings.language')}</span>
+                <LanguageToggle />
+              </div>
               <div className="p-2">
                 <CoverageNote />
               </div>
