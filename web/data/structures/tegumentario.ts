@@ -18,7 +18,19 @@ export const TEGUMENTARIO: AnatomicalStructure[] = [
     conexiones: ['nervioso', 'cardiovascular'],
     dato_es: 'Es el órgano más grande del cuerpo: pesa 3-4 kg y cubre 1,5-2 m².',
     dato_en: 'It is the largest organ: weighs 3-4 kg and covers 1.5-2 m².',
-    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2'],
+    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2', 'medlineplus', 'statpearls'],
+    clinica_es: [
+      { titulo: 'Quemaduras', texto: 'La gravedad depende de la profundidad y de la extensión. Como primeros auxilios se enfría la zona con agua corriente fresca durante 10 a 20 minutos, sin hielo ni cremas caseras, y no se rompen las ampollas. Hay que consultar si la quemadura es extensa, está en cara, manos o genitales, o afecta a un niño.' },
+      { titulo: 'Melanoma y regla ABCDE', texto: 'El melanoma es el cáncer de piel más peligroso. Una lesión sospechosa tiene Asimetría, Bordes irregulares, Color variable, Diámetro mayor de 6 mm o Evolución (cambia con el tiempo). Ante cualquiera de estos signos hay que consultar a un dermatólogo; protegerse del sol reduce el riesgo.' },
+    ],
+    clinica_en: [
+      { titulo: 'Burns', texto: 'Severity depends on depth and extent. As first aid, cool the area with cool running water for 10 to 20 minutes, without ice or home creams, and do not break blisters. See a doctor if the burn is large, on the face, hands or genitals, or affects a child.' },
+      { titulo: 'Melanoma and the ABCDE rule', texto: 'Melanoma is the most dangerous skin cancer. A suspicious lesion shows Asymmetry, irregular Borders, varied Color, Diameter larger than 6 mm or Evolution (it changes over time). With any of these signs see a dermatologist; sun protection lowers the risk.' },
+    ],
+    inervacion_es: 'Nervios cutáneos sensitivos organizados en dermatomas, y fibras simpáticas para las glándulas sudoríparas, los músculos erectores del pelo y los vasos sanguíneos.',
+    inervacion_en: 'Sensory cutaneous nerves organized in dermatomes, and sympathetic fibers for the sweat glands, the arrector pili muscles and the blood vessels.',
+    irrigacion_es: 'Dos plexos arteriales: uno profundo (entre la dermis reticular y la hipodermis) y uno superficial (subpapilar), conectados por vasos perforantes.',
+    irrigacion_en: 'Two arterial plexuses: a deep one (between the reticular dermis and the hypodermis) and a superficial one (subpapillary), connected by perforating vessels.',
   },
   {
     id: 'epidermis', systemId: 'tegumentario',
@@ -38,7 +50,15 @@ export const TEGUMENTARIO: AnatomicalStructure[] = [
     conexiones: ['linfatico_inmunitario'],
     dato_es: 'Se renueva completamente cada 28-30 días.',
     dato_en: 'It is completely renewed every 28-30 days.',
-    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2'],
+    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2', 'medlineplus', 'statpearls'],
+    clinica_es: [
+      { titulo: 'Quemadura superficial', texto: 'La quemadura de primer grado afecta solo la epidermis: la piel se enrojece y duele, pero no forma ampollas, como en una quemadura solar leve. Cura en pocos días y sin cicatriz. Enfriar la piel y usar hidratantes alivia las molestias.' },
+      { titulo: 'Carcinoma basocelular', texto: 'Es el cáncer de piel más frecuente y nace de las células del estrato basal por la exposición acumulada al sol. Aparece como una lesión nacarada o una herida que no cicatriza, en zonas expuestas. Crece lento y se cura casi siempre si se trata a tiempo; conviene consultar ante cualquier lesión que no cierre.' },
+    ],
+    clinica_en: [
+      { titulo: 'Superficial burn', texto: 'A first-degree burn affects only the epidermis: the skin turns red and hurts, but does not blister, as in a mild sunburn. It heals in a few days without scarring. Cooling the skin and using moisturizers relieves discomfort.' },
+      { titulo: 'Basal cell carcinoma', texto: 'It is the most common skin cancer and arises from cells of the basal layer because of accumulated sun exposure. It appears as a pearly lesion or a sore that does not heal, on exposed areas. It grows slowly and is almost always cured if treated in time; see a doctor about any lesion that does not close.' },
+    ],
   },
   {
     id: 'dermis', systemId: 'tegumentario',
@@ -58,7 +78,15 @@ export const TEGUMENTARIO: AnatomicalStructure[] = [
     conexiones: ['nervioso', 'cardiovascular'],
     dato_es: 'Las papilas dérmicas crean el patrón de las huellas dactilares.',
     dato_en: 'Dermal papillae create the fingerprint pattern.',
-    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2'],
+    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2', 'medlineplus', 'statpearls'],
+    clinica_es: [
+      { titulo: 'Quemadura de segundo grado', texto: 'Llega hasta la dermis: la piel forma ampollas, está muy roja y duele mucho. Las superficiales curan en unas dos o tres semanas; las profundas pueden dejar cicatriz y necesitar tratamiento médico. No se deben romper las ampollas y conviene consultar.' },
+      { titulo: 'Estrías', texto: 'Aparecen cuando la piel se estira muy rápido, como en el embarazo, el crecimiento o el aumento de peso. Se rompen fibras de colágeno y elásticas de la dermis y la piel queda con líneas rojizas que luego se aclaran. Son inofensivas.' },
+    ],
+    clinica_en: [
+      { titulo: 'Second-degree burn', texto: 'It reaches the dermis: the skin blisters, is very red and hurts a lot. Superficial ones heal in about two to three weeks; deep ones can leave a scar and need medical treatment. Blisters should not be broken, and it is advisable to see a doctor.' },
+      { titulo: 'Stretch marks', texto: 'They appear when the skin stretches very quickly, as in pregnancy, growth spurts or weight gain. Collagen and elastic fibers of the dermis tear and the skin shows reddish lines that later fade. They are harmless.' },
+    ],
   },
   {
     id: 'hipodermis', systemId: 'tegumentario',
@@ -78,7 +106,15 @@ export const TEGUMENTARIO: AnatomicalStructure[] = [
     conexiones: ['endocrino'],
     dato_es: 'Su grosor varía: es más gruesa en abdomen y muslos, más fina en párpados.',
     dato_en: 'Its thickness varies: thicker in abdomen and thighs, thinner in eyelids.',
-    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2'],
+    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2', 'medlineplus', 'statpearls'],
+    clinica_es: [
+      { titulo: 'Quemadura de tercer grado', texto: 'Destruye todo el espesor de la piel y puede llegar a la hipodermis. La zona se ve blanca, marrón o carbonizada, y puede doler poco porque se destruyen las terminaciones nerviosas. Es una emergencia médica que requiere atención hospitalaria.' },
+      { titulo: 'Inyecciones subcutáneas', texto: 'La hipodermis es laxa y tiene buena irrigación, por lo que absorbe lentamente los medicamentos inyectados, como la insulina o la heparina. Se rotan los sitios de inyección para evitar que el tejido se endurezca.' },
+    ],
+    clinica_en: [
+      { titulo: 'Third-degree burn', texto: 'It destroys the whole thickness of the skin and can reach the hypodermis. The area looks white, brown or charred, and may hurt little because nerve endings are destroyed. It is a medical emergency that requires hospital care.' },
+      { titulo: 'Subcutaneous injections', texto: 'The hypodermis is loose and well supplied with blood, so it absorbs injected medications slowly, such as insulin or heparin. Injection sites are rotated to prevent the tissue from hardening.' },
+    ],
   },
   {
     id: 'queratinocito', systemId: 'tegumentario',
@@ -96,9 +132,17 @@ export const TEGUMENTARIO: AnatomicalStructure[] = [
     partes_es: [],
     partes_en: [],
     conexiones: ['linfatico_inmunitario'],
-    dato_es: 'Perdemos unas 30.000-40.000 células muertas de la piel por hora.',
-    dato_en: 'We shed about 30,000-40,000 dead skin cells per hour.',
-    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2'],
+    dato_es: 'Perdemos unas 30.000-40.000 células muertas de la piel por minuto.',
+    dato_en: 'We shed about 30,000-40,000 dead skin cells per minute.',
+    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2', 'medlineplus', 'statpearls'],
+    clinica_es: [
+      { titulo: 'Psoriasis', texto: 'En esta enfermedad inflamatoria crónica los queratinocitos se renuevan en pocos días en lugar de cuatro semanas y se acumulan. Aparecen placas rojas con escamas plateadas, frecuentes en codos, rodillas y cuero cabelludo. No es contagiosa y hay tratamientos eficaces para controlarla.' },
+      { titulo: 'Carcinoma espinocelular', texto: 'Es un cáncer de piel que nace de los queratinocitos y se relaciona con la exposición solar acumulada. Se ve como una lesión escamosa o con costra que puede sangrar y no cicatriza. Detectado a tiempo suele tratarse con cirugía.' },
+    ],
+    clinica_en: [
+      { titulo: 'Psoriasis', texto: 'In this chronic inflammatory disease keratinocytes renew in a few days instead of four weeks and pile up. Red plaques with silvery scales appear, common on elbows, knees and scalp. It is not contagious and effective treatments exist to control it.' },
+      { titulo: 'Squamous cell carcinoma', texto: 'It is a skin cancer arising from keratinocytes and is related to accumulated sun exposure. It looks like a scaly or crusted lesion that may bleed and does not heal. Detected in time, it is usually treated with surgery.' },
+    ],
   },
   {
     id: 'melanocito', systemId: 'tegumentario',
@@ -118,7 +162,15 @@ export const TEGUMENTARIO: AnatomicalStructure[] = [
     conexiones: ['nervioso'],
     dato_es: 'Todas las personas tienen aproximadamente el mismo número de melanocitos; el color depende del tipo y cantidad de melanina.',
     dato_en: 'All people have roughly the same number of melanocytes; color depends on melanin type and amount.',
-    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2'],
+    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2', 'medlineplus', 'statpearls'],
+    clinica_es: [
+      { titulo: 'Vitíligo', texto: 'Es la pérdida de melanocitos en zonas de la piel, que quedan con manchas blancas. Se cree que es de origen autoinmune. No es contagioso ni peligroso, pero esas zonas se queman fácilmente, por lo que necesitan protección solar. Hay tratamientos que pueden ayudar.' },
+      { titulo: 'Melanoma', texto: 'Es el cáncer de los melanocitos. Es menos frecuente que otros cánceres de piel, pero el más agresivo si se propaga. Detectado en etapas tempranas la probabilidad de curación es muy alta, de ahí la importancia de vigilar los lunares, usar protector solar y evitar las camas solares.' },
+    ],
+    clinica_en: [
+      { titulo: 'Vitiligo', texto: 'It is the loss of melanocytes in areas of skin, which become white patches. It is thought to be autoimmune. It is not contagious or dangerous, but those areas burn easily and need sun protection. Treatments exist that can help.' },
+      { titulo: 'Melanoma', texto: 'It is the cancer of melanocytes. It is less common than other skin cancers, but the most aggressive if it spreads. Detected at early stages, the chance of cure is very high, hence the importance of watching moles, using sunscreen and avoiding tanning beds.' },
+    ],
   },
   {
     id: 'foliculo-piloso', systemId: 'tegumentario',
@@ -138,7 +190,15 @@ export const TEGUMENTARIO: AnatomicalStructure[] = [
     conexiones: ['nervioso'],
     dato_es: 'El cuerpo tiene unos 5 millones de folículos pilosos.',
     dato_en: 'The body has about 5 million hair follicles.',
-    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2'],
+    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2', 'medlineplus', 'statpearls'],
+    clinica_es: [
+      { titulo: 'Foliculitis', texto: 'Es la inflamación o infección del folículo, con pequeños granos rojos con un pelo en el centro. Suele aparecer tras el afeitado o por roce. Mejora con higiene y evitando irritar la zona; conviene consultar si se extiende, duele mucho o forma abscesos (forúnculos).' },
+      { titulo: 'Alopecia', texto: 'Es la pérdida de pelo. La más común es la androgenética, hereditaria y hormonal. La alopecia areata, autoinmune, produce parches redondos sin pelo, y la caída temporal puede seguir al estrés, una fiebre alta o un parto. Conviene consultar si la caída es brusca o forma parches.' },
+    ],
+    clinica_en: [
+      { titulo: 'Folliculitis', texto: 'It is inflammation or infection of the follicle, with small red bumps with a hair in the center. It often appears after shaving or from friction. It improves with hygiene and avoiding irritation of the area; see a doctor if it spreads, hurts a lot or forms abscesses (boils).' },
+      { titulo: 'Alopecia', texto: 'It is hair loss. The most common is androgenetic, hereditary and hormonal. Alopecia areata, an autoimmune form, produces round hairless patches, and temporary shedding can follow stress, a high fever or childbirth. See a doctor if the loss is sudden or forms patches.' },
+    ],
   },
   {
     id: 'una', systemId: 'tegumentario',
@@ -157,7 +217,19 @@ export const TEGUMENTARIO: AnatomicalStructure[] = [
     conexiones: [],
     dato_es: 'Las uñas de las manos crecen 3 veces más rápido que las de los pies.',
     dato_en: 'Fingernails grow 3 times faster than toenails.',
-    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2'],
+    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2', 'medlineplus', 'statpearls'],
+    clinica_es: [
+      { titulo: 'Onicomicosis', texto: 'Es la infección de la uña por hongos, más frecuente en los pies por la humedad y el calzado cerrado. La uña se engrosa, se vuelve amarillenta y quebradiza. El tratamiento es largo, de meses; conviene consultar y no automedicarse, sobre todo si hay diabetes.' },
+      { titulo: 'Uña encarnada', texto: 'Ocurre cuando el borde de la uña se clava en la piel del costado, generalmente en el dedo gordo del pie. Causa dolor, enrojecimiento e hinchazón, y puede infectarse. Se previene cortando las uñas rectas y usando calzado holgado; si hay pus o diabetes, hay que consultar.' },
+    ],
+    clinica_en: [
+      { titulo: 'Onychomycosis', texto: 'It is a fungal infection of the nail, more common in the feet because of moisture and closed shoes. The nail thickens, turns yellowish and becomes brittle. Treatment is long, lasting months; see a doctor and do not self-medicate, especially if you have diabetes.' },
+      { titulo: 'Ingrown nail', texto: 'It occurs when the edge of the nail digs into the skin at the side, usually on the big toe. It causes pain, redness and swelling, and can become infected. It is prevented by cutting nails straight and wearing roomy shoes; if there is pus or diabetes, see a doctor.' },
+    ],
+    inervacion_es: 'Nervios digitales de cada dedo.',
+    inervacion_en: 'Digital nerves of each finger or toe.',
+    irrigacion_es: 'Arterias digitales propias.',
+    irrigacion_en: 'Proper digital arteries.',
   },
   {
     id: 'glandulas-sudoriparas', systemId: 'tegumentario',
