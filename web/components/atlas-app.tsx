@@ -5,14 +5,10 @@ import SidebarDrawer from '@/components/layout/sidebar-drawer';
 import AtlasStage from '@/components/atlas/atlas-stage';
 import RightPanel from '@/components/layout/right-panel';
 import MobileDetailSheet from '@/components/layout/mobile-detail-sheet';
-import { useEffect, useState } from 'react';
+import { useSyncExternalStore } from 'react';
 
 export default function AtlasApp() {
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const mounted = useSyncExternalStore(() => () => {}, () => true, () => false);
 
   if (!mounted) {
     return (

@@ -1,7 +1,7 @@
 'use client';
 import { useState, useMemo, useCallback } from 'react';
-import { QUIZ_QUESTIONS, type QuizQuestion, type QuizDifficulty } from '@/data/quizzes';
-import { SYSTEMS, SYSTEM_MAP, type SystemId } from '@/data/systems';
+import { QUIZ_QUESTIONS, type QuizDifficulty } from '@/data/quizzes';
+import { SYSTEMS, type SystemId } from '@/data/systems';
 import { useAtlasStore } from '@/lib/store';
 import { useLocale, t } from '@/lib/i18n';
 import { HelpCircle, CheckCircle2, XCircle, Play, RotateCcw, Award } from 'lucide-react';
@@ -10,7 +10,6 @@ import { motion, AnimatePresence } from 'framer-motion';
 export default function QuizEngine() {
   const locale = useLocale();
   const setSelected = useAtlasStore(s => s.setSelectedStructure);
-  const quizScores = useAtlasStore(s => s.quizScores);
   const saveQuizScore = useAtlasStore(s => s.saveQuizScore);
 
   const [filterSystem, setFilterSystem] = useState<SystemId | 'all'>('all');

@@ -22,11 +22,17 @@ export default function MobileDetailSheet() {
   const tab = useAtlasStore(s => s.panelTab);
   const setTab = useAtlasStore(s => s.setPanelTab);
   const [expanded, setExpanded] = useState(false);
+  const [prevSelectedId, setPrevSelectedId] = useState(selectedId);
   const dragControls = useDragControls();
 
   // Open the sheet when a structure is picked on the model.
+  if (selectedId !== prevSelectedId) {
+    setPrevSelectedId(selectedId);
+    if (selectedId) setExpanded(true);
+  }
+  // The tab lives in the shared store, so it can't be set during render.
   useEffect(() => {
-    if (selectedId) { setTab('detail'); setExpanded(true); }
+    if (selectedId) setTab('detail');
   }, [selectedId, setTab]);
 
   const onDragEnd = (_: unknown, info: PanInfo) => {

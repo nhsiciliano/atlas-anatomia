@@ -15,7 +15,7 @@ Interactive anatomy atlas and learning platform. All UI in Spanish (i18n-ready f
 - Warm radial stage glow (`.museum-stage`), bone-white text #E9E4DA, amber primary #E8B66B
 - Fonts: Fraunces light (display, italic amber accents), Instrument Sans (body)
 - Floating `.glass-panel` cards, pill controls, `.eyebrow` uppercase letter-spaced labels
-- Reference mockup: docs/design/a_museo.png
+- Reference mockup: docs/design/design_concepts/a_museo.png (repo root)
 
 ## 3D Viewer
 - Real 3D body from BodyParts3D (DBCLS, CC BY-SA 2.1 JP) — attribution required on /atribuciones and in coverage note
@@ -45,3 +45,13 @@ Interactive anatomy atlas and learning platform. All UI in Spanish (i18n-ready f
 - No database — persistence via localStorage
 - SVG illustrations labeled as simplified educational representations
 - Spanish is the default and primary language
+
+<!-- BEGIN:nextjs-agent-rules -->
+
+# This is NOT the Next.js you know
+
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+
+This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+
+<!-- END:nextjs-agent-rules -->

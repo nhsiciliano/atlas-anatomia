@@ -19,13 +19,13 @@ export default function AtlasStage() {
   const viewerMode = useAtlasStore(s => s.viewerMode);
   const setViewerMode = useAtlasStore(s => s.setViewerMode);
   const selectedId = useAtlasStore(s => s.selectedStructureId);
-  const visibleSystems = useAtlasStore(s => s.visibleSystems);
-  const toggleSystem = useAtlasStore(s => s.toggleSystem);
   const reproSex = useAtlasStore(s => s.reproSex);
 
   // Make sure the system of a structure picked from search, tree or tours is visible.
   useEffect(() => {
     if (!selectedId) return;
+    // Read the store directly: re-running when visibility changes would undo a manual hide.
+    const { visibleSystems, toggleSystem } = useAtlasStore.getState();
     const sys = STRUCTURE_MAP[selectedId]?.systemId;
     if (sys && !visibleSystems[sys]) toggleSystem(sys);
   }, [selectedId]);

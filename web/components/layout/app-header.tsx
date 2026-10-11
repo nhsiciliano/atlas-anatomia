@@ -1,4 +1,5 @@
 'use client';
+import Link from 'next/link';
 import { useAtlasStore, type PanelTab } from '@/lib/store';
 import SearchBar from '@/components/panels/search-bar';
 import ColorLegend from '@/components/panels/color-legend';
@@ -29,9 +30,9 @@ export default function AppHeader() {
           <Menu size={18} />
         </button>
 
-        <a href="/" className="flex-shrink-0 font-display text-xl font-light tracking-tight md:text-[22px]" aria-label="Atlas del cuerpo — inicio">
+        <Link href="/" className="flex-shrink-0 font-display text-xl font-light tracking-tight md:text-[22px]" aria-label="Atlas del cuerpo — inicio">
           Atlas <em className="font-normal italic text-primary">del cuerpo</em>
-        </a>
+        </Link>
 
         <nav className="ml-6 hidden items-center gap-1 lg:flex" aria-label="Secciones">
           {NAV.map(n => (

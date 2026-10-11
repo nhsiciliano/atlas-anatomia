@@ -210,24 +210,26 @@ function SelectedLabel() {
   const selectedId = useAtlasStore((s) => s.selectedStructureId);
   const hoveredId = useAtlasStore((s) => s.hoveredStructureId);
   const showLabels = useAtlasStore((s) => s.showLabels);
-  const [pos, setPos] = useState<[number, number, number] | null>(null);
+  const [found, setFound] = useState<{ id: string; pos: [number, number, number] } | null>(null);
   const scene = useThree((s) => s.scene);
   const id = selectedId && hasModel3D(selectedId) ? selectedId : showLabels && hoveredId ? hoveredId : null;
 
   useEffect(() => {
-    if (!id) { setPos(null); return; }
+    if (!id) return;
     let tries = 0;
     let timer = 0;
     const run = () => {
       const s = findSphere(scene, id);
-      if (s) setPos([s.center.x, s.center.y, s.center.z]);
+      if (s) setFound({ id, pos: [s.center.x, s.center.y, s.center.z] });
       else if (tries++ < 20) timer = window.setTimeout(run, 150);
-      else setPos(null);
+      else setFound(null);
     };
     run();
     return () => window.clearTimeout(timer);
   }, [id, scene]);
 
+  // Only show a position computed for the current id, never a stale one.
+  const pos = found && found.id === id ? found.pos : null;
   const st = id ? STRUCTURE_MAP[id] : null;
   return (
     <group>

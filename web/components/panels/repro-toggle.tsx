@@ -1,7 +1,6 @@
 'use client';
 import { useAtlasStore, type ReproSex } from '@/lib/store';
 import { useLocale, t } from '@/lib/i18n';
-import { SYSTEM_MAP } from '@/data/systems';
 
 export default function ReproToggle() {
   const locale = useLocale();

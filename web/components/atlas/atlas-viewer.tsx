@@ -2,10 +2,9 @@
 import React, { useRef, useCallback, useEffect, useState, useMemo } from 'react';
 import { BODY_OUTLINES, STRUCTURE_PATHS } from '@/data/svg-paths';
 import { STRUCTURES, STRUCTURE_MAP } from '@/data/anatomy-data';
-import { SYSTEM_MAP, type SystemId, type ViewId } from '@/data/systems';
+import { SYSTEM_MAP, type SystemId } from '@/data/systems';
 import { useAtlasStore } from '@/lib/store';
 import { useLocale, t } from '@/lib/i18n';
-import { motion } from 'framer-motion';
 
 export default function AtlasViewer() {
   const locale = useLocale();

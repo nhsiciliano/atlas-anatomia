@@ -10,13 +10,13 @@ Atlas educativo 3D de anatomía humana. Reúne ~96 estructuras anatómicas organ
 │   └── nextjs_space/        # Aplicación web (Next.js + React + three.js)
 ├── bp3d/                    # Pipeline Python que genera los GLB desde BodyParts3D
 ├── anatomy_research.json    # Borrador inicial de contenido anatómico
-└── output/                  # Mockups y capturas de diseño
+└── docs/design/             # Mockups y capturas de diseño
 ```
 
 - **`atlas_anatomia/nextjs_space/`**: la app. Datos estáticos en `data/`, estado en `lib/store.ts` (Zustand), modelos 3D por sistema en `public/models3d/`.
 - **`bp3d/`**: scripts (`build_glb.py`, `mapping.py`) y listados de partes de BodyParts3D que generan los GLB por sistema que consume la app.
 - **`anatomy_research.json`**: borrador de contenido con el que se armó el catálogo inicial de estructuras.
-- **`output/`**: mockups de diseño (referencia visual, "Museo nocturno").
+- **`docs/design/`**: mockups de diseño (referencia visual, "Museo nocturno").
 
 ## Cómo correr la app
 

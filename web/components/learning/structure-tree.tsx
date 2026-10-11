@@ -1,7 +1,7 @@
 'use client';
 import { useMemo, useState } from 'react';
 import { STRUCTURES, type AnatomicalStructure } from '@/data/anatomy-data';
-import { SYSTEMS, SYSTEM_MAP, type SystemId } from '@/data/systems';
+import { SYSTEMS, type SystemId } from '@/data/systems';
 import { useAtlasStore } from '@/lib/store';
 import { useLocale, t } from '@/lib/i18n';
 import { ChevronRight, ChevronDown, TreeDeciduous } from 'lucide-react';

@@ -1,5 +1,5 @@
 'use client';
-import { STRUCTURE_MAP, type AnatomicalStructure } from '@/data/anatomy-data';
+import { STRUCTURE_MAP } from '@/data/anatomy-data';
 import { SYSTEM_MAP, type SystemId } from '@/data/systems';
 import { REFERENCE_MAP } from '@/data/references';
 import { useAtlasStore } from '@/lib/store';

@@ -1,6 +1,6 @@
 'use client';
 import { useState, useCallback } from 'react';
-import { GUIDED_TOURS, type GuidedTour, type TourStep } from '@/data/tours';
+import { GUIDED_TOURS, type GuidedTour } from '@/data/tours';
 import { SYSTEM_MAP, type SystemId } from '@/data/systems';
 import { useAtlasStore } from '@/lib/store';
 import { useLocale, t } from '@/lib/i18n';
