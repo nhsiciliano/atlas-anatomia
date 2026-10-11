@@ -8,7 +8,7 @@ import { STRUCTURE_MAP } from '@/data/anatomy-data';
 import { useAtlasStore } from '@/lib/store';
 import { useLocale, useT } from '@/lib/i18n';
 import { pick } from '@/lib/l10n';
-import { hasModel3D, modelUrl, NODE_ALIASES } from '@/lib/models3d';
+import { hasModel3D, modelUrl } from '@/lib/models3d';
 
 const TARGET = new THREE.Vector3(0, 0.82, 0);
 const DIST = 4.3;
@@ -43,8 +43,7 @@ function useSystemMeshes(url: string): MeshEntry[] {
       const g = mesh.geometry as THREE.BufferGeometry;
       if (!g.attributes.normal) g.computeVertexNormals();
       if (!g.boundingSphere) g.computeBoundingSphere();
-      const raw = (mesh.name || g.name || '').replace(/_\d+$/, '');
-      const id = NODE_ALIASES[raw] ?? raw;
+      const id = (mesh.name || g.name || '').replace(/_\d+$/, '');
       out.push({ id, geometry: g, context: id.startsWith('ctx__') });
     });
     return out;

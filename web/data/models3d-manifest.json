@@ -11,7 +11,7 @@
    "humero",
    "femur"
   ],
-  "bytes": 1837980
+  "bytes": 1838636
  },
  "muscular": {
   "file": "muscular.glb",
@@ -23,7 +23,7 @@
    "diafragma",
    "gluteo-mayor"
   ],
-  "bytes": 1896104
+  "bytes": 1898068
  },
  "nervioso": {
   "file": "nervioso.glb",
@@ -35,7 +35,7 @@
    "nervio-optico",
    "nervio-trigemino"
   ],
-  "bytes": 738068
+  "bytes": 738100
  },
  "cardiovascular": {
   "file": "cardiovascular.glb",
@@ -49,7 +49,7 @@
    "vena-cava-inferior",
    "arterias-coronarias"
   ],
-  "bytes": 1090708
+  "bytes": 1090764
  },
  "respiratorio": {
   "file": "respiratorio.glb",
@@ -61,7 +61,7 @@
    "bronquios-principales",
    "pulmones"
   ],
-  "bytes": 767768
+  "bytes": 767848
  },
  "digestivo": {
   "file": "digestivo.glb",
@@ -75,7 +75,7 @@
    "intestino-delgado",
    "intestino-grueso"
   ],
-  "bytes": 886924
+  "bytes": 888780
  },
  "urinario": {
   "file": "urinario.glb",
@@ -85,7 +85,7 @@
    "vejiga-urinaria",
    "uretra"
   ],
-  "bytes": 290116
+  "bytes": 181540
  },
  "endocrino": {
   "file": "endocrino.glb",
@@ -95,7 +95,7 @@
    "pineal",
    "glandula-suprarrenal"
   ],
-  "bytes": 244524
+  "bytes": 244572
  },
  "linfatico_inmunitario": {
   "file": "linfatico_inmunitario.glb",
@@ -103,14 +103,14 @@
    "bazo",
    "timo"
   ],
-  "bytes": 62744
+  "bytes": 62776
  },
  "tegumentario": {
   "file": "tegumentario.glb",
   "structures": [
    "piel"
   ],
-  "bytes": 1080760
+  "bytes": 1080792
  },
  "reproductor": {
   "file": "reproductor.glb",
@@ -119,7 +119,7 @@
    "epididimo",
    "prostata"
   ],
-  "bytes": 23124
+  "bytes": 23156
  },
  "organos_sensoriales": {
   "file": "organos_sensoriales.glb",
@@ -129,6 +129,6 @@
    "cristalino",
    "retina"
   ],
-  "bytes": 385240
+  "bytes": 385632
  }
 }

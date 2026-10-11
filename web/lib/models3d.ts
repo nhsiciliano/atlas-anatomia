@@ -9,10 +9,7 @@ export interface SystemModelInfo {
 
 export const MODELS_3D = manifest as Partial<Record<SystemId, SystemModelInfo>>;
 
-export const MODEL_VERSION = 2;
-
-/** GLB node names that predate an id rename, mapped to the current structure id. */
-export const NODE_ALIASES: Record<string, string> = { suprarrenales: 'glandula-suprarrenal' }; // TODO Fase 4: quitar tras regenerar GLBs
+export const MODEL_VERSION = 3;
 
 export function modelUrl(sys: SystemId): string | null {
   const m = MODELS_3D[sys];
