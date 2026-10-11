@@ -9,9 +9,20 @@
    "esternon",
    "escapula",
    "humero",
-   "femur"
+   "femur",
+   "clavicula",
+   "radio",
+   "cubito",
+   "huesos-mano",
+   "hueso-coxal",
+   "sacro",
+   "rotula",
+   "tibia",
+   "perone",
+   "huesos-pie",
+   "hioides"
   ],
-  "bytes": 1838636
+  "bytes": 2173120
  },
  "muscular": {
   "file": "muscular.glb",

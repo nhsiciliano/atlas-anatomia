@@ -11,6 +11,17 @@ MAP = {
   'escapula': ['right scapula', 'left scapula'],
   'humero': ['right humerus', 'left humerus'],
   'femur': ['right femur', 'left femur'],
+  'clavicula': ['clavicle'],
+  'radio': ['radius'],
+  'cubito': ['ulna'],
+  'huesos-mano': ['carpal bone', 'metacarpal bone', 'phalanx of finger'],
+  'hueso-coxal': ['hip bone'],
+  'sacro': ['sacrum'],
+  'rotula': ['patella'],
+  'tibia': ['tibia'],
+  'perone': ['fibula'],
+  'huesos-pie': ['tarsal bone', 'metatarsal bone', 'phalanx of toe'],
+  'hioides': ['hyoid bone'],
   'esternocleidomastoideo': ['sternocleidomastoid'],
   'trapecio': ['ascending part of trapezius', 'transverse part of trapezius', 'descending part of trapezius'],
   'deltoides': ['clavicular part of deltoid', 'acromial part of deltoid', 'spinal part of deltoid'],
@@ -82,8 +93,6 @@ WRAP = {'pulmones': [['right lung'], ['left lung']]}
 
 # CONTEXT: mallas de contexto por sistema (nodo ctx__<sistema>): se ven pero no se pueden seleccionar.
 CONTEXT = {
-  'esqueletico': ['clavicle', 'radius', 'ulna', 'hip bone', 'tibia', 'fibula', 'carpal bone', 'metacarpal bone', 'patella', 'sacrum', 'tarsal bone', 'metatarsal bone',
-    'phalanx of finger', 'phalanx of toe'],
   'muscular': ['short head of biceps brachii', 'long head of biceps brachii', 'long head of triceps brachii', 'lateral head of triceps brachii', 'rectus femoris', 'vastus lateralis', 'vastus medialis', 'sartorius', 'head of gastrocnemius', 'serratus anterior', 'external oblique', 'tibialis anterior', 'brachioradialis', 'gluteus medius', 'semitendinosus', 'adductor longus', 'soleus',
     'vastus intermedius', 'long head of biceps femoris', 'gracilis', 'semimembranosus', 'rhomboid major',
     'infraspinatus', 'teres major', 'psoas major', 'pectoralis minor', 'medial head of triceps brachii', 'brachialis',

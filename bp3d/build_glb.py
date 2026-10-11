@@ -143,10 +143,10 @@ def assign_fjs(meshes, system_of):
     2. Primero gana: un FJ que ya quedó asignado a una estructura anterior en MAP se quita de las
        siguientes del mismo sistema (p. ej. paredes compartidas entre cavidades del corazón).
     Las estructuras de WRAP no participan: usan un envoltorio, no sus mallas.
-    Devuelve ({id: fjs}, [avisos]).
+    Devuelve ({id: fjs}, {(sistema, ganador, perdedor): [fjs]}).
     """
     own = {sid: meshes.fjs_of(names) for sid, names in MAP.items()}
-    assigned, owner, notes = {}, {}, []
+    assigned, owner, shared = {}, {}, {}
     for sid in MAP:
         sys_id = system_of.get(sid)
         if not sys_id:
@@ -159,16 +159,16 @@ def assign_fjs(meshes, system_of):
             for fj in sorted(mine):
                 prev = owner.get((sys_id, fj))
                 if prev:
-                    notes.append(f'{fj} compartido: asignado a {prev}, quitado de {sid}')
+                    shared.setdefault((sys_id, prev, sid), []).append(fj)
                     mine.discard(fj)
                 else:
                     owner[(sys_id, fj)] = sid
         assigned[sid] = mine
-    return assigned, notes
+    return assigned, shared
 
 
 def dry_run(meshes, system_of, only):
-    assigned, notes = assign_fjs(meshes, system_of)
+    assigned, shared = assign_fjs(meshes, system_of)
     print(f'{"estructura":28} {"sistema":22} FJ   en disco')
     for sid in MAP:
         sys_id = system_of.get(sid, '¿?')
@@ -179,13 +179,13 @@ def dry_run(meshes, system_of, only):
     for sys_id, names in CONTEXT.items():
         if not only or sys_id in only:
             meshes.fjs_of(names)
-    return notes
+    return shared
 
 
 def build(meshes, system_of, only, skip_wrap):
     skin = meshes.gather(['skin'])
     xform = make_xform(skin)
-    assigned, notes = assign_fjs(meshes, system_of)
+    assigned, shared = assign_fjs(meshes, system_of)
     scenes, faces = {}, {}
 
     def add(sys_id, sid, m, budget):
@@ -220,7 +220,7 @@ def build(meshes, system_of, only, skip_wrap):
         m = meshes.gather(names, taken)
         if m is not None:  # contexto vacío o sin mallas: no se crea ctx__<sistema>
             add(sys_id, 'ctx__' + sys_id, m, CONTEXT_BUDGET[sys_id])
-    return scenes, faces, notes
+    return scenes, faces, shared
 
 
 def export(scenes, faces, app_dir, only):
@@ -257,15 +257,17 @@ def main():
     meshes = Meshes(load_elements())
 
     if args.dry_run:
-        notes = dry_run(meshes, system_of, only)
+        shared = dry_run(meshes, system_of, only)
     else:
-        scenes, faces, notes = build(meshes, system_of, only, args.skip_wrap)
+        scenes, faces, shared = build(meshes, system_of, only, args.skip_wrap)
         export(scenes, faces, app_dir, only)
 
-    if notes:
+    shared = {k: v for k, v in shared.items() if not only or k[0] in only}
+    if shared:
         print('\nMallas compartidas (primero gana, según el orden de MAP):')
-        for n in notes:
-            print('  ', n)
+        for (_, winner, loser), fjs in shared.items():
+            listed = ', '.join(fjs) if len(fjs) <= 4 else f'{fjs[0]} … {fjs[-1]}'
+            print(f'   {len(fjs)} FJ compartido(s): asignado(s) a {winner}, quitado(s) de {loser} ({listed})')
 
     if meshes.missing:
         print('\nMISSING (nombres de concepto sin malla en disco):')
