@@ -111,6 +111,8 @@ MAP = {
   'globo-ocular': ['right eyeball', 'left eyeball'],
   'cornea': ['right cornea', 'left cornea'],
   'cristalino': ['right lens', 'left lens'],
+  'iris': ['iris'],
+  'cuerpo-vitreo': ['vitreous body'],
   'nervio-trigemino': ['branch of trigeminal nerve'],
   'retina': ['optic part of right retina', 'optic part of left retina'],
 }

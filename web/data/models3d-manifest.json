@@ -174,8 +174,10 @@
    "globo-ocular",
    "cornea",
    "cristalino",
+   "iris",
+   "cuerpo-vitreo",
    "retina"
   ],
-  "bytes": 385632
+  "bytes": 602680
  }
 }
