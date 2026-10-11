@@ -8,7 +8,8 @@
     "lint": "eslint .",
     "typecheck": "tsc --noEmit",
     "validate": "tsx scripts/validate-data.ts",
-    "test:store": "tsx scripts/test-store.ts"
+    "test:store": "tsx scripts/test-store.ts",
+    "test:srs": "tsx scripts/test-srs.ts"
   },
   "dependencies": {
     "@react-three/drei": "10.0.6",
