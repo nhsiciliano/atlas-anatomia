@@ -2,7 +2,6 @@
 import { useAtlasStore } from '@/lib/store';
 import { useLocale, t } from '@/lib/i18n';
 import SystemSidebar from '@/components/atlas/system-sidebar';
-import ReproToggle from '@/components/panels/repro-toggle';
 import CoverageNote from '@/components/panels/coverage-note';
 import { X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -17,7 +16,6 @@ export default function SidebarDrawer() {
       {/* Desktop sidebar - always visible */}
       <aside className="hidden md:flex flex-col w-[236px] overflow-y-auto flex-shrink-0 scrollbar-none">
         <SystemSidebar />
-        <ReproToggle />
         <div className="mt-auto p-2">
           <CoverageNote />
         </div>
@@ -52,7 +50,6 @@ export default function SidebarDrawer() {
                 </button>
               </div>
               <SystemSidebar />
-              <ReproToggle />
               <div className="p-2">
                 <CoverageNote />
               </div>

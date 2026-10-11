@@ -296,7 +296,6 @@ function Lights() {
 
 export default function Atlas3D() {
   const visibleSystems = useAtlasStore((s) => s.visibleSystems);
-  const reproSex = useAtlasStore((s) => s.reproSex);
   const setSelected = useAtlasStore((s) => s.setSelectedStructure);
 
   useEffect(() => {
@@ -305,11 +304,7 @@ export default function Atlas3D() {
     return () => { window.removeEventListener('keydown', h); document.body.style.cursor = ''; };
   }, [setSelected]);
 
-  const systems = SYSTEMS.filter((s) => {
-    if (!visibleSystems[s.id]) return false;
-    if (s.id === 'reproductor' && reproSex !== 'masculino') return false; // model is male only
-    return !!modelUrl(s.id);
-  });
+  const systems = SYSTEMS.filter((s) => visibleSystems[s.id] && !!modelUrl(s.id));
 
   return (
     <Canvas

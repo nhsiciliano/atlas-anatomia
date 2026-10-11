@@ -22,6 +22,7 @@ export interface AnatomicalStructure {
   dato_en: string;
   referencias: string[];
   sexo?: 'masculino' | 'femenino'; // only for sex-specific structures
+  escala?: 'micro'; // estructura microscópica: sin representación 3D posible
 }
 
 export const STRUCTURES: AnatomicalStructure[] = [

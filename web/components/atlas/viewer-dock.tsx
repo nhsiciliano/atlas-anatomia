@@ -1,7 +1,7 @@
 'use client';
 import { VIEWS, type ViewId } from '@/data/systems';
 import { useAtlasStore } from '@/lib/store';
-import { Home, Layers, RotateCw, Tag, Box, FileImage } from 'lucide-react';
+import { Home, Layers, RotateCw, Tag } from 'lucide-react';
 
 const LAYER_STEPS = [1, 0.6, 0.3];
 const SHORT_VIEW: Record<ViewId, string> = { anterior: 'Frente', posterior: 'Dorso', lateral: 'Lado' };
@@ -14,8 +14,6 @@ export default function ViewerDock() {
   const toggleAutoRotate = useAtlasStore(s => s.toggleAutoRotate);
   const showLabels = useAtlasStore(s => s.showLabels);
   const toggleLabels = useAtlasStore(s => s.toggleLabels);
-  const viewerMode = useAtlasStore(s => s.viewerMode);
-  const setViewerMode = useAtlasStore(s => s.setViewerMode);
   const systemOpacity = useAtlasStore(s => s.systemOpacity);
   const setAllOpacity = useAtlasStore(s => s.setAllOpacity);
 
@@ -38,11 +36,9 @@ export default function ViewerDock() {
         </button>
       ))}
       <span className="mx-0.5 h-5 w-px flex-shrink-0 bg-foreground/10 md:mx-1" aria-hidden />
-      {viewerMode === '3d' && (
-        <button onClick={toggleAutoRotate} className={btn(autoRotate)} aria-pressed={autoRotate} title="Girar 360°">
-          <RotateCw size={13} /> <span className="hidden 2xl:inline">Girar 360°</span>
-        </button>
-      )}
+      <button onClick={toggleAutoRotate} className={btn(autoRotate)} aria-pressed={autoRotate} title="Girar 360°">
+        <RotateCw size={13} /> <span className="hidden 2xl:inline">Girar 360°</span>
+      </button>
       <button onClick={nextLayer} className={btn(layerIdx > 0)} title="Transparencia de las capas">
         <Layers size={13} /> <span className="hidden 2xl:inline">Capas</span> <span className="hidden md:inline">{Math.round(LAYER_STEPS[layerIdx] * 100)}%</span>
       </button>
@@ -51,15 +47,6 @@ export default function ViewerDock() {
       </button>
       <button onClick={resetView} className={btn(false)} aria-label="Restablecer vista" title="Restablecer vista">
         <Home size={13} />
-      </button>
-      <span className="mx-0.5 h-5 w-px flex-shrink-0 bg-foreground/10 md:mx-1" aria-hidden />
-      <button
-        onClick={() => setViewerMode(viewerMode === '3d' ? '2d' : '3d')}
-        className={btn(false)}
-        title={viewerMode === '3d' ? 'Cambiar a la lámina 2D' : 'Cambiar al modelo 3D'}
-      >
-        {viewerMode === '3d' ? <FileImage size={13} /> : <Box size={13} />}
-        <span>{viewerMode === '3d' ? '2D' : '3D'}</span>
       </button>
     </div>
   );

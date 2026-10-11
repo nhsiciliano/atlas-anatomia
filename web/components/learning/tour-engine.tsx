@@ -14,7 +14,6 @@ export default function TourEngine() {
   const setAllSystems = useAtlasStore(s => s.setAllSystems);
   const completedTours = useAtlasStore(s => s.completedTours);
   const completeTour = useAtlasStore(s => s.completeTour);
-  const setActiveMode = useAtlasStore(s => s.setActiveMode);
 
   const [activeTour, setActiveTour] = useState<GuidedTour | null>(null);
   const [stepIdx, setStepIdx] = useState(0);
@@ -24,13 +23,12 @@ export default function TourEngine() {
     setActiveTour(tour);
     setStepIdx(0);
     setFinished(false);
-    setActiveMode('tour');
     const firstStep = tour?.steps?.[0];
     if (firstStep) {
       isolateSystem(firstStep.systemId);
       setSelected(firstStep.structureId);
     }
-  }, [isolateSystem, setSelected, setActiveMode]);
+  }, [isolateSystem, setSelected]);
 
   const goStep = useCallback((idx: number) => {
     if (!activeTour) return;
@@ -53,8 +51,7 @@ export default function TourEngine() {
     setFinished(false);
     setAllSystems(true);
     setSelected(null);
-    setActiveMode('atlas');
-  }, [setAllSystems, setSelected, setActiveMode]);
+  }, [setAllSystems, setSelected]);
 
   // Tour list
   if (!activeTour) {

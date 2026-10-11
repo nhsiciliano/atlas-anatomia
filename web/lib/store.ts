@@ -2,8 +2,6 @@
 import { create } from 'zustand';
 import type { SystemId, ViewId } from '@/data/systems';
 
-export type ReproSex = 'masculino' | 'femenino';
-
 export interface AtlasState {
   // View
   currentView: ViewId;
@@ -30,20 +28,9 @@ export interface AtlasState {
   // Labels
   showLabels: boolean;
   toggleLabels: () => void;
-  showDirections: boolean;
-  toggleDirections: () => void;
 
-  // Pan/Zoom
-  zoom: number;
-  panX: number;
-  panY: number;
-  setZoom: (z: number) => void;
-  setPan: (x: number, y: number) => void;
+  /** Re-frames the 3D camera. */
   resetView: () => void;
-
-  // Reproductive
-  reproSex: ReproSex;
-  setReproSex: (s: ReproSex) => void;
 
   // Sidebar
   sidebarOpen: boolean;
@@ -71,13 +58,7 @@ export interface AtlasState {
   quizScores: Record<string, { correct: number; total: number }>;
   saveQuizScore: (quizKey: string, correct: number, total: number) => void;
 
-  // Active mode
-  activeMode: 'atlas' | 'tour' | 'quiz';
-  setActiveMode: (m: 'atlas' | 'tour' | 'quiz') => void;
-
-  // Viewer mode (3D model or 2D plate)
-  viewerMode: '3d' | '2d';
-  setViewerMode: (m: '3d' | '2d') => void;
+  // 3D viewer
   autoRotate: boolean;
   toggleAutoRotate: () => void;
   /** Incremented to ask the 3D camera to re-frame (home / view change). */
@@ -153,18 +134,8 @@ export const useAtlasStore = create<AtlasState>((set, get) => ({
 
   showLabels: true,
   toggleLabels: () => set((s) => ({ showLabels: !s.showLabels })),
-  showDirections: false,
-  toggleDirections: () => set((s) => ({ showDirections: !s.showDirections })),
 
-  zoom: 1,
-  panX: 0,
-  panY: 0,
-  setZoom: (z) => set({ zoom: Math.max(0.5, Math.min(4, z)) }),
-  setPan: (x, y) => set({ panX: x, panY: y }),
-  resetView: () => set((s) => ({ zoom: 1, panX: 0, panY: 0, cameraNonce: s.cameraNonce + 1 })),
-
-  reproSex: 'femenino',
-  setReproSex: (s) => set({ reproSex: s }),
+  resetView: () => set((s) => ({ cameraNonce: s.cameraNonce + 1 })),
 
   sidebarOpen: false,
   setSidebarOpen: (o) => set({ sidebarOpen: o }),
@@ -210,11 +181,6 @@ export const useAtlasStore = create<AtlasState>((set, get) => ({
     return { quizScores: next };
   }),
 
-  activeMode: 'atlas',
-  setActiveMode: (m) => set({ activeMode: m }),
-
-  viewerMode: '3d',
-  setViewerMode: (m) => set({ viewerMode: m }),
   autoRotate: false,
   toggleAutoRotate: () => set((s) => ({ autoRotate: !s.autoRotate })),
   cameraNonce: 0,

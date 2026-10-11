@@ -77,6 +77,8 @@ const messages: Record<Locale, Record<string, string>> = {
     'sexo.femenino': 'Femenino',
     'sexo.toggle': 'Variante reproductiva',
     'tree.title': 'Árbol de estructuras',
+    'stage.micro': '{name}: estructura microscópica, se describe en la ficha',
+    'stage.no_model': '{name}: sin modelo 3D disponible. Se muestra el sistema {system}',
   },
   en: {
     'app.title': 'Human Anatomy Atlas',
@@ -151,6 +153,8 @@ const messages: Record<Locale, Record<string, string>> = {
     'sexo.femenino': 'Female',
     'sexo.toggle': 'Reproductive variant',
     'tree.title': 'Structure Tree',
+    'stage.micro': '{name}: microscopic structure, described in the card',
+    'stage.no_model': '{name}: no 3D model available. Showing the {system} system',
   },
 };
 
