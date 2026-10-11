@@ -93,3 +93,17 @@ Clínica y cifras:
 Datos previos conservados pero dudosos:
 - `prostata` "líquido alcalino que neutraliza la acidez vaginal" (el líquido prostático es ligeramente ácido; el semen es alcalino por las vesículas seminales) — **probable error, corregir**
 - `utero` "más de 500 veces su volumen" · `testiculo` 200–300 millones/día · `globo-ocular` "10 millones de colores" · `mucosa-olfatoria` 10–20 millones de neuronas (otras fuentes: ~6 millones)
+
+## Muscular (Fase 5.1, 12 estructuras nuevas con malla)
+
+- `isquiotibiales` — TA "Musculi ischiocrurales": confirmar término FIPAT TA2 — muscular.ts
+- Raíces de inervación: bíceps C5–C6 · tríceps C6–C8 · cuádriceps L2–L4 · isquiotibiales L5–S2 · gastrocnemio y sóleo S1–S2 · tibial anterior L4–L5 · sartorio L2–L3 · serrato C5–C7 · oblicuo externo T7–T12 · glúteo medio L4–S1 · psoas L1–L3 · ilíaco L2–L3
+- Reflejos: bicipital C5–C6; tricipital "sobre todo C7"; rotuliano "sobre todo L3–L4"
+- `sartorio` "músculo más largo del cuerpo" · tendón de Aquiles "más grueso y fuerte" · `serrato-anterior` "8–9 primeras costillas" · `soleo` "segundo corazón" (expresión divulgativa)
+
+## Cardiovascular (Fase 5.1, 13 estructuras nuevas con malla)
+
+- `ventriculo-derecho` presión "unas cinco veces menor" que el VI · `tronco-pulmonar` "unos 5 cm" · `vena-porta` "tres cuartas partes" del flujo hepático · `arteria-renal` riñones reciben "una quinta parte" del gasto cardíaco y pesan "< 1 %"
+- Bifurcación aórtica en L4 "a la altura del ombligo" · arterias renales L1–L2 · `venas-pulmonares` variación "3 o 5" y "sin válvulas"
+- Clínica: torácica interna como injerto preferido en bypass · radial preferida a femoral para cateterismo · TEP "en silla de montar" (tronco) vs TEP general (arterias pulmonares)
+- Mallas: 7 FJ de la zona valvular AV asignados a ventrículo izquierdo / aurícula derecha por la regla "primero gana"; aurícula izquierda conserva 2 de 6 FJ, ventrículo derecho 7 de 10 (revisar visualmente en el 3D)
