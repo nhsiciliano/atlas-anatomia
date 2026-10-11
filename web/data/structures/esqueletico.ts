@@ -530,6 +530,16 @@ export const ESQUELETICO: AnatomicalStructure[] = [
     conexiones: ['muscular', 'digestivo', 'respiratorio'],
     dato_es: 'Es el único hueso del cuerpo que no se articula con ningún otro hueso.',
     dato_en: 'It is the only bone in the body that does not articulate with any other bone.',
-    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2'],
+    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2', 'medlineplus', 'statpearls'],
+    clinica_es: [
+      { titulo: 'Dolor al tragar tras un traumatismo del cuello', texto: 'Un golpe en la parte anterior del cuello puede causar dolor al tragar (odinofagia), dificultad para tragar (disfagia) y dolor en la zona del hioides. Si además hay dificultad para respirar, voz alterada o hinchazón del cuello, es una urgencia. Tras cualquier golpe fuerte en esa zona conviene una evaluación médica.' },
+      { titulo: 'Fractura del hioides', texto: 'Es poco frecuente, porque el hueso está protegido y es algo móvil. Cuando se identifica en una imagen, es un hallazgo que los médicos forenses tienen en cuenta junto con el resto de la evidencia.' },
+    ],
+    clinica_en: [
+      { titulo: 'Pain on swallowing after a neck injury', texto: 'A blow to the front of the neck can cause pain on swallowing (odynophagia), difficulty swallowing (dysphagia) and pain in the area of the hyoid. If there is also trouble breathing, an altered voice or neck swelling, it is an emergency. After any strong blow to that area a medical evaluation is advisable.' },
+      { titulo: 'Hyoid fracture', texto: 'It is uncommon, because the bone is protected and somewhat mobile. When identified on imaging, it is a finding that forensic doctors take into account along with the rest of the evidence.' },
+    ],
+    irrigacion_es: 'Ramas de las arterias lingual (rama suprahioidea) y tiroidea superior (rama infrahioidea).',
+    irrigacion_en: 'Branches of the lingual artery (suprahyoid branch) and superior thyroid artery (infrahyoid branch).',
   },
 ];
