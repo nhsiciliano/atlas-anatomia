@@ -28,3 +28,11 @@ Convención: `id de estructura` — qué revisar — dónde (`data/structures/<s
 
 - `glandula-suprarrenal` — contenido fusionado de las antiguas fichas de urinario y endocrino — endocrino.ts
 - `ovario` — contenido fusionado de las antiguas fichas de endocrino y reproductor; cifra "1–2 millones de ovocitos al nacer, ~400 ovulan" — reproductor.ts
+
+## Esquelético (Fase 5.1, 11 estructuras nuevas con malla)
+
+- `clavicula` — primer hueso en osificarse (5.ª–6.ª semana) — esqueletico.ts
+- `rotula` — osificación entre los 3 y 6 años; cartílago articular más grueso del cuerpo — esqueletico.ts
+- `tibia` — arteria nutricia "entre las mayores del cuerpo" — esqueletico.ts
+- `hueso-coxal` — fusión del cartílago trirradiado "durante la adolescencia" (rango sin precisar a propósito) — esqueletico.ts
+- Clínica de las 10 fichas (Colles, olécranon, escafoides, anillo pélvico, insuficiencia sacra, luxación/condromalacia, fracturas expuestas de tibia, maléolo y nervio peroneo, fractura de marcha) — esqueletico.ts
