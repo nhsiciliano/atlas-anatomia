@@ -137,3 +137,7 @@ Datos previos conservados pero dudosos:
 
 - Alvéolos ≈ 70 m²; >20 divisiones bronquiales · riñones 180 L de filtrado/día → 1–2 L de orina; vejiga 400–500 ml; uretra ~20 cm (hombre) vs ~4 cm (mujer) · presbicia "después de los 40" · globo ocular ~2,4 cm · esmalte = tejido más duro · fecundación en la ampolla tubárica · "T" de timo · esplenectomía y bacterias encapsuladas · quemadura de espesor total con menos dolor central · trombos de la fibrilación auricular en la orejuela izquierda
 - Correcciones a preguntas previas: q-sen-1 (la córnea hace la mayor parte del enfoque; el cristalino "cambia de forma"), q-teg-1 (hipodermis = subcutánea), q-uri-1 ("alrededor de 1 millón" de nefronas), q-lin-1 (timo "se reduce después de la pubertad") — data/quizzes.ts
+
+## Recorrido del oído (Fase 5.4)
+
+- Huesecillos "los huesos más pequeños del cuerpo" · amplificación por la diferencia de área tímpano/ventana oval · tonotopía coclear (agudos en la base, graves en el vértice) · localización del sonido por diferencias de tiempo e intensidad (tronco) · relevo en el cuerpo geniculado medial · área de Wernicke en el hemisferio izquierdo — data/tours.ts
