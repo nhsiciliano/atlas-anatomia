@@ -56,9 +56,12 @@
    "tronco-encefalico",
    "medula-espinal",
    "nervio-optico",
+   "talamo",
+   "hipocampo",
+   "nervio-oculomotor",
    "nervio-trigemino"
   ],
-  "bytes": 738100
+  "bytes": 908016
  },
  "cardiovascular": {
   "file": "cardiovascular.glb",

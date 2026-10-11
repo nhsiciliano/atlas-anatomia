@@ -45,6 +45,9 @@ MAP = {
   'tronco-encefalico': ['brainstem'],
   'medula-espinal': ['spinal cord'],
   'nervio-optico': ['optic nerve'],
+  'talamo': ['thalamus'],
+  'hipocampo': ['hippocampus'],
+  'nervio-oculomotor': ['branch of oculomotor nerve'],
   # Antes que corazon: con la regla primero-gana, la estructura específica conserva las mallas compartidas.
   'arterias-coronarias': ['coronary artery'],
   'corazon': ['heart'],
