@@ -18,7 +18,17 @@ export const ESQUELETICO: AnatomicalStructure[] = [
     conexiones: ['nervioso', 'muscular'],
     dato_es: 'Las fontanelas del recién nacido permiten el paso por el canal del parto y el crecimiento cerebral postnatal.',
     dato_en: 'Newborn fontanelles allow passage through the birth canal and postnatal brain growth.',
-    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2'],
+    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2', 'medlineplus', 'statpearls'],
+    clinica_es: [
+      { titulo: 'Traumatismo craneoencefálico', texto: 'Va desde un golpe leve hasta una lesión grave del cerebro. Usar casco en bicicleta, moto y deportes de riesgo reduce mucho la gravedad. Tras un golpe fuerte, vómitos repetidos, somnolencia, confusión, convulsiones o pérdida del conocimiento requieren atención de urgencia.' },
+      { titulo: 'Fractura de la base del cráneo', texto: 'Puede no verse en el exterior. Pistas que la sugieren son moretones alrededor de los ojos («ojos de mapache») o detrás de la oreja, y la salida de líquido claro o sangre por la nariz o el oído, que puede ser líquido cefalorraquídeo. Es una urgencia; no se debe taponar ni sonarse la nariz.' },
+    ],
+    clinica_en: [
+      { titulo: 'Traumatic brain injury', texto: 'It ranges from a mild blow to a severe brain injury. Wearing a helmet when cycling, riding a motorcycle and in risk sports greatly reduces severity. After a strong blow, repeated vomiting, drowsiness, confusion, seizures or loss of consciousness need emergency care.' },
+      { titulo: 'Skull base fracture', texto: 'It may not be visible from outside. Clues suggesting it are bruising around the eyes ("raccoon eyes") or behind the ear, and clear fluid or blood coming from the nose or ear, which may be cerebrospinal fluid. It is an emergency; do not plug or blow the nose.' },
+    ],
+    irrigacion_es: 'Las arterias meníngeas, sobre todo la meníngea media, irrigan el hueso por su cara interna, y ramas de las arterias temporal superficial y occipital lo hacen por la externa; el diploe se drena por venas diploicas.',
+    irrigacion_en: 'The meningeal arteries, mainly the middle meningeal, supply the bone from its inner surface, and branches of the superficial temporal and occipital arteries from the outer one; the diploe is drained by diploic veins.',
   },
   {
     id: 'mandibula', systemId: 'esqueletico',
@@ -37,7 +47,17 @@ export const ESQUELETICO: AnatomicalStructure[] = [
     conexiones: ['muscular', 'digestivo'],
     dato_es: 'Es el único hueso móvil del cráneo.',
     dato_en: 'It is the only movable bone of the skull.',
-    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2'],
+    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2', 'medlineplus', 'statpearls'],
+    clinica_es: [
+      { titulo: 'Luxación de la mandíbula', texto: 'Al bostezar o abrir mucho la boca, el cóndilo puede salirse de la articulación hacia adelante. La boca queda abierta y no se puede cerrar. Es dolorosa y debe ser reducida por un profesional; después conviene evitar abrir mucho la boca por unos días.' },
+      { titulo: 'Fractura mandibular', texto: 'Es frecuente después de golpes o accidentes y a menudo se rompe en dos sitios. Se sospecha por dolor, hinchazón, dificultad para abrir la boca, dientes que no encajan y adormecimiento del labio inferior. Requiere evaluación urgente, y a veces inmovilización o cirugía.' },
+    ],
+    clinica_en: [
+      { titulo: 'Jaw dislocation', texto: 'When yawning or opening the mouth wide, the condyle can slip forward out of the joint. The mouth is left open and cannot be closed. It is painful and must be reduced by a professional; afterwards it is wise to avoid opening the mouth wide for a few days.' },
+      { titulo: 'Mandibular fracture', texto: 'It is common after blows or accidents and the bone often breaks in two places. It is suspected from pain, swelling, difficulty opening the mouth, teeth that do not fit together and numbness of the lower lip. It needs urgent evaluation, and sometimes immobilization or surgery.' },
+    ],
+    irrigacion_es: 'Arteria alveolar inferior, rama de la maxilar, que entra por el foramen mandibular, con aporte del periostio.',
+    irrigacion_en: 'Inferior alveolar artery, a branch of the maxillary, which enters through the mandibular foramen, with contribution from the periosteum.',
   },
   {
     id: 'columna-vertebral', systemId: 'esqueletico',
@@ -56,7 +76,17 @@ export const ESQUELETICO: AnatomicalStructure[] = [
     conexiones: ['nervioso', 'muscular'],
     dato_es: 'Sus curvaturas actúan como amortiguadores al caminar y correr.',
     dato_en: 'Its curvatures act as shock absorbers during walking and running.',
-    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2'],
+    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2', 'medlineplus', 'statpearls'],
+    clinica_es: [
+      { titulo: 'Escoliosis', texto: 'Es una curvatura lateral de la columna. La forma más frecuente es la idiopática del adolescente, sobre todo en niñas. Se sospecha si, al inclinarse hacia adelante, un lado de la espalda se ve más alto. Según el grado y cuánto crecimiento queda, se observa, se usa un corsé o, en casos graves, se opera. Los controles en la escuela y el pediatra ayudan a detectarla.' },
+      { titulo: 'Osteoporosis y fracturas vertebrales', texto: 'Cuando los huesos pierden densidad, una vértebra puede aplastarse con un esfuerzo mínimo. Causa dolor de espalda súbito, pérdida de altura y encorvamiento. Se previene con calcio, vitamina D, ejercicio con carga y sin fumar, y se detecta con una densitometría ósea.' },
+    ],
+    clinica_en: [
+      { titulo: 'Scoliosis', texto: 'It is a lateral curvature of the spine. The most common form is adolescent idiopathic scoliosis, especially in girls. It is suspected if, when bending forward, one side of the back looks higher. Depending on the degree and how much growth remains, it is observed, braced or, in severe cases, operated on. School screening and pediatric checkups help detect it.' },
+      { titulo: 'Osteoporosis and vertebral fractures', texto: 'When bones lose density, a vertebra can collapse with minimal effort. It causes sudden back pain, loss of height and stooping. It is prevented with calcium, vitamin D, weight-bearing exercise and not smoking, and detected with a bone density scan.' },
+    ],
+    irrigacion_es: 'Arterias segmentarias (intercostales posteriores y lumbares) que dan ramas espinales a cada vértebra.',
+    irrigacion_en: 'Segmental arteries (posterior intercostal and lumbar) giving spinal branches to each vertebra.',
   },
   {
     id: 'costillas', systemId: 'esqueletico',
@@ -75,7 +105,17 @@ export const ESQUELETICO: AnatomicalStructure[] = [
     conexiones: ['respiratorio', 'muscular'],
     dato_es: 'Los pares 11 y 12 se llaman flotantes porque no se unen al esternón.',
     dato_en: 'Pairs 11 and 12 are called floating because they do not attach to the sternum.',
-    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2'],
+    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2', 'medlineplus', 'statpearls'],
+    clinica_es: [
+      { titulo: 'Fractura de costillas', texto: 'Causa dolor agudo que empeora al respirar hondo, toser o moverse. Las costillas medias son las más afectadas y un fragmento puede lesionar el pulmón (neumotórax) o, en las costillas bajas, el hígado o el bazo. Ya no se usan vendajes apretados porque limitan la respiración y favorecen la neumonía; se controla el dolor y se anima a respirar profundo. La falta de aire requiere consulta urgente.' },
+      { titulo: 'Drenaje pleural y borde de la costilla', texto: 'Bajo el borde inferior de cada costilla corren una vena, una arteria y un nervio. Por eso, al pinchar el tórax para drenar aire o líquido, el médico entra por encima del borde superior de la costilla inferior, evitando ese paquete vasculonervioso.' },
+    ],
+    clinica_en: [
+      { titulo: 'Rib fracture', texto: 'It causes sharp pain that worsens with deep breaths, coughing or moving. The middle ribs are most often affected and a fragment can injure the lung (pneumothorax) or, in the lower ribs, the liver or spleen. Tight bandages are no longer used because they limit breathing and promote pneumonia; pain is controlled and deep breathing is encouraged. Shortness of breath needs urgent care.' },
+      { titulo: 'Pleural drainage and the rib margin', texto: 'Under the lower edge of each rib run a vein, an artery and a nerve. For this reason, when the chest is punctured to drain air or fluid, the doctor enters just above the upper edge of the lower rib, avoiding that neurovascular bundle.' },
+    ],
+    irrigacion_es: 'Arterias intercostales posteriores (de la aorta) y anteriores (de la torácica interna), que corren por el surco costal.',
+    irrigacion_en: 'Posterior (from the aorta) and anterior (from the internal thoracic) intercostal arteries, running in the costal groove.',
   },
   {
     id: 'esternon', systemId: 'esqueletico',
@@ -94,7 +134,17 @@ export const ESQUELETICO: AnatomicalStructure[] = [
     conexiones: ['respiratorio', 'cardiovascular'],
     dato_es: 'El ángulo esternal es una referencia clínica para localizar la segunda costilla.',
     dato_en: 'The sternal angle is a clinical landmark for locating the second rib.',
-    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2'],
+    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2', 'medlineplus', 'statpearls'],
+    clinica_es: [
+      { titulo: 'RCP: dónde comprimir', texto: 'En la reanimación cardiopulmonar se comprime en el centro del pecho, sobre la mitad inferior del esternón, con las manos una sobre otra. En adultos se hunde unos 5 a 6 cm a un ritmo de 100 a 120 compresiones por minuto. Es normal que se rompa alguna costilla; no hay que detenerse. Lo primero es llamar al número de emergencias.' },
+      { titulo: 'Esternotomía', texto: 'En muchas cirugías cardíacas, como el bypass o el cambio de válvulas, se abre el esternón en toda su longitud para llegar al corazón y luego se cierra con alambres. El hueso suele consolidar en unas seis a ocho semanas, durante las cuales se evita levantar peso y se sostiene el pecho con una almohada al toser.' },
+    ],
+    clinica_en: [
+      { titulo: 'CPR: where to compress', texto: 'In cardiopulmonary resuscitation, compressions are given in the center of the chest, over the lower half of the sternum, with the hands one on top of the other. In adults the chest is pressed down about 5 to 6 cm at a rate of 100 to 120 compressions per minute. It is normal for a rib to break; do not stop. The first step is to call the emergency number.' },
+      { titulo: 'Sternotomy', texto: 'In many heart operations, such as bypass or valve replacement, the sternum is opened along its whole length to reach the heart and then closed with wires. The bone usually heals in about six to eight weeks, during which heavy lifting is avoided and the chest is supported with a pillow when coughing.' },
+    ],
+    irrigacion_es: 'Ramas perforantes e intercostales anteriores de la arteria torácica interna.',
+    irrigacion_en: 'Perforating and anterior intercostal branches of the internal thoracic artery.',
   },
   {
     id: 'escapula', systemId: 'esqueletico',
@@ -113,7 +163,17 @@ export const ESQUELETICO: AnatomicalStructure[] = [
     conexiones: ['muscular', 'nervioso'],
     dato_es: 'Flota sobre músculos sin unión ósea directa al tórax.',
     dato_en: 'Floats over muscles without direct bony attachment to the thorax.',
-    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2'],
+    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2', 'statpearls'],
+    clinica_es: [
+      { titulo: 'Fractura de escápula', texto: 'Es poco frecuente porque el hueso está bien protegido por músculos. Cuando ocurre suele deberse a un golpe de gran energía, como un accidente de moto o una caída desde altura, y por eso hay que buscar lesiones asociadas en las costillas, el pulmón o la columna.' },
+      { titulo: 'Escápula alada', texto: 'El borde interno de la escápula se despega de la espalda al empujar contra una pared o levantar el brazo. Suele deberse a debilidad del músculo serrato anterior por lesión del nervio torácico largo, que puede ocurrir tras una cirugía de mama o axila, cargar peso o una infección viral. Conviene consultar.' },
+    ],
+    clinica_en: [
+      { titulo: 'Scapular fracture', texto: 'It is uncommon because the bone is well protected by muscles. When it occurs it is usually from a high-energy blow, such as a motorcycle accident or a fall from a height, so associated injuries to the ribs, lung or spine must be looked for.' },
+      { titulo: 'Winged scapula', texto: 'The inner border of the scapula lifts off the back when pushing against a wall or raising the arm. It is usually due to weakness of the serratus anterior muscle from injury to the long thoracic nerve, which can happen after breast or axillary surgery, carrying heavy loads or a viral infection. It is advisable to see a doctor.' },
+    ],
+    irrigacion_es: 'Arterias supraescapular, subescapular (circunfleja escapular) y cervical transversa (rama dorsal de la escápula).',
+    irrigacion_en: 'Suprascapular, subscapular (circumflex scapular) and transverse cervical (dorsal scapular branch) arteries.',
   },
   {
     id: 'humero', systemId: 'esqueletico',
@@ -132,7 +192,17 @@ export const ESQUELETICO: AnatomicalStructure[] = [
     conexiones: ['muscular', 'nervioso'],
     dato_es: 'Su cabeza encaja en la cavidad glenoidea formando la articulación más móvil del cuerpo.',
     dato_en: 'Its head fits the glenoid cavity forming the most mobile joint in the body.',
-    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2'],
+    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2', 'medlineplus', 'statpearls'],
+    clinica_es: [
+      { titulo: 'Fractura del cuello quirúrgico y nervio axilar', texto: 'Es frecuente en personas mayores tras una caída sobre el hombro. El nervio axilar rodea el cuello quirúrgico del húmero, por lo que puede dañarse. Se sospecha si hay adormecimiento en la cara lateral del hombro y dificultad para levantar el brazo por debilidad del deltoides.' },
+      { titulo: 'Fractura de la diáfisis y nervio radial', texto: 'El nervio radial corre pegado al hueso en el surco radial de la diáfisis. Si se lesiona, la persona no puede extender la muñeca ni los dedos («muñeca caída»). Todo traumatismo del brazo con esa alteración debe ser evaluado; en muchos casos el nervio se recupera.' },
+    ],
+    clinica_en: [
+      { titulo: 'Surgical neck fracture and axillary nerve', texto: 'It is common in older people after a fall onto the shoulder. The axillary nerve wraps around the surgical neck of the humerus, so it can be damaged. It is suspected if there is numbness over the outer shoulder and difficulty raising the arm because of weakness of the deltoid.' },
+      { titulo: 'Shaft fracture and radial nerve', texto: 'The radial nerve runs against the bone in the radial groove of the shaft. If it is injured, the person cannot extend the wrist or fingers ("wrist drop"). Any arm injury with that finding must be evaluated; in many cases the nerve recovers.' },
+    ],
+    irrigacion_es: 'Arteria nutricia (rama de la braquial) para la diáfisis, y arterias circunflejas humerales anterior y posterior para la cabeza.',
+    irrigacion_en: 'Nutrient artery (branch of the brachial) for the shaft, and anterior and posterior circumflex humeral arteries for the head.',
   },
   {
     id: 'femur', systemId: 'esqueletico',
@@ -151,7 +221,17 @@ export const ESQUELETICO: AnatomicalStructure[] = [
     conexiones: ['muscular', 'cardiovascular'],
     dato_es: 'Es el hueso más largo y resistente del cuerpo humano.',
     dato_en: 'It is the longest and strongest bone in the human body.',
-    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2'],
+    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2', 'medlineplus', 'statpearls'],
+    clinica_es: [
+      { titulo: 'Fractura de cadera', texto: 'Es una lesión muy frecuente en adultos mayores con osteoporosis, a menudo tras una caída simple. Causa dolor en la ingle, imposibilidad de apoyar la pierna y, muchas veces, pierna acortada y girada hacia afuera. Casi siempre requiere cirugía en las primeras 24 a 48 horas, y la movilización temprana es clave. Prevenir caídas y tratar la osteoporosis reduce el riesgo.' },
+      { titulo: 'Fractura de la diáfisis', texto: 'Requiere mucha fuerza, como un accidente de tránsito, y el muslo tiene mucha masa muscular y vasos grandes, por lo que se puede perder más de un litro de sangre. Es una urgencia: no se debe mover a la persona, hay que inmovilizar la pierna y llamar a emergencias.' },
+    ],
+    clinica_en: [
+      { titulo: 'Hip fracture', texto: 'It is a very common injury in older adults with osteoporosis, often after a simple fall. It causes groin pain, inability to bear weight on the leg and, often, a shortened leg turned outward. It almost always requires surgery within the first 24 to 48 hours, and early mobilization is key. Preventing falls and treating osteoporosis lowers the risk.' },
+      { titulo: 'Shaft fracture', texto: 'It takes a lot of force, such as a traffic accident, and the thigh has a large muscle mass and big vessels, so more than a liter of blood can be lost. It is an emergency: do not move the person, immobilize the leg and call emergency services.' },
+    ],
+    irrigacion_es: 'Arteria nutricia (de la femoral profunda) para la diáfisis, y arterias circunflejas femorales (sobre todo la medial) para la cabeza y el cuello; una fractura del cuello puede cortar esa irrigación y causar necrosis de la cabeza femoral.',
+    irrigacion_en: 'Nutrient artery (from the deep femoral) for the shaft, and femoral circumflex arteries (mainly the medial) for the head and neck; a neck fracture can cut off that supply and cause necrosis of the femoral head.',
   },
   {
     id: 'clavicula', systemId: 'esqueletico',
