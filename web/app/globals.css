@@ -1,0 +1,152 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root,
+  .light {
+    /* Museo de día — warm gallery paper, ink type, deep amber accent */
+    --background: 40 30% 94%;
+    --foreground: 30 18% 12%;
+    --card: 40 40% 98%;
+    --card-foreground: 30 18% 12%;
+    --popover: 40 40% 98%;
+    --popover-foreground: 30 18% 12%;
+    --primary: 32 80% 33%;
+    --primary-foreground: 40 40% 98%;
+    --secondary: 40 18% 88%;
+    --secondary-foreground: 30 15% 20%;
+    --muted: 40 18% 89%;
+    --muted-foreground: 30 8% 36%;
+    --accent: 36 50% 87%;
+    --accent-foreground: 32 80% 26%;
+    --destructive: 4 65% 44%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 35 15% 82%;
+    --input: 35 15% 78%;
+    --ring: 32 80% 36%;
+    --radius: 0.75rem;
+    --chart-1: 32 80% 40%;
+    --chart-2: 4 62% 46%;
+    --chart-3: 47 75% 42%;
+    --chart-4: 199 55% 40%;
+    --chart-5: 136 32% 38%;
+    --stage-glow: 40 50% 99%;
+    --glass-shadow: 0 24px 60px -24px rgb(60 40 15 / 0.22);
+    color-scheme: light;
+  }
+  .dark {
+    /* Museo nocturno — warm gallery darkness, bone-white type, amber accent */
+    --background: 220 10% 6%;
+    --foreground: 40 25% 88%;
+    --card: 40 6% 9%;
+    --card-foreground: 40 25% 88%;
+    --popover: 40 6% 11%;
+    --popover-foreground: 40 25% 88%;
+    --primary: 36 73% 66%;
+    --primary-foreground: 40 25% 7%;
+    --secondary: 40 5% 15%;
+    --secondary-foreground: 40 15% 80%;
+    --muted: 40 5% 13%;
+    --muted-foreground: 40 5% 60%;
+    --accent: 36 22% 17%;
+    --accent-foreground: 36 73% 74%;
+    --destructive: 4 65% 58%;
+    --destructive-foreground: 40 25% 7%;
+    --border: 40 5% 18%;
+    --input: 40 5% 21%;
+    --ring: 36 73% 66%;
+    --radius: 0.75rem;
+    --chart-1: 36 73% 66%;
+    --chart-2: 4 62% 54%;
+    --chart-3: 47 75% 59%;
+    --chart-4: 199 55% 64%;
+    --chart-5: 136 32% 62%;
+    --stage-glow: 36 8% 11%;
+    --glass-shadow: 0 30px 80px -20px rgb(0 0 0 / 0.55);
+    color-scheme: dark;
+  }
+}
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  @apply bg-muted-foreground/30 rounded-full;
+}
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-muted-foreground/50;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* SVG structure hover */
+.anatomy-path {
+  cursor: pointer;
+  transition: filter 0.15s ease, opacity 0.15s ease;
+}
+.anatomy-path:hover {
+  filter: brightness(1.2) drop-shadow(0 0 4px currentColor);
+}
+.anatomy-path:focus-visible {
+  outline: 2px solid hsl(var(--ring));
+  outline-offset: 2px;
+}
+.anatomy-path.selected {
+  filter: brightness(1.15);
+  stroke-width: 2;
+}
+
+/* Label text */
+.anatomy-label {
+  font-size: 7px;
+  pointer-events: none;
+  user-select: none;
+  fill: hsl(var(--foreground));
+  text-anchor: middle;
+}
+
+/* Glassmorphism panel */
+.glass-panel {
+  @apply bg-card/80 backdrop-blur-xl border border-foreground/[0.06];
+  box-shadow: var(--glass-shadow);
+}
+
+/* Museum stage: warm pool of light behind the specimen */
+.museum-stage {
+  background:
+    radial-gradient(ellipse 38% 58% at 50% 46%, hsl(var(--stage-glow)) 0%, hsl(var(--background)) 72%),
+    hsl(var(--background));
+}
+
+.scrollbar-none {
+  scrollbar-width: none;
+}
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+.eyebrow {
+  @apply text-[11px] uppercase tracking-[0.14em] text-muted-foreground;
+}

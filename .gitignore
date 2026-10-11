@@ -1,0 +1,8 @@
+.DS_Store
+node_modules/
+.next/
+tsconfig.tsbuildinfo
+bp3d/objs/
+bp3d/*.zip
+bp3d/.venv/
+atlas_anatomia/.abacus.donotdelete
