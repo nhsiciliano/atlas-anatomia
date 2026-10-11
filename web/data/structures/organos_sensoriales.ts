@@ -18,7 +18,19 @@ export const ORGANOS_SENSORIALES: AnatomicalStructure[] = [
     conexiones: ['nervioso'],
     dato_es: 'Puede distinguir unos 10 millones de colores diferentes.',
     dato_en: 'It can distinguish about 10 million different colors.',
-    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2'],
+    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2', 'medlineplus', 'statpearls'],
+    clinica_es: [
+      { titulo: 'Traumatismos oculares', texto: 'Los golpes, cuerpos extraños y productos químicos pueden dañar el ojo. Si cae un químico, se lava el ojo con abundante agua durante unos 15 minutos sin frotar y se consulta de inmediato. Dolor intenso, pérdida de visión, sangre dentro del ojo o un objeto clavado son urgencias: no se debe intentar retirar el objeto.' },
+      { titulo: 'Miopía e hipermetropía', texto: 'En la miopía se ve borroso de lejos porque el ojo es demasiado largo o enfoca demasiado; en la hipermetropía cuesta enfocar de cerca y aparece fatiga visual. Ambas se corrigen con anteojos, lentes de contacto o cirugía. Los controles visuales periódicos son importantes, sobre todo en los niños.' },
+    ],
+    clinica_en: [
+      { titulo: 'Eye injuries', texto: 'Blows, foreign bodies and chemicals can damage the eye. If a chemical gets in, rinse the eye with plenty of water for about 15 minutes without rubbing and seek care immediately. Severe pain, vision loss, blood inside the eye or an embedded object are emergencies: do not try to remove the object.' },
+      { titulo: 'Myopia and hyperopia', texto: 'In myopia, distance vision is blurred because the eye is too long or focuses too strongly; in hyperopia it is hard to focus up close and eye strain appears. Both are corrected with glasses, contact lenses or surgery. Regular vision checks are important, especially in children.' },
+    ],
+    inervacion_es: 'Sensibilidad por el nervio oftálmico (V1); los músculos extraoculares, por los nervios oculomotor (III), troclear (IV) y abducens (VI); la pupila y el músculo ciliar, por fibras parasimpáticas (III) y simpáticas.',
+    inervacion_en: 'Sensation through the ophthalmic nerve (V1); the extraocular muscles through the oculomotor (III), trochlear (IV) and abducens (VI) nerves; the pupil and ciliary muscle through parasympathetic (III) and sympathetic fibers.',
+    irrigacion_es: 'Arteria oftálmica, rama de la carótida interna, con la arteria central de la retina y las arterias ciliares; las venas oftálmicas drenan al seno cavernoso.',
+    irrigacion_en: 'Ophthalmic artery, a branch of the internal carotid, with the central retinal artery and the ciliary arteries; the ophthalmic veins drain into the cavernous sinus.',
   },
   {
     id: 'cornea', systemId: 'organos_sensoriales',
@@ -37,7 +49,19 @@ export const ORGANOS_SENSORIALES: AnatomicalStructure[] = [
     conexiones: ['nervioso'],
     dato_es: 'Es el tejido con mayor densidad de terminaciones nerviosas del cuerpo.',
     dato_en: 'It is the tissue with the highest density of nerve endings in the body.',
-    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2'],
+    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2', 'medlineplus', 'statpearls'],
+    clinica_es: [
+      { titulo: 'Abrasión corneal', texto: 'Es un rasguño en la superficie de la córnea, por una uña, una rama o un lente de contacto. Provoca dolor intenso, lagrimeo, sensibilidad a la luz y sensación de tener algo en el ojo. No hay que frotarse; conviene consultar. Como el epitelio se regenera rápido, suele curar en uno a tres días.' },
+      { titulo: 'Queratitis por lentes de contacto', texto: 'Es la infección de la córnea, favorecida por dormir con los lentes, usar agua de la canilla o de la pileta con ellos o no limpiarlos bien. Causa ojo rojo, dolor y visión borrosa. Hay que sacar los lentes y consultar el mismo día, porque puede dejar cicatrices y reducir la visión.' },
+    ],
+    clinica_en: [
+      { titulo: 'Corneal abrasion', texto: 'It is a scratch on the surface of the cornea, from a fingernail, a branch or a contact lens. It causes severe pain, tearing, sensitivity to light and a feeling of something in the eye. Do not rub; see a doctor. Because the epithelium regenerates quickly, it usually heals in one to three days.' },
+      { titulo: 'Contact lens keratitis', texto: 'It is infection of the cornea, favored by sleeping in lenses, using tap or pool water with them or not cleaning them well. It causes a red eye, pain and blurred vision. Remove the lenses and see a doctor the same day, because it can leave scars and reduce vision.' },
+    ],
+    inervacion_es: 'Nervios ciliares largos, ramas del nervio oftálmico (V1).',
+    inervacion_en: 'Long ciliary nerves, branches of the ophthalmic nerve (V1).',
+    irrigacion_es: 'No tiene vasos: se nutre del humor acuoso, las lágrimas y el oxígeno del aire; los vasos del limbo llegan solo hasta su borde.',
+    irrigacion_en: 'It has no vessels: it is nourished by the aqueous humor, tears and oxygen from the air; the vessels of the limbus reach only its edge.',
   },
   {
     id: 'retina', systemId: 'organos_sensoriales',
@@ -56,7 +80,17 @@ export const ORGANOS_SENSORIALES: AnatomicalStructure[] = [
     conexiones: ['nervioso'],
     dato_es: 'Contiene unos 120 millones de bastones y 6 millones de conos.',
     dato_en: 'Contains about 120 million rods and 6 million cones.',
-    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2'],
+    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2', 'medlineplus', 'statpearls'],
+    clinica_es: [
+      { titulo: 'Desprendimiento de retina', texto: 'La retina se separa de la capa que la nutre. Avisa con moscas volantes nuevas y numerosas, destellos de luz o una sombra como una cortina en una parte del campo visual. Es más frecuente en personas con miopía alta o tras un traumatismo. Es una urgencia oftalmológica: tratada a tiempo se puede salvar la visión.' },
+      { titulo: 'Retinopatía diabética', texto: 'El exceso de azúcar daña los pequeños vasos de la retina. En las primeras etapas no da síntomas, por eso las personas con diabetes necesitan un examen del fondo de ojo al menos una vez al año. Detectada a tiempo, se puede tratar y evitar una causa importante de ceguera.' },
+    ],
+    clinica_en: [
+      { titulo: 'Retinal detachment', texto: 'The retina separates from the layer that nourishes it. It gives warning with new, numerous floaters, flashes of light or a curtain-like shadow over part of the visual field. It is more common in people with high myopia or after trauma. It is an ophthalmological emergency: treated in time, vision can be saved.' },
+      { titulo: 'Diabetic retinopathy', texto: 'Excess sugar damages the small vessels of the retina. In the early stages it causes no symptoms, which is why people with diabetes need a retinal examination at least once a year. Detected in time, it can be treated and a major cause of blindness avoided.' },
+    ],
+    irrigacion_es: 'Doble: la arteria central de la retina nutre las capas internas y la coroides (por las arterias ciliares posteriores) nutre los fotorreceptores de las capas externas.',
+    irrigacion_en: 'Dual: the central retinal artery nourishes the inner layers and the choroid (through the posterior ciliary arteries) nourishes the photoreceptors of the outer layers.',
   },
   {
     id: 'cristalino', systemId: 'organos_sensoriales',
@@ -75,7 +109,17 @@ export const ORGANOS_SENSORIALES: AnatomicalStructure[] = [
     conexiones: ['nervioso'],
     dato_es: 'Puede cambiar su forma para enfocar objetos cercanos y lejanos (acomodación).',
     dato_en: 'It can change shape to focus near and far objects (accommodation).',
-    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2'],
+    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2', 'medlineplus', 'statpearls'],
+    clinica_es: [
+      { titulo: 'Catarata', texto: 'Es la opacidad del cristalino, que enturbia la visión, produce deslumbramiento y apaga los colores. Es más frecuente con la edad, pero también la favorecen la diabetes, el tabaco, algunos medicamentos como los corticoides y los traumatismos. Se trata con una cirugía muy eficaz que reemplaza el cristalino por una lente artificial.' },
+      { titulo: 'Presbicia', texto: 'A partir de los 40 a 45 años aproximadamente el cristalino pierde elasticidad y cuesta enfocar de cerca, por ejemplo para leer. No es una enfermedad sino un cambio normal del envejecimiento. Se corrige con anteojos para leer o lentes multifocales.' },
+    ],
+    clinica_en: [
+      { titulo: 'Cataract', texto: 'It is opacity of the lens, which clouds vision, causes glare and dulls colors. It is more common with age, but diabetes, smoking, some medications such as corticosteroids and trauma also favor it. It is treated with a very effective surgery that replaces the lens with an artificial one.' },
+      { titulo: 'Presbyopia', texto: 'From about age 40 to 45 the lens loses elasticity and it becomes hard to focus up close, for example to read. It is not a disease but a normal change of aging. It is corrected with reading glasses or multifocal lenses.' },
+    ],
+    irrigacion_es: 'No tiene vasos sanguíneos ni nervios: se nutre del humor acuoso.',
+    irrigacion_en: 'It has no blood vessels or nerves: it is nourished by the aqueous humor.',
   },
   {
     id: 'oido-externo', systemId: 'organos_sensoriales',
@@ -94,7 +138,19 @@ export const ORGANOS_SENSORIALES: AnatomicalStructure[] = [
     conexiones: ['nervioso'],
     dato_es: 'La forma de la oreja ayuda a localizar la dirección de los sonidos.',
     dato_en: 'The ear\'s shape helps localize the direction of sounds.',
-    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2'],
+    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2', 'medlineplus', 'statpearls'],
+    clinica_es: [
+      { titulo: 'Otitis externa', texto: 'Es la infección de la piel del conducto auditivo, frecuente después de nadar («oído de nadador») o por el uso de hisopos. Produce picazón, dolor al tocar o tirar de la oreja y a veces secreción. Se trata con gotas indicadas por un profesional y conviene mantener el oído seco.' },
+      { titulo: 'Tapón de cerumen', texto: 'El cerumen protege el oído, y normalmente sale solo. Si se acumula, da sensación de oído tapado, pérdida leve de audición o zumbido. Introducir hisopos o palillos lo empuja más adentro; conviene consultar para que lo retiren de forma segura.' },
+    ],
+    clinica_en: [
+      { titulo: 'Otitis externa', texto: 'It is infection of the skin of the ear canal, common after swimming ("swimmer\'s ear") or from using cotton swabs. It causes itching, pain when touching or pulling the ear and sometimes discharge. It is treated with drops prescribed by a professional and the ear should be kept dry.' },
+      { titulo: 'Earwax plug', texto: 'Earwax protects the ear and normally comes out by itself. If it builds up, it gives a feeling of a blocked ear, mild hearing loss or ringing. Inserting swabs or sticks pushes it deeper; see a professional to have it removed safely.' },
+    ],
+    inervacion_es: 'Pabellón: nervio auricular mayor (C2–C3) y auriculotemporal (V3). Conducto: auriculotemporal (V3) y ramo auricular del vago (X), por lo que limpiar el conducto puede provocar tos.',
+    inervacion_en: 'Auricle: great auricular nerve (C2–C3) and auriculotemporal nerve (V3). Canal: auriculotemporal nerve (V3) and auricular branch of the vagus (X), which is why cleaning the canal can trigger coughing.',
+    irrigacion_es: 'Arterias auricular posterior, temporal superficial y auricular profunda (de la maxilar).',
+    irrigacion_en: 'Posterior auricular, superficial temporal and deep auricular (from the maxillary) arteries.',
   },
   {
     id: 'oido-medio', systemId: 'organos_sensoriales',
@@ -113,7 +169,19 @@ export const ORGANOS_SENSORIALES: AnatomicalStructure[] = [
     conexiones: ['nervioso'],
     dato_es: 'El estribo es el hueso más pequeño del cuerpo humano (~3 mm).',
     dato_en: 'The stapes is the smallest bone in the human body (~3 mm).',
-    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2'],
+    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2', 'medlineplus', 'statpearls'],
+    clinica_es: [
+      { titulo: 'Otitis media en niños', texto: 'Es muy frecuente en la infancia porque la trompa de Eustaquio de los niños es más corta, más horizontal y más estrecha, y drena peor. Causa dolor de oído, fiebre, irritabilidad y a veces el niño se toca la oreja. Muchos casos mejoran solos, pero hay que consultar si la fiebre es alta, el dolor intenso, sale secreción o el niño es menor de seis meses.' },
+      { titulo: 'Barotrauma', texto: 'Cuando cambia la presión, por ejemplo en un avión o al bucear, la trompa de Eustaquio la iguala. Si está bloqueada por un resfriado, aparece dolor y sensación de oído tapado. Bostezar, tragar o masticar ayudan; volar o bucear con congestión nasal aumenta el riesgo.' },
+    ],
+    clinica_en: [
+      { titulo: 'Otitis media in children', texto: 'It is very common in childhood because a child\'s Eustachian tube is shorter, more horizontal and narrower, and drains worse. It causes earache, fever, irritability and sometimes the child tugs at the ear. Many cases improve on their own, but see a doctor if the fever is high, the pain is severe, there is discharge or the child is under six months old.' },
+      { titulo: 'Barotrauma', texto: 'When pressure changes, for example on a plane or when diving, the Eustachian tube equalizes it. If it is blocked by a cold, pain and a feeling of a blocked ear appear. Yawning, swallowing or chewing help; flying or diving with nasal congestion raises the risk.' },
+    ],
+    inervacion_es: 'Plexo timpánico, formado por el nervio glosofaríngeo (IX).',
+    inervacion_en: 'Tympanic plexus, formed by the glossopharyngeal nerve (IX).',
+    irrigacion_es: 'Ramas de las arterias maxilar (timpánica anterior), auricular posterior (estilomastoidea) y carótida interna.',
+    irrigacion_en: 'Branches of the maxillary (anterior tympanic), posterior auricular (stylomastoid) and internal carotid arteries.',
   },
   {
     id: 'coclea', systemId: 'organos_sensoriales',
@@ -132,7 +200,19 @@ export const ORGANOS_SENSORIALES: AnatomicalStructure[] = [
     conexiones: ['nervioso'],
     dato_es: 'Las células ciliadas dañadas no se regeneran, lo que causa pérdida auditiva permanente.',
     dato_en: 'Damaged hair cells do not regenerate, causing permanent hearing loss.',
-    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2'],
+    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2', 'medlineplus', 'statpearls'],
+    clinica_es: [
+      { titulo: 'Hipoacusia por ruido', texto: 'La exposición repetida a sonidos fuertes, como música alta, auriculares a mucho volumen o maquinaria, destruye las células ciliadas, que no se regeneran. El daño es gradual y permanente, y un zumbido tras el ruido es una advertencia. Se previene bajando el volumen, limitando el tiempo de exposición y usando protección auditiva.' },
+      { titulo: 'Presbiacusia', texto: 'Es la pérdida de audición propia del envejecimiento. Afecta a ambos oídos y primero a los sonidos agudos, y cuesta entender las conversaciones cuando hay ruido de fondo. Los audífonos ayudan mucho, y el implante coclear es una opción en las sorderas profundas.' },
+    ],
+    clinica_en: [
+      { titulo: 'Noise-induced hearing loss', texto: 'Repeated exposure to loud sounds, such as loud music, headphones at high volume or machinery, destroys the hair cells, which do not regenerate. The damage is gradual and permanent, and ringing after noise is a warning. It is prevented by lowering the volume, limiting exposure time and using hearing protection.' },
+      { titulo: 'Presbycusis', texto: 'It is the hearing loss typical of aging. It affects both ears and first high-pitched sounds, and conversations are hard to follow when there is background noise. Hearing aids help a lot, and the cochlear implant is an option in profound deafness.' },
+    ],
+    inervacion_es: 'Rama coclear del nervio vestibulococlear (VIII).',
+    inervacion_en: 'Cochlear branch of the vestibulocochlear nerve (VIII).',
+    irrigacion_es: 'Arteria laberíntica, rama de la arteria cerebelosa anteroinferior (o de la basilar), que da la arteria coclear.',
+    irrigacion_en: 'Labyrinthine artery, a branch of the anterior inferior cerebellar artery (or of the basilar), which gives rise to the cochlear artery.',
   },
   {
     id: 'mucosa-olfatoria', systemId: 'organos_sensoriales',
@@ -150,9 +230,17 @@ export const ORGANOS_SENSORIALES: AnatomicalStructure[] = [
     partes_es: ['Neuronas olfatorias', 'Células de soporte', 'Glándulas de Bowman'],
     partes_en: ['Olfactory neurons', 'Supporting cells', 'Bowman\'s glands'],
     conexiones: ['nervioso'],
-    dato_es: 'El ser humano puede distinguir más de un billón de combinaciones de olores.',
-    dato_en: 'Humans can distinguish over a trillion odor combinations.',
-    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2'],
+    dato_es: 'Un estudio de 2014 estimó que podríamos distinguir más de un billón de olores, aunque esa cifra es discutida.',
+    dato_en: 'A 2014 study estimated that we may distinguish more than a trillion odors, although that figure is disputed.',
+    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2', 'medlineplus', 'statpearls'],
+    clinica_es: [
+      { titulo: 'Anosmia', texto: 'Es la pérdida del olfato. Puede deberse a un resfriado o a otras infecciones virales, incluida la COVID-19, a congestión nasal, pólipos, golpes en la cabeza, el envejecimiento o algunos medicamentos. La pérdida posterior a una infección viral suele mejorar con el tiempo, y el entrenamiento olfativo puede ayudar. Si dura más de unas semanas o sigue a un golpe, conviene consultar.' },
+      { titulo: 'Olfato y seguridad', texto: 'Quien no huele puede no detectar una fuga de gas, humo o comida en mal estado, y además percibe menos el sabor de los alimentos. Conviene instalar detectores de humo y de gas y revisar las fechas de vencimiento.' },
+    ],
+    clinica_en: [
+      { titulo: 'Anosmia', texto: 'It is loss of the sense of smell. It can result from a cold or other viral infections, including COVID-19, nasal congestion, polyps, head injuries, aging or some medications. Loss after a viral infection usually improves over time, and olfactory training may help. If it lasts more than a few weeks or follows a blow, see a doctor.' },
+      { titulo: 'Smell and safety', texto: 'A person who cannot smell may not detect a gas leak, smoke or spoiled food, and also perceives less of the flavor of food. It is advisable to install smoke and gas detectors and check expiration dates.' },
+    ],
   },
   {
     id: 'timpano', systemId: 'organos_sensoriales',
