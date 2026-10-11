@@ -132,3 +132,8 @@ Datos previos conservados pero dudosos:
 - Reproductor: `vesiculas-seminales` 60–70 % del semen, ~5 cm · priapismo >4 h · disfunción eréctil como marcador vascular · hematospermia benigna en jóvenes
 - Sensoriales: ojo azul por dispersión (poca melanina) · `cuerpo-vitreo` 4/5 del globo, 99 % agua; conducto hialoideo
 - Respiratorio: `bronquios-lobares` pulmón izquierdo 8–10 segmentos según clasificación; aspiración en supino → segmentos posteriores; el modelo muestra los árboles lobares completos con ramas segmentarias dentro del pulmón
+
+## Recorridos y cuestionarios (Fase 5.4 y 5.5)
+
+- Alvéolos ≈ 70 m²; >20 divisiones bronquiales · riñones 180 L de filtrado/día → 1–2 L de orina; vejiga 400–500 ml; uretra ~20 cm (hombre) vs ~4 cm (mujer) · presbicia "después de los 40" · globo ocular ~2,4 cm · esmalte = tejido más duro · fecundación en la ampolla tubárica · "T" de timo · esplenectomía y bacterias encapsuladas · quemadura de espesor total con menos dolor central · trombos de la fibrilación auricular en la orejuela izquierda
+- Correcciones a preguntas previas: q-sen-1 (la córnea hace la mayor parte del enfoque; el cristalino "cambia de forma"), q-teg-1 (hipodermis = subcutánea), q-uri-1 ("alrededor de 1 millón" de nefronas), q-lin-1 (timo "se reduce después de la pubertad") — data/quizzes.ts
