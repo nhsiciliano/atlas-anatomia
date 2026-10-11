@@ -67,12 +67,25 @@
    "corazon",
    "auricula-derecha",
    "ventriculo-izquierdo",
+   "auricula-izquierda",
+   "ventriculo-derecho",
    "aorta",
    "arteria-carotida-comun",
    "vena-cava-superior",
-   "vena-cava-inferior"
+   "vena-cava-inferior",
+   "tronco-pulmonar",
+   "arterias-pulmonares",
+   "venas-pulmonares",
+   "vena-yugular-interna",
+   "arteria-subclavia",
+   "arteria-braquial",
+   "arteria-femoral",
+   "arterias-iliacas",
+   "vena-porta",
+   "vena-safena-mayor",
+   "arteria-renal"
   ],
-  "bytes": 1089320
+  "bytes": 2120612
  },
  "respiratorio": {
   "file": "respiratorio.glb",
