@@ -48,7 +48,6 @@ MAP = {
   'hipotalamo': ['hypothalamus'],
   'hipofisis': ['pituitary gland'],
   'pineal': ['pineal body'],
-  'suprarrenales': ['right adrenal gland', 'left adrenal gland'],
   'bazo': ['spleen'],
   'timo': ['thymus'],
   'piel': ['skin'],

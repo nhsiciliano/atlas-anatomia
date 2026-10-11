@@ -83,8 +83,7 @@
    "rinon",
    "ureter",
    "vejiga-urinaria",
-   "uretra",
-   "glandula-suprarrenal"
+   "uretra"
   ],
   "bytes": 290116
  },
@@ -94,7 +93,7 @@
    "hipotalamo",
    "hipofisis",
    "pineal",
-   "suprarrenales"
+   "glandula-suprarrenal"
   ],
   "bytes": 244524
  },

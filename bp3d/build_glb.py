@@ -46,7 +46,8 @@ CONTEXT['cardiovascular'] += ['pulmonary artery', 'popliteal artery', 'anterior 
 
 SYSTEM_OF = {}
 import re
-src = open('/home/ubuntu/atlas_anatomia/nextjs_space/data/anatomy-data.ts').read()
+import glob
+src = ''.join(open(f).read() for f in sorted(glob.glob('/home/ubuntu/atlas_anatomia/nextjs_space/data/structures/*.ts')))
 for m in re.finditer(r"id: '([^']+)', systemId: '([^']+)'", src):
     SYSTEM_OF[m.group(1)] = m.group(2)
 
