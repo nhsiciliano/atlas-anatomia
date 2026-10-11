@@ -1,4 +1,7 @@
-# structure id -> list of BodyParts3D concept names (exact English names)
+# Única tabla de mapeo del pipeline 3D (la lee build_glb.py).
+#
+# MAP: id de estructura -> nombres de concepto de BodyParts3D (en inglés, exactos).
+#      Cada id es un nodo seleccionable dentro del GLB de su sistema.
 MAP = {
   'craneo': ['neurocranium', 'viscerocranium'],
   'mandibula': ['mandible'],
@@ -27,7 +30,7 @@ MAP = {
   'vena-cava-superior': ['superior vena cava'],
   'vena-cava-inferior': ['inferior vena cava'],
   'cavidad-nasal': ['nasal septum', 'inferior nasal concha', 'nasal cartilage'],
-  'faringe': ['constrictor muscle of pharynx'],
+  'faringe': ['muscle of pharynx'],
   'laringe': ['thyroid cartilage', 'cricoid cartilage'],
   'traquea': ['trachea'],
   'bronquios-principales': ['right main bronchus', 'left main bronchus'],
@@ -35,7 +38,8 @@ MAP = {
   'cavidad-oral': ['tongue', 'soft palate'],
   'esofago': ['esophagus'],
   'estomago': ['stomach'],
-  'higado': ['right lobe of liver', 'left lobe of liver', 'caudate lobe of liver'],
+  'higado': ['hepatovenous segment ii', 'hepatovenous segment iii', 'hepatovenous segment iv', 'hepatovenous segment v',
+             'hepatovenous segment vi', 'hepatovenous segment vii', 'hepatovenous segment viii', 'caudate lobe of liver'],
   'vesicula-biliar': ['gallbladder'],
   'pancreas': ['pancreas'],
   'intestino-delgado': ['small intestine'],
@@ -44,10 +48,10 @@ MAP = {
   'ureter': ['right ureter', 'left ureter'],
   'vejiga-urinaria': ['urinary bladder'],
   'uretra': ['urethra'],
-  'glandula-suprarrenal': ['right adrenal gland', 'left adrenal gland'],
   'hipotalamo': ['hypothalamus'],
   'hipofisis': ['pituitary gland'],
   'pineal': ['pineal body'],
+  'glandula-suprarrenal': ['right adrenal gland', 'left adrenal gland'],
   'bazo': ['spleen'],
   'timo': ['thymus'],
   'piel': ['skin'],
@@ -57,11 +61,27 @@ MAP = {
   'globo-ocular': ['right eyeball', 'left eyeball'],
   'cornea': ['right cornea', 'left cornea'],
   'cristalino': ['right lens', 'left lens'],
+  'arterias-coronarias': ['coronary artery'],
+  'nervio-trigemino': ['branch of trigeminal nerve'],
+  'retina': ['optic part of right retina', 'optic part of left retina'],
 }
 
-# Non-selectable context meshes per system (give a full-body read). Selecting them is disabled.
+# Estructuras que no usan la malla original sino un envoltorio por vóxeles: una lista de nombres
+# por pieza (cada pieza se envuelve por separado). Ver wrap() en build_glb.py.
+WRAP = {'pulmones': [['right lung'], ['left lung']]}
+
+# CONTEXT: mallas de contexto por sistema (nodo ctx__<sistema>): se ven pero no se pueden seleccionar.
 CONTEXT = {
-  'esqueletico': ['clavicle', 'radius', 'ulna', 'hip bone', 'tibia', 'fibula', 'carpal bone', 'metacarpal bone', 'phalanx of hand', 'phalanx of foot', 'patella', 'sacrum', 'tarsal bone', 'metatarsal bone'],
-  'muscular': ['short head of biceps brachii', 'long head of biceps brachii', 'long head of triceps brachii', 'lateral head of triceps brachii', 'rectus femoris', 'vastus lateralis', 'vastus medialis', 'sartorius', 'head of gastrocnemius', 'serratus anterior', 'external oblique', 'tibialis anterior', 'brachioradialis', 'gluteus medius', 'semitendinosus', 'adductor longus', 'soleus'],
-  'cardiovascular': ['subclavian artery', 'brachiocephalic artery', 'common iliac artery', 'external iliac artery', 'femoral artery', 'brachial artery', 'pulmonary trunk', 'internal jugular vein', 'femoral vein', 'brachiocephalic vein'],
+  'esqueletico': ['clavicle', 'radius', 'ulna', 'hip bone', 'tibia', 'fibula', 'carpal bone', 'metacarpal bone', 'phalanx of hand', 'phalanx of foot', 'patella', 'sacrum', 'tarsal bone', 'metatarsal bone',
+    'phalanx of finger', 'phalanx of toe'],
+  'muscular': ['short head of biceps brachii', 'long head of biceps brachii', 'long head of triceps brachii', 'lateral head of triceps brachii', 'rectus femoris', 'vastus lateralis', 'vastus medialis', 'sartorius', 'head of gastrocnemius', 'serratus anterior', 'external oblique', 'tibialis anterior', 'brachioradialis', 'gluteus medius', 'semitendinosus', 'adductor longus', 'soleus',
+    'vastus intermedius', 'long head of biceps femoris', 'gracilis', 'semimembranosus', 'rhomboid major',
+    'infraspinatus', 'teres major', 'psoas major', 'pectoralis minor', 'medial head of triceps brachii', 'brachialis',
+    'flexor carpi radialis', 'extensor digitorum', 'extensor carpi radialis longus', 'flexor digitorum superficialis',
+    'tibialis posterior', 'extensor digitorum longus', 'iliacus', 'supraspinatus'],
+  'cardiovascular': ['subclavian artery', 'brachiocephalic artery', 'common iliac artery', 'external iliac artery', 'femoral artery', 'brachial artery', 'pulmonary trunk', 'internal jugular vein', 'femoral vein', 'brachiocephalic vein',
+    'pulmonary artery', 'popliteal artery', 'anterior tibial artery', 'posterior tibial artery',
+    'radial artery', 'ulnar artery', 'axillary artery', 'subclavian vein', 'axillary vein', 'great saphenous vein',
+    'popliteal vein', 'hepatic portal vein', 'pulmonary vein', 'renal artery', 'internal carotid artery', 'external carotid artery',
+    'common iliac vein', 'external iliac vein'],
 }

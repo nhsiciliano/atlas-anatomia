@@ -4,7 +4,7 @@ Genera los modelos 3D que consume la app (`atlas_anatomia/nextjs_space`) a parti
 
 ## Qué hace
 
-1. Lee el mapeo `id de estructura → nombres de concepto de BodyParts3D` (`mapping.py` y los overrides de `build_glb.py`).
+1. Lee el mapeo `id de estructura → nombres de concepto de BodyParts3D` de `mapping.py` (`MAP`, `CONTEXT` y `WRAP`; es la única tabla).
 2. Resuelve cada nombre a archivos de malla (`FJxxxx.obj`) usando las tablas `*_element_parts.txt`.
 3. Agrupa, simplifica (reducción de polígonos), reorienta (de mm Z-up a metros Y-up, centrado en la piel) y exporta **un GLB por sistema**.
 4. Dentro de cada GLB hay **un nodo por id de estructura**. Los nodos `ctx__<sistema>` son mallas de contexto que se muestran pero no se pueden seleccionar.
@@ -47,18 +47,27 @@ python3 -m venv .venv
 ## Uso
 
 ```bash
-cd bp3d
-./.venv/bin/python build_glb.py
+./.venv/bin/python build_glb.py                      # todos los sistemas
+./.venv/bin/python build_glb.py --only endocrino     # solo un sistema (repetible: --only a --only b)
+./.venv/bin/python build_glb.py --dry-run            # solo resolver nombres → FJ y listar MISSING
+./.venv/bin/python build_glb.py --skip-wrap          # pulmones con la malla cruda (más rápido para iterar)
 ```
 
-> **Pendiente (Fase 4):** hoy `build_glb.py` y `mapping.py` tienen rutas absolutas de `/home/ubuntu/...` que hay que editar a mano. El script pasará a aceptar `--app-dir`, `--only <sistema>` y `--skip-wrap`.
+| Opción | Efecto |
+|---|---|
+| `--app-dir RUTA` | Carpeta de la app Next.js. Por defecto `../atlas_anatomia/nextjs_space`. |
+| `--only SISTEMA` | Genera solo ese sistema (repetible). El manifest se actualiza solo para esos sistemas y conserva los demás. |
+| `--skip-wrap` | No aplica el envoltorio por vóxeles (`WRAP` en `mapping.py`): usa la malla original. No usarlo para los GLB definitivos. |
+| `--dry-run` | No exporta nada: lista cada estructura con su cantidad de archivos FJ y los nombres de concepto sin malla (`MISSING`). |
 
-El script debe ejecutarse desde `bp3d/` porque usa rutas relativas (`objs/...`, `mapping.py`).
+Las rutas se resuelven a partir de la ubicación del script, así que puede ejecutarse desde cualquier carpeta. El sistema de cada estructura se lee de `data/structures/*.ts` de la app. Una corrida completa tarda ~15 s.
+
+Al terminar imprime una tabla por sistema (estructuras, caras, bytes), la lista de `MISSING` y el recordatorio de subir `MODEL_VERSION`.
 
 ## Salida
 
 - `atlas_anatomia/nextjs_space/public/models3d/<sistema>.glb`
-- `atlas_anatomia/nextjs_space/data/models3d-manifest.json` (qué estructuras tiene cada GLB y su tamaño)
+- `atlas_anatomia/nextjs_space/data/models3d-manifest.json` (qué estructuras tiene cada GLB y su tamaño; se escribe directamente ahí)
 
 Después de regenerar, subir `MODEL_VERSION` en `atlas_anatomia/nextjs_space/lib/models3d.ts` para invalidar la caché del navegador.
 
