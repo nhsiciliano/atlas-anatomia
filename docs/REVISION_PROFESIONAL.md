@@ -107,3 +107,20 @@ Datos previos conservados pero dudosos:
 - Bifurcación aórtica en L4 "a la altura del ombligo" · arterias renales L1–L2 · `venas-pulmonares` variación "3 o 5" y "sin válvulas"
 - Clínica: torácica interna como injerto preferido en bypass · radial preferida a femoral para cateterismo · TEP "en silla de montar" (tronco) vs TEP general (arterias pulmonares)
 - Mallas: 7 FJ de la zona valvular AV asignados a ventrículo izquierdo / aurícula derecha por la regla "primero gana"; aurícula izquierda conserva 2 de 6 FJ, ventrículo derecho 7 de 10 (revisar visualmente en el 3D)
+
+## Esquelético, muscular y cardiovascular (Fase 5.2, clínica de 24 fichas existentes)
+
+Corrección ya aplicada (confirmar):
+- `prostata` — líquido prostático ligeramente ácido con PSA; el semen es alcalino por las vesículas seminales — reproductor.ts
+
+Anatomía escrita de memoria:
+- Irrigación ósea: `craneo` (meníngea media, temporal superficial, occipital, diploicas) · `mandibula` (alveolar inferior) · `columna-vertebral` (segmentarias → espinales) · `costillas` (intercostales) · `esternon` (perforantes de la torácica interna) · `escapula` (supraescapular, circunfleja escapular, cervical transversa) · `humero` (nutricia de la braquial, circunflejas) · `femur` (nutricia de la femoral profunda, circunflejas; necrosis de la cabeza)
+- Músculos: `masetero` V3 · `esternocleidomastoideo` XI + C2–C3 · `trapecio` XI + C3–C4 · `deltoides` axilar C5–C6 · `pectoral-mayor` pectorales lateral C5–C7 y medial C8–T1 · `diafragma` frénico C3–C5 · `recto-abdominal` T7–T11 + subcostal · `gluteo-mayor` glúteo inferior L5–S2
+- `corazon` simpático T1–T4 · `auricula-derecha` nodo SA · `arteria-carotida-comun` nervio del seno carotídeo (IX)
+
+Clínica y cifras:
+- Fractura de base de cráneo: ojos de mapache, signo de Battle, LCR · luxación anterior de mandíbula · escoliosis idiopática · osteoporosis vertebral · costillas sin vendajes · punción sobre el borde superior de la costilla · RCP 5–6 cm y 100–120/min · esternotomía 6–8 semanas · nervios axilar/radial en fracturas de húmero · cadera: cirugía en 24–48 h, "más de un litro" de sangre
+- Trismo y tétanos · tortícolis congénita · sitio de vacunación en deltoides "2–3 dedos bajo el acromion" · síndrome de Poland · hernia diafragmática congénita · infarto con presentación atípica · tamizaje de aneurisma aórtico · no masajear el seno carotídeo · decúbito lateral izquierdo en embarazo
+
+Datos previos conservados pero dudosos:
+- `masetero` "hasta 70 kg" · `corazon` "7.500 litros/día" (otras fuentes ~7.200) · `aorta` "2,5 cm" · `ventriculo-izquierdo` pared "2–3 veces más gruesa"
