@@ -171,6 +171,7 @@ const messages: Record<Locale, Record<string, string>> = {
     'quiz.hidden_hint': 'Responde la pregunta para ver su nombre y su ficha.',
   
     'tour.steps_count': '{count} pasos',
+    'tour.meta': '{count} pasos · ~{min} min',
   
     'tour.close': 'Cerrar recorrido',
   
@@ -366,6 +367,7 @@ const messages: Record<Locale, Record<string, string>> = {
     'quiz.hidden_hint': 'Answer the question to see its name and card.',
   
     'tour.steps_count': '{count} steps',
+    'tour.meta': '{count} steps · ~{min} min',
   
     'tour.close': 'Close tour',
   

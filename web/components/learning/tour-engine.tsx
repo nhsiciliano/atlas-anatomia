@@ -71,7 +71,9 @@ export default function TourEngine() {
                 <div>
                   <h4 className="text-sm font-semibold">{pick(tour, 'titulo', locale)}</h4>
                   <p className="text-xs text-muted-foreground">{pick(tour, 'descripcion', locale)}</p>
-                  <p className="text-[10px] text-muted-foreground mt-1">{tr('tour.steps_count', { count: tour?.steps?.length ?? 0 })}</p>
+                  <p className="text-[10px] text-muted-foreground mt-1">{tour?.duracion_min
+                    ? tr('tour.meta', { count: tour.steps.length, min: tour.duracion_min })
+                    : tr('tour.steps_count', { count: tour?.steps?.length ?? 0 })}</p>
                 </div>
                 {done && <CheckCircle2 size={16} className="text-primary flex-shrink-0" />}
               </div>

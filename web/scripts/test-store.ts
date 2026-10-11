@@ -93,7 +93,9 @@ async function main() {
   // 5) Modo identificación del cuestionario: estado efímero, nunca persistido.
   ok('quizHighlightId empieza en null', st().quizHighlightId === null);
   st().setQuizHighlight('craneo');
-  st().setSelectedStructure('craneo');
+  const recentBefore = st().recentlyViewed.join();
+  st().setSelectedStructure('craneo', { recordRecent: false });
+  ok('selección con recordRecent:false no toca recientes', st().recentlyViewed.join() === recentBefore && st().selectedStructureId === 'craneo');
   ok('setQuizHighlight marca la estructura en evaluación', st().quizHighlightId === 'craneo' && st().selectedStructureId === 'craneo');
   ok('quizHighlightId no se persiste', !('quizHighlightId' in JSON.parse(mem.get('atlas-progress')!).state));
   st().setQuizHighlight(null); // lo que hace el cuestionario al responder, cambiar de pregunta o salir

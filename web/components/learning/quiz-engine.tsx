@@ -58,7 +58,7 @@ export default function QuizEngine() {
     if (sid) {
       const sys = STRUCTURE_MAP[sid]?.systemId;
       if (sys) isolateSystem(sys);
-      setSelected(sid);
+      setSelected(sid, { recordRecent: false });
     }
   }, [setQuizHighlight, isolateSystem, setSelected]);
 

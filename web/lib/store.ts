@@ -52,7 +52,8 @@ export interface AtlasState {
 
   // Selected structure
   selectedStructureId: string | null;
-  setSelectedStructure: (id: string | null) => void;
+  /** `recordRecent: false` keeps the structure out of "recently viewed" (quiz identification). */
+  setSelectedStructure: (id: string | null, opts?: { recordRecent?: boolean }) => void;
   hoveredStructureId: string | null;
   setHoveredStructure: (id: string | null) => void;
 
@@ -271,8 +272,10 @@ export const useAtlasStore = create<AtlasState>()(persist<AtlasState, [], [], Pr
   }),
 
   selectedStructureId: null,
-  setSelectedStructure: (id) => set((s) => (
-    id ? { selectedStructureId: id, recentlyViewed: addRecent(s.recentlyViewed, id) } : { selectedStructureId: null }
+  setSelectedStructure: (id, opts) => set((s) => (
+    id && opts?.recordRecent !== false
+      ? { selectedStructureId: id, recentlyViewed: addRecent(s.recentlyViewed, id) }
+      : { selectedStructureId: id }
   )),
   hoveredStructureId: null,
   setHoveredStructure: (id) => set({ hoveredStructureId: id }),
