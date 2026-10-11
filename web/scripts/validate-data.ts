@@ -7,6 +7,7 @@ import { SYSTEMS, REGIONS, type SystemId } from '../data/systems';
 import { REFERENCES, REFERENCE_MAP } from '../data/references';
 import { GUIDED_TOURS } from '../data/tours';
 import { QUIZ_QUESTIONS } from '../data/quizzes';
+import { MANUAL_CARDS } from '../data/flashcards';
 import manifest from '../data/models3d-manifest.json';
 
 const errors: string[] = [];
@@ -114,6 +115,19 @@ for (const q of QUIZ_QUESTIONS) {
   }
 }
 
+// ── Manual flashcards ───────────────────────────────────────────────────────
+const cardIds = new Set<string>();
+for (const c of MANUAL_CARDS) {
+  if (cardIds.has(c.id)) error(`tarjeta duplicada: ${c.id}`);
+  cardIds.add(c.id);
+  if (!systemIds.has(c.systemId)) error(`tarjeta ${c.id}: systemId inexistente "${c.systemId}"`);
+  if (!c.id.startsWith(`manual:${c.systemId}:`)) error(`tarjeta ${c.id}: el id debería empezar por "manual:${c.systemId}:"`);
+  if (c.structureId && !structureIds.has(c.structureId)) error(`tarjeta ${c.id}: structureId inexistente "${c.structureId}"`);
+  for (const f of ['frente_es', 'frente_en', 'dorso_es', 'dorso_en'] as const) {
+    if (!filled(c[f])) error(`tarjeta ${c.id}: ${f} vacío`);
+  }
+}
+
 // ── Output ──────────────────────────────────────────────────────────────────
 for (const w of warnings) console.log(`WARN  ${w}`);
 for (const e of errors) console.log(`ERROR ${e}`);
@@ -130,6 +144,8 @@ console.log(`  total ${STRUCTURES.length} · con malla ${count((s) => meshIds.ha
 console.log(`  tours ${GUIDED_TOURS.length} · pasos ${GUIDED_TOURS.reduce((n, t) => n + t.steps.length, 0)}`);
 console.log(`  preguntas ${QUIZ_QUESTIONS.length} · por sistema: ${fmt(tally(QUIZ_QUESTIONS.map((q) => q.sistemaId)))}`);
 console.log(`  preguntas por dificultad: ${fmt(tally(QUIZ_QUESTIONS.map((q) => q.dificultad)))}`);
+console.log(`  tarjetas manuales ${MANUAL_CARDS.length} · por sistema: ${fmt(tally(MANUAL_CARDS.map((c) => c.systemId)))}`);
+console.log(`  tarjetas manuales por dificultad: ${fmt(tally(MANUAL_CARDS.map((c) => c.dificultad)))}`);
 const unusedRefs = Object.keys(REFERENCE_MAP).filter((r) => !usedRefs.has(r));
 console.log(`  referencias usadas ${[...usedRefs].filter((r) => REFERENCE_MAP[r]).length}/${Object.keys(REFERENCE_MAP).length}` +
   (unusedRefs.length ? ` · sin usar: ${unusedRefs.join(', ')}` : ''));
