@@ -9,12 +9,13 @@ const fraunces = Fraunces({ subsets: ['latin', 'latin-ext'], variable: '--font-d
 const jetbrains = JetBrains_Mono({ subsets: ['latin'], variable: '--font-mono', display: 'swap' });
 
 export const metadata: Metadata = {
+  metadataBase: new URL('http://localhost:3000'),
   title: 'Atlas de Anatomía Humana',
-  description: 'Explora 12 sistemas del cuerpo humano en un modelo 3D interactivo y en láminas 2D. Representación educativa simplificada.',
+  description: 'Explora 12 sistemas del cuerpo humano en un modelo 3D interactivo con fichas educativas bilingües. Representación educativa simplificada.',
   icons: { icon: '/favicon.svg', shortcut: '/favicon.svg' },
   openGraph: {
     title: 'Atlas de Anatomía Humana',
-    description: 'Explora 12 sistemas del cuerpo humano con ilustraciones interactivas simplificadas.',
+    description: 'Explora 12 sistemas del cuerpo humano en un modelo 3D interactivo con fichas educativas.',
     images: ['/og-image.png'],
   },
 };

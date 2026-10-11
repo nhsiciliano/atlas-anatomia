@@ -17,8 +17,8 @@ export default function AtribucionesContent() {
 
         <h1 className="font-display text-3xl font-light tracking-tight mb-2">Atribuciones y fuentes</h1>
         <p className="text-sm text-muted-foreground mb-8">
-          Esta aplicación es una representación educativa simplificada. Ni el modelo 3D ni las láminas 2D
-          sustituyen a un atlas clínico. A continuación se listan el origen del modelo 3D y las fuentes de
+          Esta aplicación es una representación educativa simplificada. El modelo 3D y las fichas son material
+          educativo simplificado; no sustituyen a un atlas clínico. A continuación se listan el origen del modelo 3D y las fuentes de
           referencia utilizadas para elaborar el contenido textual.
         </p>
 
@@ -38,6 +38,10 @@ export default function AtribucionesContent() {
                 Modificaciones: las mallas originales se agruparon por estructura, se simplificaron (reducción de polígonos),
                 se reorientaron y se convirtieron a formato glTF para su visualización en el navegador. Los modelos 3D
                 derivados se distribuyen bajo la misma licencia CC BY-SA 2.1 JP.
+              </p>
+              <p className="text-xs text-muted-foreground">
+                BodyParts3D es un modelo de cuerpo masculino; las estructuras femeninas se describen en sus fichas
+                sin representación 3D.
               </p>
               <a
                 href="https://lifesciencedb.jp/bp3d/"
@@ -86,7 +90,7 @@ export default function AtribucionesContent() {
           <p className="text-xs text-muted-foreground leading-relaxed">
             <strong>Nota:</strong> Este atlas contiene 96 estructuras simplificadas distribuidas en 12 sistemas
             corporales. No pretende reemplazar un atlas anatómico completo ni sustituir el criterio profesional
-            de salud. Las ilustraciones son representaciones didácticas, no imágenes clínicas.
+            de salud. El modelo 3D es una representación didáctica simplificada, no una imagen clínica.
           </p>
         </div>
       </div>

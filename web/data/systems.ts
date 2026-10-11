@@ -23,7 +23,6 @@ export interface SystemDef {
   descripcion_es: string;
   color: string;
   colorDark: string;
-  pattern: string; // CSS pattern class for non-color-only cue
   icon: LucideIcon;
   order: number;
 }
@@ -32,73 +31,73 @@ export const SYSTEMS: SystemDef[] = [
   {
     id: 'esqueletico', nombre_es: 'Esquelético', nombre_en: 'Skeletal',
     descripcion_es: 'Huesos, articulaciones y cartílagos que sostienen el cuerpo.',
-    color: '#E9DFC9', colorDark: '#B9A783', pattern: 'pattern-dots',
+    color: '#E9DFC9', colorDark: '#B9A783',
     icon: Bone, order: 0,
   },
   {
     id: 'muscular', nombre_es: 'Muscular', nombre_en: 'Muscular',
     descripcion_es: 'Músculos esqueléticos que producen movimiento y estabilidad.',
-    color: '#B8574A', colorDark: '#8E3D33', pattern: 'pattern-lines',
+    color: '#B8574A', colorDark: '#8E3D33',
     icon: Activity, order: 1,
   },
   {
     id: 'nervioso', nombre_es: 'Nervioso', nombre_en: 'Nervous',
     descripcion_es: 'Encéfalo, médula espinal y nervios periféricos.',
-    color: '#E5C94A', colorDark: '#B59A22', pattern: 'pattern-zigzag',
+    color: '#E5C94A', colorDark: '#B59A22',
     icon: Brain, order: 2,
   },
   {
     id: 'cardiovascular', nombre_es: 'Cardiovascular', nombre_en: 'Cardiovascular',
     descripcion_es: 'Corazón y vasos sanguíneos que transportan sangre.',
-    color: '#D8423A', colorDark: '#A82D26', pattern: 'pattern-waves',
+    color: '#D8423A', colorDark: '#A82D26',
     icon: Heart, order: 3,
   },
   {
     id: 'respiratorio', nombre_es: 'Respiratorio', nombre_en: 'Respiratory',
     descripcion_es: 'Vías aéreas y pulmones para el intercambio gaseoso.',
-    color: '#E6A6A0', colorDark: '#C27B74', pattern: 'pattern-circles',
+    color: '#E6A6A0', colorDark: '#C27B74',
     icon: Wind, order: 4,
   },
   {
     id: 'digestivo', nombre_es: 'Digestivo', nombre_en: 'Digestive',
     descripcion_es: 'Órganos del tubo digestivo y glándulas anexas.',
-    color: '#C98A5E', colorDark: '#9C653E', pattern: 'pattern-cross',
+    color: '#C98A5E', colorDark: '#9C653E',
     icon: UtensilsCrossed, order: 5,
   },
   {
     id: 'urinario', nombre_es: 'Urinario', nombre_en: 'Urinary',
     descripcion_es: 'Riñones, uréteres, vejiga y uretra.',
-    color: '#D9B44A', colorDark: '#A9862A', pattern: 'pattern-diamonds',
+    color: '#D9B44A', colorDark: '#A9862A',
     icon: Droplets, order: 6,
   },
   {
     id: 'endocrino', nombre_es: 'Endocrino', nombre_en: 'Endocrine',
     descripcion_es: 'Glándulas que secretan hormonas al torrente sanguíneo.',
-    color: '#9C7BD0', colorDark: '#7556AC', pattern: 'pattern-triangles',
+    color: '#9C7BD0', colorDark: '#7556AC',
     icon: Gauge, order: 7,
   },
   {
     id: 'linfatico_inmunitario', nombre_es: 'Linfático / Inmunitario', nombre_en: 'Lymphatic / Immune',
     descripcion_es: 'Ganglios, vasos linfáticos y órganos de defensa.',
-    color: '#7DBF8E', colorDark: '#55966A', pattern: 'pattern-plus',
+    color: '#7DBF8E', colorDark: '#55966A',
     icon: Shield, order: 8,
   },
   {
     id: 'tegumentario', nombre_es: 'Tegumentario', nombre_en: 'Integumentary',
     descripcion_es: 'Piel, pelo, uñas y glándulas cutáneas.',
-    color: '#D9B39A', colorDark: '#AE8770', pattern: 'pattern-grid',
+    color: '#D9B39A', colorDark: '#AE8770',
     icon: Layers, order: 9,
   },
   {
     id: 'reproductor', nombre_es: 'Reproductor', nombre_en: 'Reproductive',
     descripcion_es: 'Órganos reproductores masculinos y femeninos.',
-    color: '#D78FB0', colorDark: '#B06689', pattern: 'pattern-hearts',
+    color: '#D78FB0', colorDark: '#B06689',
     icon: Baby, order: 10,
   },
   {
     id: 'organos_sensoriales', nombre_es: 'Órganos sensoriales', nombre_en: 'Sensory Organs',
     descripcion_es: 'Ojo, oído, olfato y gusto.',
-    color: '#6FB6D6', colorDark: '#4790B0', pattern: 'pattern-stars',
+    color: '#6FB6D6', colorDark: '#4790B0',
     icon: Eye, order: 11,
   },
 ];
