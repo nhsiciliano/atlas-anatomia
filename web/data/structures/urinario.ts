@@ -18,7 +18,19 @@ export const URINARIO: AnatomicalStructure[] = [
     conexiones: ['cardiovascular', 'endocrino'],
     dato_es: 'Cada día filtran más de 180 litros de plasma, reabsorbiendo el 99%.',
     dato_en: 'Each day they filter over 180 liters of plasma, reabsorbing 99%.',
-    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2', 'medlineplus'],
+    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2', 'medlineplus', 'statpearls'],
+    clinica_es: [
+      { titulo: 'Cálculos renales', texto: 'Son piedras formadas por sales que se cristalizan en la orina. Cuando bajan por el uréter causan un cólico: dolor muy intenso en el flanco que viene en oleadas, a veces con náuseas y sangre en la orina. Beber suficiente agua ayuda a prevenirlos. Hay que consultar si el dolor es intenso, hay fiebre o no se puede orinar.' },
+      { titulo: 'Enfermedad renal crónica', texto: 'Es la pérdida lenta y progresiva de la función de los riñones. Al principio no da síntomas, y sus causas más frecuentes son la diabetes y la hipertensión. Un análisis de sangre (creatinina) y de orina permite detectarla a tiempo, cuando todavía se puede frenar su avance.' },
+    ],
+    clinica_en: [
+      { titulo: 'Kidney stones', texto: 'These are stones formed by salts that crystallize in the urine. When they travel down the ureter they cause colic: very intense flank pain that comes in waves, sometimes with nausea and blood in the urine. Drinking enough water helps prevent them. See a doctor if the pain is severe, there is fever or urination is not possible.' },
+      { titulo: 'Chronic kidney disease', texto: 'It is the slow, progressive loss of kidney function. At first it causes no symptoms, and its most common causes are diabetes and hypertension. A blood test (creatinine) and a urine test can detect it early, while its progression can still be slowed.' },
+    ],
+    inervacion_es: 'Plexo renal, con fibras simpáticas de los niveles T10–L1 y fibras del vago.',
+    inervacion_en: 'Renal plexus, with sympathetic fibers from levels T10–L1 and fibers from the vagus.',
+    irrigacion_es: 'Arteria renal, rama de la aorta abdominal, que se divide en arterias segmentarias e interlobares; las venas renales drenan a la vena cava inferior.',
+    irrigacion_en: 'Renal artery, a branch of the abdominal aorta, dividing into segmental and interlobar arteries; the renal veins drain into the inferior vena cava.',
   },
   {
     id: 'nefrona', systemId: 'urinario',
@@ -38,7 +50,15 @@ export const URINARIO: AnatomicalStructure[] = [
     conexiones: ['cardiovascular'],
     dato_es: 'Cada riñón contiene más de un millón de nefronas.',
     dato_en: 'Each kidney contains over one million nephrons.',
-    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2'],
+    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2', 'medlineplus', 'statpearls'],
+    clinica_es: [
+      { titulo: 'Daño por diabetes e hipertensión', texto: 'El exceso de azúcar y la presión arterial alta dañan los pequeños vasos de los glomérulos. Una señal temprana es la presencia de proteínas (albúmina) en la orina. Controlar la glucemia y la presión protege a las nefronas y retrasa la insuficiencia renal.' },
+      { titulo: 'Diálisis', texto: 'Cuando las nefronas ya no filtran lo suficiente, la diálisis reemplaza parte de su trabajo: la hemodiálisis filtra la sangre con una máquina y la diálisis peritoneal usa la membrana del abdomen. El trasplante de riñón es otra opción de tratamiento.' },
+    ],
+    clinica_en: [
+      { titulo: 'Damage from diabetes and hypertension', texto: 'Excess sugar and high blood pressure damage the small vessels of the glomeruli. An early sign is the presence of protein (albumin) in the urine. Controlling blood glucose and blood pressure protects the nephrons and delays kidney failure.' },
+      { titulo: 'Dialysis', texto: 'When the nephrons no longer filter enough, dialysis replaces part of their work: hemodialysis filters the blood with a machine and peritoneal dialysis uses the lining of the abdomen. Kidney transplantation is another treatment option.' },
+    ],
   },
   {
     id: 'pelvis-renal', systemId: 'urinario',
@@ -57,7 +77,19 @@ export const URINARIO: AnatomicalStructure[] = [
     conexiones: [],
     dato_es: 'Recoge la orina de hasta 13 cálices menores.',
     dato_en: 'Collects urine from up to 13 minor calyces.',
-    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2'],
+    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2', 'medlineplus', 'statpearls'],
+    clinica_es: [
+      { titulo: 'Pielonefritis', texto: 'Es una infección del riñón que suele ascender desde la vejiga. Causa fiebre, escalofríos, dolor en la zona lumbar y a veces síntomas urinarios como ardor al orinar. Necesita atención médica pronto y tratamiento con antibióticos.' },
+      { titulo: 'Hidronefrosis', texto: 'Es la dilatación de la pelvis y los cálices por una obstrucción del paso de la orina, por ejemplo por un cálculo. Si la obstrucción persiste, puede dañar el riñón; por eso se estudia la causa con una ecografía.' },
+    ],
+    clinica_en: [
+      { titulo: 'Pyelonephritis', texto: 'It is a kidney infection that usually ascends from the bladder. It causes fever, chills, lower back pain and sometimes urinary symptoms such as burning when urinating. It needs prompt medical attention and antibiotic treatment.' },
+      { titulo: 'Hydronephrosis', texto: 'It is the dilation of the renal pelvis and calyces due to an obstruction of urine flow, for example by a stone. If the obstruction persists it can damage the kidney, so its cause is investigated with an ultrasound.' },
+    ],
+    inervacion_es: 'Plexo renal (fibras simpáticas T10–L1 y del vago).',
+    inervacion_en: 'Renal plexus (sympathetic fibers T10–L1 and vagal fibers).',
+    irrigacion_es: 'Ramas de la arteria renal.',
+    irrigacion_en: 'Branches of the renal artery.',
   },
   {
     id: 'ureter', systemId: 'urinario',
@@ -76,7 +108,19 @@ export const URINARIO: AnatomicalStructure[] = [
     conexiones: ['nervioso'],
     dato_es: 'Tiene tres estrechamientos donde los cálculos renales tienden a impactarse.',
     dato_en: 'Has three narrowings where kidney stones tend to become impacted.',
-    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2'],
+    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2', 'medlineplus', 'statpearls'],
+    clinica_es: [
+      { titulo: 'Cólico renoureteral', texto: 'Ocurre cuando un cálculo se encaja en el uréter, sobre todo en sus tres estrechamientos. El dolor es intenso, en oleadas, y puede irradiarse hacia la ingle y los genitales. Muchos cálculos pequeños (menos de 5 mm) se eliminan solos con líquidos y analgésicos.' },
+      { titulo: 'Relación con vasos en la cirugía pélvica', texto: 'En la pelvis el uréter pasa por debajo de la arteria uterina en la mujer y del conducto deferente en el varón. Los cirujanos recuerdan esta relación («el agua pasa bajo el puente») para no lesionarlo durante operaciones pélvicas.' },
+    ],
+    clinica_en: [
+      { titulo: 'Renal colic', texto: 'It occurs when a stone lodges in the ureter, especially at its three narrowings. The pain is intense, comes in waves and can radiate to the groin and genitals. Many small stones (under 5 mm) pass on their own with fluids and pain relief.' },
+      { titulo: 'Relationship with vessels in pelvic surgery', texto: 'In the pelvis the ureter passes beneath the uterine artery in women and the vas deferens in men. Surgeons remember this relationship ("water under the bridge") to avoid injuring it during pelvic operations.' },
+    ],
+    inervacion_es: 'Plexos renal, aórtico e hipogástrico, de los niveles T11–L2; por eso el dolor se refiere a flanco, ingle y genitales.',
+    inervacion_en: 'Renal, aortic and hypogastric plexuses, from levels T11–L2; this is why pain is referred to the flank, groin and genitals.',
+    irrigacion_es: 'Segmentaria: ramas de la arteria renal (parte superior), de la gonadal y la aorta (parte media) y de las arterias ilíacas y vesicales (parte inferior).',
+    irrigacion_en: 'Segmental: branches of the renal artery (upper part), of the gonadal artery and aorta (middle part) and of the iliac and vesical arteries (lower part).',
   },
   {
     id: 'vejiga-urinaria', systemId: 'urinario',
@@ -95,7 +139,19 @@ export const URINARIO: AnatomicalStructure[] = [
     conexiones: ['nervioso'],
     dato_es: 'Puede almacenar hasta 500 ml de orina antes de generar urgencia.',
     dato_en: 'Can store up to 500 ml of urine before creating urgency.',
-    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2'],
+    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2', 'medlineplus', 'statpearls'],
+    clinica_es: [
+      { titulo: 'Cistitis', texto: 'Es la infección de la vejiga, más frecuente en mujeres. Produce ardor al orinar, ganas de orinar muy seguido, dolor bajo en el vientre y a veces orina turbia. Conviene consultar para recibir tratamiento; si hay fiebre, dolor lumbar o sangre en la orina, hay que hacerlo cuanto antes.' },
+      { titulo: 'Retención urinaria', texto: 'Es la dificultad o imposibilidad de vaciar la vejiga, por ejemplo por un agrandamiento de la próstata en el varón. Causa dolor y distensión en la parte baja del vientre. Si no se puede orinar, es una urgencia médica.' },
+    ],
+    clinica_en: [
+      { titulo: 'Cystitis', texto: 'It is a bladder infection, more common in women. It causes burning when urinating, a frequent urge to urinate, lower abdominal pain and sometimes cloudy urine. See a doctor to get treatment; with fever, lower back pain or blood in the urine, do so as soon as possible.' },
+      { titulo: 'Urinary retention', texto: 'It is difficulty or inability to empty the bladder, for example due to an enlarged prostate in men. It causes pain and swelling in the lower abdomen. If urination is not possible, it is a medical emergency.' },
+    ],
+    inervacion_es: 'Parasimpático S2–S4 (nervios esplácnicos pélvicos) que contrae el detrusor; simpático T10–L2 (nervios hipogástricos) que relaja el detrusor y cierra el cuello vesical; somático por el nervio pudendo.',
+    inervacion_en: 'Parasympathetic S2–S4 (pelvic splanchnic nerves) contracting the detrusor; sympathetic T10–L2 (hypogastric nerves) relaxing the detrusor and closing the bladder neck; somatic through the pudendal nerve.',
+    irrigacion_es: 'Arterias vesicales superiores (de la umbilical) e inferiores (de la ilíaca interna); en la mujer también ramas de la vaginal.',
+    irrigacion_en: 'Superior (from the umbilical) and inferior (from the internal iliac) vesical arteries; in women also branches of the vaginal artery.',
   },
   {
     id: 'uretra', systemId: 'urinario',
@@ -114,7 +170,19 @@ export const URINARIO: AnatomicalStructure[] = [
     conexiones: ['nervioso', 'reproductor'],
     dato_es: 'La femenina mide unos 4 cm mientras que la masculina alcanza unos 20 cm.',
     dato_en: 'The female urethra is about 4 cm while the male reaches about 20 cm.',
-    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2'],
+    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2', 'medlineplus', 'statpearls'],
+    clinica_es: [
+      { titulo: 'Infecciones urinarias y longitud de la uretra', texto: 'La uretra femenina mide unos 4 cm y su abertura está cerca del ano, lo que facilita que las bacterias lleguen a la vejiga. Por eso las infecciones urinarias son más frecuentes en las mujeres. En el varón la uretra mide unos 20 cm y las infecciones son menos comunes.' },
+      { titulo: 'Uretritis', texto: 'Es la inflamación de la uretra, a menudo por infecciones de transmisión sexual como clamidia o gonorrea. Produce ardor al orinar y secreción. Se trata con antibióticos y también hay que tratar a la pareja sexual.' },
+    ],
+    clinica_en: [
+      { titulo: 'Urinary infections and urethra length', texto: 'The female urethra is about 4 cm long and its opening is close to the anus, making it easier for bacteria to reach the bladder. This is why urinary infections are more common in women. In men the urethra is about 20 cm long and infections are less common.' },
+      { titulo: 'Urethritis', texto: 'It is inflammation of the urethra, often from sexually transmitted infections such as chlamydia or gonorrhea. It causes burning when urinating and discharge. It is treated with antibiotics, and sexual partners must be treated as well.' },
+    ],
+    inervacion_es: 'Nervio pudendo (sensibilidad) y plexos prostático o uterovaginal (fibras autónomas).',
+    inervacion_en: 'Pudendal nerve (sensation) and prostatic or uterovaginal plexuses (autonomic fibers).',
+    irrigacion_es: 'Ramas de las arterias pudenda interna, vesical inferior y, según el sexo, prostática o vaginal.',
+    irrigacion_en: 'Branches of the internal pudendal and inferior vesical arteries and, depending on sex, prostatic or vaginal arteries.',
   },
   {
     id: 'esfinter-uretral-externo', systemId: 'urinario',
@@ -133,6 +201,18 @@ export const URINARIO: AnatomicalStructure[] = [
     conexiones: ['nervioso', 'muscular'],
     dato_es: 'Es el músculo que aprendemos a controlar durante el entrenamiento del esfínter en la infancia.',
     dato_en: 'It is the muscle we learn to control during toilet training in childhood.',
-    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2'],
+    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2', 'medlineplus', 'statpearls'],
+    clinica_es: [
+      { titulo: 'Incontinencia urinaria de esfuerzo', texto: 'Es la pérdida involuntaria de orina al toser, reír o hacer ejercicio, por debilidad del suelo pélvico y del esfínter. Es frecuente después de embarazos y partos, en la menopausia o tras operaciones de próstata. Los ejercicios del suelo pélvico (de Kegel) mejoran muchos casos y existen otros tratamientos.' },
+      { titulo: 'Control de la micción en la infancia', texto: 'Los niños logran controlar el esfínter entre los dos y los cuatro años aproximadamente. Mojar la cama de noche es común y suele desaparecer con la edad. Conviene consultar si continúa después de los siete años o reaparece tras un tiempo de control.' },
+    ],
+    clinica_en: [
+      { titulo: 'Stress urinary incontinence', texto: 'It is the involuntary loss of urine when coughing, laughing or exercising, due to weakness of the pelvic floor and sphincter. It is common after pregnancy and childbirth, at menopause or after prostate surgery. Pelvic floor (Kegel) exercises improve many cases and other treatments exist.' },
+      { titulo: 'Bladder control in childhood', texto: 'Children gain control of the sphincter at roughly two to four years of age. Bedwetting at night is common and usually disappears with age. See a doctor if it continues after age seven or reappears after a period of control.' },
+    ],
+    inervacion_es: 'Nervio pudendo (S2–S4), de control voluntario.',
+    inervacion_en: 'Pudendal nerve (S2–S4), under voluntary control.',
+    irrigacion_es: 'Ramas de la arteria pudenda interna.',
+    irrigacion_en: 'Branches of the internal pudendal artery.',
   },
 ];
