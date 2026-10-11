@@ -18,7 +18,17 @@ export const NERVIOSO: AnatomicalStructure[] = [
     conexiones: ['muscular', 'organos_sensoriales'],
     dato_es: 'Sus dos hemisferios se comunican por el cuerpo calloso, con unos 200 millones de fibras.',
     dato_en: 'Its two hemispheres communicate via the corpus callosum, with about 200 million fibers.',
-    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2'],
+    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2', 'medlineplus', 'statpearls'],
+    clinica_es: [
+      { titulo: 'Accidente cerebrovascular (ACV)', texto: 'Ocurre cuando se tapa o se rompe una arteria cerebral y parte del cerebro deja de recibir sangre. Se reconoce con la regla FAST: Face (cara caída de un lado), Arm (debilidad en un brazo), Speech (habla confusa o arrastrada) y Time (tiempo): hay que llamar a emergencias de inmediato, porque el tratamiento es más eficaz en las primeras horas.' },
+      { titulo: 'Conmoción cerebral', texto: 'Es una lesión leve causada por un golpe o una sacudida de la cabeza. Puede provocar dolor de cabeza, mareo, confusión, náuseas y olvido de lo ocurrido. Requiere evaluación y reposo, y en el deporte no se vuelve a jugar el mismo día. Vómitos repetidos, somnolencia creciente, convulsiones o pupilas desiguales son signos de alarma.' },
+    ],
+    clinica_en: [
+      { titulo: 'Stroke', texto: 'It occurs when a brain artery is blocked or ruptures and part of the brain stops receiving blood. It is recognized with the FAST rule: Face (drooping on one side), Arm (weakness in one arm), Speech (confused or slurred) and Time: call emergency services immediately, because treatment is most effective in the first hours.' },
+      { titulo: 'Concussion', texto: 'It is a mild injury caused by a blow or shake of the head. It can cause headache, dizziness, confusion, nausea and forgetting what happened. It needs evaluation and rest, and in sports one does not return to play the same day. Repeated vomiting, increasing drowsiness, seizures or unequal pupils are warning signs.' },
+    ],
+    irrigacion_es: 'Dos sistemas unidos en el polígono de Willis: las arterias carótidas internas (cerebrales anterior y media) y las vertebrales, que forman la basilar (cerebral posterior). La sangre sale por los senos venosos hacia las venas yugulares internas.',
+    irrigacion_en: 'Two systems joined in the circle of Willis: the internal carotid arteries (anterior and middle cerebral) and the vertebral arteries, which form the basilar artery (posterior cerebral). Blood leaves through the venous sinuses toward the internal jugular veins.',
   },
   {
     id: 'cerebelo', systemId: 'nervioso',
@@ -37,7 +47,17 @@ export const NERVIOSO: AnatomicalStructure[] = [
     conexiones: ['muscular', 'organos_sensoriales'],
     dato_es: 'Contiene más neuronas que el resto del encéfalo combinado.',
     dato_en: 'Contains more neurons than the rest of the brain combined.',
-    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2'],
+    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2', 'medlineplus', 'statpearls'],
+    clinica_es: [
+      { titulo: 'Ataxia', texto: 'Es la pérdida de coordinación de los movimientos: marcha inestable, temblor al intentar alcanzar un objeto y habla pastosa. Puede deberse a un ACV, a enfermedades como la esclerosis múltiple, a trastornos hereditarios o a medicamentos. Si aparece de golpe, con dolor de cabeza intenso, vómitos o vértigo, es una urgencia.' },
+      { titulo: 'El cerebelo y el alcohol', texto: 'El cerebelo es muy sensible al alcohol, por eso con la intoxicación aparecen marcha tambaleante, torpeza y habla arrastrada. Estos efectos suelen ser transitorios, pero el consumo excesivo sostenido puede atrofiar el cerebelo de forma permanente.' },
+    ],
+    clinica_en: [
+      { titulo: 'Ataxia', texto: 'It is loss of coordination of movements: unsteady gait, tremor when reaching for an object and slurred speech. It can result from a stroke, from diseases such as multiple sclerosis, from inherited disorders or from medications. If it appears suddenly, with severe headache, vomiting or vertigo, it is an emergency.' },
+      { titulo: 'The cerebellum and alcohol', texto: 'The cerebellum is very sensitive to alcohol, which is why intoxication brings a staggering gait, clumsiness and slurred speech. These effects are usually temporary, but sustained excessive drinking can permanently shrink the cerebellum.' },
+    ],
+    irrigacion_es: 'Tres arterias a cada lado: cerebelosa superior y cerebelosa anteroinferior (de la basilar) y cerebelosa posteroinferior (de la vertebral).',
+    irrigacion_en: 'Three arteries on each side: superior cerebellar and anterior inferior cerebellar (from the basilar) and posterior inferior cerebellar (from the vertebral).',
   },
   {
     id: 'tronco-encefalico', systemId: 'nervioso',
@@ -56,7 +76,17 @@ export const NERVIOSO: AnatomicalStructure[] = [
     conexiones: ['respiratorio', 'cardiovascular'],
     dato_es: 'Alberga centros vitales cuya lesión puede ser incompatible con la vida.',
     dato_en: 'Houses vital centers whose injury can be incompatible with life.',
-    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2'],
+    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2', 'statpearls'],
+    clinica_es: [
+      { titulo: 'Centros vitales', texto: 'El tronco encefálico contiene los centros que regulan la respiración y la actividad del corazón y mantienen la conciencia. Un ACV, un traumatismo o la presión de una hinchazón o un sangrado pueden afectarlo y causar coma, pupilas anormales, respiración irregular o parálisis de pares craneales. Es una urgencia vital.' },
+      { titulo: 'Muerte encefálica', texto: 'Es la pérdida completa e irreversible de todas las funciones del encéfalo, incluido el tronco. Se diagnostica siguiendo protocolos estrictos: ausencia de reflejos del tronco (pupilas, córnea, tos) y de respiración propia, con pruebas confirmatorias. Es distinta del coma, de donde algunas personas se recuperan.' },
+    ],
+    clinica_en: [
+      { titulo: 'Vital centers', texto: 'The brainstem contains the centers that regulate breathing and heart activity and maintain consciousness. A stroke, trauma or pressure from swelling or bleeding can affect it and cause coma, abnormal pupils, irregular breathing or cranial nerve paralysis. It is a life-threatening emergency.' },
+      { titulo: 'Brain death', texto: 'It is the complete and irreversible loss of all brain functions, including the brainstem. It is diagnosed following strict protocols: absence of brainstem reflexes (pupils, cornea, cough) and of spontaneous breathing, with confirmatory tests. It is different from coma, from which some people recover.' },
+    ],
+    irrigacion_es: 'Sistema vertebrobasilar: las arterias vertebrales y la basilar dan ramas paramedianas y circunferenciales al mesencéfalo, el puente y el bulbo.',
+    irrigacion_en: 'Vertebrobasilar system: the vertebral and basilar arteries give paramedian and circumferential branches to the midbrain, pons and medulla.',
   },
   {
     id: 'medula-espinal', systemId: 'nervioso',
@@ -75,7 +105,17 @@ export const NERVIOSO: AnatomicalStructure[] = [
     conexiones: ['esqueletico', 'muscular'],
     dato_es: 'No llega hasta el final de la columna vertebral adulta (termina en L1-L2).',
     dato_en: 'Does not reach the end of the adult vertebral column (ends at L1-L2).',
-    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2'],
+    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2', 'medlineplus', 'statpearls'],
+    clinica_es: [
+      { titulo: 'Lesión medular', texto: 'El nivel de la lesión determina qué se pierde: una lesión cervical alta puede causar tetraplejía y afectar la respiración (el nervio frénico sale de C3–C5), y una lesión torácica o lumbar causa paraplejía. Ante un accidente con sospecha de lesión de columna no se debe mover a la persona: hay que llamar a emergencias.' },
+      { titulo: 'Hernia de disco', texto: 'El núcleo del disco intervertebral sale de su lugar y comprime una raíz nerviosa. Provoca dolor que se irradia por un brazo o una pierna, hormigueo y debilidad. Es más frecuente en la región lumbar baja, y la mayoría mejora sin cirugía. Debilidad progresiva o pérdida del control de la orina o las heces requieren atención urgente.' },
+    ],
+    clinica_en: [
+      { titulo: 'Spinal cord injury', texto: 'The level of the injury determines what is lost: a high cervical injury can cause quadriplegia and affect breathing (the phrenic nerve comes from C3–C5), and a thoracic or lumbar injury causes paraplegia. After an accident with suspected spinal injury, do not move the person: call emergency services.' },
+      { titulo: 'Herniated disc', texto: 'The nucleus of the intervertebral disc slips out of place and compresses a nerve root. It causes pain radiating down an arm or leg, tingling and weakness. It is most common in the lower lumbar region, and most cases improve without surgery. Progressive weakness or loss of bladder or bowel control need urgent care.' },
+    ],
+    irrigacion_es: 'Una arteria espinal anterior (dos tercios anteriores) y dos espinales posteriores, reforzadas por arterias radiculares, entre ellas la arteria radicular magna (de Adamkiewicz) en la región toracolumbar.',
+    irrigacion_en: 'One anterior spinal artery (anterior two thirds) and two posterior spinal arteries, reinforced by radicular arteries, among them the great radicular artery (of Adamkiewicz) in the thoracolumbar region.',
   },
   {
     id: 'meninges', systemId: 'nervioso',
@@ -94,7 +134,19 @@ export const NERVIOSO: AnatomicalStructure[] = [
     conexiones: ['cardiovascular', 'linfatico_inmunitario'],
     dato_es: 'El líquido cefalorraquídeo circula entre la aracnoides y la piamadre.',
     dato_en: 'Cerebrospinal fluid circulates between the arachnoid and pia mater.',
-    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2'],
+    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2', 'medlineplus', 'statpearls'],
+    clinica_es: [
+      { titulo: 'Meningitis', texto: 'Es la inflamación de las meninges, por virus o bacterias. Produce fiebre, dolor de cabeza intenso, rigidez de nuca, sensibilidad a la luz y vómitos. Unas manchas violáceas en la piel que no desaparecen al presionar pueden indicar una infección grave por meningococo. Es una urgencia, y existen vacunas que previenen varias formas.' },
+      { titulo: 'Hematomas epidural y subdural', texto: 'El hematoma epidural es una acumulación de sangre entre el cráneo y la duramadre, típicamente tras un golpe en la sien. El subdural se forma bajo la duramadre, a menudo en personas mayores o que toman anticoagulantes, y puede dar síntomas días o semanas después. Dolor de cabeza creciente, somnolencia o confusión tras un golpe requieren atención inmediata.' },
+    ],
+    clinica_en: [
+      { titulo: 'Meningitis', texto: 'It is inflammation of the meninges, caused by viruses or bacteria. It produces fever, severe headache, stiff neck, sensitivity to light and vomiting. Purplish skin spots that do not fade when pressed may indicate a serious meningococcal infection. It is an emergency, and vaccines exist that prevent several forms.' },
+      { titulo: 'Epidural and subdural hematomas', texto: 'An epidural hematoma is a collection of blood between the skull and the dura mater, typically after a blow to the temple. A subdural one forms beneath the dura, often in older people or those taking anticoagulants, and can cause symptoms days or weeks later. A growing headache, drowsiness or confusion after a blow need immediate care.' },
+    ],
+    inervacion_es: 'La duramadre es sensible al dolor: la inervan ramas del trigémino (V1–V3) en las fosas anterior y media, y ramas del vago y de los nervios cervicales superiores en la fosa posterior.',
+    inervacion_en: 'The dura mater is pain-sensitive: it is supplied by branches of the trigeminal nerve (V1–V3) in the anterior and middle fossae, and by branches of the vagus and upper cervical nerves in the posterior fossa.',
+    irrigacion_es: 'La duramadre recibe sobre todo la arteria meníngea media (rama de la maxilar); la piamadre forma una red vascular que nutre la superficie del cerebro.',
+    irrigacion_en: 'The dura mater is supplied mainly by the middle meningeal artery (a branch of the maxillary); the pia mater forms a vascular network that nourishes the brain surface.',
   },
   {
     id: 'nervio-optico', systemId: 'nervioso',
@@ -113,7 +165,17 @@ export const NERVIOSO: AnatomicalStructure[] = [
     conexiones: ['organos_sensoriales'],
     dato_es: 'Se considera una extensión del sistema nervioso central.',
     dato_en: 'It is considered an extension of the central nervous system.',
-    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2'],
+    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2', 'medlineplus', 'statpearls'],
+    clinica_es: [
+      { titulo: 'Neuritis óptica', texto: 'Es la inflamación del nervio óptico. Causa pérdida de visión en un ojo que se instala en horas o días, dolor al mover el ojo y colores apagados. Puede ser la primera manifestación de la esclerosis múltiple. Requiere consulta urgente con un oftalmólogo.' },
+      { titulo: 'Papiledema', texto: 'Es la hinchazón de la cabeza del nervio óptico por aumento de la presión dentro del cráneo, porque la vaina del nervio comunica con el espacio del líquido cefalorraquídeo. Se ve en el examen del fondo de ojo y puede acompañarse de dolor de cabeza, vómitos y visión borrosa. Exige estudio urgente de la causa.' },
+    ],
+    clinica_en: [
+      { titulo: 'Optic neuritis', texto: 'It is inflammation of the optic nerve. It causes vision loss in one eye developing over hours or days, pain when moving the eye and dull colors. It can be the first sign of multiple sclerosis. It requires urgent consultation with an ophthalmologist.' },
+      { titulo: 'Papilledema', texto: 'It is swelling of the optic disc due to increased pressure inside the skull, because the nerve sheath communicates with the cerebrospinal fluid space. It is seen on examination of the back of the eye and can come with headache, vomiting and blurred vision. It requires urgent study of its cause.' },
+    ],
+    irrigacion_es: 'Arteria oftálmica (rama de la carótida interna): la arteria central de la retina irriga la parte intraorbitaria del nervio y las arterias ciliares posteriores cortas, su cabeza.',
+    irrigacion_en: 'Ophthalmic artery (a branch of the internal carotid): the central retinal artery supplies the intraorbital part of the nerve and the short posterior ciliary arteries supply its head.',
   },
   {
     id: 'nervio-trigemino', systemId: 'nervioso',
@@ -132,7 +194,17 @@ export const NERVIOSO: AnatomicalStructure[] = [
     conexiones: ['muscular', 'organos_sensoriales'],
     dato_es: 'Es el mayor de los nervios craneales.',
     dato_en: 'It is the largest of the cranial nerves.',
-    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2'],
+    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2', 'medlineplus', 'statpearls'],
+    clinica_es: [
+      { titulo: 'Neuralgia del trigémino', texto: 'Es un dolor facial muy intenso, como una descarga eléctrica, que dura segundos y se repite. Puede desencadenarse al masticar, hablar, lavarse los dientes o con el aire frío. A menudo se debe a la compresión del nervio por un vaso sanguíneo. Hay medicamentos eficaces, por lo que conviene consultar.' },
+      { titulo: 'Herpes zóster oftálmico', texto: 'El virus de la varicela puede reactivarse en la rama oftálmica (V1) y causar una erupción con ampollas en la frente y el párpado. Si aparecen lesiones en la punta de la nariz, hay riesgo de afectar el ojo. Requiere tratamiento antiviral lo antes posible; existe una vacuna que previene el zóster.' },
+    ],
+    clinica_en: [
+      { titulo: 'Trigeminal neuralgia', texto: 'It is a very intense facial pain, like an electric shock, lasting seconds and recurring. It can be triggered by chewing, talking, brushing teeth or cold air. It is often due to compression of the nerve by a blood vessel. Effective medications exist, so it is advisable to see a doctor.' },
+      { titulo: 'Herpes zoster ophthalmicus', texto: 'The chickenpox virus can reactivate in the ophthalmic branch (V1) and cause a blistering rash on the forehead and eyelid. If lesions appear on the tip of the nose, the eye may be affected. It requires antiviral treatment as soon as possible; a vaccine exists that prevents shingles.' },
+    ],
+    irrigacion_es: 'Ramas de la arteria cerebelosa superior para la raíz y del tronco meningohipofisario (de la carótida interna) para el ganglio trigeminal.',
+    irrigacion_en: 'Branches of the superior cerebellar artery for the root and of the meningohypophyseal trunk (from the internal carotid) for the trigeminal ganglion.',
   },
   {
     id: 'nervio-vago', systemId: 'nervioso',
@@ -151,7 +223,15 @@ export const NERVIOSO: AnatomicalStructure[] = [
     conexiones: ['respiratorio', 'digestivo', 'cardiovascular'],
     dato_es: 'Su nombre alude a su largo recorrido "errante" por el cuerpo.',
     dato_en: 'Its name refers to its long "wandering" course through the body.',
-    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2'],
+    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2', 'medlineplus', 'statpearls'],
+    clinica_es: [
+      { titulo: 'Síncope vasovagal', texto: 'Es un desmayo por una estimulación excesiva del vago, que enlentece el corazón y baja la presión. Lo desencadenan el dolor, el estrés, el calor, ver sangre o estar mucho tiempo de pie, y suele avisar con mareo, sudor frío y náuseas. Acostarse con las piernas elevadas ayuda. Conviene consultar si es el primer episodio, ocurre durante el ejercicio o hay dolor de pecho o palpitaciones.' },
+      { titulo: 'Reflejo nauseoso', texto: 'Tocar el fondo de la garganta estimula el nervio glosofaríngeo y el vago, que provocan arcadas para proteger la vía aérea. Al examinar a un paciente, la ausencia de este reflejo puede indicar una lesión neurológica.' },
+    ],
+    clinica_en: [
+      { titulo: 'Vasovagal syncope', texto: 'It is a faint caused by excessive stimulation of the vagus, which slows the heart and lowers blood pressure. It is triggered by pain, stress, heat, seeing blood or standing for a long time, and usually gives warning with dizziness, cold sweat and nausea. Lying down with the legs raised helps. See a doctor if it is the first episode, happens during exercise or comes with chest pain or palpitations.' },
+      { titulo: 'Gag reflex', texto: 'Touching the back of the throat stimulates the glossopharyngeal nerve and the vagus, which cause retching to protect the airway. When examining a patient, absence of this reflex may indicate a neurological injury.' },
+    ],
   },
   {
     id: 'nervio-ciatico', systemId: 'nervioso',
