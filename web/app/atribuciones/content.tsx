@@ -65,6 +65,9 @@ export default function AtribucionesContent() {
                 <div>
                   <h2 className="text-sm font-semibold">{ref?.nombre}</h2>
                   <p className="text-xs text-muted-foreground font-mono">{ref?.shortName}</p>
+                  {ref?.isbn && (
+                    <p className="text-xs text-muted-foreground font-mono">ISBN {ref.isbn}</p>
+                  )}
                   <p className="text-xs text-muted-foreground mt-1">{ref?.descripcion_es}</p>
                   {ref?.url && !/^https?:\/\//.test(ref.url) && (
                     <p className="text-xs text-muted-foreground font-mono mt-1">{ref.url}</p>

@@ -5,6 +5,8 @@ export interface ReferenceSource {
   autor: string;
   tipo: string;
   url: string;
+  url_en?: string;
+  isbn?: string;
   descripcion_es: string;
 }
 
@@ -24,7 +26,8 @@ export const REFERENCES: ReferenceSource[] = [
     shortName: "Gray's 42e",
     autor: 'Standring S. (ed.), Elsevier',
     tipo: 'Tratado de referencia',
-    url: 'ISBN 978-0-7020-7707-4',
+    isbn: '978-0-7020-7707-4',
+    url: 'https://www.elsevier.com/books/grays-anatomy/standring/978-0-7020-7705-0',
     descripcion_es: 'Referencia anatómica macroscópica, relaciones topográficas y variaciones.',
   },
   {
@@ -53,6 +56,15 @@ export const REFERENCES: ReferenceSource[] = [
     tipo: 'Biblioteca biomédica abierta',
     url: 'https://www.ncbi.nlm.nih.gov/books/',
     descripcion_es: 'Revisiones biomédicas y anatomía funcional de apoyo.',
+  },
+  {
+    id: 'statpearls',
+    nombre: 'StatPearls',
+    shortName: 'StatPearls',
+    autor: 'StatPearls Publishing, NCBI Bookshelf (NIH)',
+    tipo: 'Manual clínico en línea',
+    url: 'https://www.ncbi.nlm.nih.gov/books/NBK430685/',
+    descripcion_es: 'Revisiones clínicas breves, usadas como apoyo para la correlación clínica introductoria.',
   },
 ];
 
