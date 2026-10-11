@@ -5,9 +5,10 @@ import DetailPanel from '@/components/panels/detail-panel';
 import ComparePanel from '@/components/learning/compare-panel';
 import TourEngine from '@/components/learning/tour-engine';
 import QuizEngine from '@/components/learning/quiz-engine';
+import FlashcardsEngine from '@/components/learning/flashcards-engine';
 import BookmarksPanel from '@/components/learning/bookmarks-panel';
 import StructureTree from '@/components/learning/structure-tree';
-import { BookOpen, Route, HelpCircle, Bookmark, TreeDeciduous, MousePointerClick } from 'lucide-react';
+import { BookOpen, Route, HelpCircle, GalleryVerticalEnd, Bookmark, TreeDeciduous, MousePointerClick } from 'lucide-react';
 
 export default function RightPanel() {
   const tr = useT();
@@ -20,6 +21,7 @@ export default function RightPanel() {
     { id: 'detail', icon: BookOpen, label: tr('nav.atlas') },
     { id: 'tours', icon: Route, label: tr('nav.tours') },
     { id: 'quiz', icon: HelpCircle, label: tr('nav.quiz') },
+    { id: 'cards', icon: GalleryVerticalEnd, label: tr('nav.cards') },
     { id: 'bookmarks', icon: Bookmark, label: tr('nav.bookmarks') },
     { id: 'tree', icon: TreeDeciduous, label: tr('nav.arbol') },
   ];
@@ -76,6 +78,7 @@ export default function RightPanel() {
 
         {tab === 'tours' && <TourEngine />}
         {tab === 'quiz' && <QuizEngine />}
+        {tab === 'cards' && <FlashcardsEngine />}
         {tab === 'bookmarks' && <BookmarksPanel />}
         {tab === 'tree' && <StructureTree />}
       </div>

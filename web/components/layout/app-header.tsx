@@ -12,6 +12,7 @@ const NAV: { id: PanelTab; labelKey: string }[] = [
   { id: 'detail', labelKey: 'nav.explore' },
   { id: 'tours', labelKey: 'nav.tours_short' },
   { id: 'quiz', labelKey: 'nav.practice' },
+  { id: 'cards', labelKey: 'nav.cards' },
   { id: 'bookmarks', labelKey: 'nav.my_structures' },
 ];
 

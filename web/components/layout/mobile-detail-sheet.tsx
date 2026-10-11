@@ -3,9 +3,10 @@ import { useAtlasStore, type PanelTab } from '@/lib/store';
 import DetailPanel from '@/components/panels/detail-panel';
 import { motion, AnimatePresence, useDragControls, type PanInfo } from 'framer-motion';
 import { useEffect, useState } from 'react';
-import { Route, HelpCircle, Bookmark, TreeDeciduous, BookOpen, X, MousePointerClick } from 'lucide-react';
+import { Route, HelpCircle, GalleryVerticalEnd, Bookmark, TreeDeciduous, BookOpen, X, MousePointerClick } from 'lucide-react';
 import TourEngine from '@/components/learning/tour-engine';
 import QuizEngine from '@/components/learning/quiz-engine';
+import FlashcardsEngine from '@/components/learning/flashcards-engine';
 import BookmarksPanel from '@/components/learning/bookmarks-panel';
 import StructureTree from '@/components/learning/structure-tree';
 import { useT } from '@/lib/i18n';
@@ -14,6 +15,7 @@ const TABS: { id: PanelTab; icon: typeof BookOpen; labelKey: string; titleKey: s
   { id: 'detail', icon: BookOpen, labelKey: 'nav.explore', titleKey: 'sheet.structure' },
   { id: 'tours', icon: Route, labelKey: 'nav.tours_short', titleKey: 'nav.tours' },
   { id: 'quiz', icon: HelpCircle, labelKey: 'nav.practice', titleKey: 'nav.practice' },
+  { id: 'cards', icon: GalleryVerticalEnd, labelKey: 'nav.cards', titleKey: 'nav.cards' },
   { id: 'bookmarks', icon: Bookmark, labelKey: 'nav.saved', titleKey: 'nav.my_structures' },
   { id: 'tree', icon: TreeDeciduous, labelKey: 'nav.index', titleKey: 'sheet.structure_index' },
 ];
@@ -32,11 +34,11 @@ export default function MobileDetailSheet() {
     setPrevSelectedId(selectedId);
     if (selectedId) setExpanded(true);
   }
-  // The tab lives in the shared store, so it can't be set during render. Tours and quizzes select
-  // structures themselves: switching away from them would unmount the engine and lose its progress.
+  // The tab lives in the shared store, so it can't be set during render. Tours, quizzes and the
+  // review screen select structures themselves: switching away would unmount them and lose progress.
   useEffect(() => {
     const current = useAtlasStore.getState().panelTab;
-    if (selectedId && current !== 'tours' && current !== 'quiz') setTab('detail');
+    if (selectedId && current !== 'tours' && current !== 'quiz' && current !== 'cards') setTab('detail');
   }, [selectedId, setTab]);
 
   const onDragEnd = (_: unknown, info: PanInfo) => {
@@ -141,6 +143,7 @@ export default function MobileDetailSheet() {
                 )}
                 {tab === 'tours' && <TourEngine />}
                 {tab === 'quiz' && <QuizEngine />}
+                {tab === 'cards' && <FlashcardsEngine />}
                 {tab === 'bookmarks' && <BookmarksPanel />}
                 {tab === 'tree' && <StructureTree />}
               </div>

@@ -49,7 +49,7 @@ async function main() {
   ok('claves legadas borradas', ['atlas_bookmarks', 'atlas_recent', 'atlas_tours', 'atlas_quiz'].every(k => mem.get(k) === undefined));
   const saved = JSON.parse(mem.get('atlas-progress') ?? 'null');
   ok('atlas-progress escrito con version 1 y solo el progreso', saved?.version === 1 && eq(Object.keys(saved.state).sort(),
-    ['bookmarks', 'completedTours', 'detailLevel', 'locale', 'quizScores', 'recentlyViewed', 'srs']), Object.keys(saved?.state ?? {}));
+    ['bookmarks', 'completedTours', 'detailLevel', 'locale', 'quizScores', 'recentlyViewed', 'srs', 'srsPrefs']), Object.keys(saved?.state ?? {}));
   ok('atlas-progress contiene la fusión', eq(saved.state.bookmarks, ['corazon', 'femur']) && !!saved.state.quizScores['muscular-all']);
 
   // 2) Sin claves legadas: segunda rehidratación no cambia nada.
@@ -89,6 +89,21 @@ async function main() {
     ok('import rechaza ' + label, !r.ok, r);
   }
   ok('import fallido no toca el estado', eq(st().bookmarks, ['corazon', 'femur']));
+
+  // 4b) Repetición espaciada: gradeCard usa schedule() y persiste; srsPrefs se persiste.
+  const { schedule } = await import('../lib/srs');
+  const t0 = new Date('2026-10-01T12:00:00.000Z');
+  st().gradeCard('craneo:nombre_funcion', 2, t0);
+  ok('gradeCard aplica schedule()', eq(st().srs['craneo:nombre_funcion'], schedule(undefined, 2, t0)), st().srs['craneo:nombre_funcion']);
+  const t1 = new Date('2026-10-02T12:00:00.000Z');
+  st().gradeCard('craneo:nombre_funcion', 2, t1);
+  ok('gradeCard encadena sobre el estado anterior', eq(st().srs['craneo:nombre_funcion'], schedule(schedule(undefined, 2, t0), 2, t1)), st().srs['craneo:nombre_funcion'].interval);
+  ok('gradeCard persiste en atlas-progress', !!JSON.parse(mem.get('atlas-progress')!).state.srs['craneo:nombre_funcion']);
+  ok('srsPrefs por defecto', eq(st().srsPrefs, { systems: 'all', maxNew: 10, maxDue: 20 }));
+  st().setSrsPrefs({ maxNew: 5, systems: ['esqueletico'] });
+  ok('setSrsPrefs mezcla y persiste', eq(JSON.parse(mem.get('atlas-progress')!).state.srsPrefs, { systems: ['esqueletico'], maxNew: 5, maxDue: 20 }));
+  ok('import sin srsPrefs usa los valores por defecto', st().importProgress(JSON.stringify({ version: 1, data: {} })).ok && eq(st().srsPrefs, { systems: 'all', maxNew: 10, maxDue: 20 }));
+  ok('import recupera el progreso exportado', st().importProgress(exported).ok);
 
   // 5) Modo identificación del cuestionario: estado efímero, nunca persistido.
   ok('quizHighlightId empieza en null', st().quizHighlightId === null);

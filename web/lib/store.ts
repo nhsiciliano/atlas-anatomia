@@ -4,6 +4,7 @@ import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
 import type { SystemId, ViewId } from '@/data/systems';
 import type { Locale } from '@/lib/i18n';
+import { schedule, type Grade } from '@/lib/srs';
 
 export interface QuizScore {
   best: number;
@@ -24,6 +25,13 @@ export interface SrsCardState {
 
 export type DetailLevel = 'fundamental' | 'avanzado';
 
+/** Review-session settings (persisted). */
+export interface SrsPrefs {
+  systems: SystemId[] | 'all';
+  maxNew: number;
+  maxDue: number;
+}
+
 /** Learning progress: the only part of the store that is persisted. */
 export interface Progress {
   bookmarks: string[];
@@ -31,6 +39,7 @@ export interface Progress {
   completedTours: string[];
   quizScores: Record<string, QuizScore>;
   srs: Record<string, SrsCardState>;
+  srsPrefs: SrsPrefs;
   locale: Locale;
   detailLevel: DetailLevel;
 }
@@ -100,6 +109,9 @@ export interface AtlasState {
 
   // Spaced repetition (persisted)
   srs: Record<string, SrsCardState>;
+  gradeCard: (cardId: string, grade: Grade, now?: Date) => void;
+  srsPrefs: SrsPrefs;
+  setSrsPrefs: (prefs: Partial<SrsPrefs>) => void;
 
   // Progress backup
   exportProgress: () => string;
@@ -122,7 +134,7 @@ export interface AtlasState {
   setQuizHighlight: (id: string | null) => void;
 }
 
-export type PanelTab = 'detail' | 'tours' | 'quiz' | 'bookmarks' | 'tree';
+export type PanelTab = 'detail' | 'tours' | 'quiz' | 'cards' | 'bookmarks' | 'tree';
 
 const ALL_SYSTEMS: SystemId[] = [
   'esqueletico', 'muscular', 'nervioso', 'cardiovascular',
@@ -145,13 +157,28 @@ const EMPTY_PROGRESS: Progress = {
   completedTours: [],
   quizScores: {},
   srs: {},
+  srsPrefs: { systems: 'all', maxNew: 10, maxDue: 20 },
   locale: 'es',
   detailLevel: 'fundamental',
 };
 
 function pickProgress(s: Progress): Progress {
-  const { bookmarks, recentlyViewed, completedTours, quizScores, srs, locale, detailLevel } = s;
-  return { bookmarks, recentlyViewed, completedTours, quizScores, srs, locale, detailLevel };
+  const { bookmarks, recentlyViewed, completedTours, quizScores, srs, srsPrefs, locale, detailLevel } = s;
+  return { bookmarks, recentlyViewed, completedTours, quizScores, srs, srsPrefs, locale, detailLevel };
+}
+
+const positiveInt = (v: unknown, fallback: number) =>
+  typeof v === 'number' && Number.isInteger(v) && v > 0 ? v : fallback;
+
+/** Lenient: older exports have no srsPrefs, and bad values fall back to the defaults. */
+function toSrsPrefs(v: unknown): SrsPrefs {
+  const d = EMPTY_PROGRESS.srsPrefs;
+  if (!isObject(v)) return { ...d };
+  return {
+    systems: isStringList(v.systems) && v.systems.length ? (v.systems as SystemId[]) : 'all',
+    maxNew: positiveInt(v.maxNew, d.maxNew),
+    maxDue: positiveInt(v.maxDue, d.maxDue),
+  };
 }
 
 const isObject = (v: unknown): v is Record<string, unknown> => typeof v === 'object' && v !== null && !Array.isArray(v);
@@ -244,6 +271,7 @@ function parseProgress(json: string): { ok: true; progress: Progress } | { ok: f
       completedTours: (d.completedTours as string[] | undefined) ?? [],
       quizScores: toQuizScores(d.quizScores),
       srs: (d.srs as Record<string, SrsCardState> | undefined) ?? {},
+      srsPrefs: toSrsPrefs(d.srsPrefs),
       locale: (d.locale as Locale | undefined) ?? 'es',
       detailLevel: (d.detailLevel as DetailLevel | undefined) ?? 'fundamental',
     },
@@ -325,6 +353,11 @@ export const useAtlasStore = create<AtlasState>()(persist<AtlasState, [], [], Pr
   }),
 
   srs: EMPTY_PROGRESS.srs,
+  gradeCard: (cardId, grade, now) => set((s) => ({
+    srs: { ...s.srs, [cardId]: schedule(s.srs[cardId], grade, now ?? new Date()) },
+  })),
+  srsPrefs: EMPTY_PROGRESS.srsPrefs,
+  setSrsPrefs: (prefs) => set((s) => ({ srsPrefs: { ...s.srsPrefs, ...prefs } })),
 
   exportProgress: () => JSON.stringify(
     { version: PROGRESS_VERSION, exportedAt: new Date().toISOString(), data: pickProgress(get()) },

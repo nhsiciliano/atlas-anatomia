@@ -200,6 +200,64 @@ const messages: Record<Locale, Record<string, string>> = {
     'attrib.note': 'Este atlas contiene {count} estructuras simplificadas distribuidas en {systems} sistemas corporales. No pretende reemplazar un atlas anatómico completo ni sustituir el criterio profesional de salud. El modelo 3D es una representación didáctica simplificada, no una imagen clínica.',
   
     'stage.canvas_label': 'Modelo 3D interactivo del cuerpo humano',
+  
+    'nav.cards': 'Repasar',
+  
+    'cards.systems': 'Sistemas',
+  
+    'cards.all_systems': 'Todos',
+  
+    'cards.stat_total': 'Total',
+  
+    'cards.stat_new': 'Nuevas',
+  
+    'cards.stat_due': 'Vencidas hoy',
+  
+    'cards.stat_learned': 'Aprendidas',
+  
+    'cards.new_per_session': 'Tarjetas nuevas por sesión',
+  
+    'cards.start': 'Repasar ({count})',
+  
+    'cards.nothing_due': 'Nada pendiente hoy',
+  
+    'cards.progress': '{done} / {total}',
+  
+    'cards.exit': 'Salir del repaso',
+  
+    'cards.show_answer': 'Mostrar respuesta',
+  
+    'cards.grade_label': '¿Qué tan bien la recordaste?',
+  
+    'cards.again': 'Otra vez',
+  
+    'cards.hard': 'Difícil',
+  
+    'cards.good': 'Bien',
+  
+    'cards.easy': 'Fácil',
+  
+    'cards.days': '{count} d',
+  
+    'cards.summary_title': 'Sesión terminada',
+  
+    'cards.summary_done': '{count} tarjetas repasadas',
+  
+    'cards.back': 'Volver',
+  
+    'cards.kind.nombre_funcion': 'Nombre → funciones',
+  
+    'cards.kind.funcion_nombre': 'Función → nombre',
+  
+    'cards.kind.ubicacion_nombre': 'Ubicación → nombre',
+  
+    'cards.kind.ta_nombre': 'Término latino → nombre',
+  
+    'cards.kind.clinica_nombre': 'Clínica → estructura',
+  
+    'cards.kind.identificar': 'Identifica en el modelo',
+  
+    'cards.kind.manual': 'Repaso',
   },
   en: {
     'nav.atlas': 'Atlas',
@@ -396,6 +454,64 @@ const messages: Record<Locale, Record<string, string>> = {
     'attrib.note': 'This atlas contains {count} simplified structures across {systems} body systems. It is not intended to replace a complete anatomical atlas or professional healthcare judgment. The 3D model is a simplified teaching representation, not a clinical image.',
   
     'stage.canvas_label': 'Interactive 3D model of the human body',
+  
+    'nav.cards': 'Review',
+  
+    'cards.systems': 'Systems',
+  
+    'cards.all_systems': 'All',
+  
+    'cards.stat_total': 'Total',
+  
+    'cards.stat_new': 'New',
+  
+    'cards.stat_due': 'Due today',
+  
+    'cards.stat_learned': 'Learned',
+  
+    'cards.new_per_session': 'New cards per session',
+  
+    'cards.start': 'Review ({count})',
+  
+    'cards.nothing_due': 'Nothing due today',
+  
+    'cards.progress': '{done} / {total}',
+  
+    'cards.exit': 'Exit review',
+  
+    'cards.show_answer': 'Show answer',
+  
+    'cards.grade_label': 'How well did you remember it?',
+  
+    'cards.again': 'Again',
+  
+    'cards.hard': 'Hard',
+  
+    'cards.good': 'Good',
+  
+    'cards.easy': 'Easy',
+  
+    'cards.days': '{count} d',
+  
+    'cards.summary_title': 'Session complete',
+  
+    'cards.summary_done': '{count} cards reviewed',
+  
+    'cards.back': 'Back',
+  
+    'cards.kind.nombre_funcion': 'Name → functions',
+  
+    'cards.kind.funcion_nombre': 'Function → name',
+  
+    'cards.kind.ubicacion_nombre': 'Location → name',
+  
+    'cards.kind.ta_nombre': 'Latin term → name',
+  
+    'cards.kind.clinica_nombre': 'Clinical → structure',
+  
+    'cards.kind.identificar': 'Identify on the model',
+  
+    'cards.kind.manual': 'Review',
   },
 };
 
