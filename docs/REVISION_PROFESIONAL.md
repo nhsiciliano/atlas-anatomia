@@ -36,3 +36,24 @@ Convención: `id de estructura` — qué revisar — dónde (`data/structures/<s
 - `tibia` — arteria nutricia "entre las mayores del cuerpo" — esqueletico.ts
 - `hueso-coxal` — fusión del cartílago trirradiado "durante la adolescencia" (rango sin precisar a propósito) — esqueletico.ts
 - Clínica de las 10 fichas (Colles, olécranon, escafoides, anillo pélvico, insuficiencia sacra, luxación/condromalacia, fracturas expuestas de tibia, maléolo y nervio peroneo, fractura de marcha) — esqueletico.ts
+
+## Respiratorio, urinario, endocrino, linfático, tegumentario (Fase 5.2, clínica de 38 fichas existentes)
+
+Correcciones ya aplicadas a datos previos (confirmar):
+- `alveolos-pulmonares` — superficie de intercambio ~70 m² (se quitó la comparación con una cancha de tenis, que mide ~260 m²) — respiratorio.ts
+- `queratinocito` — "30.000–40.000 células muertas por minuto" (antes decía "por hora"; cifra de divulgación) — tegumentario.ts
+
+Inervación/irrigación escritas de memoria:
+- `rinon` plexo renal T10–L1 · `ureter` T11–L2 (dolor referido) · `vejiga-urinaria` parasimpático S2–S4, simpático T10–L2 · `pulmones` simpático T2–T5
+- `faringe` motor X, sensitivo IX, nasofaringe V2 · `laringe` ramos del vago y territorio de cada uno · `amigdala-palatina` IX + palatinos menores · `tiroides` relación con el laríngeo recurrente
+- Irrigaciones: `cavidad-nasal`, `traquea`, `ureter` (3 tercios), `vejiga-urinaria`, `glandula-suprarrenal` (3 arterias; drenaje venoso D/I), `tiroides`, `timo`, `amigdala-palatina`, `bazo`, `piel` (dos plexos)
+- `hipofisis` tracto hipotálamo-hipofisario / sistema porta · `pineal` ganglio cervical superior, coroideas posteriores
+
+Clínica y cifras:
+- Epistaxis: compresión ~10 min, consultar a los 20 min · litiasis <5 mm expulsión espontánea · hiperparatiroidismo (calcio, cálculos, huesos)
+- Psoriasis renovación "en pocos días" · vitíligo autoinmune "se cree" · melanoma y basocelular: pronóstico si se tratan a tiempo
+- Quemaduras: enfriar 10–20 min; no romper ampollas; 3.er grado indoloro · control de esfínteres 2–4 años; enuresis consultar >7 años
+- DiGeorge · miastenia y timo · vacunas orales (rotavirus, polio) · S. Typhi y células M · esplenectomía y vacunas · ganglio de Virchow
+
+Datos previos conservados pero dudosos:
+- `vejiga-urinaria` "hasta 500 ml antes de urgencia" (más bien capacidad máxima) · `ganglio-linfatico` "600–700" (suele citarse 500–600) · `placa-de-peyer` "20–30" · `bazo` "almacena hasta 200 ml"
