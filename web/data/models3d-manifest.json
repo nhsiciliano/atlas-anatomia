@@ -162,9 +162,11 @@
   "structures": [
    "testiculo",
    "epididimo",
-   "prostata"
+   "prostata",
+   "pene",
+   "vesiculas-seminales"
   ],
-  "bytes": 23156
+  "bytes": 95664
  },
  "organos_sensoriales": {
   "file": "organos_sensoriales.glb",

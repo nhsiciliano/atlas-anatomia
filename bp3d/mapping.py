@@ -106,6 +106,8 @@ MAP = {
   'testiculo': ['testis'],
   'epididimo': ['epididymis'],
   'prostata': ['prostate'],
+  'pene': ['glans penis', 'corpus cavernosum of penis', 'corpus spongiosum of penis'],
+  'vesiculas-seminales': ['seminal vesicle'],
   'globo-ocular': ['right eyeball', 'left eyeball'],
   'cornea': ['right cornea', 'left cornea'],
   'cristalino': ['right lens', 'left lens'],
