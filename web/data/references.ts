@@ -8,6 +8,7 @@ export interface ReferenceSource {
   url_en?: string;
   isbn?: string;
   descripcion_es: string;
+  descripcion_en: string;
 }
 
 export const REFERENCES: ReferenceSource[] = [
@@ -19,6 +20,7 @@ export const REFERENCES: ReferenceSource[] = [
     tipo: 'Nomenclatura oficial',
     url: 'https://fipat.library.dal.ca/terminologia-anatomica/',
     descripcion_es: 'Fuente de los términos latinos normalizados utilizados en esta aplicación.',
+    descripcion_en: 'Source of the standardized Latin terms used in this application.',
   },
   {
     id: 'grays-42',
@@ -29,6 +31,7 @@ export const REFERENCES: ReferenceSource[] = [
     isbn: '978-0-7020-7705-0',
     url: 'https://shop.elsevier.com/books/grays-anatomy/standring/978-0-7020-7705-0',
     descripcion_es: 'Referencia anatómica macroscópica, relaciones topográficas y variaciones.',
+    descripcion_en: 'Reference for gross anatomy, topographic relationships and variations.',
   },
   {
     id: 'openstax-ap2',
@@ -38,6 +41,7 @@ export const REFERENCES: ReferenceSource[] = [
     tipo: 'Libro abierto (CC BY 4.0)',
     url: 'https://openstax.org/details/books/anatomy-and-physiology-2e',
     descripcion_es: 'Explicaciones didácticas de funciones y mecanismos fisiológicos.',
+    descripcion_en: 'Didactic explanations of physiological functions and mechanisms.',
   },
   {
     id: 'medlineplus',
@@ -47,6 +51,7 @@ export const REFERENCES: ReferenceSource[] = [
     tipo: 'Portal sanitario público',
     url: 'https://medlineplus.gov/',
     descripcion_es: 'Contexto funcional y divulgación sanitaria accesible.',
+    descripcion_en: 'Functional context and accessible health information.',
   },
   {
     id: 'ncbi-bookshelf',
@@ -56,6 +61,7 @@ export const REFERENCES: ReferenceSource[] = [
     tipo: 'Biblioteca biomédica abierta',
     url: 'https://www.ncbi.nlm.nih.gov/books/',
     descripcion_es: 'Revisiones biomédicas y anatomía funcional de apoyo.',
+    descripcion_en: 'Supporting biomedical reviews and functional anatomy.',
   },
   {
     id: 'statpearls',
@@ -65,6 +71,7 @@ export const REFERENCES: ReferenceSource[] = [
     tipo: 'Manual clínico en línea',
     url: 'https://www.ncbi.nlm.nih.gov/books/NBK430685/',
     descripcion_es: 'Revisiones clínicas breves, usadas como apoyo para la correlación clínica introductoria.',
+    descripcion_en: 'Brief clinical reviews, used as support for the introductory clinical correlation.',
   },
 ];
 

@@ -4,7 +4,7 @@
  */
 import { STRUCTURES, type AnatomicalStructure } from '../data/anatomy-data';
 import { SYSTEMS, REGIONS, type SystemId } from '../data/systems';
-import { REFERENCE_MAP } from '../data/references';
+import { REFERENCES, REFERENCE_MAP } from '../data/references';
 import { GUIDED_TOURS } from '../data/tours';
 import { QUIZ_QUESTIONS } from '../data/quizzes';
 import manifest from '../data/models3d-manifest.json';
@@ -38,6 +38,10 @@ function checkTranslation(s: AnatomicalStructure, field: string) {
     });
   }
 }
+
+// ── Sources and systems ─────────────────────────────────────────────────────
+for (const r of REFERENCES) if (!filled(r.descripcion_en)) error(`referencia ${r.id}: descripcion_en vacía`);
+for (const sys of SYSTEMS) if (!filled(sys.descripcion_en)) error(`sistema ${sys.id}: descripcion_en vacía`);
 
 // ── Structures ──────────────────────────────────────────────────────────────
 for (const s of STRUCTURES) {
