@@ -106,15 +106,21 @@
   "file": "digestivo.glb",
   "structures": [
    "cavidad-oral",
+   "lengua",
+   "dientes",
+   "glandulas-salivales",
    "esofago",
    "estomago",
    "higado",
    "vesicula-biliar",
    "pancreas",
    "intestino-delgado",
-   "intestino-grueso"
+   "intestino-grueso",
+   "duodeno",
+   "apendice",
+   "recto"
   ],
-  "bytes": 888756
+  "bytes": 1142544
  },
  "urinario": {
   "file": "urinario.glb",
