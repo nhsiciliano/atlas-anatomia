@@ -5,10 +5,25 @@ import SidebarDrawer from '@/components/layout/sidebar-drawer';
 import AtlasStage from '@/components/atlas/atlas-stage';
 import RightPanel from '@/components/layout/right-panel';
 import MobileDetailSheet from '@/components/layout/mobile-detail-sheet';
-import { useSyncExternalStore } from 'react';
+import { useEffect, useSyncExternalStore } from 'react';
+import { useAtlasStore } from '@/lib/store';
+
+// Missing when localStorage is unavailable: zustand then skips persistence entirely.
+const progressStore = useAtlasStore.persist as typeof useAtlasStore.persist | undefined;
 
 export default function AtlasApp() {
-  const mounted = useSyncExternalStore(() => () => {}, () => true, () => false);
+  // Saved progress is loaded after mount (the store uses skipHydration), so the server render
+  // and the first client render match. Children wait for it: an update before hydration would
+  // overwrite the saved progress with the empty defaults.
+  const mounted = useSyncExternalStore(
+    (onChange) => progressStore?.onFinishHydration(onChange) ?? (() => {}),
+    () => progressStore?.hasHydrated() ?? true,
+    () => false,
+  );
+
+  useEffect(() => {
+    if (progressStore && !progressStore.hasHydrated()) progressStore.rehydrate();
+  }, []);
 
   if (!mounted) {
     return (

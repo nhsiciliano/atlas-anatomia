@@ -52,16 +52,14 @@ export default function QuizEngine() {
     const isLast = currentIdx >= (filteredQuestions?.length ?? 0) - 1;
     if (isLast) {
       const key = `${filterSystem}-${filterDifficulty}`;
-      saveQuizScore(key, score + (answered === filteredQuestions?.[currentIdx]?.respuestaCorrecta ? 0 : 0), filteredQuestions?.length ?? 0);
-      // Actually save the final score
-      const finalScore = score;
-      saveQuizScore(key, finalScore, filteredQuestions?.length ?? 0);
+      // `score` already counts the last answer (answerQuestion runs before "next").
+      saveQuizScore(key, score, filteredQuestions?.length ?? 0);
       setShowResults(true);
     } else {
       setCurrentIdx(prev => prev + 1);
       setAnswered(null);
     }
-  }, [currentIdx, filteredQuestions, filterSystem, filterDifficulty, score, answered, saveQuizScore]);
+  }, [currentIdx, filteredQuestions, filterSystem, filterDifficulty, score, saveQuizScore]);
 
   // Results screen
   if (showResults) {

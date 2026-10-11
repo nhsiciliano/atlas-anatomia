@@ -1,6 +1,40 @@
 'use client';
 import { create } from 'zustand';
+import { persist, createJSONStorage } from 'zustand/middleware';
 import type { SystemId, ViewId } from '@/data/systems';
+import type { Locale } from '@/lib/i18n';
+
+export interface QuizScore {
+  best: number;
+  last: number;
+  total: number;
+  /** ISO date of the last attempt ('' for scores migrated from the legacy format). */
+  fecha: string;
+}
+
+/** Spaced-repetition state per card (filled in Fase 6). */
+export interface SrsCardState {
+  ease: number;
+  interval: number;
+  due: string;
+  reps: number;
+  lapses: number;
+}
+
+export type DetailLevel = 'fundamental' | 'avanzado';
+
+/** Learning progress: the only part of the store that is persisted. */
+export interface Progress {
+  bookmarks: string[];
+  recentlyViewed: string[];
+  completedTours: string[];
+  quizScores: Record<string, QuizScore>;
+  srs: Record<string, SrsCardState>;
+  locale: Locale;
+  detailLevel: DetailLevel;
+}
+
+export type ImportResult = { ok: true } | { ok: false; error: string };
 
 export interface AtlasState {
   // View
@@ -21,9 +55,13 @@ export interface AtlasState {
   hoveredStructureId: string | null;
   setHoveredStructure: (id: string | null) => void;
 
-  // Detail level
-  detailLevel: 'fundamental' | 'avanzado';
-  setDetailLevel: (l: 'fundamental' | 'avanzado') => void;
+  // Detail level (persisted)
+  detailLevel: DetailLevel;
+  setDetailLevel: (l: DetailLevel) => void;
+
+  // Locale (persisted)
+  locale: Locale;
+  setLocale: (l: Locale) => void;
 
   // Labels
   showLabels: boolean;
@@ -55,8 +93,16 @@ export interface AtlasState {
   completeTour: (id: string) => void;
 
   // Quiz scores (persisted)
-  quizScores: Record<string, { correct: number; total: number }>;
+  quizScores: Record<string, QuizScore>;
   saveQuizScore: (quizKey: string, correct: number, total: number) => void;
+
+  // Spaced repetition (persisted)
+  srs: Record<string, SrsCardState>;
+
+  // Progress backup
+  exportProgress: () => string;
+  importProgress: (json: string) => ImportResult;
+  resetProgress: () => void;
 
   // 3D viewer
   autoRotate: boolean;
@@ -83,20 +129,124 @@ const DEFAULT_ON: SystemId[] = ['esqueletico', 'cardiovascular', 'respiratorio',
 const defaultVisible = Object.fromEntries(ALL_SYSTEMS.map(s => [s, DEFAULT_ON.includes(s)])) as Record<SystemId, boolean>;
 const defaultOpacity = Object.fromEntries(ALL_SYSTEMS.map(s => [s, 1])) as Record<SystemId, number>;
 
-function loadFromLS<T>(key: string, fallback: T): T {
-  if (typeof window === 'undefined') return fallback;
+const RECENT_MAX = 20;
+const PROGRESS_VERSION = 1;
+const LEGACY_KEYS = ['atlas_bookmarks', 'atlas_recent', 'atlas_tours', 'atlas_quiz'] as const;
+
+const EMPTY_PROGRESS: Progress = {
+  bookmarks: [],
+  recentlyViewed: [],
+  completedTours: [],
+  quizScores: {},
+  srs: {},
+  locale: 'es',
+  detailLevel: 'fundamental',
+};
+
+function pickProgress(s: Progress): Progress {
+  const { bookmarks, recentlyViewed, completedTours, quizScores, srs, locale, detailLevel } = s;
+  return { bookmarks, recentlyViewed, completedTours, quizScores, srs, locale, detailLevel };
+}
+
+const isObject = (v: unknown): v is Record<string, unknown> => typeof v === 'object' && v !== null && !Array.isArray(v);
+const isStringList = (v: unknown): v is string[] => Array.isArray(v) && v.every((x) => typeof x === 'string');
+const union = (a: string[], b: string[]) => [...new Set([...a, ...b])];
+
+/** Accepts the current score shape and the legacy `{ correct, total }` one. */
+function toQuizScore(v: unknown): QuizScore | null {
+  if (!isObject(v) || typeof v.total !== 'number') return null;
+  if (typeof v.best === 'number' && typeof v.last === 'number') {
+    return { best: v.best, last: v.last, total: v.total, fecha: typeof v.fecha === 'string' ? v.fecha : '' };
+  }
+  if (typeof v.correct === 'number') return { best: v.correct, last: v.correct, total: v.total, fecha: '' };
+  return null;
+}
+
+function toQuizScores(v: unknown): Record<string, QuizScore> {
+  if (!isObject(v)) return {};
+  const out: Record<string, QuizScore> = {};
+  for (const [k, val] of Object.entries(v)) {
+    const score = toQuizScore(val);
+    if (score) out[k] = score;
+  }
+  return out;
+}
+
+function readLegacy(key: string): unknown {
   try {
     const raw = localStorage.getItem(key);
-    return raw ? JSON.parse(raw) : fallback;
-  } catch { return fallback; }
+    return raw ? JSON.parse(raw) : undefined;
+  } catch {
+    return undefined; // corrupt legacy JSON is ignored
+  }
 }
 
-function saveToLS(key: string, val: any): void {
-  if (typeof window === 'undefined') return;
-  try { localStorage.setItem(key, JSON.stringify(val)); } catch { /* quota */ }
+/**
+ * One-time import of the pre-persist keys (atlas_bookmarks, atlas_recent, atlas_tours, atlas_quiz).
+ * Merges them into the hydrated progress, saves it, and only then deletes the legacy keys.
+ */
+function migrateLegacyKeys() {
+  if (typeof localStorage === 'undefined') return;
+  if (!LEGACY_KEYS.some((k) => localStorage.getItem(k) !== null)) return;
+
+  const s = useAtlasStore.getState();
+  const bookmarks = readLegacy('atlas_bookmarks');
+  const recent = readLegacy('atlas_recent');
+  const tours = readLegacy('atlas_tours');
+  const legacyScores = toQuizScores(readLegacy('atlas_quiz'));
+
+  try {
+    useAtlasStore.setState({
+      bookmarks: isStringList(bookmarks) ? union(s.bookmarks, bookmarks) : s.bookmarks,
+      recentlyViewed: isStringList(recent) ? union(s.recentlyViewed, recent).slice(0, RECENT_MAX) : s.recentlyViewed,
+      completedTours: isStringList(tours) ? union(s.completedTours, tours) : s.completedTours,
+      quizScores: { ...legacyScores, ...s.quizScores },
+    });
+    if (localStorage.getItem('atlas-progress') === null) return; // not saved: keep legacy keys for next time
+    for (const k of LEGACY_KEYS) localStorage.removeItem(k);
+  } catch {
+    // storage full or unavailable: keep the legacy keys and retry on next load
+  }
 }
 
-export const useAtlasStore = create<AtlasState>((set, get) => ({
+/** Validates an exported progress file and normalizes it into a full Progress object. */
+function parseProgress(json: string): { ok: true; progress: Progress } | { ok: false; error: string } {
+  let parsed: unknown;
+  try {
+    parsed = JSON.parse(json);
+  } catch {
+    return { ok: false, error: 'El archivo no es JSON válido.' };
+  }
+  if (!isObject(parsed) || typeof parsed.version !== 'number') return { ok: false, error: 'Falta el número de versión.' };
+  if (parsed.version > PROGRESS_VERSION) return { ok: false, error: `Versión ${parsed.version} no soportada.` };
+  const d = parsed.data;
+  if (!isObject(d)) return { ok: false, error: 'Falta el objeto "data".' };
+  for (const key of ['bookmarks', 'recentlyViewed', 'completedTours'] as const) {
+    if (d[key] !== undefined && !isStringList(d[key])) return { ok: false, error: `"${key}" debe ser una lista de textos.` };
+  }
+  if (d.quizScores !== undefined && !isObject(d.quizScores)) return { ok: false, error: '"quizScores" debe ser un objeto.' };
+  if (d.srs !== undefined && !isObject(d.srs)) return { ok: false, error: '"srs" debe ser un objeto.' };
+  if (d.locale !== undefined && d.locale !== 'es' && d.locale !== 'en') return { ok: false, error: '"locale" debe ser "es" o "en".' };
+  if (d.detailLevel !== undefined && d.detailLevel !== 'fundamental' && d.detailLevel !== 'avanzado') {
+    return { ok: false, error: '"detailLevel" no es válido.' };
+  }
+  return {
+    ok: true,
+    progress: {
+      bookmarks: (d.bookmarks as string[] | undefined) ?? [],
+      recentlyViewed: ((d.recentlyViewed as string[] | undefined) ?? []).slice(0, RECENT_MAX),
+      completedTours: (d.completedTours as string[] | undefined) ?? [],
+      quizScores: toQuizScores(d.quizScores),
+      srs: (d.srs as Record<string, SrsCardState> | undefined) ?? {},
+      locale: (d.locale as Locale | undefined) ?? 'es',
+      detailLevel: (d.detailLevel as DetailLevel | undefined) ?? 'fundamental',
+    },
+  };
+}
+
+const addRecent = (list: string[], id: string) => [id, ...list.filter((r) => r !== id)].slice(0, RECENT_MAX);
+
+export const useAtlasStore = create<AtlasState>()(persist<AtlasState, [], [], Progress>((set, get) => ({
   currentView: 'anterior',
   setView: (v) => set((s) => ({ currentView: v, cameraNonce: s.cameraNonce + 1, autoRotate: false })),
 
@@ -116,21 +266,17 @@ export const useAtlasStore = create<AtlasState>((set, get) => ({
   }),
 
   selectedStructureId: null,
-  setSelectedStructure: (id) => {
-    set({ selectedStructureId: id });
-    if (id) {
-      const recent = get().recentlyViewed.filter(r => r !== id);
-      recent.unshift(id);
-      const trimmed = recent.slice(0, 20);
-      set({ recentlyViewed: trimmed });
-      saveToLS('atlas_recent', trimmed);
-    }
-  },
+  setSelectedStructure: (id) => set((s) => (
+    id ? { selectedStructureId: id, recentlyViewed: addRecent(s.recentlyViewed, id) } : { selectedStructureId: null }
+  )),
   hoveredStructureId: null,
   setHoveredStructure: (id) => set({ hoveredStructureId: id }),
 
-  detailLevel: 'fundamental',
+  detailLevel: EMPTY_PROGRESS.detailLevel,
   setDetailLevel: (l) => set({ detailLevel: l }),
+
+  locale: EMPTY_PROGRESS.locale,
+  setLocale: (l) => set({ locale: l }),
 
   showLabels: true,
   toggleLabels: () => set((s) => ({ showLabels: !s.showLabels })),
@@ -148,38 +294,42 @@ export const useAtlasStore = create<AtlasState>((set, get) => ({
   removeCompare: (id) => set((s) => ({ compareIds: s.compareIds.filter(c => c !== id) })),
   clearCompare: () => set({ compareIds: [] }),
 
-  bookmarks: loadFromLS<string[]>('atlas_bookmarks', []),
-  toggleBookmark: (id) => set((s) => {
-    const next = s.bookmarks.includes(id)
-      ? s.bookmarks.filter(b => b !== id)
-      : [...s.bookmarks, id];
-    saveToLS('atlas_bookmarks', next);
-    return { bookmarks: next };
-  }),
+  bookmarks: EMPTY_PROGRESS.bookmarks,
+  toggleBookmark: (id) => set((s) => ({
+    bookmarks: s.bookmarks.includes(id) ? s.bookmarks.filter(b => b !== id) : [...s.bookmarks, id],
+  })),
 
-  recentlyViewed: loadFromLS<string[]>('atlas_recent', []),
-  addRecentlyViewed: (id) => set((s) => {
-    const recent = s.recentlyViewed.filter(r => r !== id);
-    recent.unshift(id);
-    const trimmed = recent.slice(0, 20);
-    saveToLS('atlas_recent', trimmed);
-    return { recentlyViewed: trimmed };
-  }),
+  recentlyViewed: EMPTY_PROGRESS.recentlyViewed,
+  addRecentlyViewed: (id) => set((s) => ({ recentlyViewed: addRecent(s.recentlyViewed, id) })),
 
-  completedTours: loadFromLS<string[]>('atlas_tours', []),
-  completeTour: (id) => set((s) => {
-    if (s.completedTours.includes(id)) return s;
-    const next = [...s.completedTours, id];
-    saveToLS('atlas_tours', next);
-    return { completedTours: next };
-  }),
+  completedTours: EMPTY_PROGRESS.completedTours,
+  completeTour: (id) => set((s) => (
+    s.completedTours.includes(id) ? s : { completedTours: [...s.completedTours, id] }
+  )),
 
-  quizScores: loadFromLS<Record<string, { correct: number; total: number }>>('atlas_quiz', {}),
+  quizScores: EMPTY_PROGRESS.quizScores,
   saveQuizScore: (key, correct, total) => set((s) => {
-    const next = { ...(s.quizScores ?? {}), [key]: { correct, total } };
-    saveToLS('atlas_quiz', next);
-    return { quizScores: next };
+    const prev = s.quizScores[key];
+    const best = prev && prev.total === total ? Math.max(prev.best, correct) : correct;
+    return {
+      quizScores: { ...s.quizScores, [key]: { best, last: correct, total, fecha: new Date().toISOString() } },
+    };
   }),
+
+  srs: EMPTY_PROGRESS.srs,
+
+  exportProgress: () => JSON.stringify(
+    { version: PROGRESS_VERSION, exportedAt: new Date().toISOString(), data: pickProgress(get()) },
+    null,
+    2,
+  ),
+  importProgress: (json) => {
+    const result = parseProgress(json);
+    if (!result.ok) return result;
+    set(result.progress);
+    return { ok: true };
+  },
+  resetProgress: () => set({ ...EMPTY_PROGRESS }),
 
   autoRotate: false,
   toggleAutoRotate: () => set((s) => ({ autoRotate: !s.autoRotate })),
@@ -190,4 +340,14 @@ export const useAtlasStore = create<AtlasState>((set, get) => ({
 
   panelTab: 'detail',
   setPanelTab: (t) => set({ panelTab: t }),
+}), {
+  name: 'atlas-progress',
+  version: PROGRESS_VERSION,
+  storage: createJSONStorage(() => localStorage),
+  partialize: pickProgress,
+  // Hydrated from components/atlas-app.tsx after mount, so SSR and first client render match.
+  skipHydration: true,
+  onRehydrateStorage: () => (_state, error) => {
+    if (!error) migrateLegacyKeys();
+  },
 }));
