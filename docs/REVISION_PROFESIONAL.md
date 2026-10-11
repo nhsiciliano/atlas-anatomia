@@ -57,3 +57,22 @@ Clínica y cifras:
 
 Datos previos conservados pero dudosos:
 - `vejiga-urinaria` "hasta 500 ml antes de urgencia" (más bien capacidad máxima) · `ganglio-linfatico` "600–700" (suele citarse 500–600) · `placa-de-peyer` "20–30" · `bazo` "almacena hasta 200 ml"
+
+## Nervioso y digestivo (Fase 5.2, clínica de 16 fichas existentes)
+
+Correcciones ya aplicadas a datos previos (confirmar):
+- `pancreas` — "glándula mixta" en vez de "único órgano exocrino y endocrino" (las gónadas también lo son) — digestivo.ts
+- `intestino-delgado` — superficie de absorción ~30 m² (Helander & Fändriks 2014) en lugar del mito de la cancha de tenis/200 m²; cifra citada de memoria — digestivo.ts
+- `higado` — "órgano interno con mayor capacidad de regeneración" en vez de "único"; se quitó la cifra del 75 % — digestivo.ts
+
+Anatomía escrita de memoria:
+- `nervio-trigemino` irrigación: cerebelosa superior (raíz), tronco meningohipofisario (ganglio) · `medula-espinal`: arteria radicular magna (Adamkiewicz), espinal anterior (2/3 anteriores) · `meninges`: inervación V1–V3, vago/cervicales; arteria meníngea media · `nervio-optico`: central de la retina y ciliares cortas
+- `esofago` irrigación por tercios; laríngeo recurrente para el tercio superior · `estomago` simpático T6–T9 · `intestino-grueso` límite vagal en el transverso (varía según fuente), esplácnicos pélvicos S2–S4 · `pancreas` pancreaticoduodenales y esplénica · `vesicula-biliar` arteria cística de la hepática derecha
+
+Clínica y cifras:
+- Regla FAST para ACV · conmoción y signos de alarma · muerte encefálica por protocolo · hematoma epidural vs subdural · petequias meningocócicas
+- Neuralgia del trigémino (compresión vascular) · zóster oftálmico y signo de Hutchinson · síncope vasovagal · reflejo nauseoso
+- Tamizaje colorrectal "45–50 años según guías" · celiaquía: diagnóstico antes de retirar el gluten · signo de Murphy · colecistitis y cirugía · H. pylori y AINE · cirrosis y reserva hepática
+
+Datos previos conservados pero dudosos:
+- `esofago` "tragar boca abajo" · `estomago` mucosa renovada cada 3–5 días · `higado` "más de 500 funciones" · `intestino-delgado` duodeno 25 cm / yeyuno 2,5 m / íleon 3 m
