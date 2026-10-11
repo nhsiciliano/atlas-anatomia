@@ -18,7 +18,17 @@ export const ENDOCRINO: AnatomicalStructure[] = [
     conexiones: ['nervioso'],
     dato_es: 'Pesa solo unos 4 gramos pero controla la temperatura corporal, el hambre y la sed.',
     dato_en: 'Weighs only about 4 grams but controls body temperature, hunger and thirst.',
-    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2'],
+    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2', 'statpearls'],
+    clinica_es: [
+      { titulo: 'El termostato del cuerpo', texto: 'El hipotálamo mantiene la temperatura corporal alrededor de los 37 °C. En una infección, unas sustancias llamadas pirógenos elevan ese valor de referencia y aparece la fiebre. El golpe de calor ocurre cuando el cuerpo no logra enfriarse, y es una emergencia.' },
+      { titulo: 'Sed y hormona antidiurética', texto: 'El hipotálamo detecta la falta de agua y estimula la sed y la liberación de ADH, que ahorra agua en los riñones. En la diabetes insípida central falta ADH: se orinan grandes cantidades de orina diluida y aparece una sed intensa. Requiere evaluación médica.' },
+    ],
+    clinica_en: [
+      { titulo: 'The body\'s thermostat', texto: 'The hypothalamus keeps body temperature around 37 °C. In an infection, substances called pyrogens raise this set point and fever appears. Heat stroke occurs when the body cannot cool down, and it is an emergency.' },
+      { titulo: 'Thirst and antidiuretic hormone', texto: 'The hypothalamus detects water shortage and stimulates thirst and the release of ADH, which saves water in the kidneys. In central diabetes insipidus ADH is lacking: large amounts of dilute urine are passed and intense thirst appears. It requires medical evaluation.' },
+    ],
+    irrigacion_es: 'Ramas del polígono de Willis (arterias comunicantes posteriores y cerebrales anteriores) y el sistema porta hipofisario, que lleva sus hormonas a la adenohipófisis.',
+    irrigacion_en: 'Branches of the circle of Willis (posterior communicating and anterior cerebral arteries) and the hypophyseal portal system, which carries its hormones to the anterior pituitary.',
   },
   {
     id: 'hipofisis', systemId: 'endocrino',
@@ -37,7 +47,19 @@ export const ENDOCRINO: AnatomicalStructure[] = [
     conexiones: ['nervioso'],
     dato_es: 'Aunque tiene el tamaño de un guisante, controla la función de muchas otras glándulas.',
     dato_en: 'Although pea-sized, it controls the function of many other glands.',
-    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2'],
+    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2', 'statpearls'],
+    clinica_es: [
+      { titulo: 'Adenomas hipofisarios', texto: 'Son tumores benignos y relativamente frecuentes. Algunos producen exceso de una hormona (por ejemplo, prolactina, que altera la menstruación y puede causar secreción láctea) y otros comprimen estructuras vecinas, como el quiasma óptico, y reducen la visión lateral. Se diagnostican con análisis hormonales y resonancia.' },
+      { titulo: 'Gigantismo y acromegalia', texto: 'El exceso de hormona del crecimiento en la infancia, antes de que se cierren los cartílagos de crecimiento, produce gigantismo. En el adulto causa acromegalia: crecen las manos, los pies y la mandíbula. Casi siempre se debe a un adenoma y tiene tratamiento.' },
+    ],
+    clinica_en: [
+      { titulo: 'Pituitary adenomas', texto: 'These are benign and relatively common tumors. Some produce excess of one hormone (for example prolactin, which disturbs menstruation and can cause milk discharge) and others compress neighboring structures, such as the optic chiasm, reducing side vision. They are diagnosed with hormone tests and MRI.' },
+      { titulo: 'Gigantism and acromegaly', texto: 'Excess growth hormone in childhood, before the growth plates close, causes gigantism. In adults it causes acromegaly: the hands, feet and jaw grow. It is almost always due to an adenoma and is treatable.' },
+    ],
+    inervacion_es: 'La neurohipófisis recibe axones del hipotálamo (tracto hipotálamo-hipofisario); la adenohipófisis se controla por hormonas hipotalámicas, no por nervios.',
+    inervacion_en: 'The neurohypophysis receives axons from the hypothalamus (hypothalamo-hypophyseal tract); the adenohypophysis is controlled by hypothalamic hormones, not by nerves.',
+    irrigacion_es: 'Arterias hipofisarias superiores (adenohipófisis, a través del sistema porta) e inferiores (neurohipófisis), ramas de la carótida interna.',
+    irrigacion_en: 'Superior (adenohypophysis, through the portal system) and inferior (neurohypophysis) hypophyseal arteries, branches of the internal carotid.',
   },
   {
     id: 'pineal', systemId: 'endocrino',
@@ -56,7 +78,19 @@ export const ENDOCRINO: AnatomicalStructure[] = [
     conexiones: ['nervioso'],
     dato_es: 'Descartes la llamó "el asiento del alma".',
     dato_en: 'Descartes called it "the seat of the soul."',
-    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2'],
+    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2', 'statpearls'],
+    clinica_es: [
+      { titulo: 'Melatonina y sueño', texto: 'La glándula pineal libera melatonina cuando oscurece, y esa señal prepara al cuerpo para dormir. La luz intensa de las pantallas por la noche puede retrasar esa señal. La melatonina en forma de suplemento se usa a veces en el desfase horario; conviene consultar a un profesional antes de usarla.' },
+      { titulo: 'Calcificación pineal', texto: 'Con la edad la glándula suele acumular calcio, lo que es normal y benigno. Como se ve bien en una radiografía o tomografía y está en la línea media, sirve de referencia: si aparece desplazada, puede indicar una masa en el cerebro.' },
+    ],
+    clinica_en: [
+      { titulo: 'Melatonin and sleep', texto: 'The pineal gland releases melatonin when it gets dark, and that signal prepares the body for sleep. Bright screen light at night can delay that signal. Melatonin supplements are sometimes used for jet lag; talk to a professional before using them.' },
+      { titulo: 'Pineal calcification', texto: 'With age the gland often accumulates calcium, which is normal and benign. Because it shows clearly on an X-ray or CT scan and lies in the midline, it serves as a landmark: if it appears displaced, it may indicate a mass in the brain.' },
+    ],
+    inervacion_es: 'Fibras simpáticas posganglionares del ganglio cervical superior.',
+    inervacion_en: 'Sympathetic postganglionic fibers from the superior cervical ganglion.',
+    irrigacion_es: 'Ramas de las arterias coroideas posteriores, derivadas de la arteria cerebral posterior.',
+    irrigacion_en: 'Branches of the posterior choroidal arteries, derived from the posterior cerebral artery.',
   },
   {
     id: 'tiroides', systemId: 'endocrino',
@@ -75,7 +109,19 @@ export const ENDOCRINO: AnatomicalStructure[] = [
     conexiones: ['nervioso', 'cardiovascular'],
     dato_es: 'Es la glándula endocrina pura más grande del cuerpo.',
     dato_en: 'It is the largest pure endocrine gland in the body.',
-    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2', 'medlineplus'],
+    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2', 'medlineplus', 'statpearls'],
+    clinica_es: [
+      { titulo: 'Hipotiroidismo e hipertiroidismo', texto: 'En el hipotiroidismo la glándula produce poca hormona: aparecen cansancio, intolerancia al frío, aumento de peso, piel seca y estreñimiento. En el hipertiroidismo produce demasiada: hay nerviosismo, palpitaciones, pérdida de peso, calor y temblor. Ambos se detectan con un análisis de sangre (TSH) y tienen tratamiento.' },
+      { titulo: 'Bocio', texto: 'Es el aumento del tamaño de la tiroides, que se nota como un abultamiento en la parte anterior del cuello. La falta de yodo es una causa clásica, por eso se agrega yodo a la sal. Cualquier bulto en el cuello debe ser evaluado por un profesional.' },
+    ],
+    clinica_en: [
+      { titulo: 'Hypothyroidism and hyperthyroidism', texto: 'In hypothyroidism the gland makes too little hormone: tiredness, cold intolerance, weight gain, dry skin and constipation appear. In hyperthyroidism it makes too much: nervousness, palpitations, weight loss, heat intolerance and tremor appear. Both are detected with a blood test (TSH) and are treatable.' },
+      { titulo: 'Goiter', texto: 'It is an enlargement of the thyroid, noticed as a swelling at the front of the neck. Iodine deficiency is a classic cause, which is why iodine is added to salt. Any lump in the neck should be evaluated by a professional.' },
+    ],
+    inervacion_es: 'Fibras simpáticas de los ganglios cervicales (control vascular) y ramas del vago; el nervio laríngeo recurrente pasa muy cerca de su cara posterior.',
+    inervacion_en: 'Sympathetic fibers from the cervical ganglia (vascular control) and vagal branches; the recurrent laryngeal nerve passes very close to its posterior surface.',
+    irrigacion_es: 'Arterias tiroideas superior (de la carótida externa) e inferior (del tronco tirocervical); a veces existe una arteria tiroidea ima.',
+    irrigacion_en: 'Superior (from the external carotid) and inferior (from the thyrocervical trunk) thyroid arteries; a thyroid ima artery is sometimes present.',
   },
   {
     id: 'paratiroides', systemId: 'endocrino',
@@ -94,7 +140,19 @@ export const ENDOCRINO: AnatomicalStructure[] = [
     conexiones: ['esqueletico'],
     dato_es: 'Cada una mide como un grano de arroz pero son esenciales para la vida.',
     dato_en: 'Each is the size of a grain of rice but they are essential for life.',
-    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2'],
+    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2', 'statpearls'],
+    clinica_es: [
+      { titulo: 'Hiperparatiroidismo', texto: 'Una paratiroides que produce demasiada hormona eleva el calcio en la sangre. Puede causar cálculos renales, huesos frágiles, cansancio y sed. Suele detectarse en un análisis de sangre de rutina; el tratamiento más frecuente es quitar la glándula afectada.' },
+      { titulo: 'Calcio bajo después de una cirugía de tiroides', texto: 'Como las paratiroides están pegadas a la tiroides, pueden dañarse o extirparse durante su cirugía. Si hay poca hormona, baja el calcio y aparecen hormigueo en labios y manos y calambres. Se trata con calcio y vitamina D.' },
+    ],
+    clinica_en: [
+      { titulo: 'Hyperparathyroidism', texto: 'A parathyroid gland that makes too much hormone raises calcium in the blood. It can cause kidney stones, fragile bones, tiredness and thirst. It is often found on a routine blood test; the most common treatment is removing the affected gland.' },
+      { titulo: 'Low calcium after thyroid surgery', texto: 'Because the parathyroids lie against the thyroid, they can be damaged or removed during thyroid surgery. With too little hormone, calcium drops and tingling in the lips and hands and cramps appear. It is treated with calcium and vitamin D.' },
+    ],
+    inervacion_es: 'Fibras simpáticas vasomotoras; su secreción responde al calcio sanguíneo, no a la inervación.',
+    inervacion_en: 'Sympathetic vasomotor fibers; their secretion responds to blood calcium, not to nerve supply.',
+    irrigacion_es: 'Arteria tiroidea inferior, principalmente, con aporte de la tiroidea superior.',
+    irrigacion_en: 'Mainly the inferior thyroid artery, with contribution from the superior thyroid.',
   },
   {
     id: 'glandula-suprarrenal', systemId: 'endocrino',
@@ -113,7 +171,19 @@ export const ENDOCRINO: AnatomicalStructure[] = [
     conexiones: ['urinario', 'cardiovascular', 'nervioso'],
     dato_es: 'La adrenalina liberada por la médula prepara al cuerpo para la respuesta de "lucha o huida" y puede aumentar la frecuencia cardíaca en segundos.',
     dato_en: 'Epinephrine released by the medulla prepares the body for the "fight or flight" response and can raise heart rate within seconds.',
-    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2'],
+    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2', 'medlineplus', 'statpearls'],
+    clinica_es: [
+      { titulo: 'Enfermedad de Addison', texto: 'Es la insuficiencia de la corteza suprarrenal, con falta de cortisol y aldosterona. Causa cansancio, pérdida de peso, presión baja y oscurecimiento de la piel. Una crisis suprarrenal, con vómitos, deshidratación y presión muy baja, es una emergencia. Se trata reponiendo las hormonas.' },
+      { titulo: 'Síndrome de Cushing', texto: 'Resulta del exceso de cortisol, por tumores o, más a menudo, por tratamientos prolongados con corticoides. Produce cara redonda, aumento de grasa en el tronco, estrías violáceas, presión alta y glucosa elevada. Los corticoides recetados nunca deben suspenderse de golpe sin indicación médica.' },
+    ],
+    clinica_en: [
+      { titulo: 'Addison disease', texto: 'It is insufficiency of the adrenal cortex, with a lack of cortisol and aldosterone. It causes tiredness, weight loss, low blood pressure and darkening of the skin. An adrenal crisis, with vomiting, dehydration and very low blood pressure, is an emergency. It is treated by replacing the hormones.' },
+      { titulo: 'Cushing syndrome', texto: 'It results from excess cortisol, due to tumors or, more often, to prolonged treatment with corticosteroids. It produces a round face, fat gain on the trunk, purple stretch marks, high blood pressure and high glucose. Prescribed corticosteroids should never be stopped suddenly without medical advice.' },
+    ],
+    inervacion_es: 'La médula recibe fibras simpáticas preganglionares de los nervios esplácnicos, que activan directamente a sus células secretoras; la corteza se controla sobre todo por hormonas (ACTH).',
+    inervacion_en: 'The medulla receives sympathetic preganglionic fibers from the splanchnic nerves, which directly activate its secretory cells; the cortex is controlled mainly by hormones (ACTH).',
+    irrigacion_es: 'Tres arterias: suprarrenal superior (de la frénica inferior), media (de la aorta) e inferior (de la renal). La vena suprarrenal derecha drena en la vena cava inferior y la izquierda en la vena renal.',
+    irrigacion_en: 'Three arteries: superior (from the inferior phrenic), middle (from the aorta) and inferior (from the renal). The right adrenal vein drains into the inferior vena cava and the left into the renal vein.',
   },
   {
     id: 'islotes-pancreaticos', systemId: 'endocrino',
@@ -133,6 +203,14 @@ export const ENDOCRINO: AnatomicalStructure[] = [
     conexiones: ['digestivo', 'cardiovascular'],
     dato_es: 'La destrucción autoinmune de las células beta causa la diabetes tipo 1.',
     dato_en: 'Autoimmune destruction of beta cells causes type 1 diabetes.',
-    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2', 'medlineplus'],
+    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2', 'medlineplus', 'statpearls'],
+    clinica_es: [
+      { titulo: 'Diabetes tipo 1', texto: 'Se produce cuando el sistema inmunitario destruye las células beta y el cuerpo deja de fabricar insulina. Suele empezar en la infancia o la juventud, con mucha sed, orinar con frecuencia, cansancio y adelgazamiento. Requiere insulina de por vida. Si aparecen vómitos, aliento con olor a fruta y confusión, es una urgencia (cetoacidosis).' },
+      { titulo: 'Diabetes tipo 2', texto: 'En esta forma las células responden mal a la insulina y con el tiempo los islotes no alcanzan a compensarlo. Se relaciona con sobrepeso, sedentarismo y antecedentes familiares, y puede pasar años sin síntomas. Se detecta con análisis de glucemia, y la alimentación, la actividad física y los medicamentos ayudan a controlarla.' },
+    ],
+    clinica_en: [
+      { titulo: 'Type 1 diabetes', texto: 'It occurs when the immune system destroys the beta cells and the body stops making insulin. It usually starts in childhood or youth, with great thirst, frequent urination, tiredness and weight loss. It requires lifelong insulin. If vomiting, fruity-smelling breath and confusion appear, it is an emergency (ketoacidosis).' },
+      { titulo: 'Type 2 diabetes', texto: 'In this form cells respond poorly to insulin and over time the islets cannot compensate. It is linked to overweight, inactivity and family history, and can go for years without symptoms. It is detected with blood glucose tests, and diet, physical activity and medication help control it.' },
+    ],
   },
 ];
