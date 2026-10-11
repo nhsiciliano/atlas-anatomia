@@ -27,10 +27,21 @@ export default function DetailPanel() {
   const addCompare = useAtlasStore(s => s.addCompare);
   const compareIds = useAtlasStore(s => s.compareIds);
   const isolateSystem = useAtlasStore(s => s.isolateSystem);
+  const quizHighlightId = useAtlasStore(s => s.quizHighlightId);
 
   const structure = selectedId ? STRUCTURE_MAP?.[selectedId] : null;
 
   if (!structure) return null;
+
+  // Identification question in progress: show nothing that names the structure.
+  if (quizHighlightId === structure.id) {
+    return (
+      <div className="flex flex-col items-start gap-2 px-6 py-10">
+        <span className="eyebrow">{tr('quiz.hidden_name')}</span>
+        <p className="text-sm leading-relaxed text-muted-foreground">{tr('quiz.hidden_hint')}</p>
+      </div>
+    );
+  }
 
   const sys = SYSTEM_MAP?.[structure?.systemId as SystemId];
   const crumbs = buildBreadcrumbs(selectedId);

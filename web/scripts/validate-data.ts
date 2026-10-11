@@ -110,6 +110,13 @@ for (const q of QUIZ_QUESTIONS) {
   quizIds.add(q.id);
   if (!systemIds.has(q.sistemaId)) error(`quiz ${q.id}: sistemaId inexistente "${q.sistemaId}"`);
   if (q.structureId && !structureIds.has(q.structureId)) error(`quiz ${q.id}: structureId inexistente "${q.structureId}"`);
+  // El modo identificación resalta la estructura en el visor 3D: sin malla no hay nada que mostrar.
+  if (q.tipo === 'identificacion') {
+    if (!q.structureId) error(`quiz ${q.id}: pregunta de identificación sin structureId`);
+    else if (structureIds.has(q.structureId) && !meshIds.has(q.structureId)) {
+      error(`quiz ${q.id}: pregunta de identificación sobre "${q.structureId}", que no tiene malla 3D`);
+    }
+  }
   for (const lang of ['es', 'en'] as const) {
     const opts = q[`opciones_${lang}`];
     if (opts.length !== 4) error(`quiz ${q.id}: opciones_${lang} tiene ${opts.length} opciones (se esperan 4)`);
@@ -148,6 +155,7 @@ console.log(`  total ${STRUCTURES.length} · con malla ${count((s) => meshIds.ha
 console.log(`  tours ${GUIDED_TOURS.length} · pasos ${GUIDED_TOURS.reduce((n, t) => n + t.steps.length, 0)}`);
 console.log(`  preguntas ${QUIZ_QUESTIONS.length} · por sistema: ${fmt(tally(QUIZ_QUESTIONS.map((q) => q.sistemaId)))}`);
 console.log(`  preguntas por dificultad: ${fmt(tally(QUIZ_QUESTIONS.map((q) => q.dificultad)))}`);
+console.log(`  preguntas por tipo: ${fmt(tally(QUIZ_QUESTIONS.map((q) => q.tipo)))}`);
 console.log(`  tarjetas manuales ${MANUAL_CARDS.length} · por sistema: ${fmt(tally(MANUAL_CARDS.map((c) => c.systemId)))}`);
 console.log(`  tarjetas manuales por dificultad: ${fmt(tally(MANUAL_CARDS.map((c) => c.dificultad)))}`);
 const unusedRefs = Object.keys(REFERENCE_MAP).filter((r) => !usedRefs.has(r));

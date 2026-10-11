@@ -211,6 +211,7 @@ function SelectedLabel() {
   const selectedId = useAtlasStore((s) => s.selectedStructureId);
   const hoveredId = useAtlasStore((s) => s.hoveredStructureId);
   const showLabels = useAtlasStore((s) => s.showLabels);
+  const quizHighlightId = useAtlasStore((s) => s.quizHighlightId);
   const [found, setFound] = useState<{ id: string; pos: [number, number, number] } | null>(null);
   const scene = useThree((s) => s.scene);
   const id = selectedId && hasModel3D(selectedId) ? selectedId : showLabels && hoveredId ? hoveredId : null;
@@ -231,7 +232,8 @@ function SelectedLabel() {
 
   // Only show a position computed for the current id, never a stale one.
   const pos = found && found.id === id ? found.pos : null;
-  const st = id ? STRUCTURE_MAP[id] : null;
+  // During an identification question the label would give the answer away.
+  const st = id && id !== quizHighlightId ? STRUCTURE_MAP[id] : null;
   return (
     <group>
       {pos && st && (

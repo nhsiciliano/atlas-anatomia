@@ -163,6 +163,12 @@ const messages: Record<Locale, Record<string, string>> = {
     'compare.remove': 'Quitar {name} de la comparación',
   
     'quiz.all_difficulties': 'Todas',
+    'quiz.count': 'Cantidad de preguntas',
+    'quiz.count_all': 'Todas',
+    'quiz.available': '{count} preguntas disponibles',
+    'quiz.exit': 'Salir del cuestionario',
+    'quiz.hidden_name': 'Estructura en evaluación',
+    'quiz.hidden_hint': 'Responde la pregunta para ver su nombre y su ficha.',
   
     'tour.steps_count': '{count} pasos',
   
@@ -352,6 +358,12 @@ const messages: Record<Locale, Record<string, string>> = {
     'compare.remove': 'Remove {name} from comparison',
   
     'quiz.all_difficulties': 'All',
+    'quiz.count': 'Number of questions',
+    'quiz.count_all': 'All',
+    'quiz.available': '{count} questions available',
+    'quiz.exit': 'Exit quiz',
+    'quiz.hidden_name': 'Structure under assessment',
+    'quiz.hidden_hint': 'Answer the question to see its name and card.',
   
     'tour.steps_count': '{count} steps',
   

@@ -1,18 +1,34 @@
 'use client';
-import { useState, useMemo, useCallback } from 'react';
-import { QUIZ_QUESTIONS, type QuizDifficulty } from '@/data/quizzes';
+import { useState, useMemo, useCallback, useEffect } from 'react';
+import { QUIZ_QUESTIONS, type QuizDifficulty, type QuizQuestion } from '@/data/quizzes';
+import { STRUCTURE_MAP } from '@/data/anatomy-data';
 import { SYSTEMS, type SystemId } from '@/data/systems';
 import { useAtlasStore } from '@/lib/store';
 import { useLocale, useT } from '@/lib/i18n';
 import { pick, pickList } from '@/lib/l10n';
-import { HelpCircle, CheckCircle2, XCircle, Play, RotateCcw, Award } from 'lucide-react';
+import { HelpCircle, CheckCircle2, XCircle, Play, RotateCcw, Award, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+
+const COUNT_OPTIONS = [10, 20, 'all'] as const;
+type QuizCount = (typeof COUNT_OPTIONS)[number];
+
+/** Fisher–Yates shuffle (returns a new array). */
+function shuffle<T>(items: readonly T[]): T[] {
+  const a = [...items];
+  for (let i = a.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
 
 export default function QuizEngine() {
   const locale = useLocale();
   const tr = useT();
   const setSelected = useAtlasStore(s => s.setSelectedStructure);
   const saveQuizScore = useAtlasStore(s => s.saveQuizScore);
+  const setQuizHighlight = useAtlasStore(s => s.setQuizHighlight);
+  const isolateSystem = useAtlasStore(s => s.isolateSystem);
 
   const [filterSystem, setFilterSystem] = useState<SystemId | 'all'>('all');
   const [filterDifficulty, setFilterDifficulty] = useState<QuizDifficulty | 'all'>('all');
@@ -21,6 +37,11 @@ export default function QuizEngine() {
   const [answered, setAnswered] = useState<number | null>(null);
   const [score, setScore] = useState(0);
   const [showResults, setShowResults] = useState(false);
+  const [count, setCount] = useState<QuizCount>(10);
+  const [questions, setQuestions] = useState<QuizQuestion[]>([]);
+
+  // Leaving the quiz (tab change, unmount) must never leave a structure hidden.
+  useEffect(() => () => useAtlasStore.getState().setQuizHighlight(null), []);
 
   const filteredQuestions = useMemo(() => {
     return (QUIZ_QUESTIONS ?? []).filter((q: any) => {
@@ -30,42 +51,66 @@ export default function QuizEngine() {
     });
   }, [filterSystem, filterDifficulty]);
 
+  // Identification questions show the structure on the model with its name hidden until answered.
+  const presentQuestion = useCallback((q: QuizQuestion | undefined) => {
+    const sid = q?.tipo === 'identificacion' ? q.structureId : undefined;
+    setQuizHighlight(sid ?? null);
+    if (sid) {
+      const sys = STRUCTURE_MAP[sid]?.systemId;
+      if (sys) isolateSystem(sys);
+      setSelected(sid);
+    }
+  }, [setQuizHighlight, isolateSystem, setSelected]);
+
   const startQuiz = useCallback(() => {
+    const drawn = shuffle(filteredQuestions);
+    const picked = count === 'all' ? drawn : drawn.slice(0, count);
+    setQuestions(picked);
     setActive(true);
     setCurrentIdx(0);
     setAnswered(null);
     setScore(0);
     setShowResults(false);
-  }, []);
+    presentQuestion(picked[0]);
+  }, [filteredQuestions, count, presentQuestion]);
+
+  const exitQuiz = useCallback(() => {
+    setQuizHighlight(null);
+    setActive(false);
+    setShowResults(false);
+  }, [setQuizHighlight]);
 
   const answerQuestion = useCallback((optIdx: number) => {
     if (answered !== null) return;
     setAnswered(optIdx);
-    const q = filteredQuestions?.[currentIdx];
+    setQuizHighlight(null);
+    const q = questions[currentIdx];
     if (q && optIdx === q.respuestaCorrecta) {
       setScore(prev => prev + 1);
     }
     if (q?.structureId) {
       setSelected(q.structureId);
     }
-  }, [answered, filteredQuestions, currentIdx, setSelected]);
+  }, [answered, questions, currentIdx, setQuizHighlight, setSelected]);
 
   const nextQuestion = useCallback(() => {
-    const isLast = currentIdx >= (filteredQuestions?.length ?? 0) - 1;
+    const isLast = currentIdx >= questions.length - 1;
     if (isLast) {
       const key = `${filterSystem}-${filterDifficulty}`;
       // `score` already counts the last answer (answerQuestion runs before "next").
-      saveQuizScore(key, score, filteredQuestions?.length ?? 0);
+      saveQuizScore(key, score, questions.length);
+      setQuizHighlight(null);
       setShowResults(true);
     } else {
       setCurrentIdx(prev => prev + 1);
       setAnswered(null);
+      presentQuestion(questions[currentIdx + 1]);
     }
-  }, [currentIdx, filteredQuestions, filterSystem, filterDifficulty, score, saveQuizScore]);
+  }, [currentIdx, questions, filterSystem, filterDifficulty, score, saveQuizScore, setQuizHighlight, presentQuestion]);
 
   // Results screen
   if (showResults) {
-    const total = filteredQuestions?.length ?? 0;
+    const total = questions.length;
     const pct = total > 0 ? Math.round((score / total) * 100) : 0;
     return (
       <div className="p-4 text-center space-y-3">
@@ -74,7 +119,7 @@ export default function QuizEngine() {
         <p className="text-3xl font-display font-bold text-primary">{score}/{total}</p>
         <p className="text-sm text-muted-foreground">{pct}%</p>
         <button
-          onClick={() => { setActive(false); setShowResults(false); }}
+          onClick={exitQuiz}
           className="inline-flex items-center gap-1 px-4 py-2 rounded-md bg-primary text-primary-foreground text-sm font-medium hover:bg-primary/90 transition-colors"
         >
           <RotateCcw size={14} />
@@ -128,7 +173,26 @@ export default function QuizEngine() {
           </div>
         </div>
 
-        <p className="text-xs text-muted-foreground">{filteredQuestions?.length ?? 0} preguntas disponibles</p>
+        {/* Number of questions */}
+        <div>
+          <label className="text-[10px] text-muted-foreground">{tr('quiz.count')}</label>
+          <div className="flex gap-1 mt-0.5">
+            {COUNT_OPTIONS.map((c) => (
+              <button
+                key={c}
+                onClick={() => setCount(c)}
+                aria-pressed={count === c}
+                className={`px-2 py-1 rounded-md text-[10px] font-medium transition-colors ${
+                  count === c ? 'bg-primary text-primary-foreground' : 'bg-muted text-muted-foreground hover:bg-accent'
+                }`}
+              >
+                {c === 'all' ? tr('quiz.count_all') : c}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        <p className="text-xs text-muted-foreground">{tr('quiz.available', { count: filteredQuestions.length })}</p>
 
         <button
           onClick={startQuiz}
@@ -143,24 +207,29 @@ export default function QuizEngine() {
   }
 
   // Active quiz question
-  const question = filteredQuestions?.[currentIdx];
+  const question = questions[currentIdx];
   if (!question) return null;
 
   const opciones = pickList(question, 'opciones', locale);
-  const isLast = currentIdx >= (filteredQuestions?.length ?? 0) - 1;
+  const isLast = currentIdx >= questions.length - 1;
 
   return (
     <div className="p-3 space-y-3">
       {/* Progress */}
       <div className="flex items-center justify-between text-[10px] text-muted-foreground">
-        <span>{currentIdx + 1} / {filteredQuestions?.length ?? 0}</span>
-        <span className="px-1.5 py-0.5 rounded bg-accent text-accent-foreground">
-          {tr(`quiz.${question?.dificultad}`)}
+        <span>{currentIdx + 1} / {questions.length}</span>
+        <span className="flex items-center gap-1.5">
+          <span className="px-1.5 py-0.5 rounded bg-accent text-accent-foreground">
+            {tr(`quiz.${question?.dificultad}`)}
+          </span>
+          <button onClick={exitQuiz} className="rounded p-0.5 hover:bg-accent" aria-label={tr('quiz.exit')} title={tr('quiz.exit')}>
+            <X size={12} />
+          </button>
         </span>
       </div>
 
       <div className="flex gap-0.5">
-        {Array.from({ length: filteredQuestions?.length ?? 0 }).map((_, i) => (
+        {Array.from({ length: questions.length }).map((_, i) => (
           <div key={i} className={`flex-1 h-1 rounded-full ${
             i < currentIdx ? 'bg-primary' : i === currentIdx ? 'bg-primary/50' : 'bg-muted'
           }`} />

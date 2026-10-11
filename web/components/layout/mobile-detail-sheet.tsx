@@ -32,9 +32,11 @@ export default function MobileDetailSheet() {
     setPrevSelectedId(selectedId);
     if (selectedId) setExpanded(true);
   }
-  // The tab lives in the shared store, so it can't be set during render.
+  // The tab lives in the shared store, so it can't be set during render. Tours and quizzes select
+  // structures themselves: switching away from them would unmount the engine and lose its progress.
   useEffect(() => {
-    if (selectedId) setTab('detail');
+    const current = useAtlasStore.getState().panelTab;
+    if (selectedId && current !== 'tours' && current !== 'quiz') setTab('detail');
   }, [selectedId, setTab]);
 
   const onDragEnd = (_: unknown, info: PanInfo) => {

@@ -115,6 +115,10 @@ export interface AtlasState {
   // Panel tab (shared by header nav, right panel and mobile sheet)
   panelTab: PanelTab;
   setPanelTab: (t: PanelTab) => void;
+
+  /** Structure being asked about in an identification question: its name stays hidden until answered. */
+  quizHighlightId: string | null;
+  setQuizHighlight: (id: string | null) => void;
 }
 
 export type PanelTab = 'detail' | 'tours' | 'quiz' | 'bookmarks' | 'tree';
@@ -341,6 +345,9 @@ export const useAtlasStore = create<AtlasState>()(persist<AtlasState, [], [], Pr
 
   panelTab: 'detail',
   setPanelTab: (t) => set({ panelTab: t }),
+
+  quizHighlightId: null,
+  setQuizHighlight: (id) => set({ quizHighlightId: id }),
 }), {
   name: 'atlas-progress',
   version: PROGRESS_VERSION,
