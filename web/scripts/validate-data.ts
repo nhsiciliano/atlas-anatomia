@@ -44,6 +44,8 @@ function checkTranslation(s: AnatomicalStructure, field: string) {
 for (const r of REFERENCES) if (!filled(r.descripcion_en)) error(`referencia ${r.id}: descripcion_en vacía`);
 for (const sys of SYSTEMS) if (!filled(sys.descripcion_en)) error(`sistema ${sys.id}: descripcion_en vacía`);
 
+const noMesh: string[] = [];
+
 // ── Structures ──────────────────────────────────────────────────────────────
 for (const s of STRUCTURES) {
   if (structureIds.has(s.id)) error(`id duplicado: ${s.id}`);
@@ -61,13 +63,15 @@ for (const s of STRUCTURES) {
   }
 
   if (s.escala === 'micro' && meshIds.has(s.id)) error(`${s.id}: marcada escala 'micro' pero tiene malla en el manifest`);
-  if (!meshIds.has(s.id) && !s.escala) warn(`${s.id}: sin malla 3D y sin escala`);
+  if (!meshIds.has(s.id) && !s.escala) noMesh.push(s.id);
 
   for (const f of ['nombre', 'explicacion', 'explicacion_avanzada', 'ubicacion', 'dato', 'funciones', 'partes',
     'clinica', 'inervacion', 'irrigacion']) {
     checkTranslation(s, f);
   }
 }
+
+if (noMesh.length) warn(`${noMesh.length} estructuras sin malla 3D y sin escala (fichas sin modelo): ${noMesh.join(', ')}`);
 
 const noClinic = STRUCTURES.filter((s) => !filled(s.clinica_es)).map((s) => s.id);
 if (noClinic.length === STRUCTURES.length) warn(`ninguna estructura tiene clínica todavía (${noClinic.length})`);
