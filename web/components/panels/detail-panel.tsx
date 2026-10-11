@@ -1,13 +1,19 @@
 'use client';
-import { STRUCTURE_MAP } from '@/data/anatomy-data';
+import { STRUCTURE_MAP, type AnatomicalStructure, type ClinicalNote } from '@/data/anatomy-data';
 import { SYSTEM_MAP, type SystemId } from '@/data/systems';
 import { REFERENCE_MAP } from '@/data/references';
 import { useAtlasStore } from '@/lib/store';
-import { useLocale, useT } from '@/lib/i18n';
+import { useLocale, useT, type Locale } from '@/lib/i18n';
 import { pick, pickList } from '@/lib/l10n';
 import { buildBreadcrumbs } from '@/lib/breadcrumbs';
-import { X, Bookmark, BookmarkCheck, GitCompare, ChevronRight, MapPin, Cog, Link2, BookOpen, Focus } from 'lucide-react';
+import { X, Bookmark, BookmarkCheck, GitCompare, ChevronRight, MapPin, Cog, Link2, BookOpen, Focus, Stethoscope } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+
+/** Clinical notes in the active language, falling back to Spanish when the translation is missing or empty. */
+function pickNotes(structure: AnatomicalStructure, locale: Locale): ClinicalNote[] {
+  const notes = locale === 'en' ? structure.clinica_en : structure.clinica_es;
+  return notes?.length ? notes : structure.clinica_es ?? [];
+}
 
 export default function DetailPanel() {
   const locale = useLocale();
@@ -36,6 +42,9 @@ export default function DetailPanel() {
   const partes = pickList(structure, 'partes', locale);
   const ubicacion = pick(structure, 'ubicacion', locale);
   const dato = pick(structure, 'dato', locale);
+  const inervacion = pick(structure, 'inervacion', locale);
+  const irrigacion = pick(structure, 'irrigacion', locale);
+  const clinica = pickNotes(structure, locale);
 
   const isolate = () => {
     isolateSystem(structure.systemId as SystemId);
@@ -143,6 +152,16 @@ export default function DetailPanel() {
           {ubicacion && (
             <Section icon={MapPin} title={tr('panel.ubicacion')}>
               <p className="text-sm text-muted-foreground">{ubicacion}</p>
+              {detailLevel === 'avanzado' && inervacion && (
+                <p className="mt-2 text-sm text-muted-foreground">
+                  <strong className="font-semibold text-foreground/85">{tr('panel.inervacion')}:</strong> {inervacion}
+                </p>
+              )}
+              {detailLevel === 'avanzado' && irrigacion && (
+                <p className="mt-1.5 text-sm text-muted-foreground">
+                  <strong className="font-semibold text-foreground/85">{tr('panel.irrigacion')}:</strong> {irrigacion}
+                </p>
+              )}
             </Section>
           )}
 
@@ -169,6 +188,21 @@ export default function DetailPanel() {
                   </span>
                 ))}
               </div>
+            </Section>
+          )}
+
+          {/* Clinical notes */}
+          {clinica.length > 0 && (
+            <Section icon={Stethoscope} title={tr('panel.clinica')}>
+              <div className="space-y-3">
+                {clinica.map((note, i) => (
+                  <div key={i}>
+                    <p className="text-[13px] font-semibold text-foreground/90">{note.titulo}</p>
+                    <p className="mt-0.5 text-sm text-muted-foreground">{note.texto}</p>
+                  </div>
+                ))}
+              </div>
+              <p className="mt-3 text-[11px] italic text-muted-foreground">{tr('panel.clinica_aviso')}</p>
             </Section>
           )}
 
