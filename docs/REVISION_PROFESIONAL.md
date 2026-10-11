@@ -76,3 +76,20 @@ Clínica y cifras:
 
 Datos previos conservados pero dudosos:
 - `esofago` "tragar boca abajo" · `estomago` mucosa renovada cada 3–5 días · `higado` "más de 500 funciones" · `intestino-delgado` duodeno 25 cm / yeyuno 2,5 m / íleon 3 m
+
+## Reproductor y órganos sensoriales (Fase 5.2, clínica de 16 fichas existentes)
+
+Corrección ya aplicada (confirmar):
+- `mucosa-olfatoria` — "más de un billón de olores" pasó a citarse como estimación discutida (estudio de 2014) — organos_sensoriales.ts
+
+Anatomía escrita de memoria:
+- Inervación: `ovario`/`trompa-uterina` T10–T11 / T10–L1 + S2–S4 · `utero` T10–L2 y S2–S4 · `testiculo` T10–T11 · `conducto-deferente` T10–L2 · `prostata` plexo prostático, nervios cavernosos · `vagina` tercio superior autónomo, 2/3 inferiores pudendo · `oido-externo` auricular mayor C2–C3, auriculotemporal, ramo auricular del vago (reflejo tusígeno) · `oido-medio` plexo timpánico (IX) · `coclea` rama coclear del VIII · `globo-ocular` V1, III, IV, VI
+- Irrigación: ovárica/uterina y anastomosis; drenaje venoso ovárico/testicular D vs I · arteria del conducto deferente · prostática (vesical inferior, rectal media, pudenda interna) · retina (central + coroides) · laberíntica/coclear · oído externo (3 arterias) · oído medio (maxilar, auricular posterior, carótida interna)
+
+Clínica y cifras:
+- Torsión testicular "~6 horas" · torsión ovárica · ectópico tubárico · EPI (clamidia/gonorrea) · SOP e insulina · vasectomía y espermograma de control · tamizaje prostático como decisión compartida · cáncer de testículo en jóvenes
+- Lavado ocular ~15 min · abrasión corneal 1–3 días · catarata y corticoides · presbicia ~40–45 años · otitis media: consulta en <6 meses · hipoacusia por ruido (sin cifras de dB) · anosmia post-viral y entrenamiento olfativo
+
+Datos previos conservados pero dudosos:
+- `prostata` "líquido alcalino que neutraliza la acidez vaginal" (el líquido prostático es ligeramente ácido; el semen es alcalino por las vesículas seminales) — **probable error, corregir**
+- `utero` "más de 500 veces su volumen" · `testiculo` 200–300 millones/día · `globo-ocular` "10 millones de colores" · `mucosa-olfatoria` 10–20 millones de neuronas (otras fuentes: ~6 millones)
