@@ -6,3 +6,4 @@ bp3d/objs/
 bp3d/*.zip
 bp3d/.venv/
 atlas_anatomia/.abacus.donotdelete
+atlas_anatomia/nextjs_space/next-env.d.ts

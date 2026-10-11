@@ -136,6 +136,7 @@ export const ORGANOS_SENSORIALES: AnatomicalStructure[] = [
   },
   {
     id: 'mucosa-olfatoria', systemId: 'organos_sensoriales',
+    escala: 'micro',
     nombre_es: 'Mucosa olfatoria', nombre_en: 'Olfactory mucosa', termino_ta: 'Regio olfactoria',
     regiones: ['cabeza'],
     explicacion_es: 'Epitelio especializado en el techo de la cavidad nasal que detecta los olores.',

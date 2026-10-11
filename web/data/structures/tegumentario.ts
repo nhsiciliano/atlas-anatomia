@@ -22,6 +22,7 @@ export const TEGUMENTARIO: AnatomicalStructure[] = [
   },
   {
     id: 'epidermis', systemId: 'tegumentario',
+    escala: 'micro',
     nombre_es: 'Epidermis', nombre_en: 'Epidermis', termino_ta: 'Epidermis',
     regiones: ['cabeza', 'cuello', 'torax', 'abdomen', 'pelvis', 'espalda', 'extremidades_superiores', 'extremidades_inferiores'],
     explicacion_es: 'Capa más externa de la piel, formada por queratinocitos que se renuevan continuamente.',
@@ -41,6 +42,7 @@ export const TEGUMENTARIO: AnatomicalStructure[] = [
   },
   {
     id: 'dermis', systemId: 'tegumentario',
+    escala: 'micro',
     nombre_es: 'Dermis', nombre_en: 'Dermis', termino_ta: 'Dermis',
     regiones: ['cabeza', 'cuello', 'torax', 'abdomen', 'pelvis', 'espalda', 'extremidades_superiores', 'extremidades_inferiores'],
     explicacion_es: 'Capa media de la piel rica en colágeno, vasos y terminaciones nerviosas.',
@@ -60,6 +62,7 @@ export const TEGUMENTARIO: AnatomicalStructure[] = [
   },
   {
     id: 'hipodermis', systemId: 'tegumentario',
+    escala: 'micro',
     nombre_es: 'Hipodermis', nombre_en: 'Hypodermis', termino_ta: 'Tela subcutanea',
     regiones: ['cabeza', 'cuello', 'torax', 'abdomen', 'pelvis', 'espalda', 'extremidades_superiores', 'extremidades_inferiores'],
     explicacion_es: 'Capa profunda de tejido graso bajo la piel que aísla y amortigua.',
@@ -79,6 +82,7 @@ export const TEGUMENTARIO: AnatomicalStructure[] = [
   },
   {
     id: 'queratinocito', systemId: 'tegumentario',
+    escala: 'micro',
     nombre_es: 'Queratinocito', nombre_en: 'Keratinocyte', termino_ta: 'Keratinocytus',
     regiones: ['cabeza', 'cuello', 'torax', 'abdomen'],
     explicacion_es: 'Célula principal de la epidermis que produce queratina, la proteína impermeabilizante de la piel.',
@@ -98,6 +102,7 @@ export const TEGUMENTARIO: AnatomicalStructure[] = [
   },
   {
     id: 'melanocito', systemId: 'tegumentario',
+    escala: 'micro',
     nombre_es: 'Melanocito', nombre_en: 'Melanocyte', termino_ta: 'Melanocytus',
     regiones: ['cabeza', 'cuello', 'torax', 'abdomen'],
     explicacion_es: 'Célula que produce melanina, el pigmento que da color a la piel y protege del daño UV.',
@@ -117,6 +122,7 @@ export const TEGUMENTARIO: AnatomicalStructure[] = [
   },
   {
     id: 'foliculo-piloso', systemId: 'tegumentario',
+    escala: 'micro',
     nombre_es: 'Folículo piloso', nombre_en: 'Hair follicle', termino_ta: 'Folliculus pili',
     regiones: ['cabeza', 'cuello', 'torax', 'abdomen', 'extremidades_superiores', 'extremidades_inferiores'],
     explicacion_es: 'Estructura en la dermis de la que crece el pelo.',

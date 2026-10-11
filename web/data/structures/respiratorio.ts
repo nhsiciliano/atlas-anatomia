@@ -98,6 +98,7 @@ export const RESPIRATORIO: AnatomicalStructure[] = [
   },
   {
     id: 'bronquiolos', systemId: 'respiratorio',
+    escala: 'micro',
     nombre_es: 'Bronquiolos', nombre_en: 'Bronchioles', termino_ta: 'Bronchioli',
     regiones: ['torax'],
     explicacion_es: 'Ramificaciones finas sin cartílago que regulan el flujo de aire hacia los alvéolos.',
@@ -117,6 +118,7 @@ export const RESPIRATORIO: AnatomicalStructure[] = [
   },
   {
     id: 'alveolos-pulmonares', systemId: 'respiratorio',
+    escala: 'micro',
     nombre_es: 'Alvéolos pulmonares', nombre_en: 'Pulmonary alveoli', termino_ta: 'Alveoli pulmonis',
     regiones: ['torax'],
     explicacion_es: 'Diminutas bolsas de aire donde ocurre el intercambio de oxígeno y dióxido de carbono.',

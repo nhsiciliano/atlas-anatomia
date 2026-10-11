@@ -1,5 +1,7 @@
 'use client';
 import { REFERENCES } from '@/data/references';
+import { STRUCTURES } from '@/data/anatomy-data';
+import { SYSTEMS } from '@/data/systems';
 import { ArrowLeft, BookOpen, Box, ExternalLink } from 'lucide-react';
 import Link from 'next/link';
 
@@ -91,8 +93,8 @@ export default function AtribucionesContent() {
 
         <div className="mt-8 p-4 bg-accent/30 rounded-lg border border-border/30">
           <p className="text-xs text-muted-foreground leading-relaxed">
-            <strong>Nota:</strong> Este atlas contiene 96 estructuras simplificadas distribuidas en 12 sistemas
-            corporales. No pretende reemplazar un atlas anatómico completo ni sustituir el criterio profesional
+            <strong>Nota:</strong> Este atlas contiene {STRUCTURES.length} estructuras simplificadas distribuidas en{' '}
+            {SYSTEMS.length} sistemas corporales. No pretende reemplazar un atlas anatómico completo ni sustituir el criterio profesional
             de salud. El modelo 3D es una representación didáctica simplificada, no una imagen clínica.
           </p>
         </div>

@@ -22,6 +22,7 @@ export const URINARIO: AnatomicalStructure[] = [
   },
   {
     id: 'nefrona', systemId: 'urinario',
+    escala: 'micro',
     nombre_es: 'Nefrona', nombre_en: 'Nephron', termino_ta: 'Nephron',
     regiones: ['abdomen'],
     explicacion_es: 'Unidad funcional del riñón que filtra la sangre y forma la orina.',

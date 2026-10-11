@@ -117,6 +117,7 @@ export const ENDOCRINO: AnatomicalStructure[] = [
   },
   {
     id: 'islotes-pancreaticos', systemId: 'endocrino',
+    escala: 'micro',
     nombre_es: 'Islotes pancreáticos', nombre_en: 'Pancreatic islets', termino_ta: 'Insulae pancreaticae',
     regiones: ['abdomen'],
     explicacion_es: 'Grupos de células endocrinas en el páncreas que producen insulina y glucagón.',

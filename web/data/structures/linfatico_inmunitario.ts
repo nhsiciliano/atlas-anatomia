@@ -3,6 +3,7 @@ import type { AnatomicalStructure } from '../anatomy-data';
 export const LINFATICO_INMUNITARIO: AnatomicalStructure[] = [
   {
     id: 'linfa', systemId: 'linfatico_inmunitario',
+    escala: 'micro',
     nombre_es: 'Linfa', nombre_en: 'Lymph', termino_ta: 'Lympha',
     regiones: ['torax', 'abdomen'],
     explicacion_es: 'Líquido claro derivado del plasma que circula por los vasos linfáticos recogiendo desechos.',
@@ -22,6 +23,7 @@ export const LINFATICO_INMUNITARIO: AnatomicalStructure[] = [
   },
   {
     id: 'capilar-linfatico', systemId: 'linfatico_inmunitario',
+    escala: 'micro',
     nombre_es: 'Capilar linfático', nombre_en: 'Lymphatic capillary', termino_ta: 'Vas lymphocapillare',
     regiones: ['torax', 'abdomen', 'extremidades_superiores', 'extremidades_inferiores'],
     explicacion_es: 'Vasos de paredes finas que recogen líquido intersticial y lo dirigen al sistema linfático.',
@@ -136,6 +138,7 @@ export const LINFATICO_INMUNITARIO: AnatomicalStructure[] = [
   },
   {
     id: 'placa-de-peyer', systemId: 'linfatico_inmunitario',
+    escala: 'micro',
     nombre_es: 'Placa de Peyer', nombre_en: 'Peyer\'s patch', termino_ta: 'Noduli lymphoidei aggregati',
     regiones: ['abdomen'],
     explicacion_es: 'Agrupaciones de tejido linfoide en la pared del intestino delgado que vigilan los antígenos alimentarios.',
