@@ -32,9 +32,21 @@
    "deltoides",
    "pectoral-mayor",
    "diafragma",
-   "gluteo-mayor"
+   "gluteo-mayor",
+   "biceps-braquial",
+   "triceps-braquial",
+   "cuadriceps",
+   "isquiotibiales",
+   "gastrocnemio",
+   "soleo",
+   "tibial-anterior",
+   "sartorio",
+   "serrato-anterior",
+   "oblicuo-externo",
+   "gluteo-medio",
+   "iliopsoas"
   ],
-  "bytes": 1898068
+  "bytes": 2427016
  },
  "nervioso": {
   "file": "nervioso.glb",

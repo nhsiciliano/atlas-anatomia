@@ -28,6 +28,18 @@ MAP = {
   'pectoral-mayor': ['right pectoralis major', 'left pectoralis major'],
   'diafragma': ['diaphragm'],
   'gluteo-mayor': ['gluteus maximus'],
+  'biceps-braquial': ['short head of biceps brachii', 'long head of biceps brachii'],
+  'triceps-braquial': ['long head of triceps brachii', 'lateral head of triceps brachii', 'medial head of triceps brachii'],
+  'cuadriceps': ['rectus femoris', 'vastus lateralis', 'vastus medialis', 'vastus intermedius'],
+  'isquiotibiales': ['long head of biceps femoris', 'short head of biceps femoris', 'semitendinosus', 'semimembranosus'],
+  'gastrocnemio': ['head of gastrocnemius'],
+  'soleo': ['soleus'],
+  'tibial-anterior': ['tibialis anterior'],
+  'sartorio': ['sartorius'],
+  'serrato-anterior': ['serratus anterior'],
+  'oblicuo-externo': ['external oblique'],
+  'gluteo-medio': ['gluteus medius'],
+  'iliopsoas': ['psoas major', 'iliacus'],
   'cerebro': ['right cerebral hemisphere', 'left cerebral hemisphere'],
   'cerebelo': ['cerebellum'],
   'tronco-encefalico': ['brainstem'],
@@ -85,7 +97,7 @@ BUDGET = {
   'cerebro': 16000, 'columna-vertebral': 16000, 'craneo': 16000, 'costillas': 10000,
   'huesos-mano': 12000, 'huesos-pie': 12000, 'dientes': 8000, 'arterias-pulmonares': 8000, 'venas-pulmonares': 8000,
 }
-CONTEXT_BUDGET = {'esqueletico': 30000, 'muscular': 70000, 'cardiovascular': 14000}
+CONTEXT_BUDGET = {'muscular': 28000, 'cardiovascular': 14000}
 
 # Estructuras que no usan la malla original sino un envoltorio por vóxeles: una lista de nombres
 # por pieza (cada pieza se envuelve por separado). Ver wrap() en build_glb.py.
@@ -93,11 +105,7 @@ WRAP = {'pulmones': [['right lung'], ['left lung']]}
 
 # CONTEXT: mallas de contexto por sistema (nodo ctx__<sistema>): se ven pero no se pueden seleccionar.
 CONTEXT = {
-  'muscular': ['short head of biceps brachii', 'long head of biceps brachii', 'long head of triceps brachii', 'lateral head of triceps brachii', 'rectus femoris', 'vastus lateralis', 'vastus medialis', 'sartorius', 'head of gastrocnemius', 'serratus anterior', 'external oblique', 'tibialis anterior', 'brachioradialis', 'gluteus medius', 'semitendinosus', 'adductor longus', 'soleus',
-    'vastus intermedius', 'long head of biceps femoris', 'gracilis', 'semimembranosus', 'rhomboid major',
-    'infraspinatus', 'teres major', 'psoas major', 'pectoralis minor', 'medial head of triceps brachii', 'brachialis',
-    'flexor carpi radialis', 'extensor digitorum', 'extensor carpi radialis longus', 'flexor digitorum superficialis',
-    'tibialis posterior', 'extensor digitorum longus', 'iliacus', 'supraspinatus'],
+  'muscular': ['brachioradialis', 'adductor longus', 'gracilis', 'rhomboid major', 'infraspinatus', 'teres major', 'pectoralis minor', 'brachialis', 'flexor carpi radialis', 'extensor digitorum', 'extensor carpi radialis longus', 'flexor digitorum superficialis', 'tibialis posterior', 'extensor digitorum longus', 'supraspinatus'],
   'cardiovascular': ['subclavian artery', 'brachiocephalic artery', 'common iliac artery', 'external iliac artery', 'femoral artery', 'brachial artery', 'pulmonary trunk', 'internal jugular vein', 'femoral vein', 'brachiocephalic vein',
     'pulmonary artery', 'popliteal artery', 'anterior tibial artery', 'posterior tibial artery',
     'radial artery', 'ulnar artery', 'axillary artery', 'subclavian vein', 'axillary vein', 'great saphenous vein',
