@@ -18,7 +18,19 @@ export const RESPIRATORIO: AnatomicalStructure[] = [
     conexiones: ['nervioso', 'organos_sensoriales'],
     dato_es: 'Los cornetes calientan el aire casi a temperatura corporal antes de que llegue a los pulmones.',
     dato_en: 'Turbinates warm air to near body temperature before it reaches the lungs.',
-    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2'],
+    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2', 'medlineplus', 'statpearls'],
+    clinica_es: [
+      { titulo: 'Rinitis', texto: 'Es la inflamación de la mucosa nasal, por alergias o por infecciones como el resfriado. Causa congestión, estornudos y secreción. Si dura más de unos diez días, empeora o se acompaña de fiebre alta, conviene consultar.' },
+      { titulo: 'Sangrado nasal (epistaxis)', texto: 'La mayoría de los sangrados nacen en la parte anterior del tabique, donde se juntan muchos vasos pequeños (área de Kiesselbach). Se inclina la cabeza hacia adelante y se aprietan las alas de la nariz unos 10 minutos. Si no cede en 20 minutos o aparece tras un golpe fuerte, hay que consultar.' },
+    ],
+    clinica_en: [
+      { titulo: 'Rhinitis', texto: 'It is inflammation of the nasal lining, caused by allergies or by infections such as the common cold. It causes congestion, sneezing and discharge. If it lasts more than about ten days, worsens or comes with a high fever, see a doctor.' },
+      { titulo: 'Nosebleed (epistaxis)', texto: 'Most nosebleeds start at the front of the septum, where many small vessels meet (Kiesselbach area). Lean the head forward and pinch the wings of the nose for about 10 minutes. If it does not stop within 20 minutes or follows a strong blow, seek medical care.' },
+    ],
+    inervacion_es: 'Olfato: nervio olfatorio (I). Sensibilidad general: ramas del trigémino, V1 (nervios etmoidales) y V2 (nervio nasopalatino y nasales posteriores).',
+    inervacion_en: 'Smell: olfactory nerve (I). General sensation: branches of the trigeminal nerve, V1 (ethmoidal nerves) and V2 (nasopalatine and posterior nasal nerves).',
+    irrigacion_es: 'Ramas de las arterias etmoidales (de la oftálmica), esfenopalatina y palatina mayor (de la maxilar) y labial superior (de la facial), que se anastomosan en el tabique anterior.',
+    irrigacion_en: 'Branches of the ethmoidal arteries (from the ophthalmic), sphenopalatine and greater palatine (from the maxillary) and superior labial (from the facial), which anastomose on the anterior septum.',
   },
   {
     id: 'faringe', systemId: 'respiratorio',
@@ -37,7 +49,19 @@ export const RESPIRATORIO: AnatomicalStructure[] = [
     conexiones: ['digestivo', 'linfatico_inmunitario'],
     dato_es: 'Es la encrucijada donde se cruzan las vías aérea y digestiva.',
     dato_en: 'It is the crossroads where the airway and digestive tract meet.',
-    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2'],
+    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2', 'medlineplus', 'statpearls'],
+    clinica_es: [
+      { titulo: 'Faringitis y dolor de garganta', texto: 'La mayoría de las faringitis las causan virus y mejoran solas en pocos días. La causada por estreptococo necesita antibiótico para evitar complicaciones. Conviene consultar si hay fiebre alta, placas en la garganta, ganglios dolorosos en el cuello o dificultad para tragar o respirar.' },
+      { titulo: 'Adenoides aumentadas', texto: 'En los niños las adenoides pueden agrandarse y obstruir la nasofaringe. Provocan respiración por la boca, ronquidos y, al bloquear la trompa de Eustaquio, otitis frecuentes. El pediatra decide si se necesita tratamiento.' },
+    ],
+    clinica_en: [
+      { titulo: 'Pharyngitis and sore throat', texto: 'Most cases of pharyngitis are caused by viruses and improve on their own within a few days. Strep throat needs an antibiotic to prevent complications. See a doctor if there is a high fever, white patches in the throat, painful neck nodes or trouble swallowing or breathing.' },
+      { titulo: 'Enlarged adenoids', texto: 'In children the adenoids can enlarge and block the nasopharynx. They cause mouth breathing, snoring and, by blocking the Eustachian tube, frequent ear infections. The pediatrician decides whether treatment is needed.' },
+    ],
+    inervacion_es: 'Plexo faríngeo: nervios glosofaríngeo (IX, sensitivo) y vago (X, motor); la nasofaringe recibe sensibilidad del maxilar (V2).',
+    inervacion_en: 'Pharyngeal plexus: glossopharyngeal (IX, sensory) and vagus (X, motor) nerves; the nasopharynx receives sensation from the maxillary nerve (V2).',
+    irrigacion_es: 'Ramas de las arterias faríngea ascendente, tiroidea superior, facial (palatina ascendente) y maxilar.',
+    irrigacion_en: 'Branches of the ascending pharyngeal, superior thyroid, facial (ascending palatine) and maxillary arteries.',
   },
   {
     id: 'laringe', systemId: 'respiratorio',
@@ -56,7 +80,19 @@ export const RESPIRATORIO: AnatomicalStructure[] = [
     conexiones: ['nervioso', 'muscular'],
     dato_es: 'La epiglotis se cierra al tragar para proteger la vía aérea.',
     dato_en: 'The epiglottis closes during swallowing to protect the airway.',
-    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2'],
+    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2', 'medlineplus', 'statpearls'],
+    clinica_es: [
+      { titulo: 'Laringitis', texto: 'Es la inflamación de la laringe y las cuerdas vocales, casi siempre por un virus o por forzar la voz. Produce ronquera o pérdida de la voz. Ayudan el reposo vocal y la hidratación; una ronquera que dura más de dos o tres semanas, sobre todo en fumadores, requiere evaluación.' },
+      { titulo: 'Lesión del nervio laríngeo recurrente', texto: 'Este nervio corre muy cerca de la tiroides, por lo que puede lesionarse en cirugías del cuello. Si se daña, una cuerda vocal queda paralizada y la voz se vuelve ronca y débil. Una ronquera tras una operación de cuello debe comunicarse al equipo médico.' },
+    ],
+    clinica_en: [
+      { titulo: 'Laryngitis', texto: 'It is inflammation of the larynx and vocal cords, almost always from a virus or from straining the voice. It causes hoarseness or loss of voice. Voice rest and hydration help; hoarseness lasting more than two or three weeks, especially in smokers, needs evaluation.' },
+      { titulo: 'Recurrent laryngeal nerve injury', texto: 'This nerve runs very close to the thyroid, so it can be injured in neck surgery. If damaged, one vocal cord is paralyzed and the voice becomes hoarse and weak. Hoarseness after a neck operation should be reported to the medical team.' },
+    ],
+    inervacion_es: 'Ramas del vago: nervio laríngeo superior (sensibilidad sobre las cuerdas y músculo cricotiroideo) y nervio laríngeo recurrente (resto de los músculos y sensibilidad bajo las cuerdas).',
+    inervacion_en: 'Branches of the vagus: superior laryngeal nerve (sensation above the cords and the cricothyroid muscle) and recurrent laryngeal nerve (remaining muscles and sensation below the cords).',
+    irrigacion_es: 'Arterias laríngeas superior (de la tiroidea superior) e inferior (de la tiroidea inferior).',
+    irrigacion_en: 'Superior laryngeal (from the superior thyroid) and inferior laryngeal (from the inferior thyroid) arteries.',
   },
   {
     id: 'traquea', systemId: 'respiratorio',
@@ -75,7 +111,19 @@ export const RESPIRATORIO: AnatomicalStructure[] = [
     conexiones: ['nervioso'],
     dato_es: 'Sus anillos en C permiten que el esófago se expanda al tragar.',
     dato_en: 'Its C-shaped rings allow the esophagus to expand during swallowing.',
-    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2'],
+    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2', 'medlineplus', 'statpearls'],
+    clinica_es: [
+      { titulo: 'Intubación y traqueostomía', texto: 'Cuando una persona no puede respirar por sí sola, se introduce un tubo por la boca hasta la tráquea (intubación) para conectarla a un respirador. Si se necesita por tiempo prolongado, o hay una obstrucción en la vía aérea superior, se abre una vía en la cara anterior del cuello (traqueostomía).' },
+      { titulo: 'Atragantamiento', texto: 'Si un objeto bloquea la vía aérea, la persona no puede hablar ni toser y se lleva las manos al cuello. Hay que pedir ayuda de inmediato y aplicar la maniobra de Heimlich si se está entrenado. Es una emergencia.' },
+    ],
+    clinica_en: [
+      { titulo: 'Intubation and tracheostomy', texto: 'When a person cannot breathe on their own, a tube is passed through the mouth into the trachea (intubation) to connect them to a ventilator. If it is needed for a long time, or the upper airway is blocked, an opening is made in the front of the neck (tracheostomy).' },
+      { titulo: 'Choking', texto: 'If an object blocks the airway, the person cannot speak or cough and clutches the throat. Call for help immediately and apply the Heimlich maneuver if trained. It is an emergency.' },
+    ],
+    inervacion_es: 'Nervio vago (ramas del laríngeo recurrente) para la mucosa y el músculo traqueal, con fibras simpáticas del tronco simpático.',
+    inervacion_en: 'Vagus nerve (branches of the recurrent laryngeal) for the lining and the tracheal muscle, with sympathetic fibers from the sympathetic trunk.',
+    irrigacion_es: 'Ramas de la arteria tiroidea inferior y, en su parte final, de las arterias bronquiales.',
+    irrigacion_en: 'Branches of the inferior thyroid artery and, in its lower part, of the bronchial arteries.',
   },
   {
     id: 'bronquios-principales', systemId: 'respiratorio',
@@ -94,7 +142,19 @@ export const RESPIRATORIO: AnatomicalStructure[] = [
     conexiones: ['nervioso'],
     dato_es: 'El bronquio derecho es más vertical, por lo que los cuerpos extraños aspirados suelen ir al lado derecho.',
     dato_en: 'The right bronchus is more vertical, so aspirated foreign bodies tend to go to the right side.',
-    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2'],
+    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2', 'medlineplus', 'statpearls'],
+    clinica_es: [
+      { titulo: 'Aspiración de cuerpo extraño', texto: 'Si un objeto pequeño, como un maní o una pieza de juguete, pasa a la vía aérea, suele ir al bronquio derecho por ser más vertical. Provoca tos súbita y silbidos al respirar, sobre todo en niños pequeños. Es una urgencia: hay que consultar de inmediato aunque la tos mejore.' },
+      { titulo: 'Bronquitis', texto: 'Es la inflamación de los bronquios, con tos y moco. La forma aguda suele deberse a virus y se resuelve en una o dos semanas. La bronquitis crónica se define por tos con flema durante meses, casi siempre por tabaquismo, y forma parte de la EPOC.' },
+    ],
+    clinica_en: [
+      { titulo: 'Foreign body aspiration', texto: 'If a small object, such as a peanut or a toy piece, enters the airway, it usually goes to the right bronchus because it is more vertical. It causes sudden coughing and wheezing, especially in young children. It is an emergency: seek care immediately even if the cough improves.' },
+      { titulo: 'Bronchitis', texto: 'It is inflammation of the bronchi, with cough and mucus. The acute form is usually caused by viruses and clears up in one or two weeks. Chronic bronchitis is defined by a cough with phlegm lasting months, almost always from smoking, and is part of COPD.' },
+    ],
+    inervacion_es: 'Plexo pulmonar: fibras parasimpáticas del vago (broncoconstricción) y simpáticas (broncodilatación).',
+    inervacion_en: 'Pulmonary plexus: parasympathetic vagus fibers (bronchoconstriction) and sympathetic fibers (bronchodilation).',
+    irrigacion_es: 'Arterias bronquiales, ramas de la aorta torácica.',
+    irrigacion_en: 'Bronchial arteries, branches of the thoracic aorta.',
   },
   {
     id: 'bronquiolos', systemId: 'respiratorio',
@@ -114,7 +174,15 @@ export const RESPIRATORIO: AnatomicalStructure[] = [
     conexiones: ['nervioso'],
     dato_es: 'Su músculo liso se contrae en el asma, dificultando la respiración.',
     dato_en: 'Their smooth muscle contracts in asthma, making breathing difficult.',
-    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2'],
+    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2', 'medlineplus', 'statpearls'],
+    clinica_es: [
+      { titulo: 'Asma', texto: 'En el asma los bronquiolos se inflaman y su músculo liso se contrae, lo que causa silbidos, tos y opresión en el pecho. Los desencadenantes incluyen alérgenos, ejercicio, frío y humo. Se controla con medicación inhalada. Si cuesta hablar o los labios se ponen azulados, es una urgencia.' },
+      { titulo: 'Bronquiolitis', texto: 'Es una infección viral de los bronquiolos, frecuente en bebés menores de dos años, a menudo por virus respiratorio sincicial. Provoca tos, silbidos y respiración rápida. Hay que consultar si el bebé no come, respira con mucho esfuerzo o tiene los labios azulados.' },
+    ],
+    clinica_en: [
+      { titulo: 'Asthma', texto: 'In asthma the bronchioles become inflamed and their smooth muscle contracts, causing wheezing, cough and chest tightness. Triggers include allergens, exercise, cold air and smoke. It is controlled with inhaled medication. If speaking is difficult or the lips turn bluish, it is an emergency.' },
+      { titulo: 'Bronchiolitis', texto: 'It is a viral infection of the bronchioles, common in babies under two years old, often due to respiratory syncytial virus. It causes cough, wheezing and fast breathing. See a doctor if the baby refuses to feed, breathes with great effort or has bluish lips.' },
+    ],
   },
   {
     id: 'alveolos-pulmonares', systemId: 'respiratorio',
@@ -132,9 +200,17 @@ export const RESPIRATORIO: AnatomicalStructure[] = [
     partes_es: ['Células tipo I (neumocitos)', 'Células tipo II (surfactante)', 'Membrana alveolocapilar'],
     partes_en: ['Type I cells (pneumocytes)', 'Type II cells (surfactant)', 'Alveolocapillary membrane'],
     conexiones: ['cardiovascular'],
-    dato_es: 'Su superficie total de intercambio equivale a una cancha de tenis (~70 m²).',
-    dato_en: 'Their total exchange surface equals a tennis court (~70 m²).',
-    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2'],
+    dato_es: 'Su superficie total de intercambio, de unos 70 m², es decenas de veces mayor que la de la piel.',
+    dato_en: 'Their total exchange surface, about 70 m², is dozens of times larger than that of the skin.',
+    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2', 'medlineplus', 'statpearls'],
+    clinica_es: [
+      { titulo: 'Neumonía', texto: 'Es una infección de los alvéolos, que se llenan de líquido o pus y dificultan el intercambio de oxígeno. Causa fiebre, tos con flema, dolor torácico al respirar y falta de aire. Requiere evaluación médica, y las vacunas contra el neumococo y la gripe ayudan a prevenirla.' },
+      { titulo: 'Enfisema', texto: 'Es la destrucción de las paredes entre alvéolos, que quedan agrandados y con menos superficie de intercambio. Su principal causa es el tabaquismo y produce falta de aire que empeora con los años. Dejar de fumar es la medida más eficaz para frenar su avance.' },
+    ],
+    clinica_en: [
+      { titulo: 'Pneumonia', texto: 'It is an infection of the alveoli, which fill with fluid or pus and hinder oxygen exchange. It causes fever, cough with phlegm, chest pain when breathing and shortness of breath. It needs medical evaluation, and pneumococcal and flu vaccines help prevent it.' },
+      { titulo: 'Emphysema', texto: 'It is the destruction of the walls between alveoli, which become enlarged and have less exchange surface. Its main cause is smoking and it produces shortness of breath that worsens over the years. Quitting smoking is the most effective way to slow its progression.' },
+    ],
   },
   {
     id: 'pulmones', systemId: 'respiratorio',
@@ -153,7 +229,19 @@ export const RESPIRATORIO: AnatomicalStructure[] = [
     conexiones: ['cardiovascular', 'nervioso'],
     dato_es: 'El pulmón derecho tiene 3 lóbulos y el izquierdo solo 2, dejando espacio al corazón.',
     dato_en: 'The right lung has 3 lobes and the left only 2, leaving room for the heart.',
-    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2'],
+    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2', 'medlineplus', 'statpearls'],
+    clinica_es: [
+      { titulo: 'EPOC', texto: 'La enfermedad pulmonar obstructiva crónica combina bronquitis crónica y enfisema: el aire sale con dificultad de los pulmones. Produce tos, flema y falta de aire progresiva. La causa principal es el tabaquismo y se confirma con una espirometría.' },
+      { titulo: 'Cuándo consultar por tos', texto: 'Una tos que dura más de tres semanas, o que se acompaña de sangre, pérdida de peso sin causa o falta de aire, merece estudio. El tabaquismo es el principal factor de riesgo del cáncer de pulmón, que en etapas iniciales suele no dar síntomas.' },
+    ],
+    clinica_en: [
+      { titulo: 'COPD', texto: 'Chronic obstructive pulmonary disease combines chronic bronchitis and emphysema: air leaves the lungs with difficulty. It causes cough, phlegm and progressive shortness of breath. The main cause is smoking and it is confirmed with spirometry.' },
+      { titulo: 'When to see a doctor about a cough', texto: 'A cough lasting more than three weeks, or accompanied by blood, unexplained weight loss or shortness of breath, deserves investigation. Smoking is the main risk factor for lung cancer, which in early stages often causes no symptoms.' },
+    ],
+    inervacion_es: 'Plexo pulmonar, con fibras parasimpáticas del vago y simpáticas de los niveles T2–T5; el parénquima pulmonar no percibe dolor.',
+    inervacion_en: 'Pulmonary plexus, with parasympathetic fibers from the vagus and sympathetic fibers from levels T2–T5; the lung parenchyma does not sense pain.',
+    irrigacion_es: 'Doble circulación: arterias pulmonares (sangre para el intercambio de gases) y arterias bronquiales (nutrición del tejido). Cuatro venas pulmonares devuelven la sangre oxigenada a la aurícula izquierda.',
+    irrigacion_en: 'Dual circulation: pulmonary arteries (blood for gas exchange) and bronchial arteries (tissue nutrition). Four pulmonary veins return oxygenated blood to the left atrium.',
   },
   {
     id: 'pleura', systemId: 'respiratorio',
