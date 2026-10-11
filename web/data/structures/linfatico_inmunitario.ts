@@ -19,7 +19,15 @@ export const LINFATICO_INMUNITARIO: AnatomicalStructure[] = [
     conexiones: ['cardiovascular'],
     dato_es: 'Se producen unos 3 litros de linfa al día.',
     dato_en: 'About 3 liters of lymph are produced daily.',
-    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2'],
+    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2', 'medlineplus', 'statpearls'],
+    clinica_es: [
+      { titulo: 'Linfedema', texto: 'Aparece cuando la linfa no puede drenar bien, por ejemplo tras la extirpación de ganglios, la radioterapia o ciertas infecciones. Produce una hinchazón persistente de un brazo o una pierna. Se maneja con vendajes o prendas de compresión, ejercicio y cuidado de la piel; conviene consultar ante una hinchazón de ese tipo.' },
+      { titulo: 'Filariasis linfática', texto: 'Es una enfermedad tropical causada por gusanos parásitos que se transmiten por mosquitos y obstruyen los vasos linfáticos. En casos avanzados produce una hinchazón enorme de las piernas, conocida como elefantiasis. Se previene con tratamientos masivos y control de mosquitos.' },
+    ],
+    clinica_en: [
+      { titulo: 'Lymphedema', texto: 'It appears when lymph cannot drain properly, for example after removal of lymph nodes, radiotherapy or certain infections. It produces persistent swelling of an arm or leg. It is managed with compression bandages or garments, exercise and skin care; see a doctor for swelling of this kind.' },
+      { titulo: 'Lymphatic filariasis', texto: 'It is a tropical disease caused by parasitic worms transmitted by mosquitoes that block the lymphatic vessels. In advanced cases it produces massive swelling of the legs, known as elephantiasis. It is prevented by mass treatment programs and mosquito control.' },
+    ],
   },
   {
     id: 'capilar-linfatico', systemId: 'linfatico_inmunitario',
@@ -39,7 +47,15 @@ export const LINFATICO_INMUNITARIO: AnatomicalStructure[] = [
     conexiones: ['cardiovascular'],
     dato_es: 'Son tan finos que solo se ven al microscopio.',
     dato_en: 'They are so thin they can only be seen under a microscope.',
-    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2'],
+    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2', 'statpearls'],
+    clinica_es: [
+      { titulo: 'Edema', texto: 'Los capilares linfáticos devuelven a la circulación el exceso de líquido y proteínas que sale de los capilares sanguíneos. Si hay demasiado líquido, o el drenaje falla, el líquido se acumula en los tejidos y aparece el edema, por ejemplo la hinchazón de los tobillos al final del día.' },
+      { titulo: 'Diseminación del cáncer', texto: 'Sus paredes permeables permiten que células tumorales entren a la linfa y viajen hasta los ganglios. Por eso, ante ciertos cánceres, se examinan los ganglios cercanos para saber si la enfermedad se ha extendido.' },
+    ],
+    clinica_en: [
+      { titulo: 'Edema', texto: 'Lymphatic capillaries return to the circulation the excess fluid and protein that leaks from blood capillaries. If there is too much fluid, or drainage fails, fluid builds up in the tissues and edema appears, for example swollen ankles at the end of the day.' },
+      { titulo: 'Spread of cancer', texto: 'Their permeable walls allow tumor cells to enter the lymph and travel to the lymph nodes. This is why, in certain cancers, nearby nodes are examined to learn whether the disease has spread.' },
+    ],
   },
   {
     id: 'ganglio-linfatico', systemId: 'linfatico_inmunitario',
@@ -58,7 +74,17 @@ export const LINFATICO_INMUNITARIO: AnatomicalStructure[] = [
     conexiones: ['cardiovascular'],
     dato_es: 'El cuerpo tiene entre 600 y 700 ganglios linfáticos.',
     dato_en: 'The body has between 600 and 700 lymph nodes.',
-    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2'],
+    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2', 'medlineplus', 'statpearls'],
+    clinica_es: [
+      { titulo: 'Linfadenitis', texto: 'Es la infección o inflamación de un ganglio, que se pone doloroso, caliente y a veces enrojecido, por ejemplo tras una herida cercana o una infección de garganta. Suele mejorar al tratar la causa. Conviene consultar si crece rápido, supura o se acompaña de fiebre alta.' },
+      { titulo: 'Linfomas', texto: 'Son cánceres que se originan en las células del tejido linfoide. Un signo frecuente es un ganglio agrandado, duro y sin dolor que persiste por semanas, a veces con fiebre, sudores nocturnos o pérdida de peso. El diagnóstico se confirma con una biopsia del ganglio.' },
+    ],
+    clinica_en: [
+      { titulo: 'Lymphadenitis', texto: 'It is infection or inflammation of a node, which becomes painful, warm and sometimes reddened, for example after a nearby wound or a throat infection. It usually improves when the cause is treated. See a doctor if it grows quickly, drains pus or comes with a high fever.' },
+      { titulo: 'Lymphomas', texto: 'These are cancers that arise in the cells of lymphoid tissue. A common sign is an enlarged, hard, painless node that persists for weeks, sometimes with fever, night sweats or weight loss. The diagnosis is confirmed with a node biopsy.' },
+    ],
+    irrigacion_es: 'Pequeñas arterias que entran por el hilio y forman una red capilar en el ganglio; las venas salen por el hilio.',
+    irrigacion_en: 'Small arteries that enter through the hilum and form a capillary network in the node; the veins leave through the hilum.',
   },
   {
     id: 'conducto-toracico', systemId: 'linfatico_inmunitario',
@@ -77,7 +103,15 @@ export const LINFATICO_INMUNITARIO: AnatomicalStructure[] = [
     conexiones: ['cardiovascular'],
     dato_es: 'Drena la linfa de aproximadamente el 75% del cuerpo.',
     dato_en: 'Drains lymph from approximately 75% of the body.',
-    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2'],
+    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2', 'statpearls'],
+    clinica_es: [
+      { titulo: 'Quilotórax', texto: 'Es la acumulación de quilo, una linfa rica en grasa, en la cavidad pleural. Puede ocurrir si se lesiona el conducto torácico en una cirugía de tórax, por un traumatismo o por un tumor. Produce falta de aire, y el líquido extraído tiene aspecto lechoso.' },
+      { titulo: 'Ganglio de Virchow', texto: 'Como el conducto desemboca en el lado izquierdo del cuello, algunos tumores del abdomen, como los del estómago, pueden diseminarse y agrandar un ganglio justo por encima de la clavícula izquierda. Este hallazgo, llamado ganglio de Virchow, obliga a buscar el origen del tumor.' },
+    ],
+    clinica_en: [
+      { titulo: 'Chylothorax', texto: 'It is the buildup of chyle, a fat-rich lymph, in the pleural cavity. It can occur if the thoracic duct is injured during chest surgery, by trauma or by a tumor. It causes shortness of breath, and the fluid removed looks milky.' },
+      { titulo: 'Virchow node', texto: 'Because the duct empties on the left side of the neck, some abdominal tumors, such as those of the stomach, can spread and enlarge a node just above the left collarbone. This finding, called Virchow node, prompts a search for the origin of the tumor.' },
+    ],
   },
   {
     id: 'bazo', systemId: 'linfatico_inmunitario',
@@ -96,7 +130,19 @@ export const LINFATICO_INMUNITARIO: AnatomicalStructure[] = [
     conexiones: ['cardiovascular'],
     dato_es: 'Puede almacenar hasta 200 ml de sangre y liberarla en emergencias.',
     dato_en: 'Can store up to 200 ml of blood and release it in emergencies.',
-    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2'],
+    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2', 'medlineplus', 'statpearls'],
+    clinica_es: [
+      { titulo: 'Rotura esplénica', texto: 'Un golpe fuerte en el lado izquierdo del abdomen o las costillas inferiores puede romper el bazo y provocar una hemorragia interna. Causa dolor abdominal a la izquierda, a veces dolor en el hombro izquierdo, mareo y palidez. Es una urgencia que puede requerir cirugía.' },
+      { titulo: 'Vivir sin bazo', texto: 'Si se extirpa el bazo (esplenectomía), el cuerpo se defiende peor de algunas bacterias graves. Por eso se recomiendan vacunas contra neumococo, meningococo y Haemophilus, y se debe consultar de inmediato ante cualquier fiebre.' },
+    ],
+    clinica_en: [
+      { titulo: 'Splenic rupture', texto: 'A strong blow to the left side of the abdomen or lower ribs can rupture the spleen and cause internal bleeding. It causes left-sided abdominal pain, sometimes left shoulder pain, dizziness and pallor. It is an emergency that may require surgery.' },
+      { titulo: 'Living without a spleen', texto: 'If the spleen is removed (splenectomy), the body defends itself less well against some serious bacteria. For this reason pneumococcal, meningococcal and Haemophilus vaccines are recommended, and any fever must be evaluated immediately.' },
+    ],
+    inervacion_es: 'Plexo celíaco (fibras simpáticas), que acompaña a la arteria esplénica.',
+    inervacion_en: 'Celiac plexus (sympathetic fibers), accompanying the splenic artery.',
+    irrigacion_es: 'Arteria esplénica, rama del tronco celíaco; la vena esplénica se une a la mesentérica superior para formar la vena porta.',
+    irrigacion_en: 'Splenic artery, a branch of the celiac trunk; the splenic vein joins the superior mesenteric vein to form the portal vein.',
   },
   {
     id: 'timo', systemId: 'linfatico_inmunitario',
@@ -115,7 +161,19 @@ export const LINFATICO_INMUNITARIO: AnatomicalStructure[] = [
     conexiones: ['nervioso', 'endocrino'],
     dato_es: 'Es más grande en la infancia y se atrofia progresivamente tras la pubertad.',
     dato_en: 'It is largest in childhood and progressively atrophies after puberty.',
-    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2'],
+    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2', 'statpearls'],
+    clinica_es: [
+      { titulo: 'Miastenia gravis', texto: 'Es una enfermedad autoinmune en la que los anticuerpos bloquean la señal entre nervio y músculo. Produce debilidad que empeora con el esfuerzo y mejora con el reposo, por ejemplo párpados caídos, visión doble o dificultad para tragar. Está asociada a alteraciones del timo, y a veces se extirpa como parte del tratamiento.' },
+      { titulo: 'Síndrome de DiGeorge', texto: 'Es una enfermedad genética en la que el timo se desarrolla poco o nada. Sin linfocitos T maduros, los niños tienen más infecciones. Suele acompañarse de malformaciones del corazón y de niveles bajos de calcio.' },
+    ],
+    clinica_en: [
+      { titulo: 'Myasthenia gravis', texto: 'It is an autoimmune disease in which antibodies block the signal between nerve and muscle. It produces weakness that worsens with effort and improves with rest, for example drooping eyelids, double vision or difficulty swallowing. It is associated with thymus abnormalities, and the gland is sometimes removed as part of treatment.' },
+      { titulo: 'DiGeorge syndrome', texto: 'It is a genetic disease in which the thymus develops little or not at all. Without mature T lymphocytes, children have more infections. It is often accompanied by heart malformations and low calcium levels.' },
+    ],
+    inervacion_es: 'Ramas del nervio vago y del tronco simpático.',
+    inervacion_en: 'Branches of the vagus nerve and the sympathetic trunk.',
+    irrigacion_es: 'Ramas de las arterias torácica interna y tiroidea inferior.',
+    irrigacion_en: 'Branches of the internal thoracic and inferior thyroid arteries.',
   },
   {
     id: 'amigdala-palatina', systemId: 'linfatico_inmunitario',
@@ -134,7 +192,19 @@ export const LINFATICO_INMUNITARIO: AnatomicalStructure[] = [
     conexiones: ['digestivo', 'respiratorio'],
     dato_es: 'Forman parte del anillo de Waldeyer, primera línea de defensa en la garganta.',
     dato_en: 'They are part of Waldeyer\'s ring, the first line of defense in the throat.',
-    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2'],
+    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2', 'medlineplus', 'statpearls'],
+    clinica_es: [
+      { titulo: 'Amigdalitis', texto: 'Es la inflamación de las amígdalas, por virus o por bacterias como el estreptococo. Produce dolor de garganta, fiebre, dificultad al tragar y amígdalas rojas, a veces con placas. Si la causa es el estreptococo se trata con antibióticos. Dificultad para abrir la boca o una voz apagada pueden indicar un absceso y requieren atención urgente.' },
+      { titulo: 'Amigdalectomía', texto: 'La extirpación de las amígdalas se considera cuando hay infecciones muy repetidas o cuando su tamaño dificulta la respiración durante el sueño, sobre todo en niños. Después de la cirugía hay que vigilar el sangrado.' },
+    ],
+    clinica_en: [
+      { titulo: 'Tonsillitis', texto: 'It is inflammation of the tonsils, caused by viruses or by bacteria such as streptococcus. It causes sore throat, fever, difficulty swallowing and red tonsils, sometimes with white patches. If streptococcus is the cause, it is treated with antibiotics. Difficulty opening the mouth or a muffled voice may indicate an abscess and need urgent care.' },
+      { titulo: 'Tonsillectomy', texto: 'Removal of the tonsils is considered when infections are very frequent or when their size interferes with breathing during sleep, especially in children. After surgery, bleeding must be watched for.' },
+    ],
+    inervacion_es: 'Plexo timpánico (nervio glosofaríngeo, IX) y nervios palatinos menores (V2).',
+    inervacion_en: 'Tympanic plexus (glossopharyngeal nerve, IX) and lesser palatine nerves (V2).',
+    irrigacion_es: 'Arteria tonsilar (rama de la facial) con aporte de las arterias palatina ascendente y faríngea ascendente.',
+    irrigacion_en: 'Tonsillar artery (a branch of the facial) with contribution from the ascending palatine and ascending pharyngeal arteries.',
   },
   {
     id: 'placa-de-peyer', systemId: 'linfatico_inmunitario',
@@ -154,7 +224,15 @@ export const LINFATICO_INMUNITARIO: AnatomicalStructure[] = [
     conexiones: ['digestivo'],
     dato_es: 'Son centinelas inmunitarios que distinguen bacterias peligrosas de la microbiota normal.',
     dato_en: 'They are immune sentinels that distinguish dangerous bacteria from normal microbiota.',
-    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2'],
+    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2', 'statpearls'],
+    clinica_es: [
+      { titulo: 'Fiebre tifoidea', texto: 'La bacteria Salmonella Typhi entra al organismo a través de las células M de las placas de Peyer del íleon. Causa fiebre alta y prolongada, dolor abdominal y malestar, y en casos graves puede perforar el intestino. Se previene con agua segura, higiene de los alimentos y vacunación.' },
+      { titulo: 'Vacunas orales', texto: 'Como las placas de Peyer inician la inmunidad de las mucosas, algunas vacunas se administran por la boca, como las del rotavirus y la antipoliomielítica oral. Así se genera protección justo en el intestino, por donde entran esos microorganismos.' },
+    ],
+    clinica_en: [
+      { titulo: 'Typhoid fever', texto: 'The bacterium Salmonella Typhi enters the body through the M cells of the Peyer patches of the ileum. It causes a high, prolonged fever, abdominal pain and malaise, and in severe cases can perforate the intestine. It is prevented with safe water, food hygiene and vaccination.' },
+      { titulo: 'Oral vaccines', texto: 'Because Peyer patches start mucosal immunity, some vaccines are given by mouth, such as those against rotavirus and oral polio. This builds protection right in the intestine, where these microorganisms enter.' },
+    ],
   },
   {
     id: 'medula-osea-roja', systemId: 'linfatico_inmunitario',
