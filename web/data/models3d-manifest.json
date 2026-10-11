@@ -40,16 +40,16 @@
  "cardiovascular": {
   "file": "cardiovascular.glb",
   "structures": [
+   "arterias-coronarias",
    "corazon",
    "auricula-derecha",
    "ventriculo-izquierdo",
    "aorta",
    "arteria-carotida-comun",
    "vena-cava-superior",
-   "vena-cava-inferior",
-   "arterias-coronarias"
+   "vena-cava-inferior"
   ],
-  "bytes": 1090764
+  "bytes": 1089320
  },
  "respiratorio": {
   "file": "respiratorio.glb",
@@ -75,7 +75,7 @@
    "intestino-delgado",
    "intestino-grueso"
   ],
-  "bytes": 888780
+  "bytes": 888756
  },
  "urinario": {
   "file": "urinario.glb",

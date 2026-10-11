@@ -22,6 +22,8 @@ MAP = {
   'tronco-encefalico': ['brainstem'],
   'medula-espinal': ['spinal cord'],
   'nervio-optico': ['optic nerve'],
+  # Antes que corazon: con la regla primero-gana, la estructura específica conserva las mallas compartidas.
+  'arterias-coronarias': ['coronary artery'],
   'corazon': ['heart'],
   'auricula-derecha': ['right atrium'],
   'ventriculo-izquierdo': ['left ventricle'],
@@ -61,10 +63,18 @@ MAP = {
   'globo-ocular': ['right eyeball', 'left eyeball'],
   'cornea': ['right cornea', 'left cornea'],
   'cristalino': ['right lens', 'left lens'],
-  'arterias-coronarias': ['coronary artery'],
   'nervio-trigemino': ['branch of trigeminal nerve'],
   'retina': ['optic part of right retina', 'optic part of left retina'],
 }
+
+# Caras máximas tras la simplificación, por estructura (DEFAULT_BUDGET si no figura) y por malla de contexto.
+DEFAULT_BUDGET = 6000
+BUDGET = {
+  'piel': 60000, 'pulmones': 14000, 'higado': 9000, 'corazon': 12000, 'intestino-delgado': 14000, 'intestino-grueso': 9000,
+  'cerebro': 16000, 'columna-vertebral': 16000, 'craneo': 16000, 'costillas': 10000,
+  'huesos-mano': 12000, 'huesos-pie': 12000, 'dientes': 8000, 'arterias-pulmonares': 8000, 'venas-pulmonares': 8000,
+}
+CONTEXT_BUDGET = {'esqueletico': 30000, 'muscular': 70000, 'cardiovascular': 14000}
 
 # Estructuras que no usan la malla original sino un envoltorio por vóxeles: una lista de nombres
 # por pieza (cada pieza se envuelve por separado). Ver wrap() en build_glb.py.
@@ -72,7 +82,7 @@ WRAP = {'pulmones': [['right lung'], ['left lung']]}
 
 # CONTEXT: mallas de contexto por sistema (nodo ctx__<sistema>): se ven pero no se pueden seleccionar.
 CONTEXT = {
-  'esqueletico': ['clavicle', 'radius', 'ulna', 'hip bone', 'tibia', 'fibula', 'carpal bone', 'metacarpal bone', 'phalanx of hand', 'phalanx of foot', 'patella', 'sacrum', 'tarsal bone', 'metatarsal bone',
+  'esqueletico': ['clavicle', 'radius', 'ulna', 'hip bone', 'tibia', 'fibula', 'carpal bone', 'metacarpal bone', 'patella', 'sacrum', 'tarsal bone', 'metatarsal bone',
     'phalanx of finger', 'phalanx of toe'],
   'muscular': ['short head of biceps brachii', 'long head of biceps brachii', 'long head of triceps brachii', 'lateral head of triceps brachii', 'rectus femoris', 'vastus lateralis', 'vastus medialis', 'sartorius', 'head of gastrocnemius', 'serratus anterior', 'external oblique', 'tibialis anterior', 'brachioradialis', 'gluteus medius', 'semitendinosus', 'adductor longus', 'soleus',
     'vastus intermedius', 'long head of biceps femoris', 'gracilis', 'semimembranosus', 'rhomboid major',
@@ -82,6 +92,6 @@ CONTEXT = {
   'cardiovascular': ['subclavian artery', 'brachiocephalic artery', 'common iliac artery', 'external iliac artery', 'femoral artery', 'brachial artery', 'pulmonary trunk', 'internal jugular vein', 'femoral vein', 'brachiocephalic vein',
     'pulmonary artery', 'popliteal artery', 'anterior tibial artery', 'posterior tibial artery',
     'radial artery', 'ulnar artery', 'axillary artery', 'subclavian vein', 'axillary vein', 'great saphenous vein',
-    'popliteal vein', 'hepatic portal vein', 'pulmonary vein', 'renal artery', 'internal carotid artery', 'external carotid artery',
+    'popliteal vein', 'hepatic portal vein', 'pulmonary vein', 'renal artery', 'internal carotid artery',
     'common iliac vein', 'external iliac vein'],
 }

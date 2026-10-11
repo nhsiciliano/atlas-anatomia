@@ -14,17 +14,12 @@ import numpy as np
 import trimesh
 import fast_simplification as fs
 
-from mapping import MAP, CONTEXT, WRAP
+from mapping import MAP, CONTEXT, WRAP, BUDGET, DEFAULT_BUDGET, CONTEXT_BUDGET
 
 ROOT = Path(__file__).resolve().parent
 OBJ_DIRS = [ROOT / 'objs' / 'partof_BP3D_4.0_obj_99', ROOT / 'objs' / 'isa_BP3D_4.0_obj_99']
 ELEMENT_TABLES = [ROOT / 'partof_element_parts.txt', ROOT / 'isa_element_parts.txt']
 
-# Caras máximas por estructura (6000 si no figura) y por malla de contexto.
-BUDGET = {'piel': 60000, 'pulmones': 14000, 'higado': 9000, 'corazon': 12000, 'intestino-delgado': 14000, 'intestino-grueso': 9000,
-          'cerebro': 16000, 'columna-vertebral': 16000, 'craneo': 16000, 'costillas': 10000}
-DEFAULT_BUDGET = 6000
-CONTEXT_BUDGET = {'esqueletico': 30000, 'muscular': 70000, 'cardiovascular': 14000}
 
 
 def parse_args():
@@ -92,7 +87,9 @@ class Meshes:
         return self.cache[fj]
 
     def gather(self, names, exclude=()):
-        fjs = self.fjs_of(names) - set(exclude)
+        return self.gather_fjs(self.fjs_of(names) - set(exclude))
+
+    def gather_fjs(self, fjs):
         ms = [self.load(f) for f in sorted(fjs)]
         ms = [m for m in ms if m is not None and len(m.faces)]
         return trimesh.util.concatenate(ms) if ms else None
@@ -138,22 +135,57 @@ def make_xform(skin):
     return xform
 
 
+def assign_fjs(meshes, system_of):
+    """Archivos FJ de cada estructura de MAP, sin duplicados dentro de un sistema.
+
+    1. Si otra estructura del mismo sistema es un subconjunto estricto de esta, se le resta
+       (p. ej. corazon pierde lo de auricula-derecha).
+    2. Primero gana: un FJ que ya quedó asignado a una estructura anterior en MAP se quita de las
+       siguientes del mismo sistema (p. ej. paredes compartidas entre cavidades del corazón).
+    Las estructuras de WRAP no participan: usan un envoltorio, no sus mallas.
+    Devuelve ({id: fjs}, [avisos]).
+    """
+    own = {sid: meshes.fjs_of(names) for sid, names in MAP.items()}
+    assigned, owner, notes = {}, {}, []
+    for sid in MAP:
+        sys_id = system_of.get(sid)
+        if not sys_id:
+            continue
+        mine = set(own[sid])
+        for o in MAP:
+            if o != sid and system_of.get(o) == sys_id and own[o] and own[o] < own[sid]:
+                mine -= own[o]
+        if sid not in WRAP:
+            for fj in sorted(mine):
+                prev = owner.get((sys_id, fj))
+                if prev:
+                    notes.append(f'{fj} compartido: asignado a {prev}, quitado de {sid}')
+                    mine.discard(fj)
+                else:
+                    owner[(sys_id, fj)] = sid
+        assigned[sid] = mine
+    return assigned, notes
+
+
 def dry_run(meshes, system_of, only):
+    assigned, notes = assign_fjs(meshes, system_of)
     print(f'{"estructura":28} {"sistema":22} FJ   en disco')
-    for sid, names in MAP.items():
+    for sid in MAP:
         sys_id = system_of.get(sid, '¿?')
         if only and sys_id not in only:
             continue
-        fjs = meshes.fjs_of(names)
+        fjs = assigned.get(sid, set())
         print(f'{sid:28} {sys_id:22} {len(fjs):<4} {sum(1 for f in fjs if obj_path(f))}')
     for sys_id, names in CONTEXT.items():
         if not only or sys_id in only:
             meshes.fjs_of(names)
+    return notes
 
 
 def build(meshes, system_of, only, skip_wrap):
     skin = meshes.gather(['skin'])
     xform = make_xform(skin)
+    assigned, notes = assign_fjs(meshes, system_of)
     scenes, faces = {}, {}
 
     def add(sys_id, sid, m, budget):
@@ -170,19 +202,11 @@ def build(meshes, system_of, only, skip_wrap):
             continue
         if only and sys_id not in only:
             continue
-        # Si otra estructura del mismo sistema es un subconjunto de esta, se le resta.
-        mine = meshes.fjs_of(names)
-        excl = set()
-        for o, on in MAP.items():
-            if o != sid and system_of.get(o) == sys_id:
-                of = meshes.fjs_of(on)
-                if of and of < mine:
-                    excl |= of
         if sid in WRAP and not skip_wrap:
             parts = [meshes.gather(n) for n in WRAP[sid]]
             m = trimesh.util.concatenate([wrap(p) for p in parts if p is not None])
         else:
-            m = meshes.gather(names, excl)
+            m = meshes.gather_fjs(assigned[sid])
         if m is None:
             print('SIN MALLA:', sid)
             continue
@@ -191,10 +215,12 @@ def build(meshes, system_of, only, skip_wrap):
     for sys_id, names in CONTEXT.items():
         if only and sys_id not in only:
             continue
-        m = meshes.gather(names)
-        if m is not None:
+        # Lo que ya es una estructura seleccionable no se repite en el contexto.
+        taken = set().union(*(f for s, f in assigned.items() if system_of.get(s) == sys_id))
+        m = meshes.gather(names, taken)
+        if m is not None:  # contexto vacío o sin mallas: no se crea ctx__<sistema>
             add(sys_id, 'ctx__' + sys_id, m, CONTEXT_BUDGET[sys_id])
-    return scenes, faces
+    return scenes, faces, notes
 
 
 def export(scenes, faces, app_dir, only):
@@ -231,10 +257,15 @@ def main():
     meshes = Meshes(load_elements())
 
     if args.dry_run:
-        dry_run(meshes, system_of, only)
+        notes = dry_run(meshes, system_of, only)
     else:
-        scenes, faces = build(meshes, system_of, only, args.skip_wrap)
+        scenes, faces, notes = build(meshes, system_of, only, args.skip_wrap)
         export(scenes, faces, app_dir, only)
+
+    if notes:
+        print('\nMallas compartidas (primero gana, según el orden de MAP):')
+        for n in notes:
+            print('  ', n)
 
     if meshes.missing:
         print('\nMISSING (nombres de concepto sin malla en disco):')
