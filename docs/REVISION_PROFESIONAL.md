@@ -124,3 +124,11 @@ Clínica y cifras:
 
 Datos previos conservados pero dudosos:
 - `masetero` "hasta 70 kg" · `corazon` "7.500 litros/día" (otras fuentes ~7.200) · `aorta` "2,5 cm" · `ventriculo-izquierdo` pared "2–3 veces más gruesa"
+
+## Nervioso, digestivo, reproductor, sensoriales, respiratorio (Fase 5.1, 14 estructuras nuevas con malla)
+
+- Nervioso: el olfato no hace relevo talámico · irrigación de `talamo` (talamoperforantes/talamogeniculadas) e `hipocampo` (cerebral posterior, coroidea anterior) · epilepsia del lóbulo temporal "la más frecuente focal en adultos" · fibras pupilares superficiales del III par; parálisis diabética "respeta la pupila"
+- Digestivo: palatogloso inervado por el vago · gusto/sensibilidad de la lengua por tercios · terceros molares 17–25 años · saliva 0,5–1,5 L/día · `duodeno` ~25 cm, retroperitoneal salvo la 1.ª porción; músculo de Treitz · `apendice` 8–10 cm, retrocecal frecuente, "reserva de flora" como hipótesis; McBurney a 1/3 EIAS–ombligo; dolor inicial por T10 · `recto` 12–15 cm desde S3; válvulas de Houston · `dientes` modelo con 28 piezas · `glandulas-salivales` sin parótida en el modelo
+- Reproductor: `vesiculas-seminales` 60–70 % del semen, ~5 cm · priapismo >4 h · disfunción eréctil como marcador vascular · hematospermia benigna en jóvenes
+- Sensoriales: ojo azul por dispersión (poca melanina) · `cuerpo-vitreo` 4/5 del globo, 99 % agua; conducto hialoideo
+- Respiratorio: `bronquios-lobares` pulmón izquierdo 8–10 segmentos según clasificación; aspiración en supino → segmentos posteriores; el modelo muestra los árboles lobares completos con ramas segmentarias dentro del pulmón
