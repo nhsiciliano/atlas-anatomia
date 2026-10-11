@@ -4,15 +4,16 @@
 Interactive anatomy atlas and learning platform. UI fully bilingual es/en (LanguageToggle, persisted). No database — localStorage only. No accounts.
 
 ## Architecture
-- **Data layer**: Static TypeScript modules in `data/`. Structures live in `data/structures/<systemId>.ts` (one array per system, 12 systems) and are concatenated by `data/anatomy-data.ts` (`STRUCTURES`, `STRUCTURE_MAP`, …). Every text field is paired `_es`/`_en`; read it with `pick()`/`pickList()` from `lib/l10n.ts`, never with locale ternaries. Optional fields: `escala: 'micro'` (microscopic, no 3D possible), `clinica_es/en: ClinicalNote[]`, `inervacion_es/en`, `irrigacion_es/en`, `sexo`.
-- **Validation**: `npm run validate` (`scripts/validate-data.ts`) must pass with 0 errors before committing data changes; `npm run test:store` covers persistence/migration.
-- **State**: Zustand store (`lib/store.ts`) with `persist` on a single key `atlas-progress` (v1): bookmarks, recentlyViewed, completedTours, quizScores `{best,last,total,fecha}`, srs, locale, detailLevel. UI state is not persisted. Legacy keys (`atlas_bookmarks`, …) are migrated once. `skipHydration` + `useProgressHydrated()` gate: components that write to the store must not mount before hydration. `exportProgress`/`importProgress`/`resetProgress` available.
+- **Data layer**: Static TypeScript modules in `data/`. Structures live in `data/structures/<systemId>.ts` (one array per system, 12 systems; 162 structures, 110 with a mesh, 18 `micro`) and are concatenated by `data/anatomy-data.ts` (`STRUCTURES`, `STRUCTURE_MAP`, …). Every text field is paired `_es`/`_en`; read it with `pick()`/`pickList()` from `lib/l10n.ts`, never with locale ternaries. Optional fields: `escala: 'micro'` (microscopic, no 3D possible), `clinica_es/en: ClinicalNote[]`, `inervacion_es/en`, `irrigacion_es/en`, `sexo`.
+- **Learning content**: `data/tours.ts` (10 guided tours, `duracion_min`), `data/quizzes.ts` (108 questions, 9 per system; `tipo: 'identificacion'` needs a `structureId` with a mesh), `data/flashcards.ts` (60 manual cards). `lib/srs.ts` is the pure spaced-repetition engine (SM-2 lite: `schedule`, `buildDeck`, `dueCards`, `nextIntervals`, `srsStats`); do not change its algorithm without updating `scripts/test-srs.ts`.
+- **Validation**: `npm run validate` (`scripts/validate-data.ts`) must pass with 0 errors before committing data changes; `npm run test:store` covers persistence/migration; `npm run test:srs` covers the SRS engine.
+- **State**: Zustand store (`lib/store.ts`) with `persist` on a single key `atlas-progress` (v1): bookmarks, recentlyViewed, completedTours, quizScores `{best,last,total,fecha}`, srs (per-card SM-2 state), srsPrefs, locale, detailLevel. UI state is not persisted. Legacy keys (`atlas_bookmarks`, …) are migrated once. `skipHydration` + `useProgressHydrated()` gate: components that write to the store must not mount before hydration. `exportProgress`/`importProgress`/`resetProgress` are exposed in the progress panel (Mis estructuras). `quizHighlightId` (not persisted) hides a structure's name in the 3D label and detail panel during identification questions/cards; `setSelectedStructure(id, { recordRecent: false })` avoids leaking it into recents.
 - **i18n**: `useLocale()` reads `locale` from the store; `useT()` / `t(key, locale, vars)` with catalog in `lib/i18n.ts` (es/en keys must stay in parity). No hard-coded UI strings in components.
 - **Search**: Client-side accent-insensitive search (`lib/search.ts`)
 
 ## Visual Style (Design A "Museo nocturno", chosen by user)
 - Dark default + light mode ("Museo de día") via ThemeToggle in header (next-themes class); use `foreground/` alpha classes, never `white/`
-- Mobile: search on its own row under header, bottom nav (Explorar/Recorridos/Practicar/Guardadas/Índice) + draggable glass sheet, short dock labels (Frente/Dorso/Lado)
+- Mobile: search on its own row under header, bottom nav (Explorar/Recorridos/Practicar/Repasar/Guardadas/Índice) + draggable glass sheet, short dock labels (Frente/Dorso/Lado)
 - Warm radial stage glow (`.museum-stage`), bone-white text #E9E4DA, amber primary #E8B66B
 - Fonts: Fraunces light (display, italic amber accents), Instrument Sans (body)
 - Floating `.glass-panel` cards, pill controls, `.eyebrow` uppercase letter-spaced labels
@@ -31,10 +32,11 @@ Interactive anatomy atlas and learning platform. UI fully bilingual es/en (Langu
 - `SystemSidebar`: Toggle visibility, opacity slider, isolate per system
 - `DetailPanel`: Structure info with fundamental/advanced toggle, breadcrumbs, bookmarks, compare, "En la clínica" section, innervation/blood supply (advanced only)
 - `LanguageToggle` (header desktop, drawer mobile) and `ThemeToggle`
-- `TourEngine`: 4 guided tours with step-by-step navigation
-- `QuizEngine`: Filtered quizzes with score tracking
+- `TourEngine`: 10 guided tours with step-by-step navigation
+- `QuizEngine`: shuffled quizzes (10/20/all), score tracking, 3D identification mode
+- `FlashcardsEngine` (tab `cards`, "Repasar"): spaced-repetition sessions over `buildDeck(STRUCTURES, MANUAL_CARDS)`; `ProgressPanel`: stats + export/import/reset
 - `StructureTree`: Accessible tree navigation of all structures
-- `MobileDetailSheet`: Bottom sheet with tab bar for mobile
+- `MobileDetailSheet`: Bottom sheet with tab bar for mobile; it must not switch tab on selection while `panelTab` is tours/quiz/cards (would unmount the engine and lose progress)
 
 ## Layout
 - Desktop: 3-column (sidebar 220px | atlas viewer | right panel 320–360px)
