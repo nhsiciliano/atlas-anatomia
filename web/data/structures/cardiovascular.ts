@@ -18,7 +18,19 @@ export const CARDIOVASCULAR: AnatomicalStructure[] = [
     conexiones: ['nervioso', 'respiratorio'],
     dato_es: 'Late unas 100.000 veces al día, bombeando unos 7.500 litros de sangre.',
     dato_en: 'Beats about 100,000 times a day, pumping roughly 7,500 liters of blood.',
-    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2', 'medlineplus'],
+    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2', 'medlineplus', 'statpearls'],
+    clinica_es: [
+      { titulo: 'Infarto de miocardio', texto: 'Ocurre cuando una arteria coronaria se obstruye y una parte del músculo cardíaco deja de recibir sangre. Produce dolor u opresión en el pecho que puede irradiarse al brazo, la mandíbula o la espalda, con sudor frío, falta de aire o náuseas. En mujeres, personas mayores y diabéticos puede ser menos típico. Es una emergencia: hay que llamar de inmediato al número de emergencias y no manejar uno mismo.' },
+      { titulo: 'Insuficiencia cardíaca', texto: 'Es la incapacidad del corazón para bombear la sangre que el cuerpo necesita. Se manifiesta con falta de aire al esfuerzo o al acostarse, cansancio y tobillos hinchados, a veces con aumento rápido de peso por retención de líquidos. Sus causas más comunes son la hipertensión y el infarto previo. Tiene tratamiento y requiere seguimiento médico.' },
+    ],
+    clinica_en: [
+      { titulo: 'Myocardial infarction', texto: 'It occurs when a coronary artery is blocked and part of the heart muscle stops receiving blood. It causes chest pain or pressure that can radiate to the arm, jaw or back, with cold sweat, shortness of breath or nausea. In women, older people and people with diabetes it can be less typical. It is an emergency: call the emergency number immediately and do not drive yourself.' },
+      { titulo: 'Heart failure', texto: 'It is the inability of the heart to pump the blood the body needs. It shows as shortness of breath on exertion or when lying down, tiredness and swollen ankles, sometimes with rapid weight gain from fluid retention. Its most common causes are hypertension and a previous infarction. It is treatable and requires medical follow-up.' },
+    ],
+    inervacion_es: 'Plexo cardíaco: fibras simpáticas (T1–T4) que aceleran y refuerzan el latido, y fibras parasimpáticas del vago que lo enlentecen; el dolor cardíaco se refiere al pecho y al brazo izquierdo.',
+    inervacion_en: 'Cardiac plexus: sympathetic fibers (T1–T4) that speed up and strengthen the beat, and parasympathetic fibers from the vagus that slow it; cardiac pain is referred to the chest and left arm.',
+    irrigacion_es: 'Arterias coronarias derecha e izquierda; las venas drenan principalmente por el seno coronario hacia la aurícula derecha.',
+    irrigacion_en: 'Right and left coronary arteries; the veins drain mainly through the coronary sinus into the right atrium.',
   },
   {
     id: 'auricula-derecha', systemId: 'cardiovascular',
@@ -37,7 +49,17 @@ export const CARDIOVASCULAR: AnatomicalStructure[] = [
     conexiones: ['nervioso'],
     dato_es: 'Alberga el nodo SA, el marcapasos natural del corazón.',
     dato_en: 'Houses the SA node, the heart\'s natural pacemaker.',
-    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2'],
+    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2', 'statpearls'],
+    clinica_es: [
+      { titulo: 'Marcapasos', texto: 'Si el nodo sinoauricular o la conducción eléctrica fallan, el corazón puede latir demasiado lento y causar mareos, desmayos o cansancio. Un marcapasos artificial es un pequeño dispositivo que se coloca bajo la piel, con cables que llegan al corazón por una vena y que emiten un impulso cuando el latido es demasiado lento.' },
+      { titulo: 'Fibrilación auricular', texto: 'Es la arritmia más frecuente: las aurículas laten de forma desordenada y el pulso se vuelve irregular. Puede causar palpitaciones, cansancio o ningún síntoma. Aumenta el riesgo de coágulos que viajan al cerebro y causan un ACV, por lo que muchas personas toman anticoagulantes. Requiere control médico.' },
+    ],
+    clinica_en: [
+      { titulo: 'Pacemaker', texto: 'If the sinoatrial node or the electrical conduction fails, the heart can beat too slowly and cause dizziness, fainting or tiredness. An artificial pacemaker is a small device placed under the skin, with wires reaching the heart through a vein, which sends an impulse when the heartbeat is too slow.' },
+      { titulo: 'Atrial fibrillation', texto: 'It is the most common arrhythmia: the atria beat in a disorganized way and the pulse becomes irregular. It can cause palpitations, tiredness or no symptoms at all. It raises the risk of clots traveling to the brain and causing a stroke, so many people take anticoagulants. It requires medical follow-up.' },
+    ],
+    inervacion_es: 'El nodo sinoauricular recibe fibras simpáticas, que aceleran el ritmo, y parasimpáticas del vago, que lo enlentecen.',
+    inervacion_en: 'The sinoatrial node receives sympathetic fibers, which speed up the rate, and parasympathetic fibers from the vagus, which slow it down.',
   },
   {
     id: 'ventriculo-izquierdo', systemId: 'cardiovascular',
@@ -56,7 +78,15 @@ export const CARDIOVASCULAR: AnatomicalStructure[] = [
     conexiones: ['nervioso'],
     dato_es: 'Su pared es 2-3 veces más gruesa que la del ventrículo derecho.',
     dato_en: 'Its wall is 2-3 times thicker than the right ventricle\'s.',
-    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2'],
+    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2', 'statpearls'],
+    clinica_es: [
+      { titulo: 'Hipertrofia por hipertensión', texto: 'Cuando la presión arterial es alta durante años, el ventrículo izquierdo trabaja contra más resistencia y su pared se engrosa. Con el tiempo se vuelve rígido y puede fallar. Se detecta con un electrocardiograma o un ecocardiograma, y controlar la presión puede detener o revertir el engrosamiento.' },
+      { titulo: 'Estenosis aórtica', texto: 'Con la edad la válvula aórtica puede calcificarse y estrecharse, lo que obliga al ventrículo a esforzarse más. Se detecta como un soplo y puede producir falta de aire, dolor de pecho o desmayos al hacer esfuerzo. Existe tratamiento, con reemplazo de la válvula por cirugía o por catéter.' },
+    ],
+    clinica_en: [
+      { titulo: 'Hypertensive hypertrophy', texto: 'When blood pressure is high for years, the left ventricle works against more resistance and its wall thickens. Over time it becomes stiff and can fail. It is detected with an electrocardiogram or an echocardiogram, and controlling blood pressure can halt or reverse the thickening.' },
+      { titulo: 'Aortic stenosis', texto: 'With age the aortic valve can calcify and narrow, forcing the ventricle to work harder. It is detected as a murmur and can cause shortness of breath, chest pain or fainting on exertion. Treatment exists, with valve replacement by surgery or by catheter.' },
+    ],
   },
   {
     id: 'aorta', systemId: 'cardiovascular',
@@ -75,7 +105,15 @@ export const CARDIOVASCULAR: AnatomicalStructure[] = [
     conexiones: ['nervioso'],
     dato_es: 'Su diámetro es de unos 2,5 cm y sus paredes elásticas amortiguan cada latido.',
     dato_en: 'About 2.5 cm in diameter with elastic walls that dampen each heartbeat.',
-    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2'],
+    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2', 'medlineplus', 'statpearls'],
+    clinica_es: [
+      { titulo: 'Aneurisma de aorta', texto: 'Es una dilatación de la pared de la aorta, más frecuente en el abdomen. La mayoría no da síntomas. Sus factores de riesgo son el tabaquismo, la hipertensión, la edad y el sexo masculino. Si se rompe produce un dolor súbito e intenso en el abdomen o la espalda, con mareo o desmayo, y es una emergencia. En algunos países se hace una ecografía de tamizaje a varones mayores fumadores.' },
+      { titulo: 'Disección aórtica', texto: 'Es el desgarro de la capa interna de la aorta, por donde la sangre separa las capas de la pared. Produce un dolor súbito, intenso, descrito como «desgarrante», en el pecho o la espalda. La hipertensión es el factor más importante. Es una emergencia vital que requiere atención inmediata.' },
+    ],
+    clinica_en: [
+      { titulo: 'Aortic aneurysm', texto: 'It is a dilation of the aortic wall, more common in the abdomen. Most cause no symptoms. Risk factors are smoking, hypertension, age and male sex. If it ruptures it produces sudden, severe pain in the abdomen or back, with dizziness or fainting, and it is an emergency. In some countries a screening ultrasound is done for older male smokers.' },
+      { titulo: 'Aortic dissection', texto: 'It is a tear in the inner layer of the aorta, through which blood separates the layers of the wall. It produces sudden, severe pain, described as "tearing", in the chest or back. Hypertension is the most important factor. It is a life-threatening emergency that needs immediate care.' },
+    ],
   },
   {
     id: 'arterias-coronarias', systemId: 'cardiovascular',
@@ -94,7 +132,15 @@ export const CARDIOVASCULAR: AnatomicalStructure[] = [
     conexiones: ['nervioso'],
     dato_es: 'Su obstrucción causa el infarto de miocardio.',
     dato_en: 'Their obstruction causes myocardial infarction.',
-    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2', 'medlineplus'],
+    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2', 'medlineplus', 'statpearls'],
+    clinica_es: [
+      { titulo: 'Angina e infarto', texto: 'La angina es un dolor u opresión en el pecho que aparece con el esfuerzo o el estrés porque el músculo recibe menos sangre de la que necesita y cede con el reposo en pocos minutos. Si el dolor dura más, no cede con el reposo o se acompaña de sudor frío y falta de aire, puede ser un infarto y hay que llamar a emergencias.' },
+      { titulo: 'Stent y bypass', texto: 'Cuando una coronaria se estrecha por placas de colesterol, se puede abrir con un catéter y colocar un stent, que es una malla que mantiene el vaso abierto. En otros casos se hace un bypass, que desvía la sangre con un injerto. Dejar de fumar y controlar la presión, el colesterol y la glucosa previene su avance.' },
+    ],
+    clinica_en: [
+      { titulo: 'Angina and infarction', texto: 'Angina is chest pain or pressure that appears with exertion or stress because the muscle receives less blood than it needs, and it eases with rest within a few minutes. If the pain lasts longer, does not ease with rest or comes with cold sweat and shortness of breath, it may be an infarction and emergency services must be called.' },
+      { titulo: 'Stent and bypass', texto: 'When a coronary artery narrows because of cholesterol plaques, it can be opened with a catheter and a stent placed, which is a mesh that keeps the vessel open. In other cases a bypass is done, which diverts the blood with a graft. Quitting smoking and controlling blood pressure, cholesterol and glucose prevents progression.' },
+    ],
   },
   {
     id: 'arteria-carotida-comun', systemId: 'cardiovascular',
@@ -113,7 +159,17 @@ export const CARDIOVASCULAR: AnatomicalStructure[] = [
     conexiones: ['nervioso'],
     dato_es: 'Su pulso se palpa fácilmente en el cuello junto al esternocleidomastoideo.',
     dato_en: 'Its pulse is easily felt in the neck beside the sternocleidomastoid.',
-    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2'],
+    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2', 'medlineplus', 'statpearls'],
+    clinica_es: [
+      { titulo: 'Estenosis carotídea y ACV', texto: 'Con los años pueden formarse placas de colesterol en la bifurcación de la carótida. Un soplo al auscultar el cuello puede ser una pista. Fragmentos de la placa o un coágulo pueden viajar al cerebro y causar un ACV; síntomas como debilidad de un lado o dificultad para hablar, aunque pasen en minutos, son una urgencia (ataque isquémico transitorio).' },
+      { titulo: 'Pulso carotídeo y seno carotídeo', texto: 'El pulso carotídeo se busca en el cuello, a un lado de la tráquea, para comprobar la circulación en una emergencia, un lado a la vez. No debe presionarse con fuerza: el seno carotídeo puede enlentecer el corazón y provocar un desmayo, sobre todo en personas mayores.' },
+    ],
+    clinica_en: [
+      { titulo: 'Carotid stenosis and stroke', texto: 'With age, cholesterol plaques can form at the bifurcation of the carotid. A murmur heard over the neck can be a clue. Fragments of plaque or a clot can travel to the brain and cause a stroke; symptoms such as weakness on one side or difficulty speaking, even if they pass within minutes, are an emergency (transient ischemic attack).' },
+      { titulo: 'Carotid pulse and carotid sinus', texto: 'The carotid pulse is felt in the neck, beside the trachea, to check circulation in an emergency, one side at a time. It should not be pressed hard: the carotid sinus can slow the heart and cause fainting, especially in older people.' },
+    ],
+    inervacion_es: 'El seno carotídeo envía sus señales de presión por el nervio del seno carotídeo, rama del glosofaríngeo (IX).',
+    inervacion_en: 'The carotid sinus sends its pressure signals through the carotid sinus nerve, a branch of the glossopharyngeal (IX).',
   },
   {
     id: 'vena-cava-superior', systemId: 'cardiovascular',
@@ -132,7 +188,15 @@ export const CARDIOVASCULAR: AnatomicalStructure[] = [
     conexiones: ['nervioso'],
     dato_es: 'No tiene válvulas, a diferencia de muchas venas del cuerpo.',
     dato_en: 'It has no valves, unlike many veins in the body.',
-    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2'],
+    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2', 'statpearls'],
+    clinica_es: [
+      { titulo: 'Síndrome de vena cava superior', texto: 'Aparece cuando la vena se comprime o se obstruye, por ejemplo por un tumor de pulmón, ganglios del mediastino o un coágulo asociado a un catéter. Provoca hinchazón de la cara, el cuello y los brazos, venas del cuello dilatadas, tos y falta de aire que empeora al agacharse o acostarse. Requiere consulta urgente.' },
+      { titulo: 'Catéteres venosos centrales', texto: 'Para dar medicamentos, quimioterapia o nutrición durante mucho tiempo, se introduce un catéter por una vena del cuello o del pecho hasta la vena cava superior. Es un procedimiento habitual, pero el catéter puede infectarse u ocasionar coágulos; fiebre o hinchazón del brazo o el cuello merecen consulta.' },
+    ],
+    clinica_en: [
+      { titulo: 'Superior vena cava syndrome', texto: 'It appears when the vein is compressed or blocked, for example by a lung tumor, mediastinal nodes or a clot associated with a catheter. It causes swelling of the face, neck and arms, distended neck veins, cough and shortness of breath that worsen when bending over or lying down. It requires urgent consultation.' },
+      { titulo: 'Central venous catheters', texto: 'To give medications, chemotherapy or nutrition over a long time, a catheter is inserted through a vein in the neck or chest up to the superior vena cava. It is a routine procedure, but the catheter can become infected or cause clots; fever or swelling of the arm or neck deserve a medical visit.' },
+    ],
   },
   {
     id: 'vena-cava-inferior', systemId: 'cardiovascular',
@@ -151,7 +215,15 @@ export const CARDIOVASCULAR: AnatomicalStructure[] = [
     conexiones: ['nervioso', 'urinario'],
     dato_es: 'Es la vena más grande del cuerpo humano.',
     dato_en: 'It is the largest vein in the human body.',
-    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2'],
+    referencias: ['fipat-ta2', 'grays-42', 'openstax-ap2', 'medlineplus', 'statpearls'],
+    clinica_es: [
+      { titulo: 'Compresión en el embarazo', texto: 'En el último trimestre, si la embarazada se acuesta boca arriba, el útero puede comprimir la vena cava inferior y disminuir la sangre que vuelve al corazón. Puede causar mareo, náuseas y bajada de la presión. Acostarse de lado, preferentemente sobre el lado izquierdo, lo evita.' },
+      { titulo: 'Filtro de vena cava', texto: 'Cuando una persona tiene un coágulo en las venas de las piernas y no puede recibir anticoagulantes, se puede colocar por un catéter un filtro en la vena cava inferior. Atrapa los coágulos que viajan hacia el corazón y evita que lleguen a los pulmones y causen una embolia pulmonar.' },
+    ],
+    clinica_en: [
+      { titulo: 'Compression in pregnancy', texto: 'In the last trimester, if a pregnant woman lies on her back, the uterus can compress the inferior vena cava and reduce the blood returning to the heart. It can cause dizziness, nausea and a drop in blood pressure. Lying on her side, preferably the left, prevents it.' },
+      { titulo: 'Vena cava filter', texto: 'When a person has a clot in the leg veins and cannot receive anticoagulants, a filter can be placed through a catheter in the inferior vena cava. It traps clots traveling toward the heart and prevents them from reaching the lungs and causing a pulmonary embolism.' },
+    ],
   },
   {
     id: 'auricula-izquierda', systemId: 'cardiovascular',
