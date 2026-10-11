@@ -76,6 +76,7 @@ MAP = {
   'laringe': ['thyroid cartilage', 'cricoid cartilage'],
   'traquea': ['trachea'],
   'bronquios-principales': ['right main bronchus', 'left main bronchus'],
+  'bronquios-lobares': ['upper lobe part of right bronchial tree', 'middle lobe part of right bronchial tree', 'lower lobe part of right bronchial tree', 'upper lobe part of left bronchial tree', 'lower lobe part of left bronchial tree'],
   'pulmones': ['right lung', 'left lung'],
   'cavidad-oral': ['tongue', 'soft palate'],
   'lengua': ['tongue'],

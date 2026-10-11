@@ -98,9 +98,10 @@
    "laringe",
    "traquea",
    "bronquios-principales",
+   "bronquios-lobares",
    "pulmones"
   ],
-  "bytes": 767848
+  "bytes": 878648
  },
  "digestivo": {
   "file": "digestivo.glb",

@@ -9,7 +9,7 @@ export interface SystemModelInfo {
 
 export const MODELS_3D = manifest as Partial<Record<SystemId, SystemModelInfo>>;
 
-export const MODEL_VERSION = 10;
+export const MODEL_VERSION = 11;
 
 export function modelUrl(sys: SystemId): string | null {
   const m = MODELS_3D[sys];
