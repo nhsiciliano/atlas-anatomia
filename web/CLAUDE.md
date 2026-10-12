@@ -43,6 +43,12 @@ Interactive anatomy atlas and learning platform. UI fully bilingual es/en (Langu
 - Desktop: 3-column (sidebar 220px | atlas viewer | right panel 320–360px)
 - Mobile: Full-width atlas + bottom tab bar with expandable sheet + drawer sidebar
 
+## Deploy
+- GitHub: `nhsiciliano/atlas-anatomia` (public). CI (`.github/workflows/ci.yml`) runs typecheck, lint, validate, test:store, test:srs and build on every push/PR; `main` requires the `check` job to pass on PRs.
+- Vercel project `atlas-anatomia` (Root Directory = `web`, Node 24) is connected to the repo: every push to `main` deploys to production (https://atlas-anatomia-three.vercel.app). Do not deploy with `vercel --prod` from `web/` (the CLI would look for `web/web`); push to `main` instead.
+- `metadataBase`, robots and sitemap derive from `lib/site-url.ts` (`NEXT_PUBLIC_SITE_URL` → `VERCEL_PROJECT_PRODUCTION_URL` → localhost). Set `NEXT_PUBLIC_SITE_URL` in Vercel only when a custom domain is added.
+- Licenses: code MIT (`LICENSE`), content and GLBs CC BY-SA 4.0 (`LICENSE-CONTENT.md`, BodyParts3D attribution required).
+
 ## Important Rules
 - Coverage disclaimer visible: "Representación educativa simplificada"
 - No database — persistence via localStorage
