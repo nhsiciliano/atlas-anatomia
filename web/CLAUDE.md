@@ -17,7 +17,7 @@ Interactive anatomy atlas and learning platform. UI fully bilingual es/en (Langu
 - Warm radial stage glow (`.museum-stage`), bone-white text #E9E4DA, amber primary #E8B66B
 - Fonts: Fraunces light (display, italic amber accents), Instrument Sans (body)
 - Floating `.glass-panel` cards, pill controls, `.eyebrow` uppercase letter-spaced labels
-- Reference mockup: docs/design/design_concepts/a_museo.png (repo root)
+- Reference mockups live outside the repo (~/Desktop/atlas-design-mockups); the "Museo nocturno" look is defined by `app/globals.css` and `tailwind.config.ts`
 
 ## 3D Viewer
 - Real 3D body from BodyParts3D (DBCLS, CC BY-SA 2.1 JP) — attribution required on /atribuciones and in coverage note
