@@ -2,6 +2,8 @@
 
 [![CI](https://github.com/nhsiciliano/atlas-anatomia/actions/workflows/ci.yml/badge.svg)](https://github.com/nhsiciliano/atlas-anatomia/actions/workflows/ci.yml) · Código: [MIT](LICENSE) · Contenido y modelos 3D: [CC BY-SA 4.0](LICENSE-CONTENT.md)
 
+Demo: https://atlas-anatomia-three.vercel.app
+
 Atlas educativo 3D de anatomía humana, pensado para estudiantes de secundaria y de los primeros años de ciencias de la salud. Todo el contenido está en español e inglés, con modo fundamental/avanzado, recorridos guiados, un quiz de práctica y repaso con repetición espaciada. No requiere login ni base de datos.
 
 ## Qué incluye
@@ -74,14 +76,14 @@ El script escribe `public/models3d/<sistema>.glb` y `data/models3d-manifest.json
 
 ## Despliegue en Vercel
 
-La app es un proyecto Next.js que vive en la carpeta `web/`:
+La app es un proyecto Next.js que vive en la carpeta `web/`. El proyecto de Vercel **ya está conectado a este repositorio**: cada push a `main` despliega a producción, con *Root Directory* = `web` ya configurado. Para montarlo desde cero:
 
 1. Importar el repositorio en Vercel (o, desde `web/`, ejecutar `npx vercel link`).
 2. En la configuración del proyecto, poner **Root Directory = `web`**. Vercel detecta el framework Next.js.
 3. Usar **Node 22** en los ajustes del proyecto. No hay variables de entorno obligatorias.
 4. Opcional: definir `NEXT_PUBLIC_SITE_URL` con el dominio final, **sin barra al final** (por ejemplo `https://mi-dominio.com`), para las URL absolutas de las vistas previas (Open Graph) y el sitemap.
 
-Los modelos 3D se piden como `/models3d/<sistema>.glb?v=<MODEL_VERSION>` y pueden quedar en caché durante mucho tiempo en el navegador y en el CDN. Por eso, **cada vez que se regeneran los GLB hay que subir `MODEL_VERSION`** en `web/lib/models3d.ts`.
+Los modelos 3D se piden como `/models3d/<sistema>.glb?v=<MODEL_VERSION>` y se sirven con `Cache-Control: immutable`, por lo que quedan en caché durante mucho tiempo en el navegador y en el CDN. Por eso, **cada vez que se regeneran los GLB hay que subir `MODEL_VERSION`** en `web/lib/models3d.ts`.
 
 ## Cómo agregar una estructura
 
