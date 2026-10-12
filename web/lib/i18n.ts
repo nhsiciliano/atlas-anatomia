@@ -192,6 +192,7 @@ const messages: Record<Locale, Record<string, string>> = {
     'attrib.modifications': 'Modificaciones: las mallas originales se agruparon por estructura, se simplificaron (reducción de polígonos), se reorientaron y se convirtieron a formato glTF para su visualización en el navegador. Los modelos 3D derivados se distribuyen bajo la misma licencia CC BY-SA 2.1 JP.',
   
     'attrib.male_model': 'BodyParts3D es un modelo de cuerpo masculino; las estructuras femeninas se describen en sus fichas sin representación 3D.',
+    'attrib.licenses_label': 'Licencias del proyecto (MIT / CC BY-SA 4.0)',
   
     'attrib.sources_title': 'Fuentes del contenido',
   
@@ -496,6 +497,7 @@ const messages: Record<Locale, Record<string, string>> = {
     'attrib.modifications': 'Modifications: the original meshes were grouped by structure, simplified (polygon reduction), reoriented and converted to glTF for display in the browser. The derived 3D models are distributed under the same CC BY-SA 2.1 JP license.',
   
     'attrib.male_model': 'BodyParts3D is a model of a male body; female structures are described in their cards without a 3D representation.',
+    'attrib.licenses_label': 'Project licenses (MIT / CC BY-SA 4.0)',
   
     'attrib.sources_title': 'Content sources',
   

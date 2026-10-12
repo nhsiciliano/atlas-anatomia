@@ -43,15 +43,26 @@ export default function AtribucionesContent() {
               </p>
               <p className="text-xs text-muted-foreground">{tr('attrib.modifications')}</p>
               <p className="text-xs text-muted-foreground">{tr('attrib.male_model')}</p>
-              <a
-                href="https://lifesciencedb.jp/bp3d/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-1 text-xs text-primary hover:underline"
-              >
-                <ExternalLink size={10} />
-                https://lifesciencedb.jp/bp3d/
-              </a>
+              <div className="flex flex-col items-start gap-1">
+                <a
+                  href="https://lifesciencedb.jp/bp3d/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-xs text-primary hover:underline"
+                >
+                  <ExternalLink size={10} />
+                  https://lifesciencedb.jp/bp3d/
+                </a>
+                <a
+                  href="https://github.com/nhsiciliano/atlas-anatomia/blob/main/LICENSE-CONTENT.md"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-xs text-primary hover:underline"
+                >
+                  <ExternalLink size={10} />
+                  {tr('attrib.licenses_label')}
+                </a>
+              </div>
             </div>
           </div>
         </div>
