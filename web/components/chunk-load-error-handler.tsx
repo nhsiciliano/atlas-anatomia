@@ -1,9 +1,8 @@
 'use client'
 
-// IMPORTANT: Do not remove this component.
-// It handles a known Next.js dev server race condition where dynamic chunks
-// imported by next/dynamic haven't been compiled yet and cause webpack to throw
-// a ChunkLoadError
+// Reloads the page once when a dynamic chunk fails to load (ChunkLoadError). In development this
+// covers the dev-server race where a next/dynamic chunk is not compiled yet; in production it covers
+// a tab opened before a deploy that asks for chunk URLs that no longer exist. Keep it in both.
 
 import { useEffect } from 'react'
 

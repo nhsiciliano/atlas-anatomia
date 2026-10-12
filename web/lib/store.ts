@@ -14,7 +14,7 @@ export interface QuizScore {
   fecha: string;
 }
 
-/** Spaced-repetition state per card (filled in Fase 6). */
+/** Spaced-repetition state of one review card, as computed by schedule() in lib/srs.ts. */
 export interface SrsCardState {
   ease: number;
   interval: number;
