@@ -19,26 +19,22 @@ Cifras tomadas de `npm run validate` al momento de escribir este documento (el s
 
 ```
 .
-├── atlas_anatomia/
-│   └── nextjs_space/        # Aplicación web (Next.js + React + three.js)
+├── web/                     # Aplicación web (Next.js + React + three.js)
 ├── bp3d/                    # Pipeline Python que genera los GLB desde BodyParts3D
-├── docs/
-│   ├── REVISION_PROFESIONAL.md  # Contenido pendiente de revisión por un profesional
-│   └── design/                  # Mockups y capturas de diseño
-└── anatomy_research.json    # Borrador inicial de contenido anatómico
+└── docs/
+    └── REVISION_PROFESIONAL.md  # Contenido pendiente de revisión por un profesional
 ```
 
-- **`atlas_anatomia/nextjs_space/`**: la app. Datos estáticos en `data/` (estructuras por sistema en `data/structures/`), estado en `lib/store.ts` (Zustand), modelos 3D por sistema en `public/models3d/`. Convenciones y arquitectura en `CLAUDE.md`.
+- **`web/`**: la app. Datos estáticos en `data/` (estructuras por sistema en `data/structures/`), estado en `lib/store.ts` (Zustand), modelos 3D por sistema en `public/models3d/`. Convenciones y arquitectura en `CLAUDE.md`.
 - **`bp3d/`**: scripts (`build_glb.py`, `mapping.py`) y listados de partes de BodyParts3D que generan los GLB por sistema que consume la app. Ver [`bp3d/README.md`](bp3d/README.md).
-- **`docs/`**: revisión de contenido y mockups de diseño ("Museo nocturno").
-- **`anatomy_research.json`**: borrador de contenido con el que se armó el catálogo inicial de estructuras.
+- **`docs/`**: contenido pendiente de revisión profesional.
 
 ## Cómo correr la app
 
 Requiere Node 20 o superior (probado con Node 24) y npm.
 
 ```bash
-cd atlas_anatomia/nextjs_space
+cd web
 npm install
 npm run dev
 ```
@@ -70,11 +66,11 @@ cd bp3d
 ./.venv/bin/python build_glb.py --dry-run          # solo verificar nombres de concepto → mallas
 ```
 
-El script escribe `public/models3d/<sistema>.glb` y `data/models3d-manifest.json`. Después de regenerar hay que **subir `MODEL_VERSION`** en `atlas_anatomia/nextjs_space/lib/models3d.ts` para invalidar la caché del navegador, y correr `npm run validate`.
+El script escribe `public/models3d/<sistema>.glb` y `data/models3d-manifest.json`. Después de regenerar hay que **subir `MODEL_VERSION`** en `web/lib/models3d.ts` para invalidar la caché del navegador, y correr `npm run validate`.
 
 ## Cómo agregar una estructura
 
-1. Agregar la ficha al final de `atlas_anatomia/nextjs_space/data/structures/<sistema>.ts`, con todos los textos en español e inglés (`_es` / `_en`), el término de la Terminologia Anatomica, regiones, conexiones, referencias y, cuando corresponda, nota clínica, inervación e irrigación. Las convenciones están en `atlas_anatomia/nextjs_space/CLAUDE.md`.
+1. Agregar la ficha al final de `web/data/structures/<sistema>.ts`, con todos los textos en español e inglés (`_es` / `_en`), el término de la Terminologia Anatomica, regiones, conexiones, referencias y, cuando corresponda, nota clínica, inervación e irrigación. Las convenciones están en `web/CLAUDE.md`.
 2. Si es microscópica (sin representación 3D posible), agregar `escala: 'micro'`.
 3. Opcional, para que tenga modelo 3D: agregar el id y los nombres de concepto de BodyParts3D a `bp3d/mapping.py` (se buscan en `bp3d/allnames.txt`), regenerar con `./.venv/bin/python build_glb.py --only <sistema>` desde `bp3d/` y subir `MODEL_VERSION` en `lib/models3d.ts`.
 4. Correr `npm run validate` desde la carpeta de la app: debe terminar con 0 errores.

@@ -1,6 +1,6 @@
 # Pipeline 3D (BodyParts3D → GLB)
 
-Genera los modelos 3D que consume la app (`atlas_anatomia/nextjs_space`) a partir de las mallas OBJ de BodyParts3D.
+Genera los modelos 3D que consume la app (`web/`) a partir de las mallas OBJ de BodyParts3D.
 
 ## Qué hace
 
@@ -55,7 +55,7 @@ python3 -m venv .venv
 
 | Opción | Efecto |
 |---|---|
-| `--app-dir RUTA` | Carpeta de la app Next.js. Por defecto `../atlas_anatomia/nextjs_space`. |
+| `--app-dir RUTA` | Carpeta de la app Next.js. Por defecto `../web`. |
 | `--only SISTEMA` | Genera solo ese sistema (repetible). El manifest se actualiza solo para esos sistemas y conserva los demás. |
 | `--skip-wrap` | No aplica el envoltorio por vóxeles (`WRAP` en `mapping.py`): usa la malla original. No usarlo para los GLB definitivos. |
 | `--dry-run` | No exporta nada: lista cada estructura con su cantidad de archivos FJ y los nombres de concepto sin malla (`MISSING`). |
@@ -66,10 +66,10 @@ Al terminar imprime una tabla por sistema (estructuras, caras, bytes), la lista 
 
 ## Salida
 
-- `atlas_anatomia/nextjs_space/public/models3d/<sistema>.glb`
-- `atlas_anatomia/nextjs_space/data/models3d-manifest.json` (qué estructuras tiene cada GLB y su tamaño; se escribe directamente ahí)
+- `web/public/models3d/<sistema>.glb`
+- `web/data/models3d-manifest.json` (qué estructuras tiene cada GLB y su tamaño; se escribe directamente ahí)
 
-Después de regenerar, subir `MODEL_VERSION` en `atlas_anatomia/nextjs_space/lib/models3d.ts` para invalidar la caché del navegador.
+Después de regenerar, subir `MODEL_VERSION` en `web/lib/models3d.ts` para invalidar la caché del navegador.
 
 ## Agregar o corregir una estructura
 

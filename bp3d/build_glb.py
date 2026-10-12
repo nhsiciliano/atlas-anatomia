@@ -24,8 +24,8 @@ ELEMENT_TABLES = [ROOT / 'partof_element_parts.txt', ROOT / 'isa_element_parts.t
 
 def parse_args():
     ap = argparse.ArgumentParser(description='Genera public/models3d/<sistema>.glb y data/models3d-manifest.json.')
-    ap.add_argument('--app-dir', type=Path, default=ROOT.parent / 'atlas_anatomia' / 'nextjs_space',
-                    help='carpeta de la app Next.js (por defecto: ../atlas_anatomia/nextjs_space)')
+    ap.add_argument('--app-dir', type=Path, default=ROOT.parent / 'web',
+                    help='carpeta de la app Next.js (por defecto: ../web)')
     ap.add_argument('--only', action='append', metavar='SISTEMA',
                     help='generar solo este sistema (repetible); el manifest conserva los demás')
     ap.add_argument('--skip-wrap', action='store_true',
