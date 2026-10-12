@@ -1,5 +1,7 @@
 # Atlas Interactivo de Anatomía
 
+[![CI](https://github.com/nhsiciliano/atlas-anatomia/actions/workflows/ci.yml/badge.svg)](https://github.com/nhsiciliano/atlas-anatomia/actions/workflows/ci.yml) · Código: [MIT](LICENSE) · Contenido y modelos 3D: [CC BY-SA 4.0](LICENSE-CONTENT.md)
+
 Atlas educativo 3D de anatomía humana, pensado para estudiantes de secundaria y de los primeros años de ciencias de la salud. Todo el contenido está en español e inglés, con modo fundamental/avanzado, recorridos guiados, un quiz de práctica y repaso con repetición espaciada. No requiere login ni base de datos.
 
 ## Qué incluye
@@ -21,8 +23,10 @@ Cifras tomadas de `npm run validate` al momento de escribir este documento (el s
 .
 ├── web/                     # Aplicación web (Next.js + React + three.js)
 ├── bp3d/                    # Pipeline Python que genera los GLB desde BodyParts3D
-└── docs/
-    └── REVISION_PROFESIONAL.md  # Contenido pendiente de revisión por un profesional
+├── docs/
+│   └── REVISION_PROFESIONAL.md  # Contenido pendiente de revisión por un profesional
+├── LICENSE                  # MIT (código)
+└── LICENSE-CONTENT.md       # CC BY-SA 4.0 (contenido y modelos 3D)
 ```
 
 - **`web/`**: la app. Datos estáticos en `data/` (estructuras por sistema en `data/structures/`), estado en `lib/store.ts` (Zustand), modelos 3D por sistema en `public/models3d/`. Convenciones y arquitectura en `CLAUDE.md`.
@@ -31,7 +35,7 @@ Cifras tomadas de `npm run validate` al momento de escribir este documento (el s
 
 ## Cómo correr la app
 
-Requiere Node 20 o superior (probado con Node 24) y npm.
+Requiere Node 20.9 o superior (así lo declara `engines` en `web/package.json`; probado con Node 24) y npm.
 
 ```bash
 cd web
@@ -68,6 +72,17 @@ cd bp3d
 
 El script escribe `public/models3d/<sistema>.glb` y `data/models3d-manifest.json`. Después de regenerar hay que **subir `MODEL_VERSION`** en `web/lib/models3d.ts` para invalidar la caché del navegador, y correr `npm run validate`.
 
+## Despliegue en Vercel
+
+La app es un proyecto Next.js que vive en la carpeta `web/`:
+
+1. Importar el repositorio en Vercel (o, desde `web/`, ejecutar `npx vercel link`).
+2. En la configuración del proyecto, poner **Root Directory = `web`**. Vercel detecta el framework Next.js.
+3. Usar **Node 22** en los ajustes del proyecto. No hay variables de entorno obligatorias.
+4. Opcional: definir `NEXT_PUBLIC_SITE_URL` con el dominio final, **sin barra al final** (por ejemplo `https://mi-dominio.com`), para las URL absolutas de las vistas previas (Open Graph) y el sitemap.
+
+Los modelos 3D se piden como `/models3d/<sistema>.glb?v=<MODEL_VERSION>` y pueden quedar en caché durante mucho tiempo en el navegador y en el CDN. Por eso, **cada vez que se regeneran los GLB hay que subir `MODEL_VERSION`** en `web/lib/models3d.ts`.
+
 ## Cómo agregar una estructura
 
 1. Agregar la ficha al final de `web/data/structures/<sistema>.ts`, con todos los textos en español e inglés (`_es` / `_en`), el término de la Terminologia Anatomica, regiones, conexiones, referencias y, cuando corresponda, nota clínica, inervación e irrigación. Las convenciones están en `web/CLAUDE.md`.
@@ -75,14 +90,16 @@ El script escribe `public/models3d/<sistema>.glb` y `data/models3d-manifest.json
 3. Opcional, para que tenga modelo 3D: agregar el id y los nombres de concepto de BodyParts3D a `bp3d/mapping.py` (se buscan en `bp3d/allnames.txt`), regenerar con `./.venv/bin/python build_glb.py --only <sistema>` desde `bp3d/` y subir `MODEL_VERSION` en `lib/models3d.ts`.
 4. Correr `npm run validate` desde la carpeta de la app: debe terminar con 0 errores.
 
-## Revisión de contenido
+## Contenido en revisión
 
-El contenido anatómico y, sobre todo, el **clínico** (notas "En la clínica", cifras, inervación e irrigación, términos latinos) fue redactado durante el desarrollo y es **orientativo**. Está **pendiente de revisión por un docente de anatomía o un profesional de la salud** antes de una publicación abierta. La lista de lo que conviene confirmar, organizada por sistema, está en [`docs/REVISION_PROFESIONAL.md`](docs/REVISION_PROFESIONAL.md).
+El contenido anatómico y, sobre todo, el **clínico** (notas "En la clínica", cifras, inervación e irrigación, términos latinos) es **educativo y orientativo**, y **está en proceso de revisión por docentes de anatomía y profesionales de la salud**. Hasta que esa revisión termine, conviene contrastarlo con las fuentes de referencia antes de usarlo para estudiar un examen o enseñar. La lista de lo que se está confirmando, organizada por sistema, es pública: [`docs/REVISION_PROFESIONAL.md`](docs/REVISION_PROFESIONAL.md). Si encuentras un error, abre un *issue* en el repositorio.
 
-## Licencias y atribuciones
+## Licencias
 
-- **Modelos 3D**: [BodyParts3D](https://lifesciencedb.jp/bp3d/) © DBCLS (Database Center for Life Science), licencia **CC BY-SA 2.1 JP**. La atribución es obligatoria y se muestra en la página `/atribuciones` y en la nota de cobertura del visor. Los GLB derivados se distribuyen bajo la misma licencia.
-- **Contenido**: elaborado a partir de fuentes como FIPAT (Terminologia Anatomica, TA2), *Gray's Anatomy*, OpenStax, MedlinePlus, StatPearls y NCBI. El detalle está en la página `/atribuciones` de la app.
+- **Código** (la aplicación en `web/` y los scripts de `bp3d/`): licencia **MIT**, ver [`LICENSE`](LICENSE).
+- **Contenido educativo** (`web/data/**`) y **modelos 3D derivados** (`web/public/models3d/*.glb`): **Creative Commons Atribución-CompartirIgual 4.0 (CC BY-SA 4.0)**, ver [`LICENSE-CONTENT.md`](LICENSE-CONTENT.md).
+- **Atribución a BodyParts3D**: los modelos 3D son derivados de [BodyParts3D](https://lifesciencedb.jp/bp3d/), © The Database Center for Life Science (DBCLS), licenciado bajo CC BY-SA 2.1 Japón. Quien reutilice los GLB debe mantener esa atribución. También se muestra en la página `/atribuciones` de la app y en la nota de cobertura del visor.
+- **Fuentes**: el texto es redacción propia, apoyada en FIPAT (Terminologia Anatomica, TA2), *Gray's Anatomy*, OpenStax, MedlinePlus, StatPearls y NCBI Bookshelf, que se citan como referencias. El detalle está en `/atribuciones`.
 
 ## Aviso
 
