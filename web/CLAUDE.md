@@ -27,6 +27,7 @@ Interactive anatomy atlas and learning platform. UI fully bilingual es/en (Langu
 - The atlas is 3D-only (the 2D SVG plate and the sex toggle were removed in Fase 2). A structure without a mesh (`!hasModel3D(id)`) shows a notice: `stage.micro` if `escala === 'micro'`, otherwise `stage.no_model` and its system is isolated for context
 - BodyParts3D is a male body: female reproductive structures have a card but never a mesh
 - Skin (tegumentario) is a translucent glass shell, on by default
+- GLBs are served with `Cache-Control: public, max-age=31536000, immutable` (`next.config.js` headers); bump `MODEL_VERSION` in `lib/models3d.ts` whenever a GLB changes, otherwise browsers keep the old mesh
 
 ## Key Components
 - `SystemSidebar`: Toggle visibility, opacity slider, isolate per system
