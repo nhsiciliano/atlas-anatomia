@@ -49,7 +49,7 @@ async function main() {
   ok('claves legadas borradas', ['atlas_bookmarks', 'atlas_recent', 'atlas_tours', 'atlas_quiz'].every(k => mem.get(k) === undefined));
   const saved = JSON.parse(mem.get('atlas-progress') ?? 'null');
   ok('atlas-progress escrito con version 1 y solo el progreso', saved?.version === 1 && eq(Object.keys(saved.state).sort(),
-    ['bookmarks', 'completedTours', 'detailLevel', 'locale', 'quizScores', 'recentlyViewed', 'srs', 'srsPrefs']), Object.keys(saved?.state ?? {}));
+    ['bookmarks', 'completedTours', 'detailLevel', 'locale', 'quizScores', 'recentlyViewed', 'reproSex', 'srs', 'srsPrefs']), Object.keys(saved?.state ?? {}));
   ok('atlas-progress contiene la fusión', eq(saved.state.bookmarks, ['corazon', 'femur']) && !!saved.state.quizScores['muscular-all']);
 
   // 2) Sin claves legadas: segunda rehidratación no cambia nada.
@@ -104,6 +104,21 @@ async function main() {
   ok('setSrsPrefs mezcla y persiste', eq(JSON.parse(mem.get('atlas-progress')!).state.srsPrefs, { systems: ['esqueletico'], maxNew: 5, maxDue: 20 }));
   ok('import sin srsPrefs usa los valores por defecto', st().importProgress(JSON.stringify({ version: 1, data: {} })).ok && eq(st().srsPrefs, { systems: 'all', maxNew: 10, maxDue: 20 }));
   ok('import recupera el progreso exportado', st().importProgress(exported).ok);
+
+  // 4c) Variante del reproductor: persistida, exportable, tolerante en el import.
+  ok('reproSex por defecto masculino', st().reproSex === 'masculino');
+  st().setReproSex('femenino');
+  ok('setReproSex persiste', JSON.parse(mem.get('atlas-progress')!).state.reproSex === 'femenino');
+  const exportedSex = st().exportProgress();
+  ok('exportProgress incluye reproSex', JSON.parse(exportedSex).data.reproSex === 'femenino');
+  st().setReproSex('masculino');
+  ok('importProgress conserva reproSex', st().importProgress(exportedSex).ok && st().reproSex === 'femenino');
+  ok('reproSex inválido en import cae al default sin error',
+    st().importProgress(JSON.stringify({ version: 1, data: { reproSex: 'otro' } })).ok && st().reproSex === 'masculino');
+  st().setReproSex('femenino');
+  st().resetProgress();
+  ok('resetProgress vuelve a masculino', st().reproSex === 'masculino');
+  ok('import recupera el progreso exportado (otra vez)', st().importProgress(exported).ok);
 
   // 5) Modo identificación del cuestionario: estado efímero, nunca persistido.
   ok('quizHighlightId empieza en null', st().quizHighlightId === null);
