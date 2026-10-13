@@ -11,14 +11,13 @@ Atlas educativo 3D de anatomía humana, pensado para estudiantes de secundaria y
 Cifras tomadas de `npm run validate` al momento de escribir este documento (el script las recalcula):
 
 - **162 estructuras** en **12 sistemas**, todas con ficha bilingüe (es/en) y **correlación clínica** introductoria.
-- **110 con modelo 3D** y **18 microscópicas** (nefrona, alvéolos, queratinocito…), que se describen en su ficha y se indican como tales en el visor. Las 34 restantes son fichas sin modelo.
+- **113 con modelo 3D** (110 del cuerpo masculino de BodyParts3D + útero, ovarios y trompas uterinas del Human Reference Atlas) y **18 microscópicas** (nefrona, alvéolos, queratinocito…), que se describen en su ficha y se indican como tales en el visor. Las 31 restantes son fichas sin modelo.
 - **Fichas con información avanzada**: términos de la Terminologia Anatomica, inervación e irrigación (visibles en el modo avanzado), notas "En la clínica", referencias.
 - **10 recorridos guiados** (77 pasos), **108 preguntas de quiz** (9 por sistema; 75 de opción múltiple y 33 de identificación de la estructura resaltada en el modelo 3D) y **60 tarjetas de repaso** escritas a mano.
 - **Repasar**: pantalla de repaso con repetición espaciada (SM-2 simplificado, con cuatro notas: Otra vez, Difícil, Bien, Fácil). El mazo se genera a partir de las fichas (nombre↔función, ubicación, término anatómico, clínica, identificación en el 3D) más las tarjetas manuales: unas 935 en total según `npm run test:srs`.
 - **Interfaz bilingüe es/en** con selector de idioma, y modo oscuro/claro.
 - **Sin login**: el progreso (favoritos, recientes, recorridos completados, puntajes del quiz y estado de repaso) se guarda en `localStorage`. El panel **Mis estructuras** muestra el progreso y permite **exportarlo, importarlo y reiniciarlo**.
 - **Solo 3D**: modelo masculino (BodyParts3D) y órganos reproductores femeninos (útero, ovarios, trompas) del Human Reference Atlas, con selector masculino/femenino. Las demás estructuras femeninas (vagina, cuello uterino, glándula mamaria…) tienen ficha pero no malla 3D.
-<!-- TODO: actualizar las cifras de "con modelo 3D" cuando se entregue el nuevo manifest (reproductor femenino). -->
 
 ## Estructura del repositorio
 

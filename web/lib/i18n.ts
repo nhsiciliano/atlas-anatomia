@@ -189,7 +189,7 @@ const messages: Record<Locale, Record<string, string>> = {
   
     'attrib.license_name': 'Creative Commons Reconocimiento-CompartirIgual 2.1 Japón (CC BY-SA 2.1 JP)',
   
-    'attrib.modifications': 'Modificaciones: las mallas originales se agruparon por estructura, se simplificaron (reducción de polígonos), se reorientaron y se convirtieron a formato glTF para su visualización en el navegador. Los modelos 3D derivados se distribuyen bajo la misma licencia CC BY-SA 2.1 JP.',
+    'attrib.modifications': 'Modificaciones: las mallas originales se agruparon por estructura, se simplificaron (reducción de polígonos), se reorientaron y se convirtieron a formato glTF para su visualización en el navegador. Los modelos 3D derivados se distribuyen bajo CC BY-SA 4.0 (compatible con la CC BY-SA 2.1 JP de origen), manteniendo la atribución a DBCLS.',
   
     'attrib.male_model': 'BodyParts3D es un modelo de cuerpo masculino. El útero, los ovarios y las trompas uterinas provienen del Human Reference Atlas y se alinearon de forma aproximada dentro de esa pelvis; el resto de las estructuras femeninas se describen en sus fichas sin representación 3D.',
     'attrib.hra_title': 'Human Reference Atlas',
@@ -507,7 +507,7 @@ const messages: Record<Locale, Record<string, string>> = {
   
     'attrib.license_name': 'Creative Commons Attribution-ShareAlike 2.1 Japan (CC BY-SA 2.1 JP)',
   
-    'attrib.modifications': 'Modifications: the original meshes were grouped by structure, simplified (polygon reduction), reoriented and converted to glTF for display in the browser. The derived 3D models are distributed under the same CC BY-SA 2.1 JP license.',
+    'attrib.modifications': 'Modifications: the original meshes were grouped by structure, simplified (polygon reduction), reoriented and converted to glTF for display in the browser. The derived 3D models are distributed under CC BY-SA 4.0 (compatible with the original CC BY-SA 2.1 JP), keeping the attribution to DBCLS.',
   
     'attrib.male_model': 'BodyParts3D is a model of a male body. The uterus, ovaries and uterine tubes come from the Human Reference Atlas and were aligned approximately within that pelvis; the other female structures are described in their cards without a 3D representation.',
     'attrib.hra_title': 'Human Reference Atlas',
