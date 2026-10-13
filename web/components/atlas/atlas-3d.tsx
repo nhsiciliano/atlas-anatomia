@@ -29,6 +29,9 @@ const MATERIAL: Partial<Record<SystemId, { roughness: number; clearcoat: number;
   cardiovascular: { roughness: 0.32, clearcoat: 0.7 },
   respiratorio: { roughness: 0.55, clearcoat: 0.3, sheen: 0.6 },
   digestivo: { roughness: 0.38, clearcoat: 0.6 },
+  // The HRA meshes of the female variant are much smoother than BodyParts3D: less clearcoat and a
+  // soft sheen keep both variants looking like the same kind of tissue.
+  reproductor: { roughness: 0.5, clearcoat: 0.3, sheen: 0.3 },
 };
 
 type MeshEntry = { id: string; geometry: THREE.BufferGeometry; context: boolean };
@@ -309,7 +312,16 @@ export default function Atlas3D() {
     return () => { window.removeEventListener('keydown', h); document.body.style.cursor = ''; };
   }, [setSelected]);
 
+  const reproSex = useAtlasStore((s) => s.reproSex);
   const systems = SYSTEMS.filter((s) => visibleSystems[s.id] && !!modelUrl(s.id));
+  const reproVisible = visibleSystems.reproductor;
+
+  // Preload the other reproductive variant so switching sex in the sidebar is instant.
+  useEffect(() => {
+    if (!reproVisible) return;
+    const other = modelUrl('reproductor', reproSex === 'femenino' ? 'masculino' : 'femenino');
+    if (other) useGLTF.preload(other);
+  }, [reproVisible, reproSex]);
 
   return (
     <Canvas
@@ -321,11 +333,15 @@ export default function Atlas3D() {
       aria-label={tr('stage.canvas_label')}
     >
       <Lights />
-      {systems.map((s) => (
-        <Suspense key={s.id} fallback={null}>
-          <SystemModel sysId={s.id} url={modelUrl(s.id)!} />
-        </Suspense>
-      ))}
+      {systems.map((s) => {
+        // Systems with sex variants load the GLB of the chosen variant; key = url remounts on switch.
+        const url = modelUrl(s.id, reproSex)!;
+        return (
+          <Suspense key={url} fallback={null}>
+            <SystemModel sysId={s.id} url={url} />
+          </Suspense>
+        );
+      })}
       <ContactShadows position={[0, 0.001, 0]} opacity={0.55} scale={3} blur={2.6} far={1.2} resolution={512} color="#000000" />
       <SelectedLabel />
       <CameraRig />
