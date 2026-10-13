@@ -312,6 +312,16 @@ const messages: Record<Locale, Record<string, string>> = {
     'progress.err.bad_object': 'los puntajes o las tarjetas no tienen el formato esperado',
   
     'progress.err.bad_value': 'el idioma o el nivel de detalle no son válidos',
+  
+    'sidebar.sexo': 'Variante del sistema reproductor',
+  
+    'sidebar.femenino': 'Femenino',
+  
+    'sidebar.masculino': 'Masculino',
+  
+    'sidebar.femenino_short': 'Fem.',
+  
+    'sidebar.masculino_short': 'Masc.',
   },
   en: {
     'nav.atlas': 'Atlas',
@@ -620,6 +630,16 @@ const messages: Record<Locale, Record<string, string>> = {
     'progress.err.bad_object': 'the scores or cards do not have the expected format',
   
     'progress.err.bad_value': 'the language or detail level is not valid',
+  
+    'sidebar.sexo': 'Reproductive system variant',
+  
+    'sidebar.femenino': 'Female',
+  
+    'sidebar.masculino': 'Male',
+  
+    'sidebar.femenino_short': 'Female',
+  
+    'sidebar.masculino_short': 'Male',
   },
 };
 

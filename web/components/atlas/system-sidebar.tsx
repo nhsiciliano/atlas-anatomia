@@ -3,6 +3,7 @@ import { SYSTEMS, type SystemId } from '@/data/systems';
 import { useAtlasStore } from '@/lib/store';
 import { useLocale, useT } from '@/lib/i18n';
 import { pick } from '@/lib/l10n';
+import { sexOfMesh, type ReproSex } from '@/lib/models3d';
 import { Focus, SlidersHorizontal } from 'lucide-react';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
@@ -16,7 +17,17 @@ export default function SystemSidebar() {
   const setAllSystems = useAtlasStore(s => s.setAllSystems);
   const setSystemOpacity = useAtlasStore(s => s.setSystemOpacity);
   const isolateSystem = useAtlasStore(s => s.isolateSystem);
+  const reproSex = useAtlasStore(s => s.reproSex);
+  const setReproSex = useAtlasStore(s => s.setReproSex);
   const [expandedId, setExpandedId] = useState<SystemId | null>(null);
+
+  const chooseSex = (sex: ReproSex) => {
+    const { selectedStructureId, setSelectedStructure } = useAtlasStore.getState();
+    const meshSex = sexOfMesh(selectedStructureId);
+    // A structure that only exists in the other model would stay selected but invisible.
+    if (meshSex && meshSex !== sex) setSelectedStructure(null);
+    setReproSex(sex);
+  };
   const visibleCount = Object.values(visibleSystems).filter(Boolean).length;
 
   return (
@@ -81,6 +92,28 @@ export default function SystemSidebar() {
                 <SlidersHorizontal size={12} />
               </button>
             </div>
+
+            {id === 'reproductor' && (
+              <div className="pb-2 pl-[2.1rem] pr-3">
+                <div className="inline-flex rounded-full bg-foreground/[0.05] p-0.5" role="group" aria-label={tr('sidebar.sexo')}>
+                  {([['femenino', '♀'], ['masculino', '♂']] as const).map(([sex, symbol]) => (
+                    <button
+                      key={sex}
+                      onClick={() => chooseSex(sex)}
+                      aria-pressed={reproSex === sex}
+                      aria-label={tr(`sidebar.${sex}`)}
+                      className={`rounded-full px-2.5 py-1 text-[11px] font-medium transition-colors ${
+                        reproSex === sex ? 'bg-foreground/90 text-background' : 'text-muted-foreground hover:text-foreground'
+                      }`}
+                    >
+                      <span aria-hidden>{symbol} </span>
+                      <span className="md:hidden">{tr(`sidebar.${sex}_short`)}</span>
+                      <span className="hidden md:inline">{tr(`sidebar.${sex}`)}</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
 
             <AnimatePresence>
               {isExpanded && (
