@@ -37,7 +37,7 @@ Cifras tomadas de `npm run validate` al momento de escribir este documento (el s
 
 ## Cómo correr la app
 
-Requiere Node 20.9 o superior (así lo declara `engines` en `web/package.json`; probado con Node 24) y npm.
+Requiere Node 24 (ver `web/.nvmrc`; `engines` en `web/package.json` exige `>=24`) y npm.
 
 ```bash
 cd web
@@ -80,7 +80,7 @@ La app es un proyecto Next.js que vive en la carpeta `web/`. El proyecto de Verc
 
 1. Importar el repositorio en Vercel (o, desde `web/`, ejecutar `npx vercel link`).
 2. En la configuración del proyecto, poner **Root Directory = `web`**. Vercel detecta el framework Next.js.
-3. Usar **Node 22** en los ajustes del proyecto. No hay variables de entorno obligatorias.
+3. Usar **Node 24** en los ajustes del proyecto (`web/.nvmrc`). No hay variables de entorno obligatorias.
 4. Opcional: definir `NEXT_PUBLIC_SITE_URL` con el dominio final, **sin barra al final** (por ejemplo `https://mi-dominio.com`), para las URL absolutas de las vistas previas (Open Graph) y el sitemap.
 
 Los modelos 3D se piden como `/models3d/<sistema>.glb?v=<MODEL_VERSION>` y se sirven con `Cache-Control: immutable`, por lo que quedan en caché durante mucho tiempo en el navegador y en el CDN. Por eso, **cada vez que se regeneran los GLB hay que subir `MODEL_VERSION`** en `web/lib/models3d.ts`.
