@@ -136,3 +136,28 @@ CONTEXT = {
   'muscular': ['brachioradialis', 'adductor longus', 'gracilis', 'rhomboid major', 'infraspinatus', 'teres major', 'pectoralis minor', 'brachialis', 'flexor carpi radialis', 'extensor digitorum', 'extensor carpi radialis longus', 'flexor digitorum superficialis', 'tibialis posterior', 'extensor digitorum longus', 'supraspinatus'],
   'cardiovascular': ['brachiocephalic artery', 'femoral vein', 'brachiocephalic vein', 'popliteal artery', 'anterior tibial artery', 'posterior tibial artery', 'radial artery', 'ulnar artery', 'axillary artery', 'subclavian vein', 'axillary vein', 'popliteal vein', 'internal carotid artery', 'common iliac vein', 'external iliac vein'],
 }
+
+# EXTRA: mallas externas (no BodyParts3D) por sistema y variante, rutas relativas a --extra-dir.
+# El GLB "base" de un sistema (el de MAP) es la variante BASE_VARIANT; cada variante de EXTRA se
+# exporta como <sistema>_<variante>.glb. Las piezas de una lista (p. ej. L y R) se unen en un solo nodo.
+BASE_VARIANT = 'masculino'
+EXTRA = {
+  'reproductor': {
+    'femenino': {
+      'utero': ['hra/VH_F_Uterus.glb'],
+      'ovario': ['hra/VH_F_Ovary_L.glb', 'hra/VH_F_Ovary_R.glb'],
+      'trompa-uterina': ['hra/VH_F_Fallopian_Tube_L.glb', 'hra/VH_F_Fallopian_Tube_R.glb'],
+    },
+  },
+}
+
+# Alineación de cada fuente externa (primera carpeta de la ruta) al espacio BodyParts3D
+# (mm, Z arriba, frente = -Y): una malla de referencia de la fuente se escala y se traslada sobre
+# los conceptos BP3D equivalentes (`target`). `scale: None` = ancho en X de target / ancho de ref.
+# `offset_mm`: ajuste fino manual, en mm BP3D, después de la alineación por cajas.
+# hra: +20 mm en Z. Con la alineación por cajas el útero quedaba metido ~17 % en la vejiga
+# (masculina) de BP3D; moverlo hacia atrás solo cambiaba esa superposición por la del recto. Subido
+# 20 mm apoya sobre la cúpula vesical (posición anatómica) con <1 % de superposición con vejiga y recto.
+EXTRA_ALIGN = {
+  'hra': {'ref': 'hra/VH_F_Pelvis.glb', 'target': ['hip bone', 'sacrum'], 'offset_mm': (0.0, 0.0, 20.0), 'scale': None},
+}
