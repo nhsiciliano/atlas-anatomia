@@ -30,6 +30,29 @@ Las listas de texto que ya están en esta carpeta (sí se versionan) vienen del 
 | `partof_inclusion_relation_list.txt` | relación padre/hijo entre conceptos |
 | `allnames.txt` | índice `FMA id` ↔ nombre, para buscar conceptos |
 
+## Mallas externas (HRA)
+
+BodyParts3D describe un cuerpo masculino y **no tiene conceptos femeninos** (útero, ovarios, trompas). Para el reproductor femenino se usan mallas del **Human Reference Atlas (HRA)** de HuBMAP/NIH, *3D Reference Object Library* v1.2 (junio 2022), derivadas del Visible Human Female:
+
+| Archivo | Para qué |
+|---|---|
+| `VH_F_Uterus.glb` | útero |
+| `VH_F_Ovary_L.glb`, `VH_F_Ovary_R.glb` | ovarios (izquierdo y derecho) |
+| `VH_F_Fallopian_Tube_L.glb`, `VH_F_Fallopian_Tube_R.glb` | trompas uterinas |
+| `VH_F_Pelvis.glb` | pelvis de referencia, **solo para alinear** (no se exporta) |
+
+- **Licencia**: Creative Commons Atribución 4.0 (CC BY 4.0), según <https://hubmapconsortium.github.io/ccf/pages/ccf-3d-reference-library.html>. Los GLB derivados deben mantener la atribución al HRA.
+- **Fuente**: <https://github.com/hubmapconsortium/ccf-releases/tree/main/v1.2/models>.
+- **Descarga**: los archivos **no se versionan** (`bp3d/extra/` está en `.gitignore`). Se bajan con un script que solo usa la biblioteca estándar de Python:
+
+  ```bash
+  python3 bp3d/fetch_hra.py            # a bp3d/extra/hra/
+  python3 bp3d/fetch_hra.py --out RUTA # a otra carpeta
+  ```
+
+  El script verifica el tamaño de cada archivo (±1 %) y que empiece con los bytes `glTF`, no vuelve a descargar lo que ya está bien, imprime una tabla y escribe `bp3d/extra/hra/SOURCE.md` con la fuente, la licencia, el tamaño y el sha256 de cada archivo.
+- **Alineación**: las mallas del HRA están en otro sistema de coordenadas y escala que BodyParts3D. La alineación (orientación, escala y posición a partir de la pelvis) la hace `build_glb.py`, no este script. Como son cuerpos distintos, el resultado es proporcionalmente aproximado, no exacto.
+
 ## Instalación
 
 Requiere Python 3.9+ (probado con 3.9 en arm64, todo con ruedas precompiladas).
