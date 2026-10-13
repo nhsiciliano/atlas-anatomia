@@ -67,6 +67,36 @@ export default function AtribucionesContent() {
           </div>
         </div>
 
+        <div className="bg-card rounded-lg border border-border p-4 mb-8 space-y-2">
+          <div className="flex items-start gap-2">
+            <Box size={16} className="text-primary flex-shrink-0 mt-0.5" />
+            <div className="space-y-1">
+              <h3 className="text-sm font-semibold">{tr('attrib.hra_title')}</h3>
+              <p className="text-xs text-muted-foreground">{tr('attrib.hra_text')}</p>
+              <div className="flex flex-col items-start gap-1">
+                <a
+                  href="https://humanatlas.io"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-xs text-primary hover:underline"
+                >
+                  <ExternalLink size={10} />
+                  {tr('attrib.hra_link')}
+                </a>
+                <a
+                  href={`https://creativecommons.org/licenses/by/4.0/deed.${locale}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-1 text-xs text-primary hover:underline"
+                >
+                  <ExternalLink size={10} />
+                  CC BY 4.0
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <h2 className="font-display text-lg font-light mb-3">{tr('attrib.sources_title')}</h2>
         <div className="space-y-4">
           {(REFERENCES ?? []).map((ref: any) => (

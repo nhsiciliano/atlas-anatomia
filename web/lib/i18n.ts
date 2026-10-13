@@ -57,7 +57,7 @@ const messages: Record<Locale, Record<string, string>> = {
     'compare.select': 'Seleccionar para comparar',
     'compare.clear': 'Limpiar comparación',
     'coverage.title': 'Cobertura',
-    'coverage.note': 'Esta aplicación contiene {count} estructuras simplificadas distribuidas en {systems} sistemas corporales. El modelo 3D es una representación educativa simplificada de un cuerpo masculino, no una imagen anatómica médicamente precisa. Las estructuras sin malla 3D se describen en su ficha. Nada de esto sustituye el criterio profesional de salud.',
+    'coverage.note': 'Esta aplicación contiene {count} estructuras simplificadas distribuidas en {systems} sistemas corporales. El modelo 3D es una representación educativa simplificada de un cuerpo masculino (BodyParts3D), no una imagen anatómica médicamente precisa; los órganos reproductores femeninos provienen del Human Reference Atlas (HuBMAP/NIH). Las estructuras sin malla 3D se describen en su ficha. Nada de esto sustituye el criterio profesional de salud.',
     'tree.title': 'Árbol de estructuras',
     'stage.micro': '{name}: estructura microscópica, se describe en la ficha',
     'stage.no_model': '{name}: sin modelo 3D disponible. Se muestra el sistema {system}',
@@ -191,7 +191,10 @@ const messages: Record<Locale, Record<string, string>> = {
   
     'attrib.modifications': 'Modificaciones: las mallas originales se agruparon por estructura, se simplificaron (reducción de polígonos), se reorientaron y se convirtieron a formato glTF para su visualización en el navegador. Los modelos 3D derivados se distribuyen bajo la misma licencia CC BY-SA 2.1 JP.',
   
-    'attrib.male_model': 'BodyParts3D es un modelo de cuerpo masculino; las estructuras femeninas se describen en sus fichas sin representación 3D.',
+    'attrib.male_model': 'BodyParts3D es un modelo de cuerpo masculino. El útero, los ovarios y las trompas uterinas provienen del Human Reference Atlas y se alinearon de forma aproximada dentro de esa pelvis; el resto de las estructuras femeninas se describen en sus fichas sin representación 3D.',
+    'attrib.hra_title': 'Human Reference Atlas',
+    'attrib.hra_text': 'Mallas del útero, los ovarios y las trompas uterinas: Human Reference Atlas, 3D Reference Object Library v1.2 © HuBMAP Consortium, licencia CC BY 4.0. Modificaciones: alineación y escalado dentro del cuerpo de BodyParts3D, unión izquierda-derecha, simplificación de mallas y conversión a GLB.',
+    'attrib.hra_link': 'Ver el Human Reference Atlas',
     'attrib.licenses_label': 'Licencias del proyecto (MIT / CC BY-SA 4.0)',
   
     'attrib.sources_title': 'Fuentes del contenido',
@@ -362,7 +365,7 @@ const messages: Record<Locale, Record<string, string>> = {
     'compare.select': 'Select to compare',
     'compare.clear': 'Clear comparison',
     'coverage.title': 'Coverage',
-    'coverage.note': 'This application contains {count} simplified structures across {systems} body systems. The 3D model is a simplified educational representation of a male body, not medically accurate anatomy. Structures without a 3D mesh are described in their detail card. None of this replaces professional health judgment.',
+    'coverage.note': 'This application contains {count} simplified structures across {systems} body systems. The 3D model is a simplified educational representation of a male body (BodyParts3D), not medically accurate anatomy; the female reproductive organs come from the Human Reference Atlas (HuBMAP/NIH). Structures without a 3D mesh are described in their detail card. None of this replaces professional health judgment.',
     'tree.title': 'Structure Tree',
     'stage.micro': '{name}: microscopic structure, described in the card',
     'stage.no_model': '{name}: no 3D model available. Showing the {system} system',
@@ -496,7 +499,10 @@ const messages: Record<Locale, Record<string, string>> = {
   
     'attrib.modifications': 'Modifications: the original meshes were grouped by structure, simplified (polygon reduction), reoriented and converted to glTF for display in the browser. The derived 3D models are distributed under the same CC BY-SA 2.1 JP license.',
   
-    'attrib.male_model': 'BodyParts3D is a model of a male body; female structures are described in their cards without a 3D representation.',
+    'attrib.male_model': 'BodyParts3D is a model of a male body. The uterus, ovaries and uterine tubes come from the Human Reference Atlas and were aligned approximately within that pelvis; the other female structures are described in their cards without a 3D representation.',
+    'attrib.hra_title': 'Human Reference Atlas',
+    'attrib.hra_text': 'Meshes of the uterus, ovaries and uterine tubes: Human Reference Atlas, 3D Reference Object Library v1.2 © HuBMAP Consortium, CC BY 4.0 license. Modifications: alignment and scaling within the BodyParts3D body, left-right merging, mesh simplification and conversion to GLB.',
+    'attrib.hra_link': 'View the Human Reference Atlas',
     'attrib.licenses_label': 'Project licenses (MIT / CC BY-SA 4.0)',
   
     'attrib.sources_title': 'Content sources',

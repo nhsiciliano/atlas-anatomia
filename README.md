@@ -17,7 +17,8 @@ Cifras tomadas de `npm run validate` al momento de escribir este documento (el s
 - **Repasar**: pantalla de repaso con repetición espaciada (SM-2 simplificado, con cuatro notas: Otra vez, Difícil, Bien, Fácil). El mazo se genera a partir de las fichas (nombre↔función, ubicación, término anatómico, clínica, identificación en el 3D) más las tarjetas manuales: unas 935 en total según `npm run test:srs`.
 - **Interfaz bilingüe es/en** con selector de idioma, y modo oscuro/claro.
 - **Sin login**: el progreso (favoritos, recientes, recorridos completados, puntajes del quiz y estado de repaso) se guarda en `localStorage`. El panel **Mis estructuras** muestra el progreso y permite **exportarlo, importarlo y reiniciarlo**.
-- **Solo 3D**, con el modelo BodyParts3D. Es un cuerpo **masculino**: las estructuras femeninas tienen ficha pero no malla 3D.
+- **Solo 3D**: modelo masculino (BodyParts3D) y órganos reproductores femeninos (útero, ovarios, trompas) del Human Reference Atlas, con selector masculino/femenino. Las demás estructuras femeninas (vagina, cuello uterino, glándula mamaria…) tienen ficha pero no malla 3D.
+<!-- TODO: actualizar las cifras de "con modelo 3D" cuando se entregue el nuevo manifest (reproductor femenino). -->
 
 ## Estructura del repositorio
 
@@ -100,6 +101,7 @@ El contenido anatómico y, sobre todo, el **clínico** (notas "En la clínica", 
 
 - **Código** (la aplicación en `web/` y los scripts de `bp3d/`): licencia **MIT**, ver [`LICENSE`](LICENSE).
 - **Contenido educativo** (`web/data/**`) y **modelos 3D derivados** (`web/public/models3d/*.glb`): **Creative Commons Atribución-CompartirIgual 4.0 (CC BY-SA 4.0)**, ver [`LICENSE-CONTENT.md`](LICENSE-CONTENT.md).
+- **Atribución al Human Reference Atlas**: las mallas del útero, los ovarios y las trompas son derivadas del [Human Reference Atlas](https://humanatlas.io) (3D Reference Object Library v1.2, © HuBMAP Consortium), licencia **CC BY 4.0**. Se alinearon de forma aproximada dentro del cuerpo de BodyParts3D; la atribución se mantiene en `/atribuciones` y en `LICENSE-CONTENT.md`.
 - **Atribución a BodyParts3D**: los modelos 3D son derivados de [BodyParts3D](https://lifesciencedb.jp/bp3d/), © The Database Center for Life Science (DBCLS), licenciado bajo CC BY-SA 2.1 Japón. Quien reutilice los GLB debe mantener esa atribución. También se muestra en la página `/atribuciones` de la app y en la nota de cobertura del visor.
 - **Fuentes**: el texto es redacción propia, apoyada en FIPAT (Terminologia Anatomica, TA2), *Gray's Anatomy*, OpenStax, MedlinePlus, StatPearls y NCBI Bookshelf, que se citan como referencias. El detalle está en `/atribuciones`.
 
