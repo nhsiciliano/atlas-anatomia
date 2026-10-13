@@ -2,11 +2,12 @@
 import { useState, useMemo, useCallback, useEffect } from 'react';
 import { motion, AnimatePresence, useReducedMotion } from 'framer-motion';
 import { GalleryVerticalEnd, RotateCcw, X } from 'lucide-react';
-import { STRUCTURES, STRUCTURE_MAP } from '@/data/anatomy-data';
+import { STRUCTURES } from '@/data/anatomy-data';
 import { MANUAL_CARDS } from '@/data/flashcards';
 import { SYSTEMS, type SystemId } from '@/data/systems';
 import { buildDeck, dueCards, nextIntervals, srsStats, type Card, type Grade } from '@/lib/srs';
 import { useAtlasStore } from '@/lib/store';
+import { focusStructureForIdentification } from '@/lib/focus';
 import { useLocale, useT } from '@/lib/i18n';
 import { pick } from '@/lib/l10n';
 
@@ -31,7 +32,6 @@ export default function FlashcardsEngine() {
   const gradeCard = useAtlasStore(s => s.gradeCard);
   const setSelected = useAtlasStore(s => s.setSelectedStructure);
   const setQuizHighlight = useAtlasStore(s => s.setQuizHighlight);
-  const isolateSystem = useAtlasStore(s => s.isolateSystem);
   const reduceMotion = useReducedMotion();
 
   // "Now" is taken when the screen opens and refreshed when a session ends, so render stays pure.
@@ -58,13 +58,9 @@ export default function FlashcardsEngine() {
   // Identification cards hide the name exactly like quiz identification questions.
   const presentCard = useCallback((card: Card | undefined) => {
     const sid = card?.kind === 'identificar' ? card.structureId : undefined;
-    setQuizHighlight(sid ?? null);
-    if (sid) {
-      const sys = STRUCTURE_MAP[sid]?.systemId;
-      if (sys) isolateSystem(sys);
-      setSelected(sid, { recordRecent: false });
-    }
-  }, [setQuizHighlight, isolateSystem, setSelected]);
+    if (sid) focusStructureForIdentification(sid);
+    else setQuizHighlight(null);
+  }, [setQuizHighlight]);
 
   const startSession = useCallback(() => {
     setQueue(pending);
