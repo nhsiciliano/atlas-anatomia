@@ -5,6 +5,7 @@ import { useAtlasStore } from '@/lib/store';
 import { STRUCTURE_MAP } from '@/data/anatomy-data';
 import { SYSTEM_MAP } from '@/data/systems';
 import { hasModel3D } from '@/lib/models3d';
+import { preferredSex } from '@/lib/focus';
 import { useLocale, useT } from '@/lib/i18n';
 import { pick } from '@/lib/l10n';
 import ViewerDock from '@/components/atlas/viewer-dock';
@@ -30,9 +31,12 @@ export default function AtlasStage() {
   useEffect(() => {
     if (!selectedId) return;
     // Read the store directly: re-running when visibility changes would undo a manual hide.
-    const { visibleSystems, toggleSystem, isolateSystem } = useAtlasStore.getState();
+    const { visibleSystems, toggleSystem, isolateSystem, reproSex, setReproSex } = useAtlasStore.getState();
     const st = STRUCTURE_MAP[selectedId];
     if (!st) return;
+    // Show the reproductive model that contains it (searching "útero" switches to the female one).
+    const sex = preferredSex(st.id);
+    if (sex && sex !== reproSex) setReproSex(sex);
     if (!hasModel3D(st.id) && st.escala !== 'micro') isolateSystem(st.systemId);
     else if (!visibleSystems[st.systemId]) toggleSystem(st.systemId);
   }, [selectedId]);
