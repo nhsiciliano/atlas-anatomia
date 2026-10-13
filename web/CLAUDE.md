@@ -22,10 +22,10 @@ Interactive anatomy atlas and learning platform. UI fully bilingual es/en (Langu
 ## 3D Viewer
 - Real 3D body from BodyParts3D (DBCLS, CC BY-SA 2.1 JP) — attribution required on /atribuciones and in coverage note
 - GLBs per system in `public/models3d/` (one node per structure id, ctx__<sys> = non-selectable context), manifest `data/models3d-manifest.json`, helpers `lib/models3d.ts` (bump MODEL_VERSION after regenerating)
-- Build script: bp3d/build_glb.py (+ mapping.py); lungs are voxel-wrapped surfaces
+- Build script: bp3d/build_glb.py (+ mapping.py); lungs are voxel-wrapped surfaces. External meshes (HRA) live in `bp3d/extra/hra/` (git-ignored; `bp3d/fetch_hra.py` downloads them, CC BY 4.0) and are aligned into the BodyParts3D pelvis by `build_glb.py`
 - Components: `AtlasStage` (3D only + floating notice), `Atlas3D` (r3f), `ViewerDock` (Frente/Dorso/Lado camera presets, 360°, layers, labels, home); store has `autoRotate`, `cameraNonce`, `panelTab`
-- The atlas is 3D-only (the 2D SVG plate and the sex toggle were removed in Fase 2). A structure without a mesh (`!hasModel3D(id)`) shows a notice: `stage.micro` if `escala === 'micro'`, otherwise `stage.no_model` and its system is isolated for context
-- BodyParts3D is a male body: female reproductive structures have a card but never a mesh
+- The atlas is 3D-only (the 2D SVG plate was removed in Fase 2). A structure without a mesh (`!hasModel3D(id)`) shows a notice: `stage.micro` if `escala === 'micro'`, otherwise `stage.no_model` and its system is isolated for context
+- BodyParts3D is a male body. The reproductive system has two GLB variants (`reproductor.glb` male from BodyParts3D, `reproductor_femenino.glb` uterus/ovaries/uterine tubes from the Human Reference Atlas); `reproSex` in the store (persisted) selects the variant via `modelUrl(sys, sex)`, the ♀/♂ control lives in the reproductor row of `SystemSidebar`, and selecting a structure of the other sex switches automatically. Vagina, cervix, mammary gland and ductus deferens have no mesh in any variant
 - Skin (tegumentario) is a translucent glass shell, on by default
 - GLBs are served with `Cache-Control: public, max-age=31536000, immutable` (`next.config.js` headers); bump `MODEL_VERSION` in `lib/models3d.ts` whenever a GLB changes, otherwise browsers keep the old mesh
 
@@ -44,8 +44,9 @@ Interactive anatomy atlas and learning platform. UI fully bilingual es/en (Langu
 - Mobile: Full-width atlas + bottom tab bar with expandable sheet + drawer sidebar
 
 ## Deploy
-- GitHub: `nhsiciliano/atlas-anatomia` (public). CI (`.github/workflows/ci.yml`) runs typecheck, lint, validate, test:store, test:srs and build on every push/PR; `main` requires the `check` job to pass on PRs.
-- Vercel project `atlas-anatomia` (Root Directory = `web`, Node 24) is connected to the repo: every push to `main` deploys to production (https://atlas-anatomia-three.vercel.app). Do not deploy with `vercel --prod` from `web/` (the CLI would look for `web/web`); push to `main` instead.
+- GitHub: `nhsiciliano/atlas-anatomia` (public). CI (`.github/workflows/ci.yml`, actions v7, Node from `web/.nvmrc` = 24) runs typecheck, lint, validate, test:store, test:srs and build on every push to `main`/`development` and on PRs; `main` requires the `check` job to pass on PRs.
+- Workflow: feature work happens in the `development` branch, checked out as a git worktree at `../atlas-anatomia-dev`; `main` only receives it through a PR `development → main`. The 3D pipeline runs from the main checkout (it holds `bp3d/.venv`, `bp3d/objs/`, `bp3d/extra/`) with `--app-dir ../atlas-anatomia-dev/web --objs-dir … --extra-dir …`.
+- Vercel project `atlas-anatomia` (Root Directory = `web`, Node 24) is connected to the repo: every push to `main` deploys to production (https://atlas-anatomia-three.vercel.app); every push to `development` creates a Preview deployment (protected: requires a Vercel login to view). Do not deploy with `vercel --prod` from `web/` (the CLI would look for `web/web`); push to `main` instead.
 - `metadataBase`, robots and sitemap derive from `lib/site-url.ts` (`NEXT_PUBLIC_SITE_URL` → `VERCEL_PROJECT_PRODUCTION_URL` → localhost). Set `NEXT_PUBLIC_SITE_URL` in Vercel only when a custom domain is added.
 - Licenses: code MIT (`LICENSE`), content and GLBs CC BY-SA 4.0 (`LICENSE-CONTENT.md`, BodyParts3D attribution required).
 

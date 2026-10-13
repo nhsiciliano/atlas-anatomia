@@ -5,6 +5,7 @@ import { persist, createJSONStorage } from 'zustand/middleware';
 import type { SystemId, ViewId } from '@/data/systems';
 import type { Locale } from '@/lib/i18n';
 import { schedule, type Grade } from '@/lib/srs';
+import type { ReproSex } from '@/lib/models3d';
 
 export interface QuizScore {
   best: number;
@@ -40,6 +41,8 @@ export interface Progress {
   quizScores: Record<string, QuizScore>;
   srs: Record<string, SrsCardState>;
   srsPrefs: SrsPrefs;
+  /** Which reproductive-system model (and GLB) the viewer shows. */
+  reproSex: ReproSex;
   locale: Locale;
   detailLevel: DetailLevel;
 }
@@ -117,6 +120,10 @@ export interface AtlasState {
   srsPrefs: SrsPrefs;
   setSrsPrefs: (prefs: Partial<SrsPrefs>) => void;
 
+  // Reproductive-system variant shown in the 3D viewer (persisted)
+  reproSex: ReproSex;
+  setReproSex: (sex: ReproSex) => void;
+
   // Progress backup
   exportProgress: () => string;
   importProgress: (json: string) => ImportResult;
@@ -162,13 +169,14 @@ const EMPTY_PROGRESS: Progress = {
   quizScores: {},
   srs: {},
   srsPrefs: { systems: 'all', maxNew: 10, maxDue: 20 },
+  reproSex: 'masculino',
   locale: 'es',
   detailLevel: 'fundamental',
 };
 
 function pickProgress(s: Progress): Progress {
-  const { bookmarks, recentlyViewed, completedTours, quizScores, srs, srsPrefs, locale, detailLevel } = s;
-  return { bookmarks, recentlyViewed, completedTours, quizScores, srs, srsPrefs, locale, detailLevel };
+  const { bookmarks, recentlyViewed, completedTours, quizScores, srs, srsPrefs, reproSex, locale, detailLevel } = s;
+  return { bookmarks, recentlyViewed, completedTours, quizScores, srs, srsPrefs, reproSex, locale, detailLevel };
 }
 
 const positiveInt = (v: unknown, fallback: number) =>
@@ -276,6 +284,8 @@ function parseProgress(json: string): { ok: true; progress: Progress } | { ok: f
       quizScores: toQuizScores(d.quizScores),
       srs: (d.srs as Record<string, SrsCardState> | undefined) ?? {},
       srsPrefs: toSrsPrefs(d.srsPrefs),
+      // Lenient like srsPrefs: older exports have no reproSex and bad values fall back to the default.
+      reproSex: d.reproSex === 'femenino' || d.reproSex === 'masculino' ? d.reproSex : EMPTY_PROGRESS.reproSex,
       locale: (d.locale as Locale | undefined) ?? 'es',
       detailLevel: (d.detailLevel as DetailLevel | undefined) ?? 'fundamental',
     },
@@ -362,6 +372,8 @@ export const useAtlasStore = create<AtlasState>()(persist<AtlasState, [], [], Pr
   })),
   srsPrefs: EMPTY_PROGRESS.srsPrefs,
   setSrsPrefs: (prefs) => set((s) => ({ srsPrefs: { ...s.srsPrefs, ...prefs } })),
+  reproSex: EMPTY_PROGRESS.reproSex,
+  setReproSex: (sex) => set({ reproSex: sex }),
 
   exportProgress: () => JSON.stringify(
     { version: PROGRESS_VERSION, exportedAt: new Date().toISOString(), data: pickProgress(get()) },

@@ -165,9 +165,34 @@
    "epididimo",
    "prostata",
    "pene",
-   "vesiculas-seminales"
+   "vesiculas-seminales",
+   "utero",
+   "ovario",
+   "trompa-uterina"
   ],
-  "bytes": 95664
+  "bytes": 95664,
+  "variantes": {
+   "masculino": {
+    "file": "reproductor.glb",
+    "structures": [
+     "testiculo",
+     "epididimo",
+     "prostata",
+     "pene",
+     "vesiculas-seminales"
+    ],
+    "bytes": 95664
+   },
+   "femenino": {
+    "file": "reproductor_femenino.glb",
+    "structures": [
+     "utero",
+     "ovario",
+     "trompa-uterina"
+    ],
+    "bytes": 231840
+   }
+  }
  },
  "organos_sensoriales": {
   "file": "organos_sensoriales.glb",

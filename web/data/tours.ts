@@ -518,10 +518,10 @@ export const GUIDED_TOURS: GuidedTour[] = [
         explicacion_en: 'Not every gland depends on the pituitary. The pancreatic islets measure blood glucose and release insulin to lower it or glucagon to raise it.',
       },
       {
-        structureId: 'testiculo', systemId: 'reproductor',
+        structureId: 'ovario', systemId: 'reproductor',
         titulo_es: 'Las gónadas', titulo_en: 'The gonads',
-        explicacion_es: 'La hipófisis libera LH y FSH, que estimulan las gónadas: en el hombre, los testículos producen testosterona y espermatozoides; en la mujer, los ovarios producen estrógenos, progesterona y óvulos. El modelo 3D es masculino, por eso el recorrido termina en el testículo.',
-        explicacion_en: 'The pituitary releases LH and FSH, which stimulate the gonads: in men, the testes produce testosterone and sperm; in women, the ovaries produce estrogens, progesterone and eggs. The 3D model is male, which is why the tour ends at the testis.',
+        explicacion_es: 'La hipófisis libera LH y FSH, que estimulan las gónadas. En la mujer, los ovarios responden produciendo estrógenos, progesterona y óvulos a lo largo del ciclo; en el hombre, los testículos cumplen el papel análogo y producen testosterona y espermatozoides.',
+        explicacion_en: 'The pituitary releases LH and FSH, which stimulate the gonads. In women, the ovaries respond by producing estrogens, progesterone and eggs over the cycle; in men, the testes play the analogous role and produce testosterone and sperm.',
       },
     ],
   },

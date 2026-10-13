@@ -18,8 +18,13 @@ const warn = (msg: string) => warnings.push(msg);
 const systemIds = new Set<string>(SYSTEMS.map((s) => s.id));
 const regionIds = new Set<string>(REGIONS.map((r) => r.id));
 const structureIds = new Set<string>();
+interface ManifestModel { file: string; structures: string[]; bytes: number }
+type ManifestEntry = ManifestModel & { variantes?: Record<string, ManifestModel> };
+const MANIFEST = manifest as Record<string, ManifestEntry>;
+
+// Unión de todas las mallas (nivel superior y variantes por sexo).
 const meshIds = new Set(
-  Object.values(manifest as Record<string, { structures: string[] }>).flatMap((m) => m.structures),
+  Object.values(MANIFEST).flatMap((m) => [m.structures, ...Object.values(m.variantes ?? {}).map((v) => v.structures)].flat()),
 );
 const usedRefs = new Set<string>();
 
@@ -82,9 +87,25 @@ for (const s of STRUCTURES) bySystem.get(s.systemId)?.push(s);
 for (const [sys, list] of bySystem) if (list.length < 8) warn(`sistema ${sys}: solo ${list.length} estructuras (< 8)`);
 
 // ── 3D manifest ─────────────────────────────────────────────────────────────
-for (const [sys, m] of Object.entries(manifest as Record<string, { structures: string[] }>)) {
+const meshBySex = new Map<string, Set<string>>(); // variante -> ids con malla en esa variante
+for (const [sys, m] of Object.entries(MANIFEST)) {
   if (!systemIds.has(sys)) error(`manifest: sistema inexistente "${sys}"`);
   for (const id of m.structures) if (!structureIds.has(id)) error(`manifest ${sys}: id inexistente "${id}"`);
+  if (!m.variantes) continue;
+  const seenIn = new Map<string, string>();
+  for (const [variant, v] of Object.entries(m.variantes)) {
+    for (const id of v.structures) {
+      if (!structureIds.has(id)) error(`manifest ${sys}/${variant}: id inexistente "${id}"`);
+      if (!m.structures.includes(id)) error(`manifest ${sys}: "${id}" está en la variante ${variant} pero no en structures (unión)`);
+      const other = seenIn.get(id);
+      if (other) error(`manifest ${sys}: "${id}" aparece en las variantes ${other} y ${variant}`);
+      seenIn.set(id, variant);
+      const sexo = STRUCTURES.find((s) => s.id === id)?.sexo;
+      if (sexo && sexo !== variant) error(`manifest ${sys}: "${id}" es sexo ${sexo} pero está en la variante ${variant}`);
+      if (!meshBySex.has(variant)) meshBySex.set(variant, new Set());
+      meshBySex.get(variant)!.add(id);
+    }
+  }
 }
 
 // ── Tours ───────────────────────────────────────────────────────────────────
@@ -150,7 +171,10 @@ const fmt = (m: Map<string, number>) => [...m].map(([k, v]) => `${k}=${v}`).join
 
 console.log('\nResumen');
 console.log(`  estructuras por sistema: ${fmt(new Map([...bySystem].map(([k, v]) => [k, v.length])))}`);
-console.log(`  total ${STRUCTURES.length} · con malla ${count((s) => meshIds.has(s.id))} · micro ${count((s) => s.escala === 'micro')}` +
+const bySex = (v: string) => meshBySex.get(v)?.size ?? 0;
+console.log(`  total ${STRUCTURES.length} · con malla ${count((s) => meshIds.has(s.id))}` +
+  ` (variantes del reproductor: masc. ${bySex('masculino')} / fem. ${bySex('femenino')})` +
+  ` · micro ${count((s) => s.escala === 'micro')}` +
   ` · con clínica ${count((s) => filled(s.clinica_es))}`);
 console.log(`  tours ${GUIDED_TOURS.length} · pasos ${GUIDED_TOURS.reduce((n, t) => n + t.steps.length, 0)}`);
 console.log(`  preguntas ${QUIZ_QUESTIONS.length} · por sistema: ${fmt(tally(QUIZ_QUESTIONS.map((q) => q.sistemaId)))}`);

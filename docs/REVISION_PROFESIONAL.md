@@ -141,3 +141,7 @@ Datos previos conservados pero dudosos:
 ## Recorrido del oído (Fase 5.4)
 
 - Huesecillos "los huesos más pequeños del cuerpo" · amplificación por la diferencia de área tímpano/ventana oval · tonotopía coclear (agudos en la base, graves en el vértice) · localización del sonido por diferencias de tiempo e intensidad (tronco) · relevo en el cuerpo geniculado medial · área de Wernicke en el hemisferio izquierdo — data/tours.ts
+
+## Reproductor femenino en 3D
+
+- `utero`, `ovario`, `trompa-uterina` — son mallas del Human Reference Atlas (Visible Human Female) alineadas y escaladas dentro de la pelvis masculina de BodyParts3D; la proporción y la posición son aproximadas, no corresponden a un mismo cuerpo — `web/public/models3d/reproductor_femenino.glb`

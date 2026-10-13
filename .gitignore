@@ -9,3 +9,4 @@ web/next-env.d.ts
 .vercel/
 .env*.local
 *.log
+bp3d/extra/

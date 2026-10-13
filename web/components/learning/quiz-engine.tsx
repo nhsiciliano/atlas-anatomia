@@ -1,9 +1,9 @@
 'use client';
 import { useState, useMemo, useCallback, useEffect } from 'react';
 import { QUIZ_QUESTIONS, type QuizDifficulty, type QuizQuestion } from '@/data/quizzes';
-import { STRUCTURE_MAP } from '@/data/anatomy-data';
 import { SYSTEMS, type SystemId } from '@/data/systems';
 import { useAtlasStore } from '@/lib/store';
+import { focusStructureForIdentification } from '@/lib/focus';
 import { useLocale, useT } from '@/lib/i18n';
 import { pick, pickList } from '@/lib/l10n';
 import { HelpCircle, CheckCircle2, XCircle, Play, RotateCcw, Award, X } from 'lucide-react';
@@ -28,7 +28,6 @@ export default function QuizEngine() {
   const setSelected = useAtlasStore(s => s.setSelectedStructure);
   const saveQuizScore = useAtlasStore(s => s.saveQuizScore);
   const setQuizHighlight = useAtlasStore(s => s.setQuizHighlight);
-  const isolateSystem = useAtlasStore(s => s.isolateSystem);
 
   const [filterSystem, setFilterSystem] = useState<SystemId | 'all'>('all');
   const [filterDifficulty, setFilterDifficulty] = useState<QuizDifficulty | 'all'>('all');
@@ -54,13 +53,9 @@ export default function QuizEngine() {
   // Identification questions show the structure on the model with its name hidden until answered.
   const presentQuestion = useCallback((q: QuizQuestion | undefined) => {
     const sid = q?.tipo === 'identificacion' ? q.structureId : undefined;
-    setQuizHighlight(sid ?? null);
-    if (sid) {
-      const sys = STRUCTURE_MAP[sid]?.systemId;
-      if (sys) isolateSystem(sys);
-      setSelected(sid, { recordRecent: false });
-    }
-  }, [setQuizHighlight, isolateSystem, setSelected]);
+    if (sid) focusStructureForIdentification(sid);
+    else setQuizHighlight(null);
+  }, [setQuizHighlight]);
 
   const startQuiz = useCallback(() => {
     const drawn = shuffle(filteredQuestions);
