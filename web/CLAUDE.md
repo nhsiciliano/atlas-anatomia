@@ -1,7 +1,7 @@
 # Atlas de Anatomía Humana
 
 ## Project Overview
-Interactive anatomy atlas and learning platform. UI fully bilingual es/en (LanguageToggle, persisted). No database — localStorage only. No accounts.
+Interactive anatomy atlas and learning platform. Open, collaborative project with an academic and scientific purpose (non-commercial; code MIT, content and 3D models CC BY-SA 4.0; contributions via PR against `development`, see README "Cómo colaborar"). UI fully bilingual es/en (LanguageToggle, persisted). No database — localStorage only. No accounts.
 
 ## Architecture
 - **Data layer**: Static TypeScript modules in `data/`. Structures live in `data/structures/<systemId>.ts` (one array per system, 12 systems; 162 structures, 110 with a mesh, 18 `micro`) and are concatenated by `data/anatomy-data.ts` (`STRUCTURES`, `STRUCTURE_MAP`, …). Every text field is paired `_es`/`_en`; read it with `pick()`/`pickList()` from `lib/l10n.ts`, never with locale ternaries. Optional fields: `escala: 'micro'` (microscopic, no 3D possible), `clinica_es/en: ClinicalNote[]`, `inervacion_es/en`, `irrigacion_es/en`, `sexo`.
