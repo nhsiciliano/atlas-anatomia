@@ -6,6 +6,8 @@ Demo: https://atlas-anatomia-three.vercel.app
 
 Atlas educativo 3D de anatomía humana, pensado para estudiantes de secundaria y de los primeros años de ciencias de la salud. Todo el contenido está en español e inglés, con modo fundamental/avanzado, recorridos guiados, un quiz de práctica y repaso con repetición espaciada. No requiere login ni base de datos.
 
+Es un **proyecto abierto y colaborativo** con **objetivo académico y científico**: el código es libre (MIT), el contenido y los modelos 3D son Creative Commons (CC BY-SA 4.0), y cualquier docente, estudiante, profesional de la salud o desarrollador puede proponer correcciones, revisar contenido o ampliar el atlas. No tiene fines comerciales.
+
 ## Qué incluye
 
 Cifras tomadas de `npm run validate` al momento de escribir este documento (el script las recalcula):
@@ -91,6 +93,17 @@ Los modelos 3D se piden como `/models3d/<sistema>.glb?v=<MODEL_VERSION>` y se si
 2. Si es microscópica (sin representación 3D posible), agregar `escala: 'micro'`.
 3. Opcional, para que tenga modelo 3D: agregar el id y los nombres de concepto de BodyParts3D a `bp3d/mapping.py` (se buscan en `bp3d/allnames.txt`), regenerar con `./.venv/bin/python build_glb.py --only <sistema>` desde `bp3d/` y subir `MODEL_VERSION` en `lib/models3d.ts`.
 4. Correr `npm run validate` desde la carpeta de la app: debe terminar con 0 errores.
+
+## Cómo colaborar
+
+Toda ayuda es bienvenida, desde corregir una errata hasta sumar contenido nuevo:
+
+- **Errores de contenido o de la app**: abre un *issue* en el repositorio describiendo qué viste y dónde.
+- **Revisión de contenido** (docentes y profesionales de la salud): la lista de lo pendiente de confirmar está en [`docs/REVISION_PROFESIONAL.md`](docs/REVISION_PROFESIONAL.md).
+- **Nuevas estructuras, recorridos o preguntas**: propónlas con un *pull request*, siguiendo [Cómo agregar una estructura](#cómo-agregar-una-estructura); `npm run validate` debe terminar con 0 errores.
+- **Traducciones**: puedes mejorar los textos en español e inglés, tanto de las fichas como de la interfaz.
+- **Flujo de los PR**: se abren contra la rama `development` y se revisan en una vista previa antes de pasar a `main`. El repositorio incluye una plantilla en [`.github/PULL_REQUEST_TEMPLATE.md`](.github/PULL_REQUEST_TEMPLATE.md).
+- **Licencias**: todo aporte queda bajo las mismas licencias del proyecto (MIT para el código, CC BY-SA 4.0 para el contenido y los modelos 3D).
 
 ## Contenido en revisión
 
